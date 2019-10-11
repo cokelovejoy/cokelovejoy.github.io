@@ -19,13 +19,14 @@ Vue 组件化实践
     props: { msg: string}
 ```
 * 实例属性 $attrs
-包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件,内部组件的$attrs就包含了外层组件的$attrs对象中的内容——在创建高级别的组件时非常有用。
+$attrs对象会包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。
+当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件,内部组件的$attrs就包含了外层组件的$attrs对象中的内容——在创建高级别的组件时非常有用。
 ```
 // 前提 是没有在子组件中使用props声明。
 // 父组件中
     <childcomponent msg="welcome to vue"></childcomponent>
 // 子组件中 并未在props中声明msg，在子组件中使用$attrs，就能访问当前子组件的
-    <p>{{ $attr.msg }}</p>
+    <p>{{ $attrs.msg }}</p>
 ```
 * 使用ref属性和$refs ，可以引用子组件内部的数据和方法
 
@@ -201,4 +202,25 @@ Bus.$emit('foo', 'text')
     <template v-slot:default>具名插槽</template>
     <template v-slot:message>信息</template>
 </component>
+```
+#### 作用域插槽
+为了让插槽内容能够访问子组件中才有的数据时 就要使用作用域插槽.
+
+```
+//child component
+<div>
+    <!-- 此处的foo 是 子组件中的数据, 通过绑定特性的方式传入 要分发的内容(component)中 -->
+    <slot :foo="foo"></slot>
+</div>
+
+// parent 
+<childcom>
+    <!-- 把 v-slot的值指定为 作用域上下文对象 -->
+    <template v-slot:default="slotProps">
+        使用来自子组件数据: {{ slotProps.foo }}
+    </template>
+</childcom>
+
+// 绑定在 <slot> 元素上的特性被称为插槽 prop。
+// 现在在父级作用域中，我们可以给 v-slot 带一个值来定义我们提供的插槽 prop 的名字(slotProps),也可以自定义为其他的名字.
 ```
