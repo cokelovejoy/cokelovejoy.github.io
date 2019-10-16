@@ -13,35 +13,46 @@ vue add router
 ```
 ### 配置router.js
 ```js
-export default {
-    path: '/',
-    name: 'home',
-    component: Home
-}
+import Vue from 'vue'
+import Router from 'vue-router'
+import Home from './views/Home.vue'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+  ]
+})
 ```
 ### 在main.js 中添加到vue选项
 ```js
-import VueRouter from 'vue-router'
-import routes from './router.js'
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
 
-Vue.use(VueRouter);
-const router = new VueRouter({
-    mode: 'history',
-    routes: routes,
-});
 new Vue({
     router, //为什么挂载 ? 全局使用
     render: h => h(App)
 }).$mount('#app')
 ```
-### 路由出口
-```html
-<router-view/>
-```
+
 ### 导航链接
+使用 router-link 组件来导航.
+通过传入 `to` 属性指定链接.
+<router-link> 默认会被渲染成一个 `<a>` 标签
 ```html
 <router-link to="/">Home</router-link>
 <router-link to="/about">About</router-link>
+```
+### 路由出口
+路由匹配到的组件将渲染在这里
+```html
+<router-view/>
 ```
 ### 动态路由
 把某种模式匹配到的所有路由, 全部映射到同一个组件
@@ -93,5 +104,20 @@ export default {
     </div>
 </template>
 ```
-## vue-router源码实现
+## 实现自己的vue-router
+首先思考几个问题: 在router.js中
+* 应用插件Vue.use(Router): 做了什么? install里面做了什么?
+1. 挂载$router
+2. 注册组件(router-link, router-view)
 
+* router做了什么?
+1. 解析路由配置对象,生成map
+2. 响应url变化
+3. 事件监听hashchange
+4. 组件切换? 怎么切换?
+
+### 创建一个VueRouter类
+创建zvue-router.js
+```
+class
+```
