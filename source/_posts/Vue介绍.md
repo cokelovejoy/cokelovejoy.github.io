@@ -71,6 +71,15 @@ v-model
 
 <h1 v-for="(item, key, index) in obj" :key="key">{{ item }}--{{ key }}--{{ index }}</h1>
 ```
+* v-if 和 v-show
+条件判断
+v-if = "表达式"
+v-show = "表达式"
+v-if : 根据表达式的值的真假条件渲染元素和移除元素,表达式为false时,元素会真正的被移除. 
+v-show : 根据表达式的值的真假条件,切换元素的CSS属性,表达式为 false时, 相当于设置style属性: display:none;
+初始页面根据条件判断是否要渲染某一块的组件时,使用v-if ,使用情况: 较少的操作DOM.
+频繁的切换组件的显示隐藏,就使用v-show.
+
 ## 对象的响应数据变化
 只有在data里面声明的数据,才能做响应
 data对象中的数据都会被转换成 getter/setter, 所以数据变化时,才会自动更新在页面中.
@@ -91,4 +100,19 @@ this.$set(targetObj, property, value)
 * 给对象重新赋新的对象
 ```js
 vm.obj = Object.assign({}, vm.obj, {msg: 'new msg'})
+```
+## 数组的响应数据变化
+* 数组的变异方法
+vue中提供了观察数组的变异方法,使用这些方法将会触发视图更新push(), pop(),shift(), unshift(), sort(), splice(), reverse(),这些方法会改变原数组.
+1. 不能触发视图更新的情况
+利用索引直接设置一个项时
+修改数组的长度时
+```js
+vm.arr.push(1000)
+// 通过下标改变值,并不会让视图更新
+vm.list[0] = 'test'
+// 使用splice()方法可以改变值,并且视图会更新数据
+vm.list.splice(0,1,"test")
+// 改变数组的长度也不能改变视图更新 (如果之后使用了其他的变异方法,会使数组更新,使视图更新)
+vm.list.length = 1
 ```
