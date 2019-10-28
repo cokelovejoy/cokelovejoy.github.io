@@ -47,9 +47,29 @@ v<------------ vm <------------model
     将数据和DOM关联,当表达式的值改变时,响应式地作用在视图.
     预期的值为javaScript表达式 (表达式是一定会返回值的)
 * v-bind v-on
-v-bind:msg="message" 绑定属性 , 属性值动态改变
-v-on:click="funcHandler" 绑定事件, 事件处理函数的第一个参数是触发事件的DOM中的event对象
-                                    event.target: 返回触发此事件的元素.
+v-bind:msg="message" 绑定属性 , 属性值动态改变, 简写 :msg="message"
+v-on:click="funcHandler" 绑定事件, 事件处理函数的第一个参数是触发事件的DOM中的event对象.简写 @click="funcHandler"
+    event.target: 返回触发此事件的元素.
+当在模板中给事件的方法传参,需要手动使用$event把事件对象传给方法.
+```html
+<!-- 不传参数 -->
+<button @click="funcHandler1"></button>
+<!-- 传参 -->
+<button @click="funcHandler2($event, value)"></button>
+<script>
+    methods: {
+        // event 是 $event ,事件对象
+        funcHandler1(event) {
+            pass
+        },
+        // event 是 $event ,事件对象
+        funcHandler2(event, params) {
+            pass
+        }
+    }
+</script>
+
+```
 
 methods 中的方法中的this 都指向当前组件实例
 
@@ -115,4 +135,16 @@ vm.list[0] = 'test'
 vm.list.splice(0,1,"test")
 // 改变数组的长度也不能改变视图更新 (如果之后使用了其他的变异方法,会使数组更新,使视图更新)
 vm.list.length = 1
+```
+
+## 动态绑定class
+v-bind:class= "{classname: 表达式}"
+
+## 动态绑定style
+v-bind:class= "{display: 表达式 ? 'block' : 'none'}"
+v-bind:style= "{样式名: 样式值}"
+
+## 删除对象的属性
+```js
+this.$delete(this.obj, key)
 ```
