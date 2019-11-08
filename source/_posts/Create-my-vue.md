@@ -7,7 +7,7 @@ tags:
 此章记录学习vue源码,并且实现简版的Vue
 
 ## vue 工作流程
-<img src="../static/img/vueProcess.png">
+<img src="/static/img/vueProcess.png">
 ### 初始化
 初始化data, props, 事件等
 ### 挂载
@@ -70,7 +70,7 @@ Vue2开始支持Virtual DOM, 通过JS对象描述DOM, 数据变更时映射为DO
 ```
 ### 实现自己的vue
 简化版架构图
-<img src="../static/img/vue.png">
+<img src="/static/img/vue.png">
 * 创建Myvue.js
 ```js
 /*
@@ -212,7 +212,7 @@ class Watcher {
 
 * 编译compile
 过程:
-<img src="../static/img/compile.png">
+<img src="/static/img/compile.png">
 核心任务:
 1. 获取并遍历DOM树
 2. 文本节点:获取插值表达式的内容并解析
