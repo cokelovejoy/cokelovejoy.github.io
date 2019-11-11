@@ -187,3 +187,21 @@ this.items.length = 0
 this.$set(this.items, 0, 'tua')
 this.items.splice(0, 2)
 ```
+
+# 总结
+* 初始化过程: init --> $mount --> compile --> new Watcher --> render --> update
+1. runtime/index : 实现$mount
+2. core/index: 全局api
+3. core/instance/index: 声明vue构造函数
+4. entry-runtime-with-compiler: 覆盖$mount
+5. core/instance/lifecycle: mountComponent 执行渲染和更新,计算虚拟DOM,并转换成真实DOM,并挂载到$el上.
+* 响应化
+1. observe(): 返回Observer实例.
+2. Observer类: 区分当前值的类型是对象还是数组.
+3. defineReactive
+4. Dep类: 依赖收集
+5. Watcher类
+
+Dep 和 Watcher 的关系
+依赖收集 : 对Object或Array 的每个key 做监听,我们就称之为依赖.
+每个组件实例有一个Wathcer. 当对象或者数组里的值 发生变化的时候, 就要通知组件的Watcher 去通知(notify)更新.
