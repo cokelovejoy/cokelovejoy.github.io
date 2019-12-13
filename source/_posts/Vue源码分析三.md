@@ -241,3 +241,37 @@ render(h) { // 渲染内容跟foo的值挂钩,只能用if语句
 }
 })
 ```
+# 总结
+## 组件化
+1. 组件声明,注册
+initAssetRegister(Vue)
+生成组件构造函数: VueComponent Vue.extend(opts)
+注册组件: Vue.options.components
+2. 组件实例化及挂载
+new Vue 根组件创建, _render() => VNode
+_createElement 获取子组件构造函数并创建
+```js
+Ctor = resolveAsset(context.$options,'components',tag)
+vnode = createComponent(Ctor)
+```
+createComponent() : 添加初始化钩子
+vm._update() => patch() => createElm()
+调用子组件初始化钩子
+3. 编译原理: template => render()
+* 解析parse: 转换字符串模板为AST,解析DOM结构及其中表达式,指令等
+* 优化optimize: 标记不发生变化的节点为静态节点和静态根节点,将来可以跳过他们的patch过程起到优化的作用
+* 生成generate: 将AST转换为渲染函数的代码字符串
+* 编译器获取整体流程
+1. 编译template为render
+```js
+compileToFunctions(template, { }, this)
+```
+2. compileToFunctions是createCompiler(baseOptions)返回结果
+3. createCompiler是
+```js
+export const createCompiler = createCompilerCreator(function
+baseCompile (
+ template: string,
+ options: CompilerOptions
+): CompiledResult {})
+```
