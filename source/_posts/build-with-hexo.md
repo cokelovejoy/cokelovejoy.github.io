@@ -16,3 +16,23 @@ $ npm install -g hexo-cli
 ```bash
 $ sudo ln -s ~/npm-global/lib/node_modules/hexo-cli/bin/hexo /usr/local/bin/hexo
 ```
+## 命令
+新建文章页
+```bash
+hexo new 'pageName'
+```
+生成静态文件
+```bash
+hexo generate
+hexo g
+```
+启动server
+```bash
+hexo server
+hexo s
+```
+部署到cokejoy
+```bash
+hexo deploy
+hexo d
+```
