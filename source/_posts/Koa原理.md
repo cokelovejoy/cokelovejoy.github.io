@@ -309,3 +309,99 @@ app.listen(3000, () => {
     console.log('server running on port 3000')
 })
 ```
+
+* 静态文件服务koa-static
+    * 配置绝对资源目录地址, 默认为static
+    * 获取文件或者目录信息
+    * 静态文件读取
+    * 返回
+
+```js
+// 静态文件服务
+const fs = require("fs")
+const path = require("path")
+
+module.exports = (dirPath = "./public") => {
+    return async (ctx, next) => {
+        if (ctx.url.indexOf('/public') == 0) {
+            // public开头 读取文件
+            // 获取 /public 所在本地中的绝对路径
+            const url = path.resolve(__dirname, dirPath)
+            // 获取path的最后一部分
+            // const fileBaseName = path.basename(url)
+            // 要访问的目录路径
+            const filepath = url + ctx.url.replace("/public", "")
+            console.log(filepath)
+            try {
+                // 返回一个stat数组对象
+                stats = fs.statSync(filepath)
+                // 判断是否为目录
+                if (stats.isDirectory()) {
+                    // 返回一个包含“指定目录下所有文件名称”的数组对象
+                    const dir = fs.readdirSync(filepath)
+                    const ret = ['<div style="padding-left:20px">']
+                    dir.forEach(filename => {
+                        console.log(filename)
+                        // 简单认为不带小数点的格式,就是文件夹,实际应该用statSync
+                        if (filename.indexOf('.') > -1) {
+                            ret.push(
+                                `<p><a style="color:black" href="${ctx.url}/${filename}">${filename}</a></p>`
+                            )
+                        } else {
+                            ret.push(`<p><a href="${ctx.url}/${filename}">${filename}</a></p>`)
+                        }
+                    })
+                    ret.push("</div>")
+                    ctx.body = ret.join("")
+                } else {
+                    console.log('文件')
+                    // 同步读取文件
+                    const content = fs.readFileSync(filepath)
+                    ctx.body = content
+                }
+            } catch (err) {
+                // 报错
+                ctx.body = "404, not found"
+            }
+        } else {
+           // 不是静态资源,直接去下一个中间件
+           await next() 
+        }
+    }
+}
+```
+使用
+```js
+const static = require('./static')
+app.use(static(__dirname + '/public'))
+```
+
+* 请求拦截: 黑名单中存在的ip访问将被拒绝
+```js
+// 请求拦截: 黑名单中存在的ip访问将被拒绝
+module.exports = async function (ctx, next) {
+    const { req, res } = ctx
+    const blackList = ['127.0.0.1'] // 将禁止访问的ip写入数组内
+    const ip = getClientIp(req)
+    if (blackList.includes(ip)) {
+        // 出现在黑名单中将被拒绝
+        ctx.body = "not allowed"
+    } else {
+        await next()
+    }
+    
+}
+function getClientIp(req) {
+    return (
+        req.headers['x-forwarded-for'] ||   // 判断是否有反向代理理 IP
+        req.connection.remoteAddress ||     // 判断 connection 的远程 IP
+        req.socket.remoteAddress ||         //判断后端的 socket 的 IP
+        req.connection.socket.remoteAddress
+    )
+}
+```
+使用
+```js
+const interrupt = require('./request-interrupt')
+app.use(interrupt)
+```
