@@ -154,11 +154,10 @@ cd C:\mysql-8.0.11\bin
 mysqld --initialize --console
 ```
 3. 执行完成后会输出root用户的初始默认密码
+APWCY5ws&hjQ 就是初始密码，后续登录时需要用到，也可以在登录后修改密码。
 ```
 2018-04-20T02:35:05.464644Z 5 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: APWCY5ws&hjQ
 ```
-APWCY5ws&hjQ 就是初始密码，后续登录时需要用到，也可以在登录后修改密码。
-
 4. 安装命令
 ```bash
 mysqld install
@@ -231,11 +230,13 @@ create database  数据库名字[库选项]
 ```bash
 create database 数据库名;
 ```
+
 2. 删除数据库
 ```bash
 drop database 数据库名;
 ```
 删除之后对应的文件夹也会删除（opt也被删除）
+
 3. 修改数据库
 修改的数据库字符集（库选项）：字符集和校对集
 ```bash

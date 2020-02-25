@@ -31,7 +31,7 @@ hexo g
 hexo server
 hexo s
 ```
-部署到cokejoy
+将生成的静态文件部署到代码仓库的master分支上
 ```bash
 hexo deploy
 hexo d
