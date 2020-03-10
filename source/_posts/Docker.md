@@ -545,6 +545,9 @@ module.exports = {
 代码提交到代码库(production分支), 服务器就自动拉取代码更新.
 使用到了github的webhooks,来获取github代码库的更新的相关信息,在执行服务器代码拉取最新代码,完成服务器代码部署.
 ## webhooks
+1. 在github的代码库里新建一个webhooks
+2. 新建本地代码webhooks.js获取push操作.
+3. 新建deploy-dev.sh 用于webhooks执行后,检查到代码库的更新,然后就会去执行deploy-dev.sh脚本,这个脚本会去执行部署到服务器的一些操作(拉取代码, 重新编译docker容器)
 ### Add webhook
 在github代码库里面添加webhooks
 settings>add webhooks
