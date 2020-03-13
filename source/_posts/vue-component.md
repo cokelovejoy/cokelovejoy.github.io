@@ -57,9 +57,9 @@ this.$parent.xxx
 ```bash
 # 父组件内 在子组件上自定义事件，并绑定这个事件触发时，要执行的函数。
 # $event : 通过$event 可以访问原始的 DOM 事件。
-<childcom @addevent="func(argu, $event)"></childcom>
+<childcom @addevent="func($event, argu)"></childcom>
 
-func(argu, event) {
+func(event,argu) {
     ...code block
 }
 # 子组件内 触发这个自定义事件, 并传递参数,这个参数可以让父组件的变量接收,从而达到改变父组件的数据的作用.

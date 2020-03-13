@@ -27,7 +27,7 @@ tags:
 
 ## Vue两个核心点
 1. 响应式的数据绑定
-    当数据发生变化时 ---> 视图自动更新
+    当数据发生变化时 -> 视图自动更新
     专注于操作数据, 忘记操作DOM
 
 2. 可组合的视图组件
@@ -40,19 +40,20 @@ M: Model数据
 V: view视图
 vm:view-Model视图模型 (control)
 视图(DOM) (数据绑定,DOM监听)     准备数据
-v------------> vm ------------>model
-v<------------ vm <------------model
+v---------------------> vm -------------------->model
+v<--------------------- vm <--------------------model
 
 ## Vue指令
 指令: 是一种特殊的自定义行间属性,以 v-开头
-    将数据和DOM关联,当表达式的值改变时,响应式地作用在视图.
-    预期的值为javaScript表达式 (表达式是一定会返回值的)
+将数据和DOM关联,当表达式的值改变时,响应式地作用在视图.
+预期的值为javaScript表达式 (表达式是一定会返回值的)
 * v-bind & v-on
 v-bind:msg="message" 绑定属性 , 属性值动态改变, 简写 :msg="message"
 v-on:click="funcHandler" 绑定事件, 事件处理函数的第一个参数是触发事件的DOM中的event对象.
 简写 @click="funcHandler"
 event.target: 返回触发此事件的事件源元素.
 当在模板中给事件处理函数传递其他参数时,需要把$event作为第一个参数传入.
+methods 中的方法中的this 都指向当前组件实例
 ```html
 <!-- 不传参数 -->
 <button @click="funcHandler1"></button>
@@ -70,11 +71,7 @@ event.target: 返回触发此事件的事件源元素.
         }
     }
 </script>
-
 ```
-
-methods 中的方法中的this 都指向当前组件实例
-
 * v-model
 双向数据绑定
 Vue 将数据对象 和DOM进行绑定:
@@ -105,7 +102,7 @@ v-show : 根据表达式的值的真假条件,切换元素的CSS属性,表达式
 ## 对象的响应数据变化
 只有在data里面声明的数据,才能做响应
 data对象中的数据都会被转换成 getter/setter, 所以数据变化时,才会自动更新在页面中.
-如果对象中没有定义某个属性,就不能检测到该属性的变化.
+如果对象中没有定义某个属性,直接通过赋值新增的属性,就不能检测到该属性的变化.
 * 直接给对象新增属性,并不能响应化
 ```js
 vm.obj.newattr = 'new msg'
@@ -134,20 +131,27 @@ vue中提供了观察数组的变异方法,使用这些方法将会触发视图�
 vm.arr.push(1000)
 // 通过下标改变值,并不会让视图更新
 vm.list[0] = 'test'
-// 使用splice()方法可以改变值,并且视图会更新数据
+// 使用splice()方法可以改变数组,并且视图会更新数据
 vm.list.splice(0,1,"test")
 // 改变数组的长度也不能改变视图更新 (如果之后使用了其他的变异方法,会使数组更新,使视图更新)
 vm.list.length = 1
 ```
-
 ## 动态绑定class
-v-bind:class= "{classname: 表达式}"
-
+* v-bind:class= "{classname: 表达式}"
+```bash
+<div :class="{ red: isRed }"></div>
+<div :class="[classA, classB]"></div>
+<div :class="[classA, { classB: isB, classC: isC }]">
+```
 ## 动态绑定style
-v-bind:class= "{display: 表达式 ? 'block' : 'none'}"
-v-bind:style= "{样式名: 样式值}"
-
-## 删除对象的属性
+* v-bind:style= "{样式名: 样式值}"
+```bash
+<!-- style 绑定 -->
+<div :style="{ fontSize: size + 'px' }"></div>
+<div :style="[styleObjectA, styleObjectB]"></div>
+```
+## 删除对象的实例属性
+* $delete
 ```js
 this.$delete(this.obj, key)
 ```
@@ -162,6 +166,7 @@ this.$delete(this.obj, key)
 1. 取值(get()), 只有一个函数时,默认就是触发的get()
 2. 设置值(set())
 
+* 例子
 ```js
 var vm = new Vue({
   el: '#example',
@@ -171,11 +176,11 @@ var vm = new Vue({
   computed: {
     // 计算属性的 getter, 只有一个函数 默认就是getter
     reversedMessage: function () {
-      // `this` 指向 vm 实例
+    // `this` 指向 vm 实例
       return this.message.split('').reverse().join('')
     },
     handleMessage: function () {
-        // 取值
+    // 取值
         get() {
             return this.message
         },
@@ -189,6 +194,7 @@ var vm = new Vue({
 ## Vue 响应式原理
 把一个普通的JavaScript对象传给Vue实例的data选项.Vue将遍历此对象所有的属性, 并用Object.defineProperty把这些属性全部转为getter/setter. Vue内部会对这些数据进行数据劫持操作,进而追踪依赖,在属性被访问和修改时,通知变化.
 * 对数据操作时,要先对数据进行劫持(代理)
+Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。
 ```js
 var dataValue;
 Object.defineProperty(data, 'keyName', {
@@ -244,4 +250,4 @@ function defineReactive(dataObj, key, value) {
  声明式渲染理解:
  1. DOM状态只是数据状态的一个映射
  2. 所有的逻辑尽可能在状态层面去进行
- 3. 当状态改变了,view视图会被框架自动更新到合理的状态.
+ 3. 当数据状态改变了,view视图会被框架自动更新到合理的状态.

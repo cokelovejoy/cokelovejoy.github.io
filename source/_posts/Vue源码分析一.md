@@ -6,6 +6,7 @@ tags:
 # 获取Vue源码
 Vue源码地址: https://github.com/vuejs/vue
 当前版本号: 2.6.10
+* 获取源代码
 ```bash
 $ git clone https://github.com/vuejs/vue.git
 ```
@@ -20,7 +21,9 @@ rollup是打包工具,专门用于打包js代码
 npm install -g rollup
 ```
 * 修改package.json的dev选项,添加 --sourcemap
-```
+```bash
+# dev 选项中 : -c scripts/config.js 指明 配置文件所在
+# 参数TARGET:web-full-dev 指明 输出文件配置项((scripts/config.js,line:123))
 "dev": "rollup -w -c scripts/config.js --sourcemap --environment TARGET:web-
 full-dev"
 ```
@@ -34,13 +37,14 @@ npm run dev
 ```html
 <script src="/dist/vue.js"></script>
 ```
-
 # 入口
-vue 各版本:
+vue 各版本: /dist
 vue.runtime.common.js 用于webpack 1.x, browserify.
 vue.runtime.esm.js 用于webpack 2.x.
-dev 选项中 : -c scripts/config.js 指明 配置文件所在
-参数TARGET:web-full-dev 指明 输出文件配置项(scripts/config.js,line:123)
+
+* 查看(/scripts/config.js,line:123)
+入口文件在 /src/platforms/web/entry-runtime-with-compiler.js
+源码分析从这个文件开始.
 ```js
     {
         // Runtime+compiler development build (Browser)
@@ -54,11 +58,10 @@ dev 选项中 : -c scripts/config.js 指明 配置文件所在
         },
     }
 ```
-以上配置可以看出: 入口文件在 src/platforms/web/entry-runtime-with-compiler.js
-源码分析从这个文件开始.
+
 
 # 初始化流程
-入口: src/platforms/web/entry-runtime-with-compiler.js
+入口: /src/platforms/web/entry-runtime-with-compiler.js
 扩展 默认的$mount方法: 处理template 或 el选项
 
 ## src/platforms/web/runtime/index.js
