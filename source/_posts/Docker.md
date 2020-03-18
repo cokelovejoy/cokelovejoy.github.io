@@ -25,6 +25,7 @@ Nginx- 静态服务, 反向代理
 3. 一致的运行环境
 4. 持续交付和部署
 5. 更轻松的迁移
+
 # Docker 中的三个重要概念
 1. 镜像Image
 面向Docker的只读模板(类比 类的概念)
@@ -32,9 +33,11 @@ Nginx- 静态服务, 反向代理
 镜像的运行实例(类比 实例的概念)
 3. 仓库(Registry)
 存储镜像的服务器(类比 github代码仓库)
+
 # Docker安装
 1. 申请云服务器
 2. 安装过程(将docker安装在云服务器上)
+
 ```bash
 # apt升级
 sudo apt-get update
@@ -68,6 +71,7 @@ docker ps    # 测试docker命令是否可以使用sudo正常使用
 # Helloworld测试
 docker run hello-world
 ```
+
 关于权限的问题:
 docker进程使用Unix Socket而不是TCP端口。而默认情况下，Unix socket属于root用户，需要root权限才能访问。
 docker守护进程启动的时候，会默认赋予名字为docker的用户组读写Unix socket的权限，因此只要创建docker用户组，并将当前用户加入到docker用户组中，那么当前用户就有权限访问Unix socket了，进而也就可以执行docker相关命令.
@@ -89,6 +93,7 @@ sudo vi /etc/docker/daemon.json
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
+
 # SSH 远程操作服务器
 SSH(Secure Shell Protocol),OpenSSH是SSH协议的免费开源实现.
 OpenSSH包含服务端程序和客户端工具,用来加密远程控件和文件传输过程中的数据.因而该工具可以帮助我们在互联网上安全地访问远程服务器,因为SSH的所有连接都是加密的.OpenSSH提供了安全隧道功能和多种身份验证方法,支持SSH协议的所有版本.
@@ -167,11 +172,13 @@ Note: 在使用云服务器的时候(如腾讯云,可以在它的控制台自己
 # 远程服务自己配置了密钥 本地下载密钥并保存,使用密钥登陆("home/richard/ssh_key"为本地密钥保存的绝对路径)
 ssh -i "/home/richard/ssh_key" ubuntu@192.168.11.123
 ```
+
 # 简单的Nginx服务
 1. 拉取官方镜像 - 面向docker的只读模板
 ```bash
 docker pull nginx
 ```
+
 2. 查看镜像
 ```bash
 docker images nginx
@@ -182,13 +189,14 @@ docker images nginx
 # www目录里面放一个index.html
 mkdir www
 echo 'hello docker' >> www/index.html
-# 启动 (由nginx 镜像 创建容器)
+# 创建并启动容器 (由nginx 镜像 创建容器)
 # -p 指定容器暴露80端口映射到真实主机的8000端口
 # -v volume指定当前主机文件夹下文件挂载到容器的某目录下
 docker run -p 8000:80 -v $PWD/www:/usr/share/nginx/html nginx
 # 后台启动 (-d detach 后台运行,会在终端输出这个容器的uuid)
 docker run -p 80:80 -v $PWD/www:/usr/share/nginx/html -d nginx
 ```
+
 4. 容器操作
 ```bash
 # ff6 是容器ID的前三个字母
@@ -199,12 +207,14 @@ docker stop ff6
 # 重启容器
 docker restart ff6
 ```
+
 5. 查看进程
 ```bash
 docker ps
 # 查看全部
 docker ps -a
 ```
+
 6. 伪终端
 ```bash
 # exec 用于在运行中的容器中执行命令
@@ -214,6 +224,7 @@ docker ps -a
 # -t 分配一个伪终端 /bin/bash  shell 命令终端
 docker exec -it ff6 /bin/bash
 ```
+
 7. 删除
 ```bash
 # 删除容器
@@ -221,6 +232,7 @@ docker rm ff6
 # 删除镜像
 docker rmi nginx
 ```
+
 # Dockerfile 定制镜像
 镜像的定制实际上就是定制每一层所添加的配置,文件.如果我们可以把每一层修改,安装,构建,操作的命令都写入一个脚本.用这个脚本来构建,定制镜像,那么之前提及的无法重复的问题,镜像构建透明性的问题,体积问题就都会解决.这个脚本就是Dockerfile.
 
@@ -257,6 +269,7 @@ WORKDIR /data
 ```bash
 EXPOSE 3000
 ```
+
 ## 定制自己的web服务器镜像
 ### 修改Dockerfile
 ```bash
@@ -270,10 +283,13 @@ RUN echo '<h1>Hello world</h1>' > /usr/share/nginx/html/index.html
 # 创建命名为nginx标签为richard 的nginx镜像 在当前文件夹下(这个.表示在当前文件下查找Dockerfile)
 docker build -t nginx:richard .
 ```
+
 ### 运行
+启动并生成一个docker容器
 ```bash
 docker run -p 8000:80 nginx:richard
 ```
+
 ## 定制Nodejs镜像
 ### 新建node项目
 ```bash
@@ -371,6 +387,7 @@ pm2 restart all
 # docker 会忽略 node_modules文件夹
 node_modules
 ```
+
 ### pm2 运行脚本
 ```js
 // process.yml
@@ -381,6 +398,7 @@ apps:
    env   :
      NODE_ENV: production
 ```
+
 ### 新建Dockerfile
 ```bash
 # Dockerfile
@@ -392,10 +410,12 @@ EXPOSE 3000
 #pm2在docker中使用命令为pm2-docker
 CMD ["pm2-runtime", "start", "process.yml"]
 ```
+
 ### 定制镜像
 ```bash
 docker build -t mypm2 .
 ```
+
 ### 创建并启动容器
 ```bash
 docker run -p 3000:3000 -d mypm2
@@ -407,6 +427,7 @@ Docker-compose 是Docker官方开源的项目,负责实现对Docker容器集群�
 ```bash
 sudo apt install docker-compose
 ```
+
 ## 新建docker-compose.yml文件
 docker-compose.yml文件描述了docker-compose按顺序启动的容器的相关配置.
 例子如下
@@ -424,6 +445,7 @@ services:
         ports:
         - 8000:8081
 ```
+
 ## docker-compose命令
 必须在docker-compose.yml所在的文件夹下启动如下命令
 ```bash
@@ -432,6 +454,7 @@ docker-compose up
 # 关闭
 docker-compse down
 ```
+
 # 构建前后端分离的项目
 项目基本目录结构: 
 ```bash
@@ -541,6 +564,7 @@ module.exports = {
     dbName: 'taro'
 }
 ```
+
 # CI持续集成
 代码提交到代码库(production分支), 服务器就自动拉取代码更新.
 使用到了github的webhooks,来获取github代码库的更新的相关信息,在执行服务器代码拉取最新代码,完成服务器代码部署.
@@ -548,6 +572,7 @@ module.exports = {
 1. 在github的代码库里新建一个webhooks
 2. 新建本地代码webhooks.js获取push操作.
 3. 新建deploy-dev.sh 用于webhooks执行后,检查到代码库的更新,然后就会去执行deploy-dev.sh脚本,这个脚本会去执行部署到服务器的一些操作(拉取代码, 重新编译docker容器)
+
 ### Add webhook
 在github代码库里面添加webhooks
 settings>add webhooks
@@ -560,6 +585,7 @@ settings>add webhooks
 为保证安全设置的密码,在我们的web应用请求webhooks,也需要设置相同的secret.
 4. Events
 Events是webhook的核心。只要对存储库执行某项操作，就会触发这些webhook，服务器的有效负载URL会拦截并执行操作。
+
 ### 服务端接受webhooks 回调信息,并做出操作
 ```js
 var http = require('http')

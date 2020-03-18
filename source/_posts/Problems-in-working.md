@@ -276,3 +276,12 @@ scoped三条渲染规则：
 　　1、给HTML的DOM节点加一个不重复data属性(形如：data-v-19fca230)来表示他的唯一性
 　　2、在每句css选择器的末尾（编译后的生成的css语句）加一个当前组件的data属性选择器（如[data-v-19fca230]）来私有化样式
 　　3、如果组件内部包含有其他组件，只会给其他组件的最外层标签加上当前组件的data属性
+
+# npm全局安装包的位置
+使用npm root -g 进行查询
+# npm 更新版本到最新
+npm install npm@latest -g
+# node
+输入命令sudo npm install n -g，来安装n这个工具，n可以切换node版本
+输入命令sudo n stable，安装最新稳定版的nodejs
+重启终端，查看node.js和npm版本,node --version,npm  --version

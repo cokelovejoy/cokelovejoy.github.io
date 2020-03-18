@@ -69,11 +69,13 @@ vue.runtime.esm.js 用于webpack 2.x.
 定义__patch__: 补丁函数,执行patching 算法 ,执行数据更新,再更新DOM
 
 ## src/core/index.js
+* 初始化全局API
 ```js
-// 定义全局API
+// 初始化全局API
 initGlobalAPI(Vue)
 ```
-实现全局API,具体如下:
+
+* 实现全局API,具体如下:
 ```js
 // src/core/global-api/index.js
 Vue.set = set
@@ -85,7 +87,7 @@ initExtend(Vue) // 实现Vue.extend函数
 initAssetRegisters(Vue) // 注册实现Vue.component/directive/filter
 ```
 ## src/core/instance/index.js
-Vue构造函数定义,实例api定义.
+* Vue构造函数定义,实例api定义.
 ```js
 function Vue (options) {
     // 构造函数仅执行了_init
@@ -98,7 +100,7 @@ lifecycleMixin(Vue) // 生命周期api _update,$forceUpdate,$destroy
 renderMixin(Vue)// 渲染api _render,$nextTick
 ```
 ## src/core/instance/init.js
-创建组件实例,初始化其数据、属性、事件等
+* 创建组件实例,初始化其数据、属性、事件等
 ```js
 initLifecycle(vm) // $parent,$root,$children,$refs
 initEvents(vm)  // 处理父组件传递的监听器
@@ -123,7 +125,7 @@ Vue一大特点是数据响应式,数据的变化会作用于UI而不用进行DO
 ## src/core/instance/state.js
 初始化数据
 
-initData核心代码就是将data数据响应化
+* initData核心代码就是将data数据响应化
 ```js
 function initData (vm: Component) {
     //获取data
@@ -163,7 +165,8 @@ export default class Watcher {
 知数据变化。所以vue中采取的策略是拦截这些方法并通知dep。
 ## src\core\observer\array.js
 为数组原型中的7个可以改变内容的方法定义拦截器
-Observer中覆盖数组原型
+
+* Observer中覆盖数组原型
 ```js
 if (Array.isArray(value)) {
   // 替换数组原型
