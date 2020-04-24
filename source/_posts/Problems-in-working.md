@@ -285,3 +285,8 @@ npm install npm@latest -g
 输入命令sudo npm install n -g，来安装n这个工具，n可以切换node版本
 输入命令sudo n stable，安装最新稳定版的nodejs
 重启终端，查看node.js和npm版本,node --version,npm  --version
+
+# Vue: $forceUpdate()
+对象深层的数据改变,Vue无法监听,用于强制更新数据
+# Vue: $refs
+$refs在template和computed属性中使用无效,它不是响应式的.

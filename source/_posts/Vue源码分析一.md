@@ -102,30 +102,119 @@ renderMixin(Vue)// 渲染api _render,$nextTick
 ## src/core/instance/init.js
 * 创建组件实例,初始化其数据、属性、事件等
 ```js
-initLifecycle(vm) // $parent,$root,$children,$refs
-initEvents(vm)  // 处理父组件传递的监听器
-initRender(vm)  // $slots,$scopedSlots,_c,$createElement
-callHook(vm, 'beforeCreate')
-initInjections(vm) // 获取注入数据
-initState(vm)   // 初始化props,methods,data,computed,watch
-initProvide(vm)   // 提供数据注入
-callHook(vm, 'created')
+initLifecycle(vm)  // $parent,$root,$children,$refs
+initEvents(vm)     // 处理父组件传递的监听器
+initRender(vm)     // $slots,$scopedSlots,_c,$createElement
+callHook(vm, 'beforeCreate') // 在beforeCreate 之中无法拿到 state
+initInjections(vm) // resolve injections before data/props 获取注入的数据(父组件的)
+initState(vm)      // 初始化组件中的 props,methods,data,computed, watch(自己的)
+initProvide(vm)    // resolve provide after data/props 提供数据注入 
+callHook(vm, 'created') // 要拿到state 最早要在created 钩子函数中
 ```
 ## src/core/instance/lifecycle.js
-mountComponent()方法 执行挂载
+* lifecycleMixin(Vue)
+```js
+// lifecycleMixin(Vue)
+// 添加以下方法到Vue上
+Vue.prototype._update
+Vue.prototype.$forceUpdate
+Vue.prototype.$destroy
+```
+* mountComponent()方法 执行挂载
+```js
+// ...
+callHook(vm, 'beforeMount')
 
+// 定义组件更新函数 updateComponent()
+// vm._render()执行可以获得虚拟DOM,VNode
+// vm._update()将虚拟DOM转换成真实DOM
+updateComponent = () => {
+    vm._update(vm._render(), hydrating)
+}
+// 声明一个render watcher 用于update
+new Watcher(vm, updateComponent, noop, {
+    before () {
+      if (vm._isMounted && !vm._isDestroyed) {
+        callHook(vm, 'beforeUpdate')
+      }
+    }
+  }, true /* isRenderWatcher */)
+
+  // 手动挂载
+  if (vm.$vnode == null) {
+    vm._isMounted = true
+    callHook(vm, 'mounted')
+  }
+  return vm
+```
+
+## src/core/instance/events.js
+* initEvents(vm)
+初始化 父组件的监听器
+```js
+// initEvents(vm)
+const listeners = vm.$options._parentListeners
+if (listeners) {
+    updateComponentListeners(vm, listeners)
+}
+```
+* eventsMixin(Vue)
+```js
+// 注册事件
+Vue.prototype.$on()
+Vue.prototype.$once()
+Vue.prototype.$off()
+Vue.prototype.$emit()
+```
+
+## src/core/instance/render.js
+
+* 初始化render initRender()
+```js
+// 注册createElement()方法
+// args order: tag, data, children, normalizationType, alwaysNormalize
+vm._c = (a, b, c, d) => createElement(vm, a, b, c, d, false)
+vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true)
+```
+* renderMixin()
+```js
+Vue.prototype.$nextTick()   // 注册$nextTick()函数
+Vue.prototype._render()     // 注册_render()函数,该函数返回VNODE
+```
 # 数据响应式
 
 Vue一大特点是数据响应式,数据的变化会作用于UI而不用进行DOM操作。原理上来讲,是利用了JS语
 言特性Object.defineProperty(),通过定义对象属性setter方法拦截对象属性变更,从而将数值的变化
 转换为UI的变化。
-具体实现是在Vue初始化时,会调用initState,它会初始化data,props等,这里着重关注data初始
-化,
+具体实现是在Vue初始化时,会调用initState,它会初始化data,props等,这里着重关注data初始化,
 
 ## src/core/instance/state.js
 初始化数据
+* proxy()代理方法
+```js
+export function proxy (target: Object, sourceKey: string, key: string) {
+  sharedPropertyDefinition.get = function proxyGetter () {
+    return this[sourceKey][key]
+  }
+  sharedPropertyDefinition.set = function proxySetter (val) {
+    this[sourceKey][key] = val
+  }
+  // 在对象上定义一个新属性.
+  Object.defineProperty(target, key, sharedPropertyDefinition)
+}
+```
 
-* initData核心代码就是将data数据响应化
+* initState(vm)
+如果$options里面有 props methods data computed watch就要对他们进行初始化
+```js
+initProps(vm, opts.props)
+initMethods()
+initData()
+initComputed(vm, opts.computed)
+initWatch(vm, watch)
+```
+* initData()
+核心代码就是将data数据响应化
 ```js
 function initData (vm: Component) {
     //获取data
@@ -133,46 +222,186 @@ function initData (vm: Component) {
     data = vm._data = typeof data === 'function'
     ? getData(data, vm)
     : data || {}
-    // 代理data到实例上
     // ...
-
-    // 执行数据响应化
+    // 代理data到实例上
+    // observe data : 数据遍历 ,响应化处理
     observe(data, true /* asRootData */)
 }
 ```
-
 ## src/core/observer/index.js
-observe方法返回一个Observer实例
-
 Observer对象根据数据类型执行对应的响应化操作
 defineReactive定义对象属性的getter/setter,getter负责添加依赖,setter负责通知更新
+* observe()方法返回一个Observer对象实例
+```js
+ ob = new Observer(value)
+```
+* defineReactive()方法响应化处理
+```js
+export function defineReactive (
+  obj: Object,
+  key: string,
+  val: any,
+  customSetter?: ?Function,
+  shallow?: boolean
+) {
+  const dep = new Dep()
+  // 获取自有属性的属性描述符
+  const property = Object.getOwnPropertyDescriptor(obj, key)
+  if (property && property.configurable === false) {
+    return
+  }
+  // cater for pre-defined getter/setters
+  const getter = property && property.get
+  const setter = property && property.set
+  if ((!getter || setter) && arguments.length === 2) {
+    val = obj[key]
+  }
+  // 如果内部是对象,递归处理
+  let childOb = !shallow && observe(val)
+  // 数据拦截,给对象的属性增加get 和 set
+  // 当获取属性值或属性发生改变时都会去执行get set 里面的函数
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get: function reactiveGetter () {
+      const value = getter ? getter.call(obj) : val
+      // 依赖收集
+      if (Dep.target) {
+        dep.depend() //追加 依赖关系
+        // 如果有子ob存在
+        if (childOb) {
+          childOb.dep.depend()
+          // 如果是数组还要继续处理
+          if (Array.isArray(value)) {
+            dependArray(value)
+          }
+        }
+      }
+      return value
+    },
+    set: function reactiveSetter (newVal) {
+      const value = getter ? getter.call(obj) : val
+      /* eslint-disable no-self-compare */
+      if (newVal === value || (newVal !== newVal && value !== value)) {
+        return
+      }
+      /* eslint-enable no-self-compare */
+      if (process.env.NODE_ENV !== 'production' && customSetter) {
+        customSetter()
+      }
+      // #7981: for accessor properties without setter
+      if (getter && !setter) return
+      if (setter) {
+        setter.call(obj, newVal)
+      } else {
+        val = newVal // 更新value
+      }
+      // 如果用户设置的值是对象, 还需要额外的响应化处理
+      childOb = !shallow && observe(newVal)
+      // 通知更新
+      dep.notify()
+    }
+  })
+}
+```
+
 
 ## src/core/observer/dep.js
 Dep负责管理一组Watcher,包括watcher实例的增删及通知更新
+* depend()
+```js
+// class Dep
+depend () {
+    if (Dep.target) {
+      // 建立 和 Watcher实例之间的关系, dep 和 watcher 可能是多对多的关系
+      Dep.target.addDep(this)
+    }
+  }
+```
 * Watcher
 Watcher解析一个表达式并收集依赖,当数值变化时触发回调函数,常用于$watch API和指令中。
 每个组件也会有对应的Watcher,数值变化会触发其update函数导致重新渲染
 ```js
+// watcher 在vue2.x版本里面 是一个组件一个watcher.可能里面有一些watch选项.
 export default class Watcher {
     constructor () {}
-    get () {}
+    //Evaluate the getter, and re-collect dependencies.
+    // 触发依赖收集的地方
+    get () {} 
+    // Add a dependency to this directive.
     addDep (dep: Dep) {}
-    update () {}
+    // Clean up for dependency collection.
+    cleanuoDeps()
+    // Subscriber interface. Will be called when a dependency changes.
+    update ()
+    // Scheduler job interface.Will be called by the scheduler.
+    run()
+    // Evaluate the value of the watcher.This only gets called for lazy watchers.
+    evaluate()
+    // Depend on all deps collected by this watcher.
+    depend()
+    // Remove self from all dependencies' subscriber list.
+    teardown()
 }
 ```
 # 数组的响应化
-数组数据变化的侦测跟对象不同,我们操作数组通常使用push、pop、splice等方法,此时没有办法得
-知数据变化。所以vue中采取的策略是拦截这些方法并通知dep。
-## src\core\observer\array.js
-为数组原型中的7个可以改变内容的方法定义拦截器
+数组数据变化的侦测跟对象不同,以下数组方法(变异方法)对数组数据操作,让原数组被改变,但是页面此时没有办法得知数据变化。
+所以vue中采取的策略是拦截这些方法并通知dep。
+'push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'
 
-* Observer中覆盖数组原型
+* src/core/observer/index.js
+Observer中覆盖数组原型
 ```js
 if (Array.isArray(value)) {
   // 替换数组原型
   protoAugment(value, arrayMethods) // value.__proto__ = arrayMethods
   this.observeArray(value)
 }
+```
+* src\core\observer\array.js 
+为数组原型中的7个可以改变内容的方法定义拦截器
+```js
+const arrayProto = Array.prototype
+export const arrayMethods = Object.create(arrayProto)
+const methodsToPatch = [
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
+]
+/**
+ * Intercept mutating methods and emit events
+ */
+methodsToPatch.forEach(function (method) {
+  // cache original method
+  // 数组的原型方法
+  const original = arrayProto[method]
+  // 拦截,添加额外行为
+  def(arrayMethods, method, function mutator (...args) {
+    // 执行原先的任务
+    const result = original.apply(this, args)
+    // 额外任务: 通知更新
+    const ob = this.__ob__
+    // 以下三个操作需要额外响应化处理
+    let inserted
+    switch (method) {
+      case 'push':
+      case 'unshift':
+        inserted = args
+        break
+      case 'splice':
+        inserted = args.slice(2)
+        break
+    }
+    if (inserted) ob.observeArray(inserted)
+    // notify change
+    ob.dep.notify()
+    return result
+  })
+})
 ```
 理解响应式原理的实现,注意以下事项:
 * 对象各属性初始化时进行一次响应化处理,以后再动态设置是无效的
@@ -184,6 +413,7 @@ this.obj.bar = 'bar'
 this.$set(this.obj, 'bar', 'bar')
 ```
 * 数组是通过方法拦截实现响应化处理,不通过方法操作数组也是无效的
+Vue内部对数组的7个变异方法做过封装,因此只有使用变异方法改变数组数据才能更新到页面
 ```js
 // data: {items: ['foo','bar']}
 // 无效

@@ -8,6 +8,7 @@ tags:
 
 ## vue 工作流程
 <img src="/static/img/vueProcess.png">
+
 ### 初始化
 初始化data, props, 事件等
 ### 挂载
@@ -72,6 +73,7 @@ Vue2开始支持Virtual DOM, 通过JS对象描述DOM, 数据变更时映射为DO
 简化版架构图
 <img src="/static/img/vue.png">
 * 创建Myvue.js
+
 ```js
 /*
     new Myvue({
@@ -164,7 +166,9 @@ class Myvue {
 ```
 
 * 依赖收集与追踪
+
 <img src="../static/img/dependency.png">
+
 在Vue 1.x中,一个Dependency对应一个Watcher, Dep就是Watcher的容器(一个Dep有多个Watcher)
 在Vue 2.x中,一个template对应一个Watcher
 
