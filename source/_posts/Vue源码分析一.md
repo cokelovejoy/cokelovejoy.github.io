@@ -439,5 +439,5 @@ this.items.splice(0, 2)
 5. Watcher类
 
 Dep 和 Watcher 的关系
-依赖收集 : 对Object或Array 的每个key 做监听,我们就称之为依赖.
+依赖收集 : 使用了data选项中的每个数据，就称依赖了这个数据.
 每个组件实例有一个Wathcer. 当对象或者数组里的值 发生变化的时候, 就要通知组件的Watcher 去通知(notify)更新.
