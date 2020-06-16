@@ -180,6 +180,7 @@ export default class ClassComponent extends React.Component {
 ## function组件
 函数组件通常无状态，仅关注内容展示，返回渲染结果即可。
 从React16.8开始引入hooks, 函数组件也能够拥有状态。
+可以把useEffect Hook看作是componentDidMount,componentWillUnmount和componentDidUpdate这三个函数的结合。
 ```js
 import React, { useState, useEffect } from 'react'
 
@@ -187,12 +188,13 @@ export function FunctionComponent(props) {
     // 声明状态 和 要改变状态的函数
     const [date, setDate] = useState(new Date())
     useEffect(() => {
+        // 副作用，当组件挂载之后执行，对应class component中的生命周期钩子函数-componentDidMount()
         const timer = setInterval(() => {
             setDate(new Date())
         }, 1000)
         // 组件卸载的时候执行，对应class component 中的生命周期钩子函数-componentWillUnmount()
         return () => clearInterval(timer)
-    }, []) // 
+    }, []) // []数组中放依赖项表示，谁的值改变了就执行了回调函数，空数组表示，谁的值变了都不重新执行回调函数。
     return (
         <div>
             <h3>Function component</h3>
