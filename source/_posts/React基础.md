@@ -285,16 +285,14 @@ npx react-codemod rename-unsafe-lifecycles
 
 #### 更新相关
 当组件的porps或state发生变化时会触发更新。组件更新的生命周期调用顺序如下：
-
 * static getDerivedStateFromProps()
 * shouldComponentUpdate()
 * render()
 * getSnapshotBeforeUpdate()
 * componentDidUpdate()
-
 #### 卸载相关
 当组件从DOM中移除时会调用如下方法：
-* componentWillUnmount（）
+* componentWillUnmount()
 #### 错误处理相关
 当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法：
 * static getDerivedStateFromError()
