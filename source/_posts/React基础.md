@@ -143,8 +143,10 @@ import style from './index.module.css'
 # 组件
 组件，类似于JavaScript函数。它接受任意的参数(props),并返回描述页面展示内容的React元素。
 组件有两种形式：class组件和function组件。
+props: 自定义组件的属性和其子组件会转换为一个对象，这个对象就称为props。
+组件名称必须以大写字母开头，小写字母开头的组件将会被视为原生DOM标签。
 ## Class组件
-class组件拥有状态和生命周期，继承于Component，定义render方法。
+class组件拥有状态和生命周期，继承于React.Component，必须定义render方法。
 ```js
 import React, { Component } from 'react'
 export default class ClassComponent extends React.Component {
@@ -184,7 +186,7 @@ export default class ClassComponent extends React.Component {
 ```js
 import React, { useState, useEffect } from 'react'
 
-export function FunctionComponent(props) {
+export default function FunctionComponent(props) {
     // 声明状态 和 要改变状态的函数
     const [date, setDate] = useState(new Date())
     useEffect(() => {
@@ -204,3 +206,96 @@ export function FunctionComponent(props) {
 }
 
 ```
+## setState
+### 正确使用setState
+```
+this.setState(partialState, callback)
+```
+1. partialState: Object | function
+要合并到当前State的对象。
+2. callback: function
+state更新完成之后要执行的回调函数。
+### 不要直接修改State
+构造函数是唯一可以给 this.state 赋值的地方。
+```
+// Wrong
+this.state.commet = 'hello'
+// correct
+this.setState({ comment: 'hello' })
+```
+### State的更新可能是异步的
+出于性能考虑，React可能会把多个setState() 合并成一个调用。
+因为this.porps 和 this.state可能会异步更新，所以不要以它们的值来更新下一个状态。
+setState只有在合成事件和生命周期函数中是异步的，在原生事件和setTimeout中都是同步的，这⾥里里的异步其实是批量更新。
+
+```
+// wrong 可能无法更新
+this.setState({
+    counter: this.state.counter + this.props.increment
+})
+// correct 使用函数返回要合并的对象
+this.setState((state, props) => ({
+    counter: state.counter + props.increment
+}))
+```
+### State的更新会被合并
+当调用setState()的时候，React会把提供的对象合并到当前的state，浅合并。
+
+### 数据是向下流动的
+不管是父组件或子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是class组件。
+其他组件无法访问state。
+组件可以把它的state作为props向下传递到它的子组件中
+```
+<FormattedDate date={this.state.date} />
+```
+FormattedDate 组件会在其 props 中接收参数 date，但是组件本身无法知道它是来自于 Clock 的 state，或是 Clock 的 props，还是手动输入的.
+```
+function FormattedDate(props) {
+  return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
+}
+```
+
+## 生命周期
+### 组件的生命周期
+每个组件都包含"生命周期方法"，重写生命周期方法，会在组件运行的特别阶段执行这些方法。
+React 16.3之前的生命周期函数图
+<img src="/static/img/react1.png" />
+React 16.4之后的生命周期函数图
+<img src="/static/img/react2.png" />
+
+React 17即将废除的三个生命周期函数：
+* componentWillMount()
+* componentWillReceiveProps()
+* componentWillUpdate()
+
+可以替代的两个新的生命周期函数：
+* static getDerivedStateFromProps()
+* getSnapshotBeforeUpdate()
+如果要使用即将废除的生命周期函数，需要加上前缀'UNSAFE_', 或这运行如下命令，自动加前缀。
+```
+cd your_project
+npx react-codemod rename-unsafe-lifecycles
+```
+#### 挂载相关
+当组件实例被创建并插入DOM中时，其生命周期调用顺序如下：
+* constructor()
+* static getDerivedStateFromProps()
+* render()
+* componentDidMount()
+
+#### 更新相关
+当组件的porps或state发生变化时会触发更新。组件更新的生命周期调用顺序如下：
+
+* static getDerivedStateFromProps()
+* shouldComponentUpdate()
+* render()
+* getSnapshotBeforeUpdate()
+* componentDidUpdate()
+
+#### 卸载相关
+当组件从DOM中移除时会调用如下方法：
+* componentWillUnmount（）
+#### 错误处理相关
+当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法：
+* static getDerivedStateFromError()
+* componentDidCatch()
