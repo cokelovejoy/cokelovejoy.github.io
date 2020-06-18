@@ -445,4 +445,9 @@ export default class Lifecyclepage extends Component {
 ```
 
 ## 复合组件
-<img src="/static/img/policemonitor.jpeg">
+React推荐使用组合而非继承来实现组件间的代码重用。
+### 不具名
+类比Vue中的slot插槽的不具名插槽。
+```
+
+```
