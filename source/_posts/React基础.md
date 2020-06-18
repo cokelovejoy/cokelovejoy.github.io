@@ -444,10 +444,80 @@ export default class Lifecyclepage extends Component {
 }
 ```
 
-## 复合组件
+## 组合组件
 React推荐使用组合而非继承来实现组件间的代码重用。
-### 不具名
+### 不具名的方式传入子组件
 类比Vue中的slot插槽的不具名插槽。
+```js
+function Component(props) {
+    // children 为插入该组件的子组件
+    const { children } = props
+    return (
+        <div>
+            { children }
+            { children.content }
+            { children.txt}
+        </div>
+    )
+}
+
+function RootComponent() {
+    return (
+        <Component>
+            {{/* 这个组件里面的内容全部会被作为 默认的children组件 */}}
+            <h1>Welcome</h1>
+            <p>Richard!</p>
+        </Component>
+    )
+}
 ```
 
+### 具名的方式传入子组件
+类比Vue中的具名插槽
+```js
+function RootComponent() {
+    return (
+            // 方式1
+            <Component>
+                {{ /* 以对象的方式传入子组件*/}}
+                {{
+                    TopBar: (
+                        <div>
+                            <h1>TopBar</h1>
+                        </div>
+                    ),
+                    BottomBar: (
+                        <div>
+                            <h1>BottomBar</h1>
+                        </div>
+                    ),
+                    btnClickFunc: function () {
+                        console.log('click')
+                    }
+                }}
+            </Component>
+            // 方式2 不使用children, 自定义传入props的内容
+            // 可以将任何东西作为 props 进行传递。
+            <Component top={<TopBar />} bottom={<BottomBar />}>
+            </Component>
+        )
+}
+
+function Component(props) {
+    // children 为插入该组件的子组件
+    const { children } = props
+    return (
+        // 方式1
+        <div>
+            { children.TopBar }
+            { children.BottomBat}
+        </div>
+
+        // 方式2 使用自定义传入的内容
+        <div>
+            { props.top }
+            { props.bottom }
+        </div>
+    )
+}
 ```
