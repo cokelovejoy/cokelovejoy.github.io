@@ -464,7 +464,7 @@ function Component(props) {
 function RootComponent() {
     return (
         <Component>
-            {{/* 这个组件里面的内容全部会被作为 默认的children组件 */}}
+            {/* 这个组件里面的内容全部会被作为 默认的children组件 */}
             <h1>Welcome</h1>
             <p>Richard!</p>
         </Component>
@@ -477,29 +477,9 @@ function RootComponent() {
 ```js
 function RootComponent() {
     return (
-            // 方式1
-            <Component>
-                {{ /* 以对象的方式传入子组件*/}}
-                {{
-                    TopBar: (
-                        <div>
-                            <h1>TopBar</h1>
-                        </div>
-                    ),
-                    BottomBar: (
-                        <div>
-                            <h1>BottomBar</h1>
-                        </div>
-                    ),
-                    btnClickFunc: function () {
-                        console.log('click')
-                    }
-                }}
-            </Component>
-            // 方式2 不使用children, 自定义传入props的内容
+            // 不使用children, 自定义传入props的内容
             // 可以将任何东西作为 props 进行传递。
-            <Component top={<TopBar />} bottom={<BottomBar />}>
-            </Component>
+            <Component top={<TopBar />} bottom={<BottomBar />}></Component>
         )
 }
 
@@ -507,13 +487,7 @@ function Component(props) {
     // children 为插入该组件的子组件
     const { children } = props
     return (
-        // 方式1
-        <div>
-            { children.TopBar }
-            { children.BottomBat}
-        </div>
-
-        // 方式2 使用自定义传入的内容
+        // 使用自定义传入的内容
         <div>
             { props.top }
             { props.bottom }
@@ -521,3 +495,238 @@ function Component(props) {
     )
 }
 ```
+
+# redux
+redux是JavaScript应用的状态容器，提供可预测的状态管理。它保证程序行为一致性且易于测试。
+应用场景：
+* 有相当大量的，随时变化的数据。
+* state需要有一个单一的可靠来源
+* state太多，放在顶层组件，不方便维护。
+* state需要共享的时候。
+
+## 安装
+```
+npm install redux --save
+```
+## 使用
+使用步骤：
+1. createStore() 创建 store
+2. reducer 初始化state和定义修改状态的函数
+3. store.getState() 获取状态
+4. store.dispatch() 提交对数据的更改
+5. store.subscribe() 订阅
+创建store
+```js
+import { createStore } from 'redux'
+// state  表示状态
+// action 表示方法，用来更改状态。
+const counterReducer = (state = 0, action) => {
+    switch (action.type) {
+        case 'ADD':
+            return state + 1
+        case 'MINUS':
+            return state - 1
+        default:
+            return state
+    }
+}
+// 创建 store
+const store = createStore(counterReducer)
+export default store
+```
+使用store
+```js
+import React, { Component } from 'react'
+import store from '../store/ReduxStore'
+
+export default class ReduxPage extends Component {
+    componentDidMount() {
+        // 订阅，当state改变就会执行函数
+        store.subscribe(() => {
+            console.log("subscribe")
+            // 强制更新
+            this.forceUpdate()
+        })
+    }
+    add = () => {
+        store.dispatch({type: "ADD"})
+    }
+    minus = () => {
+        store.dispatch({type: "MINUS"})
+    }
+    render() {
+        console.log("store", store)
+        return (
+            <div>
+                <h3>Redux Page</h3>
+                {/* 获取state */}
+                <p>{store.getState()}</p>
+                <button onClick={ this.add }>add</button>
+                <button onClick={ this.minus }>minus</button>
+            </div>
+        )
+    }
+}
+```
+# react-redux
+## 安装
+```js
+npm i react-redux --save
+```
+## 使用
+react-redux提供了两个api
+1. Provider为后代组件提供store
+2. connect为组件提供数据和变更方法
+
+全局使用store：index.js
+```js
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import store from './store/index'
+import ReactReduxComponent from 'src/components/ReactReduxComponent.js'
+
+
+render(
+  <Provider store={store}>
+    <ReactReduxComponent />
+  </Provider>,
+  document.getElementById('root')
+)
+```
+创建store：store/index.js
+```js
+import { createStore } from 'redux'
+
+// state  表示状态
+// action 表示方法，用来更改状态。
+const counterReducer = (state = 0, action) => {
+    switch (action.type) {
+        case 'ADD':
+            return state + 1
+        case 'MINUS':
+            return state - 1
+        default:
+            return state
+    }
+}
+// 创建 store
+const store = createStore(counterReducer)
+export default store
+```
+使用react-redux的组件：src/components/ReactReduxComponent.js
+```js
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => {
+    return {
+        num: state
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        add: () => dispatch({type: 'ADD'}),
+        minus: () => dispatch({type: 'MINUS'})
+    }
+}
+
+class ReactReduxPage extends Component {
+    render() {
+        const { num, add, minus } = this.props
+        return (
+            <div>
+                <h1>React Redux Page</h1>
+                <p>{num}</p>
+                <button onClick={add}>add</button>
+                <button onClick={minus}>minus</button>
+            </div>
+        )
+    }
+}
+// 状态映射 mapStateToProps
+// 派发事件映射 mapDispatchToProps
+export default connect(mapStateToProps, mapDispatchToProps)(ReactReduxPage)
+```
+
+# react-router
+react-router是react的路由库。它通过管理 URL，实现组件的切换和状态的变化。
+react-router包含3个库，react-router,react-router-dom和react-router-native。
+react-router提供最基本的路由功能，实际使用的时候，不会直接安装react-router。而是根据应用运行的环境选择安装react-router-dom(安装在浏览器使用)或react-router-native(在react native中使用)。
+因为在安装时react-router也会安装。
+## 安装
+```js
+npm i react-router-dom --save
+```
+## 基本使用
+react-router中奉行一切皆组件的思想，路由器-Router，链接-link，路由-Route，独占-Switch，重定向-Redirect都是以组件形式存在。
+```js
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+
+export default class RouterPage extends Component {
+    render() {
+        return (
+            <div>
+                <h3>Router Page</h3>
+                <Router>
+                    <Link to="/">首页</Link>
+                    <Link to="/user">用户中心</Link>
+                    {/** Switch 表示仅匹配路由列表中的一个 */}
+                    <Switch>
+                        {/**exact 表示实现精确匹配 */}
+                        <Route exact path="/" component={HomePage}></Route>
+                        <Route 
+                            path="/user" 
+                            component={UserPage}
+                            // children={() => <div>children</div>}
+                            // render={() => <div>render<div/>}
+                        ></Route>
+                        {/* 路由列表最后设置一个path为空的路由，为找不到的资源，匹配404页面 */}
+                        <Route component={EmptyPage}></Route>
+                    </Switch>
+                </Router>
+            </div>
+        )
+    }
+}
+
+class HomePage extends Component {
+    render() {
+        return (
+            <div>
+                <h3>HomePage</h3>
+            </div>
+        )
+    }
+}
+class UserPage extends Component {
+    render() {
+        return (
+            <div>
+                <h3>UserPage</h3>
+            </div>
+        )
+    }
+}
+class EmptyPage extends Component {
+    render() {
+        return (
+            <div>
+                <h3>Empty page 404</h3>
+            </div>
+        )
+    }
+}
+```
+## Route渲染内容的三种方式
+Route渲染的优先级： children > component > render。三种方式同时应用，也只有一种有效。
+* children属性
+children属性接受一个函数，不管location是否匹配，都需要渲染一些内容，这时可以使用children。
+Switch组件会让children属性的路由匹配到，才显示。
+* component属性
+component属性接受一个component，只有当location匹配的时候渲染。
+* render属性
+render属性接受一个函数，只有当location匹配的时候渲染。
+# pureComponent
