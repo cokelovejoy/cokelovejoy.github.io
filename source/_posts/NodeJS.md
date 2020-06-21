@@ -13,11 +13,14 @@ tags:
 * C Runtime
 * .Net Common Language Runtime
 
-运行时 runtime 就是 程序运行的时候.
-运行时库 就是程序运行的时候所需要依赖的库.
+运行时： runtime 就是 程序运行的时候.
+运行时库： 就是程序运行的时候所需要依赖的库.
 
 运行的时候指的是指令加载到内存并由CPU执行的时候.
 C代码编译成可执行文件的时候, 指令没有被CPU执行, 这个时候是编译时,就是编译的时候.
+## Nodejs
+Nodejs操作对象：os(操作系统)，process(进程)，fs(文件系统)，net(网络通讯)
+JavaScript操作对象：BOM/DOM，XMLHttpRequest/fetch(网络通讯)
 ## NodeJS特性 (本质就是JavaScript的特性)
 * 非阻塞I/O
 * 事件驱动

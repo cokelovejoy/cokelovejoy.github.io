@@ -724,9 +724,71 @@ class EmptyPage extends Component {
 Route渲染的优先级： children > component > render。三种方式同时应用，也只有一种有效。
 * children属性
 children属性接受一个函数，不管location是否匹配，都需要渲染一些内容，这时可以使用children。
-Switch组件会让children属性的路由匹配到，才显示。
+Switch组件特性会让children属性的路由匹配到，才显示。
 * component属性
 component属性接受一个component，只有当location匹配的时候渲染。
 * render属性
 render属性接受一个函数，只有当location匹配的时候渲染。
-# pureComponent
+# PureComponent
+继承自PureComponent的组件，会去默认的执行shouldComponentUpdate 方法,去比较state，props，改变了数据才去重新render。并且是以浅层对比prop和state的方式实现该函数。
+如果赋予React组件相同的props和state，render会渲染同样的内容，那么使用PureComponent就不会再去渲染，从而提高性能。
+注意： PureComponent中的shouldComponentUpdate会跳过所有子组件树的prop更新。只有在数据比较简单的时候使用PureComponent.
+```js
+import React, { PureComponent } from 'react'
+
+export default class PureComponentPage extends PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+            counter: 0
+        }
+    }
+    setCounter = () => {
+        this.setState({
+            counter: 100
+        })
+    }
+    render() {
+        const { counter } = this.state
+        console.log('render')
+        return (
+            <div>
+                <h1>PureComponent Page</h1>
+                <div onClick={this.setCounter}>counter: {counter}</div>
+            </div>
+        )
+    }
+}
+```
+使用Coomponent来实现PureComponent的效果
+```js
+import React, { PureComponent } from 'react'
+
+export default class ComponentPage extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            counter: 0
+        }
+    }
+    // 自定义shouldComponentUpdate
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextState.counter !== this.state.counter
+    }
+    setCounter = () => {
+        this.setState({
+            counter: 100
+        })
+    }
+    render() {
+        const { counter } = this.state
+        console.log('render')
+        return (
+            <div>
+                <h1>PureComponent Page</h1>
+                <div onClick={this.setCounter}>counter: {counter}</div>
+            </div>
+        )
+    }
+}
+```
