@@ -155,3 +155,5 @@ event.emit('end')
 ### EventEmitter源码解析
 订阅/发布机制
 ## 异步操作并行处理
+### Promise.all
+### Promise.race
