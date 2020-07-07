@@ -6,45 +6,44 @@ tags:
 # 获取Vue源码
 Vue源码地址: https://github.com/vuejs/vue
 当前版本号: 2.6.10
-* 获取源代码
+## 获取源代码
 ```bash
 $ git clone https://github.com/vuejs/vue.git
 ```
 # 调试环境搭建
-* 安装依赖: 
+## 安装依赖: 
 ```bash
 $ npm install
 ```
-* 全局安装rollup:
+## 全局安装rollup:
 rollup是打包工具,专门用于打包js代码
 ```bash
 npm install -g rollup
 ```
-* 修改package.json的dev选项,添加 --sourcemap
+## 修改package.json的dev选项,添加 --sourcemap
 ```bash
 # dev 选项中 : -c scripts/config.js 指明 配置文件所在
 # 参数TARGET:web-full-dev 指明 输出文件配置项((scripts/config.js,line:123))
 "dev": "rollup -w -c scripts/config.js --sourcemap --environment TARGET:web-
 full-dev"
 ```
-* 运行开发命令
+## 运行开发命令
 ```bash
 npm run dev
 ```
-* 新建html文件用于浏览器调试
+## 新建html文件用于浏览器调试
 /examples/test/test.html
 引用 vue.js
 ```html
 <script src="/dist/vue.js"></script>
 ```
-# 入口
+# 入口文件
 vue 各版本: /dist
 vue.runtime.common.js 用于webpack 1.x, browserify.
 vue.runtime.esm.js 用于webpack 2.x.
 
-* 查看(/scripts/config.js,line:123)
-入口文件在 /src/platforms/web/entry-runtime-with-compiler.js
-源码分析从这个文件开始.
+## 查看 /scripts/config.js (line:123)
+入口文件在 /src/platforms/web/entry-runtime-with-compiler.js，源码分析从这个文件开始.
 ```js
     {
         // Runtime+compiler development build (Browser)
@@ -59,23 +58,23 @@ vue.runtime.esm.js 用于webpack 2.x.
     }
 ```
 
-
 # 初始化流程
 入口: /src/platforms/web/entry-runtime-with-compiler.js
-扩展 默认的$mount方法: 处理template 或 el选项
+扩展默认的$mount方法: 在不同的平台有不同的处理方式。在浏览器平台，在没有render选项时去处理template，没有template去处理el选项。但是最终都会将模板字符串变为render函数。
+
 
 ## src/platforms/web/runtime/index.js
-定义$mount : 挂载根组件到指定宿主元素
-定义__patch__: 补丁函数,执行patching 算法 ,执行数据更新,再更新DOM
+定义了$mount方法，执行挂载mountComponent(this, el, hydrating) : 挂载根组件到指定宿主元素
+定义__patch__: 补丁函数，做diff操作，比较新旧VDOM，然后再决定如何更新DOM。
 
 ## src/core/index.js
-* 初始化全局API
+### 初始化全局API
 ```js
 // 初始化全局API
 initGlobalAPI(Vue)
 ```
 
-* 实现全局API,具体如下:
+### 实现全局API,具体如下:
 ```js
 // src/core/global-api/index.js
 Vue.set = set
@@ -87,7 +86,7 @@ initExtend(Vue) // 实现Vue.extend函数
 initAssetRegisters(Vue) // 注册实现Vue.component/directive/filter
 ```
 ## src/core/instance/index.js
-* Vue构造函数定义,实例api定义.
+### Vue构造函数定义，实例api定义
 ```js
 function Vue (options) {
     // 构造函数仅执行了_init
@@ -100,19 +99,19 @@ lifecycleMixin(Vue) // 生命周期api _update,$forceUpdate,$destroy
 renderMixin(Vue)// 渲染api _render,$nextTick
 ```
 ## src/core/instance/init.js
-* 创建组件实例,初始化其数据、属性、事件等
+### 创建组件实例,初始化其数据、属性、事件等
 ```js
-initLifecycle(vm)  // $parent,$root,$children,$refs
-initEvents(vm)     // 处理父组件传递的监听器
-initRender(vm)     // $slots,$scopedSlots,_c,$createElement
+initLifecycle(vm)  // 初始化$parent,$root,$children,$refs
+initEvents(vm)     // 处理父组件传递给当前组件实例的监听器
+initRender(vm)     // 渲染相关：$slots,$scopedSlots,_c,$createElement
 callHook(vm, 'beforeCreate') // 在beforeCreate 之中无法拿到 state
 initInjections(vm) // resolve injections before data/props 获取注入的数据(父组件的)
-initState(vm)      // 初始化组件中的 props,methods,data,computed, watch(自己的)
+initState(vm)      // 初始化组件中的props，methods，data，computed, watch。对这些数据做响应式。
 initProvide(vm)    // resolve provide after data/props 提供数据注入 
 callHook(vm, 'created') // 要拿到state 最早要在created 钩子函数中
 ```
 ## src/core/instance/lifecycle.js
-* lifecycleMixin(Vue)
+### lifecycleMixin(Vue)
 ```js
 // lifecycleMixin(Vue)
 // 添加以下方法到Vue上
@@ -120,7 +119,7 @@ Vue.prototype._update
 Vue.prototype.$forceUpdate
 Vue.prototype.$destroy
 ```
-* mountComponent()方法 执行挂载
+### mountComponent()方法 执行挂载
 ```js
 // ...
 callHook(vm, 'beforeMount')
@@ -149,7 +148,7 @@ new Watcher(vm, updateComponent, noop, {
 ```
 
 ## src/core/instance/events.js
-* initEvents(vm)
+### initEvents(vm)
 初始化 父组件的监听器
 ```js
 // initEvents(vm)
@@ -158,7 +157,7 @@ if (listeners) {
     updateComponentListeners(vm, listeners)
 }
 ```
-* eventsMixin(Vue)
+### eventsMixin(Vue)
 ```js
 // 注册事件
 Vue.prototype.$on()
@@ -168,15 +167,14 @@ Vue.prototype.$emit()
 ```
 
 ## src/core/instance/render.js
-
-* 初始化render initRender()
+### 初始化render initRender()
 ```js
 // 注册createElement()方法
 // args order: tag, data, children, normalizationType, alwaysNormalize
 vm._c = (a, b, c, d) => createElement(vm, a, b, c, d, false)
 vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true)
 ```
-* renderMixin()
+### renderMixin()
 ```js
 Vue.prototype.$nextTick()   // 注册$nextTick()函数
 Vue.prototype._render()     // 注册_render()函数,该函数返回VNODE
