@@ -4,7 +4,7 @@ date: 2019-10-15 14:35:56
 tags:
 ---
 概述: 如何使用vue-router以及如何实现简版的vue-router.
-
+vue-router为了实现单页面应用，在浏览器地址栏变化时，去修改url history栈，去实现切换页面，并且不用发送请求。
 ## vue-router使用
 ### 安装:
 前提使用vue-cli创建的项目,才能使用vue 命令
@@ -17,6 +17,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 
+// 应用插件：做了什么？ install
+// install里面做了什么？
+// 1.挂在$router
+// 2.注册组件 router-link 和router-view
+// router做了什么？
+// 1.解析路由配置
+// 2.响应url变化
+// 3.事件监听hashchange
+// 4.组件切换？怎么切换？
 Vue.use(Router)
 
 export default new Router({
@@ -36,7 +45,7 @@ import App from './App.vue'
 import router from './router'
 
 new Vue({
-    router, //为什么挂载 ? 全局使用
+    router, //为什么挂载 ? 为了全局使用，成为Vue实例的options属性下的属性-$router
     render: h => h(App)
 }).$mount('#app')
 ```
@@ -44,11 +53,12 @@ new Vue({
 ### 导航链接
 使用 router-link 组件来导航.
 通过传入 `to` 属性指定链接.
-<router-link> 默认会被渲染成一个 `<a>` 标签
+router-link 默认会被渲染成一个 `<a>` 标签
 ```html
 <router-link to="/">Home</router-link>
 <router-link to="/about">About</router-link>
 ```
+
 ### 路由出口
 路由匹配到的组件将渲染在这里
 ```html
@@ -116,7 +126,7 @@ export default {
 ```js
 // 实现 自己的VueRouter类
 // 需要实现的 功能
-// 1.解析路由配置
+// 1.解析routes配置:生成map对象，{'/': Home, '/about': About}
 // 2.响应url变化
 // 3.事件监听hashchange
 // 4.组件切换
@@ -157,6 +167,7 @@ export default class ZVueRouter {
         this.app.current = window.location.hash.slice(1) || '/'
     }
     // 做路由映射
+    // 源码中是递归遍历，因为有嵌套路由
     createRouteMap() {
         this.$options.routes.forEach(item => {
             this.routeMap[item.path] = item
@@ -222,7 +233,8 @@ import About from './views/About.vue'
 // Vue.use() 应用插件, 里面会调用一个install 方法
 // install 方法里面会:
 // 1. 挂载$router
-// 2. 注册组件
+// 2. 生命$route
+// 3. 注册组件
 Vue.use(ZVueRouter)
 export default new ZVueRouter({
     routes: [

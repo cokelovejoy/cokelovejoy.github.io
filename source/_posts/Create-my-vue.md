@@ -45,7 +45,7 @@ Vue2开始支持Virtual DOM, 通过JS对象描述DOM, 数据变更时映射为DO
 }
 ```
 ### 更新视图
-数据修改时Watcherhau执行更新,通过对比新旧VDOM,得到最小修改就是patch.
+数据修改时Watcher会执行更新,通过对比新旧VDOM,得到最小修改就是patch.
 
 ## Vue2 响应式的原理: defineProperty
 ```html
@@ -169,8 +169,8 @@ class Myvue {
 
 <img src="../static/img/dependency.png">
 
-在Vue 1.x中,一个Dependency对应一个Watcher, Dep就是Watcher的容器(一个Dep有多个Watcher)
-在Vue 2.x中,一个template对应一个Watcher
+在Vue 1.x中,一个属性对应一个dep,页面中出现多少个属性的引用，就有多少个watcher。 Dep就是Watcher的容器(一个Dep有多个Watcher)
+在Vue 2.x中,一个组件对应一个Watcher。页面引用属性，会触发render函数返回虚拟DOM，当属性值改变之后也会触发render返回新的虚拟DOM，然后比较新旧虚拟DOM，再决定如何更新试图。这也是为什么Vue2需要引入虚拟DOM的原因。
 
 现在实现的是Vue1.0里面的Dep和Watcher
 创建 Dep
@@ -206,7 +206,7 @@ class Watcher {
 
         Dep.target = this;  // 在new一个监听器对象时将该对象赋值给Dep.target,在get中会用到
         this.vm[this.key];
-        Dep.target = null;
+        Dep.target = null; // 避免watcher重复的加入到其他dep中。
     }
     update() {
         this.updater.call(this.vm, this.vm[this.key])
@@ -219,14 +219,11 @@ class Watcher {
 <img src="/static/img/compile.png">
 核心任务:
 1. 获取并遍历DOM树
-2. 文本节点:获取插值表达式的内容并解析
-3. 元素节点:访问节点特性,截获k-和@开头内容并解析
+2. 文本节点: 获取插值表达式的内容并解析
+3. 元素节点: 访问节点特性,截获k-和@开头内容并解析
 
 创建 compile.js
 ```js
-// 1. 获取并遍历DOM树
-// 2. 文本节点: 获取{{}}格式的内容并解析
-// 3. 元素节点: 访问节点特性,截获K- 和@ 开头内容并解析
 // new Compile('#app', vm)
 class Compile {
     constructor(el, vm) {

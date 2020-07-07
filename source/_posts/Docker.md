@@ -45,17 +45,15 @@ sudo apt-get update
 sudo apt-get install \
   apt-transport-https \
   ca-certificates \
-   curl \
- 
-software-properties-common
+  curl \
+  software-properties-common
 # 下载软件包的合法性,需要添加软件源的 GPG 密钥
 curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
 # source.list 中添加 Docker 软件源
 sudo add-apt-repository \
    "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \
    $(lsb_release -cs) \
- 
-stable"
+   stable"
 
 # 安装 Docker CE
 sudo apt-get update
@@ -65,9 +63,9 @@ sudo systemctl enable docker
 sudo systemctl start docker
 # 建立 docker 用户组(附加)
 sudo groupadd docker  # 添加docker用户组
-sudo usermod -a docker $USER # 将登陆用户加入到docker用户组中
+sudo usermod -aG docker $USER # 将登陆用户加入到docker用户组中
 newgrp docker     # 更新用户组
-docker ps    # 测试docker命令是否可以使用sudo正常使用
+docker ps    # 测试docker命令是否可以正常使用
 # Helloworld测试
 docker run hello-world
 ```
@@ -92,6 +90,39 @@ sudo vi /etc/docker/daemon.json
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl restart docker
+```
+# Docker常用命令
+```bash
+# 下载镜像：docker pull <镜像名:tag>    如：下载centos镜像
+docker pull centos
+docker pull sameersbn/redmine:latest
+# 查看已下载镜像
+docker images
+# 删除容器
+docker rm <容器名 or ID>
+# 查看容器日志
+docker logs -f <容器名 or ID>
+# 查看正在运行的容器
+docker ps
+# 查看所有的容器，包括已经停止的。
+docker ps -a 
+# 删除所有容器
+docker rm $(docker ps -a -q)
+# 停止、启动、杀死指定容器
+docker start <容器名 or ID> # 启动容器
+docker stop <容器名 or ID> # 启动容器
+docker kill <容器名 or ID> # 杀死容器
+# 后台运行 docker run -d <Other Parameters>
+docker run -d -p 127.0.0.1:33301:22 centos6-ssh
+# 暴露端口： 一共有三种形式进行端口映射
+docker -p ip:hostPort:containerPort # 映射指定地址的主机端口到容器端口
+# 例如：docker -p 127.0.0.1:3306:3306 映射本机3306端口到容器的3306端口
+docker -p ip::containerPort # 映射指定地址的任意可用端口到容器端口
+# 例如：docker -p 127.0.0.1::3306 映射本机的随机可用端口到容器3306端口
+docer -p hostPort:containerPort # 映射本机的指定端口到容器的指定端口
+# 例如：docker -p 3306:3306 # 映射本机的3306端口到容器的3306端口
+# 映射数据卷
+docker -v /home/data:/opt/data # 这里/home/data 指的是宿主机的目录地址，后者则是容器的目录地址
 ```
 
 # SSH 远程操作服务器

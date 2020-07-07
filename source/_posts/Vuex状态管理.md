@@ -11,6 +11,13 @@ Vuex遵循"单向数据流"理念,易于问题追踪以及提高代码可维护�
 ```bash
 vue add vuex
 ```
+
+## 核心概念
+* state 状态，数据
+* mutations更改状态的函数
+* actions异步操作
+* store包含以上概念的容器
+
 ## 状态和状态变更
 通常 Vuex的内容写成模块化的方式: /src/vuex/modules /src/vuex/store.js
 1. 新建一个文件夹vuex
@@ -143,9 +150,13 @@ export default {
 </script>
 ```
 
-
-
 ## 实现自己的Vuex
+实现Store类
+1. state响应化处理
+2. 保存状态，实现dispatch，commit，getters
+实现插件
+1. 挂载store实例
+
 * 创建 zvuex.js
 ```js
 // 自定义vuex
