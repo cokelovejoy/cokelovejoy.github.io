@@ -454,9 +454,14 @@ docker run -p 3000:3000 -d mypm2
 
 # Docker-compose
 Docker-compose 是Docker官方开源的项目,负责实现对Docker容器集群的快速编排(一次启动多个容器).
-## 安装Docker-compose
+## 安装稳定版
 ```bash
-sudo apt install docker-compose
+# 安装
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# 可执行
+$ sudo chmod +x /usr/local/bin/docker-compose
+# 软链接
+$ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ```
 
 ## 新建docker-compose.yml文件
