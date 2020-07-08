@@ -183,12 +183,12 @@ Vue.prototype._render()     // 注册_render()函数,该函数返回VNODE
 
 Vue一大特点是数据响应式,数据的变化会作用于UI而不用进行DOM操作。原理上来讲,是利用了JS语
 言特性Object.defineProperty(),通过定义对象属性setter方法拦截对象属性变更,从而将数值的变化
-转换为UI的变化。
+转换为UI的变化，因此这种方式就叫数据劫持。
 具体实现是在Vue初始化时,会调用initState,它会初始化data,props等,这里着重关注data初始化,
 
 ## src/core/instance/state.js
 初始化数据
-* proxy()代理方法
+### proxy()代理方法
 ```js
 export function proxy (target: Object, sourceKey: string, key: string) {
   sharedPropertyDefinition.get = function proxyGetter () {
@@ -202,7 +202,7 @@ export function proxy (target: Object, sourceKey: string, key: string) {
 }
 ```
 
-* initState(vm)
+### initState(vm)
 如果$options里面有 props methods data computed watch就要对他们进行初始化
 ```js
 initProps(vm, opts.props)
@@ -211,7 +211,7 @@ initData()
 initComputed(vm, opts.computed)
 initWatch(vm, watch)
 ```
-* initData()
+### initData()
 核心代码就是将data数据响应化
 ```js
 function initData (vm: Component) {
@@ -227,13 +227,13 @@ function initData (vm: Component) {
 }
 ```
 ## src/core/observer/index.js
-Observer对象根据数据类型执行对应的响应化操作
+Observer对象根据数据类型执行对应的响应化操作，对象和数组的响应化处理不一样。
 defineReactive定义对象属性的getter/setter,getter负责添加依赖,setter负责通知更新
-* observe()方法返回一个Observer对象实例
+### observe()方法返回一个Observer对象实例
 ```js
  ob = new Observer(value)
 ```
-* defineReactive()方法响应化处理
+### defineReactive()方法响应化处理
 ```js
 export function defineReactive (
   obj: Object,
@@ -303,10 +303,9 @@ export function defineReactive (
 }
 ```
 
-
 ## src/core/observer/dep.js
 Dep负责管理一组Watcher,包括watcher实例的增删及通知更新
-* depend()
+### depend()
 ```js
 // class Dep
 depend () {
@@ -316,7 +315,7 @@ depend () {
     }
   }
 ```
-* Watcher
+### Watcher
 Watcher解析一个表达式并收集依赖,当数值变化时触发回调函数,常用于$watch API和指令中。
 每个组件也会有对应的Watcher,数值变化会触发其update函数导致重新渲染
 ```js
@@ -347,7 +346,7 @@ export default class Watcher {
 所以vue中采取的策略是拦截这些方法并通知dep。
 'push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'
 
-* src/core/observer/index.js
+## src/core/observer/index.js
 Observer中覆盖数组原型
 ```js
 if (Array.isArray(value)) {
@@ -356,7 +355,7 @@ if (Array.isArray(value)) {
   this.observeArray(value)
 }
 ```
-* src\core\observer\array.js 
+## src\core\observer\array.js 
 为数组原型中的7个可以改变内容的方法定义拦截器
 ```js
 const arrayProto = Array.prototype
@@ -402,7 +401,7 @@ methodsToPatch.forEach(function (method) {
 })
 ```
 理解响应式原理的实现,注意以下事项:
-* 对象各属性初始化时进行一次响应化处理,以后再动态设置是无效的
+1. 对象各属性初始化时进行一次响应化处理,以后再动态设置是无效的
 ```js
 // data: {obj:{foo: 'foo'}}
 // 无效
@@ -410,7 +409,7 @@ this.obj.bar = 'bar'
 // 有效
 this.$set(this.obj, 'bar', 'bar')
 ```
-* 数组是通过方法拦截实现响应化处理,不通过方法操作数组也是无效的
+2. 数组是通过方法拦截实现响应化处理,不通过方法操作数组也是无效的
 Vue内部对数组的7个变异方法做过封装,因此只有使用变异方法改变数组数据才能更新到页面
 ```js
 // data: {items: ['foo','bar']}
@@ -423,19 +422,19 @@ this.items.splice(0, 2)
 ```
 
 # 总结
-* 初始化过程: init --> $mount --> compile --> new Watcher --> render --> update
+## 初始化过程: init --> $mount --> compile --> new Watcher --> render --> update
 1. runtime/index : 实现$mount
 2. core/index: 全局api
 3. core/instance/index: 声明vue构造函数
 4. entry-runtime-with-compiler: 覆盖$mount
 5. core/instance/lifecycle: mountComponent 执行渲染和更新,计算虚拟DOM,并转换成真实DOM,并挂载到$el上.
-* 响应化
+## 响应化
 1. observe(): 返回Observer实例.
 2. Observer类: 区分当前值的类型是对象还是数组.
 3. defineReactive
 4. Dep类: 依赖收集
 5. Watcher类
 
-Dep 和 Watcher 的关系
+## Dep 和 Watcher 的关系
 依赖收集 : 使用了data选项中的每个数据，就称依赖了这个数据.
 每个组件实例有一个Wathcer. 当对象或者数组里的值 发生变化的时候, 就要通知组件的Watcher 去通知(notify)更新.
