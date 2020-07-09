@@ -430,11 +430,13 @@ this.items.splice(0, 2)
 5. core/instance/lifecycle: mountComponent 执行渲染和更新,计算虚拟DOM,并转换成真实DOM,并挂载到$el上.
 ## 响应化
 1. observe(): 返回Observer实例.
-2. Observer类: 区分当前值的类型是对象还是数组.
-3. defineReactive
-4. Dep类: 依赖收集
-5. Watcher类
+2. Observer实例: 区分当前值的类型是对象还是数组，从而做相对应的响应化操作。
+3. defineReactive： 定义响应式，最重要的创建dep。
+4. Dep类: 依赖收集。
+5. Watcher类：数据改变，watcher通知视图更新。
 
 ## Dep 和 Watcher 的关系
-依赖收集 : 使用了data选项中的每个数据，就称依赖了这个数据.
-每个组件实例有一个Wathcer. 当对象或者数组里的值 发生变化的时候, 就要通知组件的Watcher 去通知(notify)更新.
+依赖收集 : dep和watcher之间建立双向引用关系的过程就叫依赖收集。每个属性都会为之产生一个Dep实例。Dep实例和Watcher实例会相互保存。
+一个组件只有一个Watcher，Watcher中会保存多个dep。
+第一次依赖收集的过程：
+每个组件实例创建时，就会创建一个Watcher实例。Watcher实例创建触发render函数生成，render函数生成虚拟DOM时，会使用data中的数据，然后就会触发get函数，就会去进行依赖收集。当data中的对象或者数组里的值发生变化的时候, 就要通知组件的Watcher 去通知(notify)更新。

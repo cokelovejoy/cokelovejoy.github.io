@@ -4,13 +4,14 @@ date: 2019-11-11 15:11:34
 tags:
 ---
 # 异步更新队列
-* core/observer/watcher.js update()
+为了批量操作，只更新DOM一次。
+## core/observer/watcher.js update()
 dep.notify()之后watcher执行更新, 执行入队操作.
 
-* core/observer/scheduler.js
+## core/observer/scheduler.js
 执行watcher入队操作
 
-* core/util/next-tick.js
+## core/util/next-tick.js
 nextTick(flushSchedulerQueue)
 nextTick按照特定异步策略执行队列操作.
 
