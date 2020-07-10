@@ -148,7 +148,7 @@ updateChildren 主要作用是用一种较高效的方式比对新旧两个VNode
 
 # 总结
 ## 异步更新: 批量异步执行组件更新
-dep.notify() => watcher.update() => queueWatcher() => nextTick() => timerFunc() => flushSchedulerQueue() => watcher.run()
+ dep.notify() => watcher.update() => queueWatcher() => nextTick() => timerFunc() => flushSchedulerQueue() => watcher.run()
 * core/observer/index.js reactiveSetter() 通知更新
 * watcher.js update() 入队
 * core\observer\scheduler.js 加入异步任务
