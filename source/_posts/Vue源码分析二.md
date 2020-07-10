@@ -148,17 +148,23 @@ updateChildren 主要作用是用一种较高效的方式比对新旧两个VNode
 
 # 总结
 ## 异步更新: 批量异步执行组件更新
-dep.notify() => watcher.update() => queueWatcher() => nextTick() => timerFunc()
+dep.notify() => watcher.update() => queueWatcher() => nextTick() => timerFunc() => flushSchedulerQueue() => watcher.run()
 * core/observer/index.js reactiveSetter() 通知更新
 * watcher.js update() 入队
 * core\observer\scheduler.js 加入异步任务
 * core\util\next-tick.js 加入回调,启动任务队列
-* timerFunc() 异步执行任务
+* timerFunc() 启动异步执行任务
+* watcher.run() 更新操作
 ## 虚拟DOM: 利用patching算法转换虚拟DOM为真实DOM
+### 什么是虚拟DOM?
+用来描述DOM树的JS对象。
+### 为什么需要虚拟DOM?
+因为Vue2.x中，一个组件一个watcher，在数据改变之后，要通过比较新旧DOM，来做更新操作，因此需要虚拟DOM。
+
 watcher.run() => updateComponent() => _render() => _update() => vm.__patch() => patch()
 * watcher.js run()
 * core/instance/lifecycle.js mountComponent() updateComponent()
-* core/instance/render.js _render()
-* core/instance/lifecycle.js _update()
-* platforms\web\runtime\index.js __patch()
+* core/instance/render.js _render() 计算虚拟DOM
+* core/instance/lifecycle.js _update() 把虚拟DOM变成真实DOM
+* platforms/web/runtime/index.js __patch() patch算法
 * core/vdom/patch.js patch()

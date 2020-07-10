@@ -4,7 +4,7 @@ date: 2019-11-22 17:03:28
 tags:
 ---
 # 节点属性更新
-属性相关dom操作:将属性相关dom操作按hooks归类,在patchVnode时一起执行.
+属性相关dom操作:将属性相关dom操作按hooks归类,在patchVnode时一起执行。
 ```js
 // 定义钩子数组
 const hooks = ['create', 'activate', 'update', 'remove', 'destroy']
@@ -25,6 +25,7 @@ export function createPatchFunction (backend) {
     }
    
     function patchVnode (...) {
+        // ...
         if (isDef(data) && isPatchable(vnode)) {
             // 执行默认的钩子
             for (i = 0; i < cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)
@@ -35,21 +36,28 @@ export function createPatchFunction (backend) {
 }
 ```
 # 组件化机制
+1. 先使用Vue.component()声明comp组件构造函数,会返回VueComponent实例，它是继承于Vue的。
+2. 然后全局配置选项中添加一个components：{comp: Comp}，这个组件就能被全局使用。
+3. 先创建父组件，再去挂载。顺序是创建从上往下，挂载从下往上。子组件全部挂载完之后，再去将一整个渲染出来。
 ```html
 <div id="demo">
    <h1>Vue组件化机制</h1>
    <comp></comp>
 </div>
 <script>
-   Vue.component('comp', {
+    Vue.component('Comp', {
        template: '<div>I am comp</div>'
- 
-})
+    })
+    new Vue({
+        components: {
+            comp: Comp
+        }
+    })
 </script>
 ```
 
 ## 组件声明
-* src/core/global-api/assets.js
+### src/core/global-api/assets.js
 Vue.component()或者components选项
 initAssetRegister(Vue)
 ```js
@@ -87,23 +95,23 @@ else if ((!data || !data.pre) && isDef(Ctor = resolveAsset(context.$options,'com
    vnode = createComponent(Ctor, data, context, children, tag)
 }
 ```
-* src/core/vdom/create-component.js
+### src/core/vdom/create-component.js
 createComponent()
 创建组件VNode,保存了上一步处理得到的组件构造函数,props,事件等
  
-* core/vdom/patch.js
+### core/vdom/patch.js
 创建自定义组件实例 createEle() 
 首次执行_update()时,patch()会通过createEle()创建根元素,子元素创建研究从这里开始
  
-* core/vdom/patch.js
+### core/vdom/patch.js
 createComponent() 自定义组件创建
 
 # 模板编译
-模板编译的主要目标是将模板(template)转换为渲染函数(render)
+模板编译的主要目标是**将模板(template)转换为渲染函数(render)**
 <img src="/static/img/template.png">
 
 ## 模板编译必要性
-Vue 2.0需要用到VNode描述视图以及各种交互,用户只需要编写类似HTML代码的Vue模板, 通过编译器将模板转换为可返回VNode的render函数.
+Vue 2.0需要用到VNode描述视图以及各种交互，用户只需要编写类似HTML代码的Vue模板，通过编译器将模板转换为可返回VNode的render函数。
 
 ## 体验模板编译
 带编译器的版本,可以使用template或el的方式声明模板
@@ -118,13 +126,13 @@ Vue 2.0需要用到VNode描述视图以及各种交互,用户只需要编写类�
    Vue.component('comp', {
        template: '<div>I am comp</div>'
  
-})
+    })
    // 创建实例
    const app = new Vue({
        el: '#demo',
        data: {foo:'foo'}
  
-});
+    });
    // 输出render函数
    console.log(app.$options.render);
 </script>
@@ -137,15 +145,16 @@ with(this){return _c('div',{attrs:{"id":"demo"}},[
    _c('h1',[_v("Vue模板编译")]),_v(" "),_c('p',[_v(_s(foo))]),_v(" "),
    _c('comp',{attrs:{"foo":"foo","bar":foo}})],1)}
 })
-// "with(this){return _c('div',{attrs:{"id":"demo"}},[_m(0),_v(" "),_c('p',
-// [_v(_s(foo))]),_v(" "),_c('comp',{attrs:{"foo":"foo","bar":foo}})],1)}"
-new Function(str)
-
+/*  "with(this){return _c('div',{attrs:{"id":"demo"}},[_m(0),_v(" "),_c('p',
+    [_v(_s(foo))]),_v(" "),_c('comp',{attrs:{"foo":"foo","bar":foo}})],1)}"
+    new Function(str) 将上面的函数字符串放入函数，将字符串变成真正的函数。
+*/
 ```
-_c  返回vnode, createElement
-_v  创建文本节点
-_s  格式化函数
-其他helpers: core/instance/render-helper/index
+
+> _c  返回vnode, createElement
+> _v  创建文本节点
+> _s  格式化函数
+> 其他helpers: core/instance/render-helper/index
 
 ## 整体流程
 ### compileToFunctions
@@ -154,6 +163,7 @@ _s  格式化函数
 ```js
 const { render, staticRenderFns } = compileToFunctions(template, {}, this)
 ```
+
 ### 编译过程
 src/compiler/index.js
 
@@ -162,7 +172,7 @@ export const createCompiler = createCompilerCreator(function baseCompile (
  template: string,
  options: CompilerOptions
 ): CompiledResult {
- // 解析模板parse                                                  
+ // 解析模板parse                                                 
  const ast = parse(template.trim(), options)
  if (options.optimize !== false) {
    optimize(ast, options) // 优化optimize
