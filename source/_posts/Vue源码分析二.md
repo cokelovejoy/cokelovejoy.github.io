@@ -4,23 +4,22 @@ date: 2019-11-11 15:11:34
 tags:
 ---
 # 异步更新队列
-为了批量操作，只更新DOM一次。
+为了批量操作数据结束之后，再去更新DOM，只用更新一次。
 ## core/observer/watcher.js update()
-dep.notify()之后watcher执行更新, 执行入队操作.
+dep.notify()之后watcher执行update()函数, 然后回去执行queueWatcher(watcher)函数，将watcher放入队列。
 
 ## core/observer/scheduler.js
-执行watcher入队操作
-
+queueWatcher(watcher)
+将watcher插入队列，同时会对watcehr进行去重。再去执行 nextTick(flushSchedulerQueue)
+flushSchedulerQueue()函数会清空队列，并去执行watcher.run()方法，然后再去更新视图。
 ## core/util/next-tick.js
-nextTick(flushSchedulerQueue)
-nextTick按照特定异步策略执行队列操作.
+nextTick(flushSchedulerQueue): nextTick按照特定策略去执行异步操作。涉及微任务和宏任务。
 
-测试代码: watcher中update执行了三次, 但run仅执行一次
-
+测试代码: 给foo赋值会触发watcher中update函数，update执行了三次，watcher进入队列三次，但队列会做去重，最后也只有一个watcher，然后执行这个watcher.run()方法，仅执行一次，也就是说只有最后一次赋值的结果会被浏览器渲染。
 ```html
 <div id="demo">
    <h1>异步更新</h1>
-   <p>{{foo}}</p>
+   <p id="p1">{{foo}}</p>
 </div>
 <script>
     // 创建实例
@@ -41,16 +40,19 @@ nextTick按照特定异步策略执行队列操作.
     });
 </script>
 ```
+
 # 宏任务和微任务
 # 虚拟DOM
 ## 概念
-虚拟DOM(Virtual DOM) 是对DOM 的JS抽象表示,它是JS对象,能够描述DOM结构和关系.应用各种状态变化会作用于虚拟DOM,最终映射到DOM.
+虚拟DOM(Virtual DOM) 是对DOM 的JS抽象表示,它就是JS对象,能够描述DOM结构和关系.应用各种状态变化会作用于虚拟DOM,最终映射到DOM.不需要操作DOM，只需对数据更改，就会改变虚拟DOM，再去渲染真实DOM。
 <img src="/static/img/virtualdom.png">
+
 ## 优点
 * 虚拟DOM轻量,快速: 当它们发生变化时,通过新旧虚拟DOM比对可以得到最小DOM操作量,从而提升性能和用户体验.
 * 跨平台: 将虚拟dom更新转换为不同运行时特殊操作实现跨平台
 * 兼容性: 还可以加入兼容性代码增强操作的兼容性
-## 必要性(为什么虚拟DOM是必需的?)
+
+## 必要性(为什么Vue2.0中虚拟DOM是必需的?)
 Vue1.0中有细粒度的数据变化侦测,它是不需要虚拟DOM的,但是细粒度造成了大量开销,这对于大型项目来说是不可接受的.因此,Vue2.0选择了中等粒度的解决方案,每一个组件一个watcher实例,这样状态变化时只能通知到组件,再通过引入虚拟DOM去进行比对和渲染.
 ## 实现
 ### core/instance/lifecycle.js mountComponent()
@@ -58,6 +60,8 @@ Vue1.0中有细粒度的数据变化侦测,它是不需要虚拟DOM的,但是细
 ```js
 const updateComponent = () => {
     // 实际调用是在lifeCycleMixin中定义的_update和renderMixin中定义的_render
+    // _render()执行可以获得虚拟DOM，VNode
+    // _update()将虚拟DOM转换成真实DOM，这里有两种情况，组件第一次创建时，生成真实DOM，是不会去patch的，因为第一次没有老的VNode去比较。再就是数据改变时，生成新的VNode，会去比较新旧VNode, 然后去patch，生成真实DOM。
     vm._update(vm._render(), hydrating)
 }
 new Watcher(this.vm, updateComponent)
@@ -99,21 +103,20 @@ export const patch: Function = createPatchFunction({nodeOps, modules})
 modules 定义了属性更新实现
 
 ### core/vdom/patch.js patch()
-通过同层的树节点进行比较而非对树进行逐层搜索遍历的方式,所以时间复杂度只有O(n),是一种相当
-高效的算法。
-同层级只做三件事:增删改。具体规则是:new VNode不存在就删;old VNode不存在就增;都存在就
-比较类型,类型不同直接替换、类型相同执行更新;
+patch的规则
+通过同层的树节点进行比较而非对树进行逐层搜索遍历的方式,所以时间复杂度只有O(n),是一种相当高效的算法。
+同层级只做三件事:增删改。具体规则是:new VNode不存在就删;old VNode不存在就增;都存在就比较类型,类型不同直接替换、类型相同执行更新;
 <img src="/static/img/patch1.png">
 
 #### patchVnode
 两个VNode类型相同,就执行更新操作,包括三种类型操作: 属性更新PROPS,文本更新TEXT,子节点更新REORDER.
 
 patchVnode具体规则如下:
-1. 如果新旧VNode都是静态的,那么只需要替换elm 以及componentInstance即可.
-2. 新老节点均有children子节点,则对子节点进行diff操作,调用updateChildren.
-3. 如果老节点没有子节点而新节点存在子节点,先清空老节点DOM的文本内容,然后为当前DOM节点加入子节点.
-4. 当新节点没有子节点而老节点有子节点的时候,则移除该DOM节点的所有子节点.
-5. 当新老节点都无子节点的时候,就只是文本的替换.
+1. 如果新旧VNode都是静态的,那么只需要替换elm 以及componentInstance即可。
+2. 新老节点均有children子节点,则对子节点进行diff操作,调用updateChildren。
+3. 如果老节点没有子节点而新节点存在子节点,先清空老节点DOM的文本内容,然后为当前DOM节点加入子节点。
+4. 当新节点没有子节点而老节点有子节点的时候,则移除该DOM节点的所有子节点。
+5. 当新老节点都无子节点的时候,就只是文本的替换。
 
 #### updateChildren
 updateChildren 主要作用是用一种较高效的方式比对新旧两个VNode的children得出最小操作补丁.执行下一个双循环是传统方式,vue中针对web场景特点做了特别的算法优化.

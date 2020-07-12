@@ -70,18 +70,17 @@ let newObj = Object.assign({}, this.$store.state.test.message)
 总结:
 在解决vuex store mutation的问题时,实际上就变成了对基本数据类型和引用数据类型的处理的问题.
 基本数据类型string,number,boolean在赋值之后,会分配一块新的内存空间来存储值,因此改变新的变量和原来的变量相互不影响.
-引用数据类型array,object,在赋值操作之后, 并不会分配一块新的内存空间,而是将旧的变量的引用(也可以叫内存地址)赋给新的变量,因此新旧两个变量改变时,会互相影响. 因此在编程时,要尤其注意,修改一个对象或数组后,要考虑是否会改变原来的值,原来的值在之后使用可能又会影响其他的值.所以我们要操作一个引用型的数据时要做一个副本的拷贝的工作,以保证原来的值不会以一种难以发现的方式被修改,以致于混乱.
+引用数据类型array,object,在赋值操作之后, 并不会分配一块新的内存空间,而是将旧的变量的引用(也可以叫内存地址)赋给新的变量,因此新旧两个变量改变时,会互相影响. 因此在编程时,要尤其注意,修改一个对象或数组后,要考虑是否会改变原来的值,原来的值在之后使用可能又会影响其他的值.所以我们要操作一个引用型的数据时要做一个副本的拷贝的工作,以保证原来的值不会以一种难以发现的方式被修改,以致于混乱。
 
 # problems-in-work
 Be used to record problems in working
 
-# hello world
-工作笔记
-2019.9.17
+
+# vuetify
 Vuetify 设置v-flex 内容(图片文字)垂直居中， 使用 d-flex 和 align-center
 ex: <v-flex d-flex align-center></v-flex>
 
-ssh :
+# ssh
 Your identification has been saved in /home/richard/.ssh/id_rsa.
 Your public key has been saved in /home/richard/.ssh/id_rsa.pub.
 password:123456
