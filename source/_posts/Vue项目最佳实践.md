@@ -61,6 +61,7 @@ module.exports = {
 <!-- index.html -->
 <title><%= webpackConfig.name %></title>
 ```
+可以使用 vue inspect 来审查一个 Vue CLI 项目的 webpack config。vue inspect>output.js 会输出到文件。
 ### 链式操作
 文档: <a href="https://github.com/Yatoo2018/webpack-chain/tree/zh-cmn-Hans">webpack-chain</a>
 案例: svg icon的引入
@@ -81,18 +82,15 @@ chainWebpack(config) {
     // 配置svg规则 排除icons目录中svg文件处理
     config.module
         .rule("svg")
-            .exclude.add(resolve("src/icons"))
-            .end()
+        .exclude.add(resolve("src/icons")).end()
     // 新增icons规则, 设置svg-sprite-loader 处理icons目录中的svg
     config.module
         .rule("icons")
-            .test(/\.svg/)
-                .include.add(resolve("src/icons"))
-                .end()
+            .test(/\.svg/).include.add(resolve("src/icons")).end()
             .use("svg-sprite-loader")
             .loader("svg-sprite-loader")
-                .options({ symbolId: "icon-[name]"})
-                .end()
+            .options({ symbolId: "icon-[name]"})
+            .end()
 }
 ```
 图标自动导入
@@ -104,7 +102,7 @@ req.keys().map(req)
 ```
 创建SvgIcon组件 ./components/SvgIcon.vue
 
-```
+```js
 <template>
     <svg :class="svgClass" aria-hidden="true" v-on="$listeners">
         <use :xlink:href="iconName" />
@@ -152,8 +150,8 @@ req.keys().map(req)
 ## 权限控制和动态路由
 ### 路由定义
 路由分为两种: constantRoutes 和 asyncRoutes
-router.js
 ```js
+// router.js
 import Vue from "vue";
 import Router from "vue-router";
 import Layout from '@/layout'; // 布局页
@@ -195,9 +193,9 @@ export const asyncRoutes = [
                 component: () => import(/* webpackChunkName: "home" */ "@/views/About.vue"),
                 name: "about",
                 meta: {
-                title: "About",
-                icon: "qq",
-                roles: ['admin', 'editor']
+                    title: "About",
+                    icon: "qq",
+                    roles: ['admin', 'editor']
                 },
             }
         ]
@@ -315,7 +313,7 @@ login() {
 ```js
 import router from './router'
 const whiteList = ['/login'] // 无需令牌白名单
-
+// 全局守卫
 router.beforeEach((to, from, next) => {
     // 获取令牌判断用户是否登录
     const hasToken = localStorage.getItem('token')
@@ -381,8 +379,12 @@ if (hasRoles) {
     try {
         // 先请求获取用户信息
         const { roles } = await store.dispatch('user/getInfo')
-        // 动态路由生成, todo
-        next() 
+        // 动态路由生成
+        const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
+        // 动态追加到router
+        router.addRoutes(accessRoutes)
+        // 路由再进来一次
+        next({...to}) 
     } catch (error) {
         // 出错需重置令牌并重新登录(令牌过期, 网路错误等原因)
         await store.dispatch('user/resetToken')
@@ -443,7 +445,6 @@ export function filterAsyncRoutes(routes, roles) {
 
             }
             res.push(tmp);
-
         }
     });
     return res;
