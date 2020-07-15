@@ -111,7 +111,7 @@ createComponent() 自定义组件创建
 <img src="/static/img/template.png">
 
 ## 模板编译必要性
-Vue 2.0需要用到VNode描述视图以及各种交互，用户只需要编写类似HTML代码的Vue模板，通过编译器将模板转换为可返回VNode的render函数。
+Vue 2.0需要用到VNode描述视图以及各种交互，用户只需要编写类似HTML代码的Vue模板，通过编译器将模板转换为可返回VNode的render函数的代码字符串。
 
 ## 体验模板编译
 带编译器的版本,可以使用template或el的方式声明模板
@@ -191,6 +191,9 @@ export const createCompiler = createCompilerCreator(function baseCompile (
 
 ### 解析 - parse
 解析器将模板解析为抽象语法树AST,只有将模板解析成AST后,才能基于它做优化或者生成代码字符串.
+
+Template的parse过程，其实就是不断的截取字符串并解析它们的过程。如果截取到非闭合标签就push到stack中，如果截取道结束标签就把这个标签pop出来。
+
 查看得到的AST, /src/compiler/parse/index.js 结构如下:
 <img src="/static/img/template2.png">
 
@@ -204,6 +207,15 @@ parseHTML(tempalte, {
    comment(text){}// 遇到注释标签的处理
 })
 ```
+#### 截取字符串规则
+判断模板中html.indexof(’<’)的值,来确定我们是要截取标签还是文本。
+
+若等于0,则进行正则匹配看是否为开始标签、结束标签、注释、条件注释、doctype中的一种。
+大于等于 0：这就说明是文本、表达式。
+小于 0：表示 html 标签解析完了，可能会剩下一些文本、表达式。
+
+#### stack
+维护了一个stack来标记DOM的深度，stack里的最后一项，永远是当前正在解析的元素的parentNode。
 ### 优化 - optimize
 优化器的作用是在AST中找出静态子树并打上标记.静态子树是在AST中永远不变的节点,如纯文本节点.
 
@@ -222,7 +234,7 @@ parseHTML(tempalte, {
 
 ### 代码生成 - generate
 将AST转换成渲染函数中的内容,即代码字符串
-generate方法生成渲染函数代码 : src/compiler/codegen/index.js
+generate方法生成渲染函数代码字符串 : src/compiler/codegen/index.js
 
 ## v-if, v-for
 着重观察几个结构性指令的解析过程
