@@ -191,7 +191,7 @@ function getData<T>(): Result<T> {
 # 装饰器
 装饰器用于扩展类或者它的属性和方法。@xx就是装饰器的写法。
 ## @Component-组件声明
-典型应用是组件装饰器@Component
+典型应用是组件装饰器@Component,
 ```js
 @Component({
     components: {
@@ -199,6 +199,7 @@ function getData<T>(): Result<T> {
     }
 })
 export default class Hello extends Vue {}
+// Component装饰器的实现内部就是调用了Vue.extend(options).
 ```
 ## @Prop-属性声明
 除了在@Component中声明，还可以采用@Prop的方式声明组件属性。
@@ -269,5 +270,59 @@ export default class Feature extends Vue {
 }
 ```
 ## 装饰器原理
+装饰器其实就是函数，被装饰的部分会作为参数传入函数，使用@表示是一个装饰器。
 ### 类装饰器
 类装饰器表达式会在运行时当作函数被调用，类的构造函数作为其唯一的参数。
+```js
+// target 是构造函数
+function log(target: Function) {
+    target.prototype.log = function() {
+        console.log(this.bar)
+    }
+    // 如果类装饰器返回一个值，它会使用提供的构造函数来替代类的声明
+}
+@log
+class Foo {
+    bar = 'bar'
+}
+const foo = new Foo()
+foo.log();
+```
+### 方法装饰器
+```js
+function dong(target: any, name: string, descriptor: any) {
+    // 这里通过修改descriptor.value扩展了bar方法
+    const bar = descriptor.value;
+    descriptor.value = function(val: string) {
+        console.log('dong...')
+        bar.call(this, val)
+    }
+    return descriptor
+}
+
+class Foo {
+    @dong
+    setBar(val: string) {
+        this.bar = val
+    }
+}
+
+foo.setBar('lalala')
+```
+### 属性装饰器
+```js
+function mua(target, name) {
+    target[name] = 'mua...'
+}
+class Foo {
+    @mua ns!: string;
+}
+console.log(foo.ns)
+
+// 可以接受参数的写法
+function mua(param: string) {
+    return function (target, name) {
+        target[name] = param
+    }
+}
+```
