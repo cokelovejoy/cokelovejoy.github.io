@@ -270,9 +270,11 @@ export default class Feature extends Vue {
 }
 ```
 ## 装饰器原理
-装饰器其实就是函数，被装饰的部分会作为参数传入函数，使用@表示是一个装饰器。
+装饰器其实就是函数，被装饰的部分会作为参数传入函数，它返回一个表达式，以供装饰器在运行时调用。使用@expression的形式。
 ### 类装饰器
+类装饰器在类声明之前被声明（紧靠着类声明）。 类装饰器应用于类构造函数，可以用来监视，修改或替换类定义。
 类装饰器表达式会在运行时当作函数被调用，类的构造函数作为其唯一的参数。
+类装饰器返回一个值，它会使用提供的构造函数来替换类的声明。
 ```js
 // target 是构造函数
 function log(target: Function) {
@@ -289,27 +291,36 @@ const foo = new Foo()
 foo.log();
 ```
 ### 方法装饰器
+方法装饰器声明在一个方法的声明之前（紧靠着方法声明）。 它会被应用到方法的 属性描述符上，可以用来监视，修改或者替换方法定义。如果方法装饰器返回一个值，它会被用作方法的属性描述符。
+
+方法装饰器表达式会在运行时当作函数被调用，传入下列3个参数:
+1. 对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。
+2. 成员的名字。
+3. 成员的属性描述符。
 ```js
-function dong(target: any, name: string, descriptor: any) {
-    // 这里通过修改descriptor.value扩展了bar方法
-    const bar = descriptor.value;
-    descriptor.value = function(val: string) {
-        console.log('dong...')
-        bar.call(this, val)
-    }
-    return descriptor
-}
-
-class Foo {
-    @dong
-    setBar(val: string) {
-        this.bar = val
+function enumerable(value: boolean) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        descriptor.enumerable = value
     }
 }
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
 
-foo.setBar('lalala')
+    @enumerable(false)
+    greet() {
+        return "hello " + this.greeting;
+    }
+}
 ```
 ### 属性装饰器
+属性装饰器声明在一个属性声明之前（紧靠着属性声明）。属性描述符不会做为参数传入属性装饰器。
+属性装饰器表达式会在运行时当作函数被调用，传入下列2个参数：
+1. 对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。
+2. 成员的名字。
+> 属性描述符不会做为参数传入属性装饰器，这与TypeScript是如何初始化属性装饰器的有关。 因为目前没有办法在定义一个原型对象的成员时描述一个实例属性，并且没办法监视或修改一个属性的初始化方法。返回值也会被忽略。因此，属性描述符只能用来监视类中是否声明了某个名字的属性。
 ```js
 function mua(target, name) {
     target[name] = 'mua...'
@@ -319,10 +330,33 @@ class Foo {
 }
 console.log(foo.ns)
 
-// 可以接受参数的写法
+// 可以接受参数的写法，返回的是一个函数
 function mua(param: string) {
     return function (target, name) {
         target[name] = param
+    }
+}
+// @mua('xxx') ns!:string;
+```
+### 参数装饰器
+参数装饰器声明在一个参数声明之前（紧靠着参数声明）。参数装饰器应用于类构造函数或方法声明。
+参数装饰器表达式会在运行时当作函数被调用，传入下列3个参数：
+1. 对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。
+2. 成员的名字。
+3. 参数在函数参数列表中的索引。
+
+>参数装饰器只能用来监视一个方法的参数是否被传入。
+
+```js
+class Greeter {
+    greeting: string;
+
+    constructor(message: string) {
+        this.greeting = message;
+    }
+
+    greet(@required name: string) {
+        return "Hello " + name + ", " + this.greeting;
     }
 }
 ```
