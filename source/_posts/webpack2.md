@@ -69,9 +69,12 @@ axios.get('http://localhost:9092/api/info').then(res => {
 ## 修改webpack.config.js设置服务器代理
 ```js
 // 对于/api的请求会转发到http://localhost:9092
-proxy: {
-    "/api": {
-        target: "http://localhost:9092"
+devServer: {
+    ...
+    proxy: {
+        "/api": {
+            target: "http://localhost:9092"
+        }
     }
 }
 ```
@@ -83,3 +86,5 @@ axios.get("/api/info").then(res => {
     console.log(res)
 })
 ```
+
+# Hot Module Replacement(HMR:热模块替换)
