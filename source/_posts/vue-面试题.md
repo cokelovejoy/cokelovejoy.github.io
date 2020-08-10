@@ -87,6 +87,7 @@ template是html5的新标签，有三个特性：
 1. 隐藏性： 该标签不会显示在页面的任何地方，即便里面有多少内容，它永远都是隐藏的状态，设置了display：none
 2. 任意性： 该标签可以写在任何地方，甚至是head，body，script标签内。
 3. 无效性： 该标签里的任何HTML内容都是无效的不会起任何作用；只能通过innerHTML来获取里面的内容。
+
 一个vue单文件组件就是一个vue实例，为了让组件可以正常生成一个vue实例，这个div会自然的处理成程序的入口，通过这个根节点，来递归遍历整个vue树下的所有节点，并处理为vdom，最后在渲染成真正的HTML，插入在正确的位置。
 ## diff算法要求的，源码中patch.js里patchVnode()
 diff中patchVnode方法，用来比较新旧结点
@@ -100,3 +101,120 @@ V-view - 视图，展示数据
 C-controller - 业务逻辑，修改数据
 VM- ViewModel -通过DOM listener监听响应View中用户交互,修改Model中数据。
 ViewModel通过实现一套数据响应式机制自动响应Model中数据变化； 同时ViewModel会实现一套更新策略自动将数据变化转换为视图更新。
+
+#  你了解哪些Vue性能优化方法？
+主要探讨Vue代码层面的优化。
+1. 路由懒加载
+```js
+const router = new VueRouter({
+    routes: [
+        { path: '/foo', component: () => import('./Foo.vue')}
+    ]
+})
+```
+2. keep-alive缓存页面
+```html
+<template>
+    <div id="app">
+        <keep-alive include="xxx">
+           <router-view/> 
+        </keep-alive> 
+    </div>
+</template>
+```
+3. 使用v-show复用DOM
+对于经常切换的组件，使用v-show。
+
+4. v-for遍历避免同时使用v-if。
+
+5. 长列表性能优化
+对于纯粹是数据展示的列表，就不需要做响应化。
+```js
+export default {
+    data: () => ({
+        users: []
+    }),
+    async created() {
+        cosnt users = await axios.get("/api/users")
+        this.users = Object.freeze(users)
+    }
+}
+```
+6. 如果是大数据长列表，可以采用虚拟滚动，只渲染少部分区域的内容。
+参考：vue-virtual-scroller , vue-virtual-scroll-list
+```html
+<recycle-scroller class="items" :items="items" :item-size="24"> 
+    <template v-slot="{ item }">    
+        <FetchItemView :item="item" @vote="voteItem(item)"/> 
+    </template
+</recycle-scroller>
+```
+
+7. 事件销毁
+Vue组件销毁时，会自动解绑它的全部指令及事件监听器，但是仅限于组件本身的事件。
+```js
+created() {  
+    this.timer = setInterval(this.refresh, 2000)
+},
+beforeDestroy() {  
+   clearInterval(this.timer) 
+}
+```
+8. 图片懒加载
+对于图片过多的页面，为了加速页面加载速度，所以很多时候需要将页面内未出现在可试区域内的图片先不做均价在，等到滚动到可视区域后再去加载。
+参考：vue-lazyload
+```html
+<img v-lazy="/statix/img/1.png">
+```
+9. 第三方插件按需引入
+像element-ui这样的第三方组件可以按需引入避免体积太大。
+```js
+import Vue from 'vue';
+import { Button, Select } from 'element-ui';
+Vue.use(Button)
+Vue.use(Select)
+```
+10. 无状态的组件标记为函数式组件
+组件只做展示，没有业务逻辑，就可以标记为函数式组件
+```js
+<template functional>
+    <div class="cell">
+        <div v-if="props.value" class="on"></div>
+        <section v-else class="off"></section>
+    </div> 
+</template>
+<script>
+export default {  props: ['value'] }
+</script>
+```
+11. 子组件分割
+```js
+<template>
+    <div>
+        <ChildComp/>
+    </div>
+</template>
+<script>
+export default {  
+    components: {    
+        ChildComp: {      
+            methods: {        
+                heavy () { /* 耗时任务 */ }      
+            },
+            render (h) {   
+                return h('div', this.heavy())     
+            }
+        }
+    }
+}
+</script>
+```
+
+12. 变量本地化
+```js
+cosnt base = this.base // 避免频繁的引用this.base
+```
+
+13. 在computed中将数据处理完之后，直接去渲染，减少v-if的条件判断。
+14. SSR服务端渲染
+优点：加快首屏渲染的速度，有利于seo

@@ -213,4 +213,54 @@ module.exports = () => {
     }
 }
 ```
+## Tree Shaking
+webpack 2.x开始支持tree shaking概念，也就是"摇树"，清除无用的css,js(dead code)。
+Dead Code 一般具有以下几个特征
+1. 代码不会被执行，不可到达。
+2. 代码执行的结果不会被用到
+3. 代码只会影响死变量(只写不读)
 
+### CSS Tree Shaking
+```js
+// 安装
+npm i glob-all purify-css purifycss-webpack -D
+// 配置
+const PurifyCSS = require('purifycss-webpack') // 进行css tree shaking
+const glob = require('glob-all')                // 路径处理，定位要做tree shaking的文件
+
+plugins: [
+    // 清除无用css
+    new PurifyCSS({
+        paths: glob.sync([ // 要做CSS Tree Shaking的路径文件
+            path.resolve(__dirname, './src/*.html'), // 对html文件进行tree shaking
+            path.resolve(__dirname, './src/*.js')
+        ])
+    })
+]
+```
+
+### JS tree shaking
+只有mode是production才会生效，development的tree shaking是不生效的，因为webpack为了方便调试。生产模式不需要配置，默认开启。
+只支持import方式引入，不支持commonjs的方式引入。因为JS tree shaking 依赖于ES6的静态分析，在编译时确定模块。如果是require，在运行时确定模块，那么将无法去分析模块是否可用，只有在编译时分析，才不会影响运行时的状态。
+例子：
+```js
+// expo.js
+export const add = (a, b) => {
+    return a + b
+}
+export const minus = () => {
+    return a - b
+}
+// index.js
+import { add } from "./expo"
+add(1, 2)
+
+// webpack.config.js
+optimization: {
+    usedExports: true // 被使用了的导出模块。
+}
+```
+## 副作用
+## 代码分割Code Splitting
+## DllPlugin插件打包第三方类库 优化构建性能
+## 使⽤happypack并发执⾏任务
