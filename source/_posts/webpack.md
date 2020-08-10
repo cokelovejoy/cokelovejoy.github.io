@@ -271,7 +271,7 @@ excludeChunks: 允许跳过某些块（比如，跳过单元测试的块）
 案例
 ```js
 const path = require("path")
-cosnt htmlWebpackPlugin = require("html-webpack-plugin")
+const htmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     ...
@@ -337,5 +337,5 @@ devtool: "cheap-module-eval-source-map", // 开发环境配置
 // 线上不推荐开启
 devtool: "cheap-module-source-map", // 线上生成配置。
 ```
-## Hash chunkHash contentHash
+
 
