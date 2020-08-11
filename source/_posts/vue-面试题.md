@@ -217,4 +217,291 @@ cosnt base = this.base // 避免频繁的引用this.base
 
 13. 在computed中将数据处理完之后，直接去渲染，减少v-if的条件判断。
 14. SSR服务端渲染
-优点：加快首屏渲染的速度，有利于seo
+优点：加快首屏渲染的速度，有利于seo。
+
+# Vue 3.0新特性
+Vue3.0 的改进主要在以下几点：
+## 更快： 
+### 虚拟DOM重写
+期待更多的编译时提示来减少运行时开销，使用更有效的代码来创建虚拟节点。
+组件快速路径+单个调用+ 子节点类型检测
+* 跳过不必要的条件分支
+* JS引擎更容易优化
+### 优化slots的生成
+Vue 3中可以单独重新渲染父级和子级
+* 确保实例正确的跟踪依赖关系
+* 避免不必要的父子组件重新渲染
+### 静态树提升
+使用静态树提升，这意味着Vue 3的编译器将能检测到什么是静态的，然后将其提升，从而降低了渲染成本。
+* 跳过修补整棵树，从而降低渲染成本
+* 即使多次出现也能正常工作
+### 静态属性提升
+使用静态属性提升，Vue 3打补丁时将跳过这些属性不会改变的节点。
+### 基于Proxy的响应式系统
+Vue 2的响应式系统使用Object.defineProperty的getter和setter。Vue 3将使用ES6 Proxy作为其观察机制，这将带来如下改变：
+* 组件实例初始化的速度提高1倍。
+* 使用Proxy内存开销节省一半，加快速度，但是存在低版本浏览器的不兼容。
+* 为了继续支持IE11,Vue 3将发布一个支持旧观察者和新Proxy版本的构建。
+## 更小
+通过摇树优化核心库体积
+## 更容易维护
+Vue 3 将带来更可维护的源代码。它不仅会使用 TypeScript，而且许多包被解耦，更加模块化。
+## 更加友好
+跨平台，编译器核心和运行时核心与平台无关，使得 Vue 更容易与任何平台(web, android, ios)一起使用。
+## 更容易使用
+1. 改进的TypeScript支持，编辑器能提供强有力的类型检查，错误和警告。
+2. 更好的调试支持
+3. 独立的响应化模块
+4. composition API
+
+# Vuex使用及其理解
+vue中的状态管理，使用场景：登陆验证，购物车，播放器等。
+## Vuex介绍
+Vuex数据流程：通过actions 异步请求数据，mutations修改state，getter类似computed获取state的值。
+## Vuex 核心概念
+state：vuex的唯一数据来源，获取多个state，可以使用...mapState()。
+getters：getter理解为computed，getter的返回值根据他的依赖缓存起来，依赖发生变化才被重新计算，辅助函数...mapGetter()。
+mutations: 更改state中唯一的途径。只能是同步操作。通过$store.commit提交,辅助函数...mapMutations()。
+actions： 获取异步数据的地方。通过$store.dispatch触发，辅助函数...mapActions()。
+module：模块化。
+
+## Vuex中数据存储
+vuex是vue的状态管理器，存储的数据是响应式的。但是并不会保存起来，刷新之后就回到了初始状态，具体做法应该在vuex里数据改变的时候把数据拷贝一份保存到localStorage里面，刷新之后，如果localStorage里有保存数据，取出来再替换store里的state。
+
+注意：localStorage存储数据的格式都是以字符串的形式来存储的，需要使用JSON.parse(localStorage.getItem("userInfo"))解析。
+```js
+let defaultCity = "上海"
+try {    // 用户关闭了本地存储功能，此时在外层加个try...catch  
+    if (!defaultCity) {      
+        defaultCity = JSON.parse(window.localStorage.getItem('defaultCity'))
+    }
+} catch (e) {
+    console.log(e)
+}
+// vuex
+export default new Vuex.Store(
+    {
+        state: { city: defaultCity },
+        mutations: {
+            changeCity(state, city) {
+                state.city = city
+                try {
+                    window.localStorage.setItem('defaultCity', JSON.stringify(state.city));      // 数据改变的时候把数据拷贝一份保存到localStorage里面      
+                } catch (e) { 
+                    console.log(e)
+                }
+            }
+        }
+    }
+)
+```
+总结： 
+1. 首先说明Vuex是一个专门为Vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+2. vuex核心概念：mutations，actions介绍
+3. vuex如何做数据存储： 配合localStorage
+
+# Vue中组件之间的通信方式
+组件可以有以下几种关系：
+1. 父子关系
+2. 兄弟关系
+3. 隔代关系
+
+##  常见使用场景
+### 父子组件通信
+#### props 和 $emit/$on 
+在父组件中给子组件绑定属性，子组件声明props，将数据从父组件传递到子组件。
+在父组件中给子组件绑定自定义事件，子组件通过$emit触发自定义事件，以参数的形式，将数据传递到父组件。
+
+#### $parent/$children 与 ref/$refs
+ref属性： 如果设置在DOM上引用指向DOM元素，在子组件上使用，引用就指向组件实例。设置ref属性，通过$refs获取数据。
+$parent和$children: 直接获取父/子组件实例。
+
+注意：这两种方式都不可以跨级以及兄弟之间通信。
+### 兄弟组件通信
+兄弟组件通信的方式，通过vuex，以父组件做中间层使用自定义事件绑定emit/on，以及事件总线。
+### 跨层组件通信
+#### vuex
+多层级嵌套需要传递数据可以使用 vuex，一次存储，所有页面都可访问。
+#### $attrs / $listeners
+$attrs: 包含了父组件给子组件绑定的，并且没有在子组件props中声明的自定义属性(class和style除外)。同时可以通过v-bind="$attrs"传入到内部组件。
+
+$listeners: 包含了父组件给子组件绑定的自定义事件(不含native修饰的事件)。它可以通过v-on="listeners"传入到内部组件。
+
+#### provide/inject 选项
+祖先组件中通过provide来提供变量，然后在子孙组件中通过inject来注入变量。
+
+provide / inject API 主要解决了跨级组件间的通信问题，不过它的使用场景，主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。
+
+注意：provide/inject传递的数据并不是可响应的，但如果传入的数据本身是响应的对象，那么其对象的属性还是可响应的。
+
+provide/inject如何实现数据响应式
+1. provide祖先组件的实例，然后在子孙组件中注入依赖，这样就可以在子孙组件中直接修改祖先组件的实例的属性。缺点：实例上挂载很多没必要的东西。
+
+```js
+<div>
+    <h1>A组件</h1>
+    <child-b></child-b>
+    <child-c></child-c>
+</div>
+
+data() {
+    return {
+        color: "blue"
+    }
+},
+// 这种方式绑定的数据并不是可响应的
+// provide() {
+//     return {
+//         theme: {
+//             color: this.color
+//         }
+//     }
+// }
+provide() {
+    return {
+        theme: this // 方法1：提供祖先组件的实例
+    }
+},
+methods: {
+    changeColor() {
+        // changde color
+    }
+}
+```
+2. 推荐使用Vue.observable优化provide。
+```js
+// 方法2： 使用Vue.observable 优化响应式provide
+provide() {
+    this.theme = Vue.observable({
+        color: "blue"
+    })
+    return {
+        theme: this.theme
+    }
+}
+// 在组件中使用
+
+<template>
+    <div>
+        <h1 :style="{color: injections.theme.color}"> xx</h1>
+    </div>
+</template>
+export default{
+    inject: {
+        theme: {
+            default: () => ({}) // 函数式组件取值
+        }
+    }
+}
+```
+#### $bus
+使用vue实例作为事件总线，用来触发事件和监听事件，通过这种方式可以进行组件通信包括：父子，兄弟，跨级。
+```js
+// bus.js
+import Vue from 'vue'
+export default new Vue()
+// 监听事件 组件a
+import bus from './bus'
+
+bus.$on('sendTitle', (val) => {
+    this.value = val
+})
+
+// 触发事件 组件b
+import bus from './bus'
+
+bus.$emit('sendTitle', 'value')
+```
+
+# Vue-router中的导航钩子有哪些？
+1. 全局的钩子函数
+beforeEach(to, from, next) 路由改变前调用，常用于验证权限。
+afterEach(to, from) 路由改变后的钩子，常用自动让页面返回最顶端。
+
+2. 路由配置中的导航钩子
+beforeEnter(to, from, next)
+
+3. 组件内的钩子函数
+beforeRouteEnter(to, from, next),该组件的对应路由被comfirm前调用，此时实例还没被创建，所以不能获取实例(this)。
+beforeRouteUpdate(to, from, next),当前路由改变，但是该组件被复用时调用，该函数内可以访问组件实例this。
+beforeRouteLeave(to, from, next),当导航离开组件的对应路由时调用，该函数内可以访问获取组件实例。
+
+4. 路由监测变化
+监听到路由对象发生变化，从而对路由变化做出响应。
+```js
+{
+    watch:{
+        $route: {
+            handler: function(val, oldVal){
+                console.log(val);
+            },
+            // 深度观察监听
+            deep: true
+        }
+    } 
+}
+```
+总结： 
+1. 路由中的导航钩子有三种：全局，组件，路由配置
+2. 在做页面登陆权限的时候可以使用到路由导航配置。
+3. 监听路由变化
+
+# 递归组件
+概念： 组件是可以在他们自己的模板中调用自身的。
+条件： 数据是满足递归条件，树状的递归数据结构。一定要设置递归组件的结束条件。
+场景： 多层级目录。
+
+总结：通过props从父组件拿到数据，递归组件每次进行递归的时候都会tree-menus组件传递下一级treeList数据，整个过程结束之后，递归也就完成了，对于折叠树状菜单来说，我们一般只会去渲染一级的数据，当点击一级菜单时，再去渲染一级菜单下的结构，如此往复。那么v-if就可以实现我们的这个需求，当v-if设置为false时，递归组件将不会再进行渲染，设置为true时，继续渲染。
+
+# vue响应式理解
+响应式实现：Object.defineProperty , proxy(ES6)
+## Observe类
+对data选项Observe，分别对对象和数组做响应化处理。
+对对象采用Object.defineProperty设置getter和setter的方式，这种方式称为数据劫持。
+对数组采用扩展数组的7个变异方法，然后当数组改变的时候就会，通知更新。
+## Dep类
+一个key 就会为之生成一个dep实例来管理依赖，依赖就是使用到了数据的地方，本质就是watcher。
+当数据在页面上渲染的时候，就会通过getter函数来收集依赖到dep实例的subs数组下。
+## Watcher 类
+当一个组件mount的时候，就会生成一个render watcher实例。
+当数据变化时，会触发setter函数去通知watcher，watcher再去通知异步任务队列，执行异步更新。
+
+# vue如何扩展组件
+1. 使用混入mixin
+混入(mixin)是一种分发Vue组件中可复用功能的非常灵活的方式。混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被混入该组件本身的选项。
+
+mixins的调用顺序：全局混入的钩子函数 > 组件内的混入的钩子函数 > 组件自身的钩子。
+选项合并： 组件和混入对象的同名选项递归合并，冲突以组件数据优先。
+```js
+// 组件内的混入：mixins选项接受一个混合对象的数组。
+{
+    mixins:[xxx]
+}
+// 全局混入：使用Vue.mixin 全局注册一个混入， 影响每个vue实例
+Vue.mixin({xxx})
+```
+
+2. slot扩展组件
+默认插槽，匿名插槽，具名插槽
+
+# watch和computed的区别以及怎么选用？
+原理：
+计算属性computed底层实现本质是watch，但是实现了缓存。
+使用场景不一样：
+watch：需要在数据变化时，去执行异步操作或开销比较大的操作的时候使用。例如搜索数据。
+computed：一个数据属性受多个属性影响的时候。例如：购物车商品结算。
+
+# nextTick原理
+使用nextTick的场景： Vue不推荐操作DOM,但有时候不得不在修改数据后，获取DOM状态或者不得不操作DOM时。在数据变化之后立即使用 Vue.nextTick(callback)是为了在数据变化之后等待 Vue 完成更新DOM。这样回调函数将在 DOM 更新完成后被调用，因此可以在回调函数中获取到最新的DOM。
+
+为什么要使用nextTick： Vue 在更新 DOM 时是异步执行的。只要侦听到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据变更。如果同一个 watcher 被多次触发，只会被推入到队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和 DOM 操作是非常重要的。然后，在下一个的事件循环“tick”中，Vue 刷新队列并执行实际 (已去重的) 工作。Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。
+
+## vue如何监听到DOM更新完毕
+能监听到DOM改动的API：MutationObserver。MutationObserver是HTML5新增属性，用于监听DOM修改事件，能够监听到节点的属性，文本内容，子节点的改动。
+```js
+// MutationObserver
+const observer = new MutationObserver(function () {
+    console.log('DOM 被修改了')
+})
+const article = 
+```
