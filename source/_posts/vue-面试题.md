@@ -497,11 +497,46 @@ computed：一个数据属性受多个属性影响的时候。例如：购物车
 为什么要使用nextTick： Vue 在更新 DOM 时是异步执行的。只要侦听到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据变更。如果同一个 watcher 被多次触发，只会被推入到队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和 DOM 操作是非常重要的。然后，在下一个的事件循环“tick”中，Vue 刷新队列并执行实际 (已去重的) 工作。Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。
 
 ## vue如何监听到DOM更新完毕
-能监听到DOM改动的API：MutationObserver。MutationObserver是HTML5新增属性，用于监听DOM修改事件，能够监听到节点的属性，文本内容，子节点的改动。
+能监听到DOM改动的API：MutationObserver。
+MutationObserver是HTML5新增属性，用于监听DOM修改事件，能够监听到节点的属性，文本内容，子节点的改动。
 ```js
 // MutationObserver
 const observer = new MutationObserver(function () {
     console.log('DOM 被修改了')
 })
-const article = 
+const article = document.querySelector('article')
+observer.observer(article)
 ```
+Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate，如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。
+
+Vue的处理思路就是将nextTick里面的代码放在UI render 之后执行，就能访问到最新的ODM。Vue并不是使用MutationObserver做DOM变化监听，而是用队列控制的方式达到目的。
+
+## Vue如何进行队列控制
+因为macrotask总是要等到microtask都执行完之后再执行，因此利用microtask这一特性，是做队列控制的最佳选择。
+
+vue进行DOM更新内部也是调用nextTick来做异步队列控制。而当我们自己调用nextTick的时候,它就在更新DOM的那个microtask后追加了我们自己的回调函数,从而确保我们的代码在DOM更新后执行,同时也避免了setTimeout可能存在的多次执行问题。
+
+常见的microtask有：Promise，MutationObserver，以及nodejs中的process.nextTick。
+
+看到了MutationObserver,vue用MutationObserver是想利用它的microtask特性,而不是想做DOM监听。核心是microtask,用不用MutationObserver都行的。事实上,vue在2.5版本中已经删去了MutationObserver相关的代码,因为它是HTML5新增的特性,在iOS上尚有bug。
+
+那么最优的microtask策略就是Promise了,而令人尴尬的是,Promise是ES6新增的东西,也存在兼容问题呀。所以vue就面临一个降级策略。
+
+## Vue的降级策略
+队列控制的最佳选择是microtask,而microtask的最佳选择是Promise.但如果当前环境不支持Promise,vue就不得不降级为macrotask来做队列控制了。
+
+setImmediate > MessageChannnel > setTimeout
+前两个都有兼容性问题，在最后不得不使用setTimeout。
+
+总结：
+1. vue用异步队列的方式来控制DOM更新和nextTick回调先后执行。
+2. microtask因为其高优先级特性，能确保队列中的微任务在一次事件循环前被执行完。
+3. 因为兼容性问题vue不得不做了microtask想macrotask的降级方案。
+
+# Vue生命周期函数
+最早在created中才能操作data数据。对于异步数据的获取最好在这里进行。
+最早在mounted中才能操作DOM，其余情况需要使用nextTick操作DOM。
+
+beforeDestroy销毁前 和 destroy销毁后这两个钩子是需要我们手动调用实例上的 $destroy 方法才会触发的。
+activated:keep-alive 组件激活时调用。
+deactivated:keep-alive 组件停用时调用。
