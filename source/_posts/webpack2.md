@@ -310,7 +310,7 @@ src
         index.js
         index.html
 ```
-## 使用嗯glob.sync第三方库来匹配路径
+## 使用glob.sync第三方库来匹配路径
 ```js
 // 安装glob
 npm i glob -D

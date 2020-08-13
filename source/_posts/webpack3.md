@@ -169,7 +169,7 @@ new htmlWebpackPlugin({
     minify: { // 压缩HTML文件
         removeComments: true, // 移除HTML中的注释
         collapseWhitespace: true, // 删除空白符与换行符
-        minifyCSS: true           // 压缩内敛css
+        minifyCSS: true           // 压缩内联css
     }
 })
 ```
@@ -261,6 +261,153 @@ optimization: {
 }
 ```
 ## 副作用
+如果引入的包/模块被标记为sideEffects：false，那么不管它是否真的有副作用，只要它没有被引用到，整个模块/包都会被完整的移除。
+```js
+// package.json
+"sideEffects": false, // 正常对所有模块进行tree shaking
+"sideEffects": ['*.css', '@babel/polyfill'] // 在数组中排除不需要tree shaking的模块
+```
 ## 代码分割Code Splitting
+打包完成之后，所有页面只生成了一个bundle.js
+我们引入一个第三方工具库，却只使用了其中一小部分功能，体积增大。
+
+```js
+import _ from 'lodash'
+
+console.log(_.join(['a', 'b', 'c']))
+```
+在webpack中实现代码分割
+```js
+optimization: {
+        splitChunks: {
+            chunks: 'async',    // 对同步 initial，异步 async，所有的模块有效 all    
+            minSize: 30000,     // ⼩尺寸，当模块⼤于30kb   
+            maxSize: 0,         // 对模块进行二次分割时使用，不推荐使用    
+            minChunks: 1,       // 打包生成的chunk文件少有⼏个chunk引用了这个模块     
+            maxAsyncRequests: 5,// 大异步请求数，默认5  
+            maxInitialRequests: 3, // ⼤初始化请求书，⼊口文件同步请求，默认 3     
+            automaticNameDelimiter: '~', // 打包分割符号 
+            name: true,                  // 打包后的名称，除了布尔值，还可以接收⼀个函数 function      
+            cacheGroups: {               // 缓存组     
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",      // 要缓存的 分隔出来的 chunk 名称          
+                    priority: -10        // 缓存组优先级 数字越⼤，优先级越高  
+                },
+                other: {
+                    chunks: "initial",   // 必须三选一："initial" | "all" | "async"(默认就是async)
+                    test: /react|lodash/, // 正则规验证，如果符合就提取 chunk,   
+                    name: "other",
+                    minSize: 30000,
+                    minChunks: 1,
+                    default: {
+                        minChunks: 2,
+                        priority: -20,
+                        reuseExistingChunk: true // 可设置是否重用该chunk        
+                    }
+                }
+            }
+        }
+    }
+```
+使用下面配置即可：
+```js
+optimization:{  
+    //帮我们⾃自动做代码分割  
+    splitChunks:{    chunks:"all", //默认是支持异步，我们使用all 
+    }
+}
+```
 ## DllPlugin插件打包第三方类库 优化构建性能
+Dll动态链接库
+项目中引入了很多第三方库，这些库在很长的一段时间内，基本不会更新，打包的时候分开打包来提升打包速度。而DllPlugin动态链接库插件，其原理就是把网页依赖的基础模块抽离出来打包到dll文件中，当需要导入的模块存在于某个dll中时，这个模块不再被打包，而是去dll中获取。
+
+新建webpack.dll.config.js
+```js
+// 静态公共资源打包配置
+const path = require('path')
+const { DllPlugin } = require('webpack')
+
+const NODE_ENV = process.env.NODE_ENV;
+
+module.exports = {
+    mode: NODE_ENV,
+    entry: ["react", "react-dom"],
+    output: {
+        path: path.resolve(__dirname, '..', 'dll'),
+        filename: 'react.dll.js',
+        library: 'react',
+    },
+    plugins: [
+        new DllPlugin({           
+            path: path.resolve(__dirname, 'dll/reactmanifest.json'),  // manifest.json文件的输出位置       
+            name: 'react'                                             // 定义打包的公共vendor文件对外暴露的函数名   
+        })
+    ]
+}
+```
+在package.json中添加
+```js
+"build:dll": "cross-env NODE_ENV=development webpack --config ./build/webpack.dll.config.js",
+```
+运行
+```bash
+npm run build:dll
+```
+运行之后会发现多了一个dll文件夹，里面有dll.js文件，这样就把第三方库单独打包了。
+
+安装依赖以下依赖，它将我们打包后的dll.js文件注入到我们生成的index.html中。
+```bash
+npm i add-asset-html-webpack-plugin
+```
+
+在webpack.base.config.js文件中进行更改。
+```js
+new AddAssetHtmlWebpackPlugin({
+    filepath: path.resolve(__dirname, '../dll/react.dll.js') // 对应的dll文件路径
+}),
+new webpack.DllReferencePlugin({
+    manifest: path.resolve(__dirname, 'dll/react-manifest.json')
+})
+```
 ## 使⽤happypack并发执⾏任务
+运行在NodeJS上的webpack是单线程模型的，也就是说webpack需要一个一个地处理任务，不能同时处理多个任务。Happy Pack 就能让webpack做到这一点，它将任务分解给多个子进程去并发执行，子进程处理完之后再将结果发送给主进程。
+
+安装
+```bash
+npm i -D happypack
+```
+配置webpack.config.js
+```js
+const happyThreadPool = HappyPack.ThreadPool({size:5})
+rules: [ 
+     {
+         test: /\.jsx?$/,
+         exclude: /node_modules/,
+         use: [
+            {   // 一个loader对应一个id
+                loader: "happypack/loader?id=babel"
+            },
+            {
+                test: /\.css$/,
+                include: path.reslove(__dirname, "./src"),
+                use: ["happypack/loader?id=css"]
+            }
+         ]
+     }
+]
+
+plugins: {
+    new HappyPack({
+        // 用唯一的标识符id，来代表当前的HappyPack是用来处理一类特定的文件
+        id: 'babel',
+        // 如何处理.js文件，用法和loader配置中一样
+        loaders: ['babel-loader?cacheDirectory'],
+        threadPool: HappyPackThreadPool
+    }),
+    new HappyPack({
+        id: "css",
+        loaders: ["style-loader", "css-loader"]
+    })
+}
+```
