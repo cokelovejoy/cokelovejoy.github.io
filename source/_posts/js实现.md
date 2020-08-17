@@ -292,10 +292,11 @@ function instance_of(L, R) {
 
 # 模拟new
 new 操作符做了这些事：
-1. 创建了一个全新的对象。
-2. 链接到原型。
-3. 使this指向新创建的对象。
-4. 返回新对象。
+1. 创建了一个全新的空对象。
+2. 获取构造函数。
+3. 设置空对象的原型。
+4. 执行构造函数，绑定this。
+4. 确保返回值为对象。
 
 实现：
 ```js
@@ -310,7 +311,7 @@ function objectFactory() {
     // 绑定this：使用apply，将构造函数中的this指向新对象，这样新对象就可以访问构造函数中的属性和方法
     const ret = Constructor.apply(obj, argument)
     //如果返回值是一个对象就返回该对象，否则返回构造函数的一个实例对象
-    return typeof ret === "object" ? ret : obj
+    return ret instanceof Object ? ret : obj
 }
 function People(name, age) {
     this.name = name
@@ -320,18 +321,22 @@ let obj = objectFactory(People, 'coke', '18')
 ```
 
 # 实现一个call
-call做了什么：
-1. 改变this的指向，将函数设为对象的属性
-2. 执行该函数
-3. 删除该函数
+分析call做了什么：
+1. 首先context为可选参数，如果不传的话默认上下文为window
+2. 给context创建一个fn属性，并将值设置为需要调用的函数。
+3. 因为call可以传入多个参数作为调用函数的参数，所以需要将参数剥离出来。
+4. 然后调用函数并将对象上的fn属性删除。
 实现call
 ```js
 // 模拟call
 Function.prototype.myCall = function (context) {
+    if (typeof this !== 'function') {
+        throw new TypeError('Type Error')
+    }
     // 传入的上下文为null的时候，采用window
     let context = context || window
     // 此处没有考虑context非object情况
-    // this就是当前函数， 把当前函数作为属性绑定给上下文对象，再删除该属性
+    // this就是当前函数，把当前函数作为属性绑定给上下文对象，再删除该属性
     context.fn = this
     // 处理参数
     let args = []
@@ -342,5 +347,65 @@ Function.prototype.myCall = function (context) {
     // 删除属性
     delete context.fn
     return result
+}
+```
+# 实现一个apply
+apply原理与call类似, 注意参数
+
+```js
+Function.prototype.myApply = function(context) {
+    if (typeof context !== 'function') {
+        throw new TypeError('type error')
+    }
+    context  = context || window
+    context.fn = this
+    let result
+    // apply 与call 方法，参数不同
+    if (arguments[1]) {
+        result = context.fn(...arguments[1])
+    } else {
+        result = context.fn()
+    }
+    delete context.fn
+    return result
+}
+```
+# 实现bind
+1. bind会返回一个函数。
+2. 对于参数需要拼接函数调用的时候传入的参数。
+3. 返回的函数可以通过new的方式调用。作为构造函数使用的时候，要让this失效，但是传入的参数依然有效。
+```js
+// 实现bind
+Function.prototype.myBind = function (context) {
+
+    if (typeof this !== "function") {
+      throw new Error("Function.prototype.bind - what is trying to be bound is not callable");
+    }
+
+    var self = this; // this就是原函数
+    var args = Array.prototype.slice.call(arguments, 1); // 获取参数数组
+
+    var fNOP = function () {};
+    var fBound = function () {
+        var bindArgs = Array.prototype.slice.call(arguments); // 获取参数数组
+        // 当返回的这个函数以new形式调用，则this 是FNOP的实例，则给原函数绑定为this实例，否则以context为this的指向
+        // 参数合并
+        return self.apply(this instanceof fNOP ? this : context, args.concat(bindArgs));
+    }
+    fNOP.prototype = this.prototype; // 改变FNOP原型，原型指向原函数的原型
+    fBound.prototype = new fNOP();   // 改变FBound原型，使用FNOP做中转
+    return fBound;
+}
+
+```
+
+# 实现Object.create()
+Object.create方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__属性。
+
+```js
+function create(proto) {
+    function F() {}
+    F.prototype = proto
+    return new F()
 }
 ```
