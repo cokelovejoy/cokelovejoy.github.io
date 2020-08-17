@@ -409,3 +409,45 @@ function create(proto) {
     return new F()
 }
 ```
+# 实现类的继承
+```js
+function Parent(name) {
+    this.parent = name
+}
+Parent.prototype.say = function() {
+    console.log('haha')
+}
+function Child(name, parent) {
+    // 绑定父类的构造函数到子类上
+    Parent.call(this, parent)
+    this.child = name
+}
+Child.prototype.say = function () {
+    console.log(`${this.parent} and ${this.child}`)
+}
+// 获取父类的原型
+Child.prototype = Object.create(Parent.prototype)
+// 原型的构造函数属性指向子类自己
+Child.prototype.constructor = Child
+const parent = new Parent('father')
+parent.say()
+const child = new Child('coke', 'father') 
+child.say
+```
+
+ES6语法实现:
+```js
+Class Animal {
+ constructor(name) {
+     this.name = name
+ }
+}
+Class cat extends Animal{
+    constructor(name) {
+        super(name)
+        this.color = 'black' 
+    }
+}
+```
+# 实现JSON.parse
+# 实现Promsise

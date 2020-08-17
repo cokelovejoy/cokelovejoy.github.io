@@ -98,7 +98,7 @@ call 接受一个个参数，apply接受一个参数数组，bind返回一个新
 ## async/await
 async函数，就是	Generator函数的语法糖，它建⽴在Promise上，并且与所有现有的基于Promise的API兼容。
 1. async 声明一个异步函数
-2. 自动件常规函数转换成Promise，返回值也是Promise对象。
+2. 自动将常规函数转换成Promise，返回值也是Promise对象。
 3. 只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。
 4. await必须在async声明的函数内部使用。
 5. await强制代码等待，直到异步操作完成并返回结果。
