@@ -128,6 +128,18 @@ git commit -m 'message' 之后，如果要取消 commit
 然后使用 git reset 404b1f29b3066ec19b07c3ddf76510d97c5643b1
 （倒数第二次记录的commit哈希值），即可恢复到上一次commit。
 
+## pull request merge conflict
+当 pull request 有冲突时：
+step1： 拉取远程分支branch-1的代码，会合并到dev，然后解决冲突。
+git checkout dev
+git pull origin branch-1
+step2：提交改变，add，commit，push,然后pull request 就会被更新为合并之后的。
+git add -a
+git commit -m'xxx'
+git push origin HEAD
+
+
+
 ## 查看信息
 git log （查看commit提交记录）
 git status （查看本地库文件的更改状态）
