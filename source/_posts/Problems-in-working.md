@@ -129,14 +129,15 @@ git commit -m 'message' 之后，如果要取消 commit
 （倒数第二次记录的commit哈希值），即可恢复到上一次commit。
 
 ## pull request merge conflict
-当 pull request 有冲突时：
-step1： 拉取远程分支branch-1的代码，会合并到dev，然后解决冲突。
-git checkout dev
-git pull origin branch-1
-step2：提交改变，add，commit，push,然后pull request 就会被更新为合并之后的。
+当pull request 为branch1 指向 branch2 时，发生冲突，需要解决冲突，将branch2 的代码 pull到brach1,在branch1上解决冲突，保留branch2上的代码。然后提交。
+之后再在branch1上做修改，把原来的冲突代码写回来。branch2 的代码始终不能改变的。
+step1： 拉取远程分支branch2的代码，然后合并到branch1，然后解决冲突。
+git checkout branch1
+git pull origin branch2
+step2：提交改变，add，commit，push,然后 branch2 的代码 就会合并到branch1上。
 git add -a
 git commit -m'xxx'
-git push origin HEAD
+git push origin HEAD   // HEAD为当前分支的简称
 
 
 
