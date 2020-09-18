@@ -133,12 +133,11 @@ css 实现三角形
 ### element UI
 
 1. 在 element UI 中，先布局用容器 el-row，el-col 包裹各种组件。
-2. 同一层级只允许出现一个 el-row,
-3. el-col 内可以包裹 el-row 来进行再次分块布局。
-4. 要调整 element 内部组件的样式，尽量使用 div 包裹组件，在 div 上使用 class。
-5. 不在标签上使用 style，将样式写在 class 内。
-6. class 命名。
-7. el-col 只能通过 span 设置宽度，高度由内容撑开。
+2. el-col 内可以包裹 el-row 来进行再次分块布局。
+3. 要调整 element 内部组件的样式，尽量使用 div 包裹组件，在 div 上使用 class。
+4. 不在标签上使用 style，将样式写在 class 内。
+5. el-col 通过 span 设置宽度，高度由内容撑开。
+6. 多个el-button，只有第一个没有margin-left：10px;其余的都有margin-left.去掉margin-left 包裹一层div即可。 
 
 ### 使用 CSS 实现刻度尺
 
