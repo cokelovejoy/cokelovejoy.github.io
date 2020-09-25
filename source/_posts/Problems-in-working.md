@@ -301,4 +301,7 @@ npm install npm@latest -g
 # Vue: $forceUpdate()
 对象深层的数据改变,Vue无法监听,用于强制更新数据
 # Vue: $refs
-$refs在template和computed属性中使用无效,它不是响应式的.
+$refs在template和computed属性中使用无效,它不是响应式的。
+# Vue: native 事件修饰符
+在组件上使用 v-on 只会监听自定义事件 (组件用 $emit 触发的事件)。如果要监听根元素的原生事件，可以使用 .native 修饰符
+.native事件修饰符只能修饰组件，不能使用到div原生标签上。

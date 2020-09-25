@@ -4,8 +4,13 @@ date: 2020-08-08 15:47:54
 tags:
 ---
 
+# v-if
+v-if 的值从false 变为true，会重新触发组件的生命周期函数。
+# props属性
+通过props属性传递的值不能够改变，可以通过computed的get和set去包裹一层。
 # computed属性
 computed属性在mounted之前操作，因此不能在computed里面获取到dom元素。
+
 # v-if 和v-for哪个优先级更高？如果同时出现，应该怎么优化得到更好的性能？
 
 源码位置:compiler/codegen/index.js
