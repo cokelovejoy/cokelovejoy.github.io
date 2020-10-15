@@ -181,8 +181,59 @@ css 实现三角形
 
 CSS calc() 函数动态计算长度值。运算符号中间使用空格隔开。
 
-### 实现拖拽效果
 
+### CSS 实现三角形的原理
+### CSS 实现斜线
+```css
+/* 使用transform实现 ，绝对定位，top， left移动位置，border画线  */
+span {
+  position: abcolute;
+  width: 0;
+  height: 100px;
+  border-left: 1px solid #000;
+  transform: rotate(-45deg);
+  top: 10px; 
+  left:10px;
+}
+```
+### table 的特点
+tr 行 td 单元格，
+单元格的高度由内容决定。
+
+## 布局
+1. 常见的Div盒模型 + Css布局。
+2. table可以用来布局。
+2. flex布局。
+### 响应式布局（自适应）
+Responsive Web Design, 指可以自动识别屏幕宽度并作出相应调整的网页设计。简单来说就是宽度不能固定。
+可以从以下几个方面做响应式布局。
+#### viewport
+viewport是网页的默认宽高，width=device-width指网页宽度默认等于屏幕宽度，initial-scale=1指原始缩放比例为1.0,即网页初始大小占屏幕的100%。
+```html
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+```
+#### 不使用绝对宽度
+css代码不能指定像素宽度，因为，宽度固定后，在设备宽度不同的情况下，影响其他元素的宽度，从而显示不一样，可能造成混乱。尽量使用百分比宽度。
+#### 使用min-width和max-width
+min-width：设置最小宽度，当宽度小于设置的宽度时，使用设置的宽度。
+max-width：设置最大宽度，当宽度大于设置的宽度时，使用设置的宽度。
+#### 使用em 和 rem
+em基于父元素的font-size。
+rem基于根元素的font-size，一般为16px。
+#### 使用媒体查询@media
+
+```css
+/* 屏幕宽度小于400px时 应用样式 */
+
+@media screen and (max-device-width；400px) {
+  .className {
+    ...
+  }
+}
+```
+
+## js实现
+### js实现拖拽效果
 ```html
 <body>
   <div di="diagram"></div>
@@ -203,7 +254,7 @@ CSS calc() 函数动态计算长度值。运算符号中间使用空格隔开。
     return target.currentStyle
       ? target.currentStyle[key]
       : document.defaultView.getComputedStyle(target, false)[key];
-  },
+  };
   startDrag(target, callback) {
     let that = this;
     if (this.getCss(target, 'left') !== 'auto') {
@@ -260,47 +311,10 @@ CSS calc() 函数动态计算长度值。运算符号中间使用空格隔开。
       }
     };
   }
-}
 </script>
 ```
 
-### 实现滑动效果
+### js实现滑动效果
 
-### CSS 实现三角形的原理
-
-### table 的特点
-
-tr 行 td 单元格，
-单元格的高度由内容决定。
-
-## 布局
-1. 常见的Div盒模型 + Css布局。
-2. table可以用来布局。
-2. flex布局。
-### 响应式布局（自适应）
-Responsive Web Design, 指可以自动识别屏幕宽度并作出相应调整的网页设计。简单来说就是宽度不能固定。
-可以从以下几个方面做响应式布局。
-#### viewport
-viewport是网页的默认宽高，width=device-width指网页宽度默认等于屏幕宽度，initial-scale=1指原始缩放比例为1.0,即网页初始大小占屏幕的100%。
-```html
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-```
-#### 不使用绝对宽度
-css代码不能指定像素宽度，因为，宽度固定后，在设备宽度不同的情况下，影响其他元素的宽度，从而显示不一样，可能造成混乱。尽量使用百分比宽度。
-#### 使用min-width和max-width
-min-width：设置最小宽度，当宽度小于设置的宽度时，使用设置的宽度。
-max-width：设置最大宽度，当宽度大于设置的宽度时，使用设置的宽度。
-#### 使用em 和 rem
-em基于父元素的font-size。
-rem基于根元素的font-size，一般为16px。
-#### 使用媒体查询@media
-
-```css
-/* 屏幕宽度小于400px时 应用样式 */
-
-@media screen and (max-device-width；400px) {
-  .className {
-    ...
-  }
-}
-```
+### js实现子元素滚动到底，不影响父元素的滚动。
+event.preventDefault()
