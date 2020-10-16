@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-10-15 10:33:33
+ * @LastEditTime: 2020-10-16 09:56:45
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \cokelovejoy.github.io\source\_posts\CSS总结.md
+-->
 # CSS总结
 # 前言
 这章内容的目的是 1.总结CSS知识点，分析CSS原理，形成自己的CSS知识体系。2.学习并记录常见的CSS特效的实现，以及常见CSS问题出现的原因。
@@ -45,10 +53,29 @@ a::before {
 ```
 ## CSS布局
 理解CSS布局首先要了解内联元素，块级元素，可替换元素，包含块和盒模型的概念。它们决定了元素的尺寸和位置。然后了解布局相关的定位和浮动，它们可以让元素移动到你要想的位置。
-### 内联元素
-### 块级元素
-### 可替换元素
-### 包含块
 ### 盒模型
+盒模型是CSS的基石，它决定了元素在页面中的尺寸，如何表现。页面中的每个元素都会以一个矩形框表示，这个框由元素的内容，内边距，边框和外边距组成。
+#### 盒模型分类
+在CSS中，标准的盒模型的width和height是内容区域的宽和高，任何边框和内边距的宽度都会被增加到最后绘制出来的元素宽度中。而在非标准的IE盒模型中，width和height是内容，内边距和边框的总和。在CSS3中，可以使用box-sizing属性定义要使用哪种盒模型。
+1. content-box,默认值，width和height设置为内容区域的宽高，最后的元素宽度为内容区域的宽高，内边距和边框的总和。
+2. border-box，width和height为内容区域，内边距和边框之和。内容区域的宽度为width-边框-内边距，最后的元素宽度高度就表现为设置的width和height。
+
+border-box 不包括 margin，border-box常被用于响应式布局。
+#### 盒模型构成
+1. 内容区域(content area)。
+2. 内边距(padding)。
+3. 边框(border)。
+4. 外边距(margin)。
+
+#### 内联元素
+内联元素，宽高由内容决定，不能自定义。常见内联元素:span, strong。
+#### 块级元素
+块级元素，占据容器的宽度，宽高可以自定义。常见块级元素: div，p，ul，ol，li。
+#### 可替换元素
+可替换元素指元素内容可以被替换，并且样式由替换的内容决定。
+常见的可替换元素: iframe, video, embed, img。
+特殊的可替换元素: type为image的input元素，其他类型的input均为非可替换元素。
+匿名可替换元素: 用content属性插入的对象是匿名的可替换元素，它们并不存在于 HTML 标记中，因此是“匿名的”。
+#### 包含块
 ### 定位
 ### 浮动
