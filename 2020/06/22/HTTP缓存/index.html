@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>HTTP缓存 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTTP缓存是什么背景当浏览器加载一个页面的html时，引用的外部资源也会加载。但这些外部资源比如图片，CSS，js都不经常变化。如果每次都加载这些资源，会带来资源的浪费。而且加载时间过长也会影响用户体验。HTTP缓存技术就是为了解决这个问题出现。HTTP缓存技术就是将静态资源存储在浏览器内部，下次请求相同的资源时可以直接使用。如何使资源一旦更新，缓存也要随之更新，需要通过使用一些策略来保证。 作">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP缓存">
+<meta property="og:url" content="http://yoursite.com/2020/06/22/HTTP缓存/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="HTTP缓存是什么背景当浏览器加载一个页面的html时，引用的外部资源也会加载。但这些外部资源比如图片，CSS，js都不经常变化。如果每次都加载这些资源，会带来资源的浪费。而且加载时间过长也会影响用户体验。HTTP缓存技术就是为了解决这个问题出现。HTTP缓存技术就是将静态资源存储在浏览器内部，下次请求相同的资源时可以直接使用。如何使资源一旦更新，缓存也要随之更新，需要通过使用一些策略来保证。 作">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP缓存">
+<meta name="twitter:description" content="HTTP缓存是什么背景当浏览器加载一个页面的html时，引用的外部资源也会加载。但这些外部资源比如图片，CSS，js都不经常变化。如果每次都加载这些资源，会带来资源的浪费。而且加载时间过长也会影响用户体验。HTTP缓存技术就是为了解决这个问题出现。HTTP缓存技术就是将静态资源存储在浏览器内部，下次请求相同的资源时可以直接使用。如何使资源一旦更新，缓存也要随之更新，需要通过使用一些策略来保证。 作">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HTTP缓存" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/22/HTTP缓存/" class="article-date">
+  <time datetime="2020-06-22T06:33:56.000Z" itemprop="datePublished">2020-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTTP缓存
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HTTP缓存是什么"><a href="#HTTP缓存是什么" class="headerlink" title="HTTP缓存是什么"></a>HTTP缓存是什么</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当浏览器加载一个页面的html时，引用的外部资源也会加载。但这些外部资源比如图片，CSS，js都不经常变化。如果每次都加载这些资源，会带来资源的浪费。而且加载时间过长也会影响用户体验。<br>HTTP缓存技术就是为了解决这个问题出现。HTTP缓存技术就是将静态资源存储在浏览器内部，下次请求相同的资源时可以直接使用。<br>如何使资源一旦更新，缓存也要随之更新，需要通过使用一些策略来保证。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>提高首屏加载速度，优化用户体验。</li>
+<li>减少流量消耗</li>
+<li>减轻服务器压力<h1 id="强缓存策略"><a href="#强缓存策略" class="headerlink" title="强缓存策略"></a>强缓存策略</h1>强缓存通过设置定时器的方式，设置静态资源的有效期，如果超过有效期就认为缓存作废，需要重新请求。<br>如果设置了expires和cache-control都会访问本地缓存直接验证看是否过期，如果没过期,不去请求服务器,直接使用本地缓存，并返回200。</li>
+</ul>
+<h2 id="expires"><a href="#expires" class="headerlink" title="expires"></a>expires</h2><p>expires是HTTP1.0 中定义的缓存字段。当请求一个资源，服务器返回时，可以在Response Headers中增加expires字段表示资源的过期时间。<br>expires字段的值是一个时间戳(格林尼治时间),当客户端再次请求该资源的时候，会把客户端时间与该时间戳进行对比，如果小于该时间戳则直接使用该缓存资源。如果大于该时间戳，则表示过期，缓存作废。</p>
+<p>问题是发送请求时使用的是客户端时间去对比。客户端和服务端的时间可能快慢不一致，另一方面是客户端的时间是可以自行修改的(浏览器的时间是跟随系统的，修改系统时间会影响到)，所以不一定满足预期。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// expires:  Mon, 22 Jun 2020 08:18:33 GMT</span></span><br><span class="line">res.setHeader(<span class="string">'Expires'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.now() + <span class="number">10</span>*<span class="number">1000</span>).toUTCString())</span><br></pre></td></tr></table></figure>
+
+<h2 id="cache-control"><a href="#cache-control" class="headerlink" title="cache-control"></a>cache-control</h2><p>HTTP 1.1新增cache-control字段来解决上述客户端和服务端时间不匹配的问题，所以当cache-control 和 expires都存在时，cache-control优先级更高。该字段是一个时间长度，单位秒，表示该资源过了多少秒后失效。当客户端请求资源的时候，发现该资源还在有效时间内则使用该缓存，它不依赖客户端时间。<br>cache-control主要有max-age，s-maxage，public，private，no-cache，no-store等值。</p>
+<ul>
+<li>public<br>所有内容都将被缓存(客户端和代理服务器都可以缓存)</li>
+<li>private<br>内容只缓存到私有缓存中(客户端可以缓存)</li>
+<li>no-cache<br>需要使用协商缓存来验证缓存数据</li>
+<li>no-store<br>所有内容都不缓存</li>
+<li>must-revalidation/proxy-revalidation<br>如果缓存的内容失效，请求必须发送到服务器/代理以进行重新验证呢过</li>
+<li>max-age=xxx<br>缓存的内容将在xxx秒后失效，这个选项只有在HTTP1.1可用，如果和Last-Modified一起使用时，优先级较高。</li>
+</ul>
+<p>使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.setHeader(<span class="string">'Cache-Control'</span>, <span class="string">'max-age=20'</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h1><p>协商缓存简单的说就是浏览器和服务器间就是否要使用缓存做协商。如果协商的结果是需要更新，就返回200并更新内容。如果不需要，就只需要返回状态吗304不用返回内容，这样虽然后端需要应答，但是后端既不需要生成内容也不需要传输内容。<br>如果设置了no-cache和no-store则本地缓存会被忽略，会去请求服务器，验证资源是否更新，如果没更新才继续使用本地缓存，此时返回的是304，这就是协商缓存。<br>设置协商缓存主要包括last-modified 和 Etag。</p>
+<h2 id="last-modified-和-if-modified-since"><a href="#last-modified-和-if-modified-since" class="headerlink" title="last-modified 和 if-modified-since"></a>last-modified 和 if-modified-since</h2><p>通过比较时间， 判断是否需要使用缓存</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">res.setHeader(<span class="string">'Cache-Control'</span>, <span class="string">'no-cache'</span>)</span><br><span class="line"><span class="comment">// 设置时间</span></span><br><span class="line">res.setHeader(<span class="string">'last-modified'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>().toUTCString())</span><br><span class="line"><span class="comment">// 判断是否在有效期内，req.headers['if-modified-since'] 就是last-modified设置的时间。</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(req.headers[<span class="string">'if-modified-since'</span>]).getTime() + <span class="number">10</span> * <span class="number">1000</span> &gt; <span class="built_in">Date</span>.now()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'协商缓存命中'</span>)</span><br><span class="line">    res.statusCode = <span class="number">304</span></span><br><span class="line">    res.end()</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Etag-和-if-none-match"><a href="#Etag-和-if-none-match" class="headerlink" title="Etag 和 if-none-match"></a>Etag 和 if-none-match</h2><p>通过比较内容，判断是否要使用缓存</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crypto = <span class="built_in">require</span>(<span class="string">'crypto'</span>)</span><br><span class="line"><span class="keyword">const</span> hash = crypto.createHash(<span class="string">'sha1'</span>).update(content).digest(<span class="string">'hex'</span>)</span><br><span class="line">res.setHeader(<span class="string">'Cache-Control'</span>, <span class="string">'no-cache'</span>)</span><br><span class="line">res.setHeader(<span class="string">'Etag'</span>, hash)</span><br><span class="line"><span class="comment">// 判断服务器设置的hash和客户端请求头中携带的hash一样</span></span><br><span class="line"><span class="comment">// req.headers['if-none-match']就是 Etag 中的值</span></span><br><span class="line"><span class="keyword">if</span> (req.headers[<span class="string">'if-none-match'</span>] === hash) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Etag 缓存命中'</span>)</span><br><span class="line">    res.statusCode = <span class="number">304</span></span><br><span class="line">    res.end()</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="AJAX缓存"><a href="#AJAX缓存" class="headerlink" title="AJAX缓存"></a>AJAX缓存</h2><h2 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/22/HTTP缓存/" data-id="ckh44mzsk00034sv2enqt85oc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/23/javaScript异步编程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          javaScript异步编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/20/React高级/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React高级</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

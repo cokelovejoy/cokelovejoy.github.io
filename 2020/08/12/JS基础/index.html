@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>JS基础 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JS基础变量提升现象：所有的变量的声明会被提升到代码的开头，这就叫做变量提升(hoisting)。原理：JavaScript引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。 闭包概念MDN解释：闭包是函数和声明该函数的词法环境的组合。简单理解：闭包 = 函数 + 函数内可访问的变量总和 闭包的作用闭包最⼤的作⽤就是隐藏变量，闭包的⼀⼤特性就是内部函数总是可以访问其所在的外">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS基础">
+<meta property="og:url" content="http://yoursite.com/2020/08/12/JS基础/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="JS基础变量提升现象：所有的变量的声明会被提升到代码的开头，这就叫做变量提升(hoisting)。原理：JavaScript引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。 闭包概念MDN解释：闭包是函数和声明该函数的词法环境的组合。简单理解：闭包 = 函数 + 函数内可访问的变量总和 闭包的作用闭包最⼤的作⽤就是隐藏变量，闭包的⼀⼤特性就是内部函数总是可以访问其所在的外">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS基础">
+<meta name="twitter:description" content="JS基础变量提升现象：所有的变量的声明会被提升到代码的开头，这就叫做变量提升(hoisting)。原理：JavaScript引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。 闭包概念MDN解释：闭包是函数和声明该函数的词法环境的组合。简单理解：闭包 = 函数 + 函数内可访问的变量总和 闭包的作用闭包最⼤的作⽤就是隐藏变量，闭包的⼀⼤特性就是内部函数总是可以访问其所在的外">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS基础" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/12/JS基础/" class="article-date">
+  <time datetime="2020-08-11T16:55:50.000Z" itemprop="datePublished">2020-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JS基础"><a href="#JS基础" class="headerlink" title="JS基础"></a>JS基础</h1><h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>现象：所有的变量的声明会被提升到代码的开头，这就叫做变量提升(hoisting)。<br>原理：JavaScript引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>MDN解释：闭包是函数和声明该函数的词法环境的组合。<br>简单理解：闭包 = 函数 + 函数内可访问的变量总和</p>
+<h3 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h3><p>闭包最⼤的作⽤就是隐藏变量，闭包的⼀⼤特性就是内部函数总是可以访问其所在的外部函数中声明的参数和变量，即使在其外部函数被返回（寿命终结）了之后。</p>
+<p>基于此特性。JS可以实现私有变量，特权变量，储存变量。</p>
+<h2 id="JS的作用域链"><a href="#JS的作用域链" class="headerlink" title="JS的作用域链"></a>JS的作用域链</h2><p>JavaScript属于静态作⽤域，即声明的作⽤域是根据程序正⽂在编译时就确定的，有时也称为词法作⽤域。</p>
+<p>其本质是JavaScript在执⾏过程中会创造可执⾏上下⽂，可执⾏上下⽂中的词法环境中含有外部词法环境的引⽤，我们 可以通过这个引⽤获取外部词法环境的变量、声明等，这些引⽤串联起来⼀直指向全局的词法环境，因此形成了作⽤域链。</p>
+<h2 id="ES6-模块和CommonJS模块"><a href="#ES6-模块和CommonJS模块" class="headerlink" title="ES6 模块和CommonJS模块"></a>ES6 模块和CommonJS模块</h2><p>区别：</p>
+<ol>
+<li><p>CommonJS是对模块的浅拷⻉，ES6 Module是对模块的引⽤,即ES6    Module只存只读，不能改变其值，具体点就是指针指向不能变，类似const 。</p>
+</li>
+<li><p>import的接⼝是read-only（只读状态），不能修改其变量值。    即不能修改其变量的指针指向，但可以改变变量内部 指针指向,可以对commonJS对重新赋值（改变指针指向），但是对ES6 Module赋值会编译报错。</p>
+</li>
+</ol>
+<p>共同点：CommonJS和ES6 Module都可以对引⼊的对象进⾏赋值，即对对象内部属性的值进⾏改变。</p>
+<h2 id="JS有哪些数据类型？"><a href="#JS有哪些数据类型？" class="headerlink" title="JS有哪些数据类型？"></a>JS有哪些数据类型？</h2><p>原始类型，引用类型。<br>原始类型： null, undefined, boolean, number, string, symbol。<br>引用类型： Object。</p>
+<h3 id="null与undefined区别"><a href="#null与undefined区别" class="headerlink" title="null与undefined区别"></a>null与undefined区别</h3><p>null表示空，代表此处没有值。typeof null 为 object。<br>undefined表示不存在，代表值为空值或者根本不存在。因为存不存在只在运行期才直到，这就是undefined的意义所在。</p>
+<h2 id="0-1-0-2-为什么不等于0-3"><a href="#0-1-0-2-为什么不等于0-3" class="headerlink" title="0.1+0.2 为什么不等于0.3"></a>0.1+0.2 为什么不等于0.3</h2><p>JS number类型 使用IEEE 754标准，使用的是64位固定长度来表示。</p>
+<ol>
+<li>在0.1转换为二进制表示</li>
+<li>再将二进制通过科学计数法表示</li>
+<li>将通过科学计数法表示的二进制转换为IEEE 754标准表示时，发现值已经变了，从而导致计算精度出现问题。<br>并不只是JS有这个问题，使用IEEE 754标准表示浮点数都有这个问题。<h2 id="JS类型转换的规则有哪些？"><a href="#JS类型转换的规则有哪些？" class="headerlink" title="JS类型转换的规则有哪些？"></a>JS类型转换的规则有哪些？</h2>if语句，逻辑语句，数学逻辑运算符， == 等情况下都会出现 隐式类型转化。<br>类型只会转换为数字，布尔和字符串三种类型。<br>为false的情况：null, undefined, 0, NAN, “”, false,除此之外全为true。</li>
+</ol>
+<p>js内部引用类型转换成原始类型会调用ToPrimitive方法</p>
+<h2 id="JS原型链"><a href="#JS原型链" class="headerlink" title="JS原型链"></a>JS原型链</h2><h3 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h3><p>每一个构造函数都有一个属性prototype叫做原型对象，原型对象上的属性和方法为该构造函数创建的实例所共用。</p>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p>每个实例都有<strong>proto</strong>属性，此属性指向该对象的构造函数的原型。<br>实例对象通过<strong>proto</strong>找到上游的构造函数的原型对象，上游的原型对象也有<strong>proto</strong>属性，这样就形成了原型链。<br>原型链的顶层是Object，Object的<strong>proto</strong>属性指向null。<br>实例的constructor 属性返回该实例对象的构造函数。</p>
+<h2 id="判断是否是数组"><a href="#判断是否是数组" class="headerlink" title="判断是否是数组"></a>判断是否是数组</h2><p>ES6:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.isArray(value)</span><br></pre></td></tr></table></figure>
+
+<p>非ES6:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.toString.call(value) === <span class="string">'[object Array]'</span>) &#123;</span><br><span class="line">    <span class="comment">// code block</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>默认情况下，this指向全局对象，比如在浏览器就是指向window。<br>this的指向问题总结一句话就是谁调用指向谁。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// obj中调用方法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    name: <span class="string">"coke"</span>，</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line">obj.foo() <span class="comment">// this指向obj</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 构造函数中</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name <span class="comment">// this指向实例对象</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> coke = <span class="keyword">new</span> Foo(<span class="string">'coke'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>改变this指向的常见方法：call，apply，bind。<br>call 接受一个个参数，apply接受一个参数数组，bind返回一个新函数。</p>
+<h2 id="箭头函数的this指向哪里"><a href="#箭头函数的this指向哪里" class="headerlink" title="箭头函数的this指向哪里"></a>箭头函数的this指向哪里</h2><p>箭头函数不同于传统JavaScript中的函数，箭头函数并没有属于⾃⼰的this,它的所谓的this是捕获其所在上下⽂的    this 值，作为⾃⼰的    this值,并且由于没有属于⾃⼰的this,⽽箭头函数是不会被new调⽤的，这个所谓的this也不会被改变.</p>
+<h2 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h2><p>async函数，就是    Generator函数的语法糖，它建⽴在Promise上，并且与所有现有的基于Promise的API兼容。</p>
+<ol>
+<li>async 声明一个异步函数</li>
+<li>自动将常规函数转换成Promise，返回值也是Promise对象。</li>
+<li>只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。</li>
+<li>await必须在async声明的函数内部使用。</li>
+<li>await强制代码等待，直到异步操作完成并返回结果。</li>
+<li>await只能和Promise一起使用，不适用于回调。</li>
+<li>await 不适合用于forEach,map,filter,reduce，可以在for循环中使用或者没有回调的循环。</li>
+</ol>
+<h2 id="async-await相比于Promise的优势"><a href="#async-await相比于Promise的优势" class="headerlink" title="async/await相比于Promise的优势"></a>async/await相比于Promise的优势</h2><ol>
+<li>更像同步代码，Promise的then的调用有额外的阅读负担</li>
+<li>Promise 传递中间值非常麻烦，而async/await写法类似同步代码。</li>
+<li>错误处理友好，async/await可以用成熟的try/catch，Promise的错误捕获非常冗余。</li>
+<li>Promise不好调试，步进功能无法进入then。</li>
+</ol>
+<h2 id="JS参数传递方式"><a href="#JS参数传递方式" class="headerlink" title="JS参数传递方式"></a>JS参数传递方式</h2><p>基本类型数据按值传递<br>引用类型按共享传递</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    b: <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    x.a = <span class="number">10</span></span><br><span class="line">    <span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line">test(obj) <span class="comment">// &#123;a:10,b:2&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj) <span class="comment">// &#123;a:10,b:2&#125;</span></span><br><span class="line"><span class="comment">// 2.</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    b: <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    x = <span class="number">10</span></span><br><span class="line">    <span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line">test(obj) <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(obj) <span class="comment">// &#123;a:1,b:2&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>出现上述代码中的情况是因为传递参数的时候，会生成一个副本obj，这个副本指向了参数x的内存地址。当给这个副本变量整个重新赋值的时候，引用的指向就改变了。当改变这个副本变量下的属性的值的时候，就会去操作引用指向的内存中的值，同时外部变量obj的值也会受到影响，因为它们属于同一的内存地址下的数据。</p>
+<h2 id="JS-实现不可变对象"><a href="#JS-实现不可变对象" class="headerlink" title="JS 实现不可变对象"></a>JS 实现不可变对象</h2><ol>
+<li>深克隆，但是深克隆的性能⾮常差，不适合⼤规模使⽤ </li>
+<li>Immutable.js，Immutable.js是⾃成⼀体的⼀套数据结构，性能良好，但是需要学习额外的API </li>
+<li>immer，利⽤Proxy特性，⽆需学习额外的api，性能良好</li>
+</ol>
+<h2 id="JS的基本类型和复杂类型是存储在哪里？"><a href="#JS的基本类型和复杂类型是存储在哪里？" class="headerlink" title="JS的基本类型和复杂类型是存储在哪里？"></a>JS的基本类型和复杂类型是存储在哪里？</h2><p>基本类型存储在栈中，但是一旦被闭包引用则成为常住内存，会存储在内存堆中。<br>复杂类型会存储在内存堆中。</p>
+<h2 id="JS垃圾回收机制"><a href="#JS垃圾回收机制" class="headerlink" title="JS垃圾回收机制"></a>JS垃圾回收机制</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/12/JS基础/" data-id="ckh44mzt000094sv28vsn37it" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/13/webpack4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          webpack4
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/10/webpack3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">webpack3</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

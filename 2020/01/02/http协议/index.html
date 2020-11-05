@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>http协议 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTTP协议概述HTTP是一一个属于应用层的面向对象的协议,由于其简捷、快速的方式,适用于分布式超媒体信息系统。HTTP协议的主要特点:  支持客户/服务器模式(C/S) 简单快速: 客户想服务器请求服务时, 只需传送方法和路径.请求方法常用有GET,POST等.每种方法规定了客户与服务器联系的类型不同.由于HTTP协议简单,使得HTTP服务器的程序规模小,因而通信速度很快. 灵活: HTTP允许">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http协议">
+<meta property="og:url" content="http://yoursite.com/2020/01/02/http协议/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="HTTP协议概述HTTP是一一个属于应用层的面向对象的协议,由于其简捷、快速的方式,适用于分布式超媒体信息系统。HTTP协议的主要特点:  支持客户/服务器模式(C/S) 简单快速: 客户想服务器请求服务时, 只需传送方法和路径.请求方法常用有GET,POST等.每种方法规定了客户与服务器联系的类型不同.由于HTTP协议简单,使得HTTP服务器的程序规模小,因而通信速度很快. 灵活: HTTP允许">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http协议">
+<meta name="twitter:description" content="HTTP协议概述HTTP是一一个属于应用层的面向对象的协议,由于其简捷、快速的方式,适用于分布式超媒体信息系统。HTTP协议的主要特点:  支持客户/服务器模式(C/S) 简单快速: 客户想服务器请求服务时, 只需传送方法和路径.请求方法常用有GET,POST等.每种方法规定了客户与服务器联系的类型不同.由于HTTP协议简单,使得HTTP服务器的程序规模小,因而通信速度很快. 灵活: HTTP允许">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-http协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/02/http协议/" class="article-date">
+  <time datetime="2020-01-02T05:32:31.000Z" itemprop="datePublished">2020-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      http协议
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>HTTP是一一个属于应用层的面向对象的协议,由于其简捷、快速的方式,适用于分布式超媒体信息系<br>统。<br>HTTP协议的主要特点:</p>
+<ol>
+<li>支持客户/服务器模式(C/S)</li>
+<li>简单快速: 客户想服务器请求服务时, 只需传送方法和路径.请求方法常用有GET,POST等.每种方法规定了客户与服务器联系的类型不同.由于HTTP协议简单,使得HTTP服务器的程序规模小,因而通信速度很快.</li>
+<li>灵活: HTTP允许传输任意类型的数据对象.正在传输的类型由Content-Type加以标记.</li>
+<li>无连接: 无连接的含义是限制每次连接只处理一个请求.服务器处理完客户的请求,并收到客户的应答后,即断开连接.采用这种方式可以节省传输时间.</li>
+<li>无状态: HTTP协议是无状态的协议. 无状态是指协议对于事务处理没有记忆能力.缺少状态意味着如果后续处理需要前面的信息,则必须重传,这样可能导致每次连接传送的数据量增大.另一方面,在服务器不需要先前信息时,它的应答就较快.</li>
+</ol>
+<h2 id="HTTP协议详解之URL"><a href="#HTTP协议详解之URL" class="headerlink" title="HTTP协议详解之URL"></a>HTTP协议详解之URL</h2><p>HTTP URL (URL是一种特殊类型的URI,包含了用于查找某个资源的足够的信息,统一资源定位符)的格式如下:</p>
+<p><a href="http://host:port/abs_path" target="_blank" rel="noopener">http://host:port/abs_path</a></p>
+<p>http: 表示要通过HTTP协议来定位网络资源(还有https)<br>host: 表示合法的Internet主机域名或者IP地址(127.0.0.1)<br>port: 指定一个端口号,为空则默认使用端口80<br>abs_path: 指定请求资源的URI;如果URL中没有给出abs_path,那么当它作为请求URI时,必须以”/“的形式给出,通常这个工作浏览器自动帮我们完成.<br>如: 输入 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 浏览器自动转换成 <a href="http://www.baidu.com/" target="_blank" rel="noopener">www.baidu.com/</a></p>
+<h2 id="HTTP协议详解之请求篇"><a href="#HTTP协议详解之请求篇" class="headerlink" title="HTTP协议详解之请求篇"></a>HTTP协议详解之请求篇</h2><p>http请求由三部分组成,分别是: 请求行,消息报头,请求正文</p>
+<ol>
+<li>请求行以一个方法符号开头,以空格分开,后面跟着请求的URI和协议的版本,格式如下:<br>Method  Request-URI  HTTP-Version  CRLF<br>Method表示请求方法<br>Request-URI是一个统一资源定位符<br>HTTP-Version表示请求的HTTP协议版本<br>CRLF表示回车和换行(除了作为结尾的CRLF外,不允许出现单独的CR或LF字符)</li>
+</ol>
+<p>请求方法(所有的方法都是大写):<br>GET     请求获取Request-URI所标识的资源<br>POST    在Request-URI所标识的资源后附加新的资源<br>HEAD    请求获取由Request-URI所标识的资源的响应消息报头<br>PUT     请求服务器存储一个资源,并用Request-URI作为其标识<br>DELETE  请求服务器删除Request-URI所标识的资源<br>TRACE   请求服务器回送受到的请求信息,主要用于测试或者诊断<br>CONNECT 保留将来使用<br>OPTIONS 请求查询服务器的性能,或者查询与资源相关的选项和需求</p>
+<p>例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: localhost:4000</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36</span><br><span class="line">Sec-Fetch-User: ?1</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3</span><br><span class="line">Sec-Fetch-Site: none</span><br><span class="line">Sec-Fetch-Mode: navigate</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh,en-US;q=0.9,en;q=0.8,zh-CN;q=0.7</span><br><span class="line">Cookie: xxxxxxxxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>HEAD方法与GET方法几乎是一样的,对于HEAD请求的回应部分来说,它的HTTP头部中包含的信息与通过GET请求所得到的信息是相同的.利用这个方法,不必传输整个资源内容,就可以得到Request-URI所标识的资源信息.该方法常用于测试超链接的有效性,是否可以访问,以及最近是否更新.</p>
+<h2 id="HTTP协议详解之响应篇"><a href="#HTTP协议详解之响应篇" class="headerlink" title="HTTP协议详解之响应篇"></a>HTTP协议详解之响应篇</h2><p>在接受和解析请求消息后,服务器返回一个HTTP响应消息<br>HTTP响应也是由三个部分组成, 分别是: 状态行, 消息报头,响应正文</p>
+<ol>
+<li>状态行 格式如下:<br>HTTP-Version Status-Code Reason-Phrase (CRLF)</li>
+</ol>
+<p>HTTP-Version表示服务器HTTP协议版本<br>Status-Code表示服务器发回的状态响应码<br>Reason-Phrase 表示状态代码的文本描述</p>
+<p>状态码由三位数字组成,第一个数字定义了响应的类别,且有五种可能取值:<br>1xx: 指示信息–表示请求已接收,继续处理<br>2xx: 成功– 表示请求已被成功接受<br>3xx: 重定向–要完成请求必须进行更进一步的操作<br>4xx: 客户端错误–请求有语法错误或请求了不存在的资源,请求无法实现<br>5xx: 服务器端错误–服务器未能实现合法的请求<br>常见的状态代码,状态描述,说明:<br>200 OK //客户端请求成功<br>400 Bad Request //客户端请求有语法错误,不能被服务器理解<br>401 Unauthorized // 请求未经授权,这个状态代码必须和www-Authenticate报头域一起使用<br>403 Forbidden //服务器收到请求,但是拒绝提供服务<br>404 Not Found //请求资源不存在, 输入了错误的URL<br>500 Internal Server Error // 服务器发生不可预期的错误<br>503 Server Unavailabilable // 服务器当前不能处理客户端的请求,一段时间后可能恢复正常</p>
+<p>例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTP协议详解之消息报头篇"><a href="#HTTP协议详解之消息报头篇" class="headerlink" title="HTTP协议详解之消息报头篇"></a>HTTP协议详解之消息报头篇</h2><p>HTTP消息由客户端到服务器的请求和服务器到客户端的响应组成。请求消息和响应消息都是由开始行<br>(对于请求消息,开始行就是请求行,对于响应消息,开始行就是状态行),消息报头(可选),空行<br>(只有CRLF的行),消息正文(可选)组成。</p>
+<p>HTTP消息报头包括普通报头、请求报头、响应报头、实体报头。<br>每一个报头域都是由 名字 + : + 空格+ 值组成, 消息报头域的名字是和大小写无关的.</p>
+<ol>
+<li>普通报头<br>在普通报头域中,有少数的报头域用于所有的请求和响应消息,但并不用于被传输的实体,只用于传输的消息</li>
+</ol>
+<p>Cache-Control 用用于指定缓存指令,缓存指令是单向的(响应中出现的缓存指令在请求中未必会出<br>现),且是独立的(一个消息的缓存指令不会影响另一个消息处理的缓存机制),HTTP1.0使用的类似<br>的报头域为Pragma.</p>
+<p>请求时的缓存指令包括:no-cache(用于指示请求或响应消息不能缓存)、no-store、max-age、<br>max-stale、min-fresh、only-if-cached;<br>响应时的缓存指令包括:public、private、no-cache、no-store、no-transform、must-revalidate、<br>proxy-revalidate、max-age、s-maxage.</p>
+<p>为了指示浏览器(客户端)不要缓存页面,服务器端的node.js程序可以如下编写:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setHeader(<span class="string">"Cache-Control"</span>, <span class="string">"no-cache"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这句代码将在发送的响应消息中设置普通报头域:Cache-Control:no-cache</p>
+<p>Date普通报头域表示消息产生的日期和时间</p>
+<p>Connection普通报头域允许发送指定连接的选项。例如指定连接是”keep-alive”连续,或者指定“close”选项,通知服务器,在响应完成后,关闭连接.</p>
+<ol start="2">
+<li>请求报头<br>请求报头允许客户端向服务器端传递请求的附加信息以及客户端自身的信息.</li>
+</ol>
+<p>常用的请求报头:</p>
+<ul>
+<li><p>Accept<br>Accept请求报头域用于指定客户端接受哪些类型的信息.<br>Accept:image/gif,表明客户端希望接受GIF图象格式的资源<br>Accept:text/html,表明客户端希望接受html文本</p>
+</li>
+<li><p>Accept-Charset<br>Accept-Charset请求报头域用于指定客户端接受的字符集.<br>Accept-Charset:iso-8859-1,gb2312.如果在请求消息中没有设置这个域,默认是任何字符集都可以接受.</p>
+</li>
+<li><p>Accept-Encoding<br>Accept-Encoding请求报头域类似于Accept,但是它是用于指定可接受的内容编码<br>Accept-Encoding:gzip.deflate.如果请求消息中没有设置这个域服务器假定客户端对各种内容编码都可以接受.</p>
+</li>
+<li><p>Accept-Language<br>Accept-Language请求报头域类似于Accept,但是它是用于指定一种自然语言<br>Accept-Language:zh-cn.如果请求消息中没有设置这个报头域,服务器假定客户端对各种语言言都可以接受.</p>
+</li>
+<li><p>Authorization<br>请求报头域主要用于证明客户端有权查看某个资源.当浏览器访问一个页面时,如果收到服务器的响应代码为401(未授权),可以发送一个包含Authorization请求报头域的请求,要求服务器对其进行验证.</p>
+</li>
+</ul>
+<p>Host (发送请求时,该报头域是必需的)<br>Host请求报头域主要用于指定被请求资源的Internet主机和端口号,它通常从HTTP URL中提取出来的.<br>例子: 浏览器中输入: <a href="http://www.baidu.com/" target="_blank" rel="noopener">http://www.baidu.com/</a><br>浏览器发送请求消息中,就会包含Host请求报头域: Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a><br>此处使用了缺省端口号80,若指定了端口号,则变成Host: <a href="http://www.baidu.com:port" target="_blank" rel="noopener">www.baidu.com:port</a></p>
+<p>User-Agent (用户代理)<br>访问某些网页时,网页其中列出了你的操作系统的名称和版本,你所使用的浏览器的名称和版本,实际上,服务器应用程序就是从User-Agent这<br>个请求报头域中获取到这些信息。User-Agent请求报头域允许客户端将它的操作系统、浏览器和其它属<br>性告诉服务器。不过,这个报头域不是必需的,不使用User-Agent请求报头域发送http请求时,那么服务器端就无法得知我们的信息了。</p>
+<ol start="3">
+<li>响应报头<br>响应报头允许服务器传递不能放在状态行中的附加响应信息,以及关于服务器的信息和对Request-URI所标识的资源进行下一步访问的信息.<br>常用的响应报头<h1 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h1>Loacation响应报头域用于重定向接受者到一个新的位置.Location响应报头域常用在更换域名的时候.<h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1>Server响应报头域包含了服务器用来处理请求的软件信息.与User-Agent请求报头域是相对应的.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Server: Apache-Coyote/1.1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="WWW-Authenticate"><a href="#WWW-Authenticate" class="headerlink" title="WWW-Authenticate"></a>WWW-Authenticate</h1><p>WWW-Authenticate响应报头域必须被包含在401(未授权的)响应消息中,客户端收到401响应消息<br>时候,并发送Authorization报头域请求服务器对其进行验证时,服务端响应报头就包含该报头域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WWW-Authenticate:Basic realm=&quot;Basic Auth Test!&quot; //可以看出服务器对请求资源采用的是基本验证机制</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>实体报头<br>请求和响应消息都可以传送一个实体.一个实体由实体报头域和实体正文组成,但并不是说实体报头域和实体正文要在一起发送,可以只发送实体报头域.<br>实体报头定义了关于实体正文(有无实体正文)和请求所标识的资源的元信息.</li>
+</ol>
+<p>常用的实体报头</p>
+<h1 id="Content-Encoding"><a href="#Content-Encoding" class="headerlink" title="Content-Encoding"></a>Content-Encoding</h1><p>Content-Encoding实体报头域被用作于媒体类型的修饰符,它的值指示了已经被应用到实体正文的附加内容的编码,因而要获得Content-Type报头域中所引用的媒体类型,必须采用相应的解码机制.Content-Encoding这样用于记录文档的压缩方法.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Encoding: gzip</span><br></pre></td></tr></table></figure>
+
+<h1 id="Content-Language"><a href="#Content-Language" class="headerlink" title="Content-Language"></a>Content-Language</h1><p>Content-Language实体报头域描述了资源所用的自然语言.没有设置该域则认为实体内容将提供给所有的语言阅读.</p>
+<h1 id="Content-Length"><a href="#Content-Length" class="headerlink" title="Content-Length"></a>Content-Length</h1><p>Content-Length 实体报头域被用于指明实体正文的长度,以字节方式存储的十进制数字来表示.</p>
+<h1 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h1><p>Contetn-Type实体报头域用于指明发送给接收者的实体正文的媒体类型.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Content-Type:text/html;charset=UTF-8</span><br><span class="line">Content-Type:application/json;charset=UTF-8</span><br></pre></td></tr></table></figure>
+
+<h1 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h1><p>Last-Modified实体报头域用于指示资源的最后修改日期和时间</p>
+<h1 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h1><p>Expires 实体报头域给出响应过期的日期和时间.为了让代理服务器或浏览器在一段时间以后更新缓存中的页面(再次访问曾访问过的页面时,直接从缓存中加载,缩短响应时间和降低服务器负载).可以使用Expires实体报头域指定页面过期的时间.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Expires: Thu,15 Sep 2006 16:23:12 GMT</span><br></pre></td></tr></table></figure>
+
+<p>HTTP1.1的客户端和缓存必须将其他非法的日期格式(包括0)看作已经过期。为了让浏览器不要缓存⻚面,我们也可以利用Expires实体报头域,设置为0</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.setHeader(<span class="string">"Expires"</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.now() + <span class="number">2592000000</span>).toUTCString());</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/02/http协议/" data-id="ckh44mztw000w4sv29veq6pws" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/06/网络编程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          网络编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/31/Koa原理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Koa原理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

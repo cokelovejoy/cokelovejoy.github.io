@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Vue源码分析三 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="节点属性更新属性相关dom操作:将属性相关dom操作按hooks归类,在patchVnode时一起执行。 12345678910111213141516171819202122232425262728// 定义钩子数组const hooks = [&apos;create&apos;, &apos;activate&apos;, &apos;update&apos;, &apos;remove&apos;, &apos;destroy&apos;]export function createPa">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue源码分析三">
+<meta property="og:url" content="http://yoursite.com/2019/11/22/Vue源码分析三/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="节点属性更新属性相关dom操作:将属性相关dom操作按hooks归类,在patchVnode时一起执行。 12345678910111213141516171819202122232425262728// 定义钩子数组const hooks = [&apos;create&apos;, &apos;activate&apos;, &apos;update&apos;, &apos;remove&apos;, &apos;destroy&apos;]export function createPa">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/static/img/template.png">
+<meta property="og:image" content="http://yoursite.com/static/img/template2.png">
+<meta property="og:image" content="http://yoursite.com/static/img/template3.png">
+<meta property="og:image" content="http://yoursite.com/static/img/template4.png">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue源码分析三">
+<meta name="twitter:description" content="节点属性更新属性相关dom操作:将属性相关dom操作按hooks归类,在patchVnode时一起执行。 12345678910111213141516171819202122232425262728// 定义钩子数组const hooks = [&apos;create&apos;, &apos;activate&apos;, &apos;update&apos;, &apos;remove&apos;, &apos;destroy&apos;]export function createPa">
+<meta name="twitter:image" content="http://yoursite.com/static/img/template.png">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Vue源码分析三" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/22/Vue源码分析三/" class="article-date">
+  <time datetime="2019-11-22T09:03:28.000Z" itemprop="datePublished">2019-11-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue源码分析三
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="节点属性更新"><a href="#节点属性更新" class="headerlink" title="节点属性更新"></a>节点属性更新</h1><p>属性相关dom操作:将属性相关dom操作按hooks归类,在patchVnode时一起执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义钩子数组</span></span><br><span class="line"><span class="keyword">const</span> hooks = [<span class="string">'create'</span>, <span class="string">'activate'</span>, <span class="string">'update'</span>, <span class="string">'remove'</span>, <span class="string">'destroy'</span>]</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">createPatchFunction</span> (<span class="params">backend</span>) </span>&#123;</span><br><span class="line">   <span class="comment">// 平台特别节点操作、属性更新对象</span></span><br><span class="line">   <span class="keyword">const</span> &#123; modules, nodeOps &#125; = backend</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; hooks.length; ++i) &#123;</span><br><span class="line">       <span class="comment">// 指定到cbs对象上:cbs.create = []</span></span><br><span class="line">       cbs[hooks[i]] = []</span><br><span class="line">       <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; modules.length; ++j) &#123;</span><br><span class="line">           <span class="keyword">if</span> (isDef(modules[j][hooks[i]])) &#123;</span><br><span class="line">               <span class="comment">// 添加到相应数组中:</span></span><br><span class="line">               <span class="comment">// cbs.create = [fn1,fn2,...]</span></span><br><span class="line">               <span class="comment">// cbs.update = [fn1,fn2,...]</span></span><br><span class="line">               cbs[hooks[i]].push(modules[j][hooks[i]])</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">patchVnode</span> (<span class="params">...</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="keyword">if</span> (isDef(data) &amp;&amp; isPatchable(vnode)) &#123;</span><br><span class="line">            <span class="comment">// 执行默认的钩子</span></span><br><span class="line">            <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; cbs.update.length; ++i) cbs.update[i](oldVnode, vnode)</span><br><span class="line">            <span class="comment">// 执行用户定义的钩子</span></span><br><span class="line">            <span class="keyword">if</span> (isDef(i = data.hook) &amp;&amp; isDef(i = i.update)) i(oldVnode, vnode)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="组件化机制"><a href="#组件化机制" class="headerlink" title="组件化机制"></a>组件化机制</h1><ol>
+<li>先使用Vue.component()声明comp组件构造函数,会返回VueComponent实例，它是继承于Vue的。</li>
+<li>然后全局配置选项中添加一个components：{comp: Comp}，这个组件就能被全局使用。</li>
+<li>先创建父组件，再去挂载。顺序是创建从上往下，挂载从下往上。子组件全部挂载完之后，再去将一整个渲染出来。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Vue组件化机制<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">comp</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    Vue.component(<span class="string">'Comp'</span>, &#123;</span></span><br><span class="line"><span class="xml">       template: '<span class="tag">&lt;<span class="name">div</span>&gt;</span>I am comp<span class="tag">&lt;/<span class="name">div</span>&gt;</span>'</span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line">        components: &#123;</span><br><span class="line">            comp: Comp</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="组件声明"><a href="#组件声明" class="headerlink" title="组件声明"></a>组件声明</h2><h3 id="src-core-global-api-assets-js"><a href="#src-core-global-api-assets-js" class="headerlink" title="src/core/global-api/assets.js"></a>src/core/global-api/assets.js</h3><p>Vue.component()或者components选项<br>initAssetRegister(Vue)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">initAssetRegisters</span> (<span class="params">Vue: GlobalAPI</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 'component', 'directive', 'filter'</span></span><br><span class="line">    ASSET_TYPES.forEach(<span class="function"><span class="params">type</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// Vue['component']</span></span><br><span class="line">        Vue[type] = <span class="function"><span class="keyword">function</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">            id: string,</span></span></span><br><span class="line"><span class="function"><span class="params">            definition: Function | Object</span></span></span><br><span class="line"><span class="function"><span class="params">        </span>): <span class="title">Function</span> | <span class="title">Object</span> | <span class="title">void</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 组件注册</span></span><br><span class="line">            <span class="keyword">if</span> (type === <span class="string">'component'</span> &amp;&amp; isPlainObject(definition)) &#123;</span><br><span class="line">                definition.name = definition.name || id</span><br><span class="line">                <span class="comment">// 使用extend方法,将传入组件配置转换为构造函数VueComponent</span></span><br><span class="line">                definition = <span class="keyword">this</span>.options._base.extend(definition)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// Vue.options['components']['comp'] = VueComponent</span></span><br><span class="line">            <span class="keyword">this</span>.options[type + <span class="string">'s'</span>][id] = definition</span><br><span class="line">            <span class="keyword">return</span> definition</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建根组件"><a href="#创建根组件" class="headerlink" title="创建根组件:"></a>创建根组件:</h2><p>首先创建的是根组件,首次_render()时,会得到整棵树的VNode结构.</p>
+<p>_createElement src\core\vdom\create-element.js<br>_createElement实际执行VNode创建的函数,由于传入tag是非保留标签,因此判定为自定义组件通过createComponent去创建</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取tag对应的组件构造函数</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> ((!data || !data.pre) &amp;&amp; isDef(Ctor = resolveAsset(context.$options,<span class="string">'components'</span>, tag))) &#123;</span><br><span class="line">    <span class="comment">// 使用createComponent创建vnode</span></span><br><span class="line">   vnode = createComponent(Ctor, data, context, children, tag)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="src-core-vdom-create-component-js"><a href="#src-core-vdom-create-component-js" class="headerlink" title="src/core/vdom/create-component.js"></a>src/core/vdom/create-component.js</h3><p>createComponent()<br>创建组件VNode,保存了上一步处理得到的组件构造函数,props,事件等</p>
+<h3 id="core-vdom-patch-js"><a href="#core-vdom-patch-js" class="headerlink" title="core/vdom/patch.js"></a>core/vdom/patch.js</h3><p>创建自定义组件实例 createEle()<br>首次执行_update()时,patch()会通过createEle()创建根元素,子元素创建研究从这里开始</p>
+<h3 id="core-vdom-patch-js-1"><a href="#core-vdom-patch-js-1" class="headerlink" title="core/vdom/patch.js"></a>core/vdom/patch.js</h3><p>createComponent() 自定义组件创建</p>
+<h1 id="模板编译"><a href="#模板编译" class="headerlink" title="模板编译"></a>模板编译</h1><p>模板编译的主要目标是<strong>将模板(template)转换为渲染函数(render)</strong><br><img src="/static/img/template.png"></p>
+<h2 id="模板编译必要性"><a href="#模板编译必要性" class="headerlink" title="模板编译必要性"></a>模板编译必要性</h2><p>Vue 2.0需要用到VNode描述视图以及各种交互，用户只需要编写类似HTML代码的Vue模板，通过编译器将模板转换为可返回VNode的render函数的代码字符串。</p>
+<h2 id="体验模板编译"><a href="#体验模板编译" class="headerlink" title="体验模板编译"></a>体验模板编译</h2><p>带编译器的版本,可以使用template或el的方式声明模板</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Vue模板编译<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;foo&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">comp</span>&gt;</span><span class="tag">&lt;/<span class="name">comp</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">   Vue.component(<span class="string">'comp'</span>, &#123;</span></span><br><span class="line"><span class="xml">       template: '<span class="tag">&lt;<span class="name">div</span>&gt;</span>I am comp<span class="tag">&lt;/<span class="name">div</span>&gt;</span>'</span></span><br><span class="line"> </span><br><span class="line">    &#125;)</span><br><span class="line"><span class="javascript">   <span class="comment">// 创建实例</span></span></span><br><span class="line"><span class="javascript">   <span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">       el: <span class="string">'#demo'</span>,</span></span><br><span class="line"><span class="javascript">       data: &#123;<span class="attr">foo</span>:<span class="string">'foo'</span>&#125;</span></span><br><span class="line"> </span><br><span class="line">    &#125;);</span><br><span class="line"><span class="javascript">   <span class="comment">// 输出render函数</span></span></span><br><span class="line"><span class="javascript">   <span class="built_in">console</span>.log(app.$options.render);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">anonymous</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">with</span>(<span class="keyword">this</span>)&#123;<span class="keyword">return</span> _c(<span class="string">'div'</span>,&#123;<span class="attr">attrs</span>:&#123;<span class="string">"id"</span>:<span class="string">"demo"</span>&#125;&#125;,[</span><br><span class="line">   _c(<span class="string">'h1'</span>,[_v(<span class="string">"Vue模板编译"</span>)]),_v(<span class="string">" "</span>),_c(<span class="string">'p'</span>,[_v(_s(foo))]),_v(<span class="string">" "</span>),</span><br><span class="line">   _c(<span class="string">'comp'</span>,&#123;<span class="attr">attrs</span>:&#123;<span class="string">"foo"</span>:<span class="string">"foo"</span>,<span class="string">"bar"</span>:foo&#125;&#125;)],<span class="number">1</span>)&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">/*  "with(this)&#123;return _c('div',&#123;attrs:&#123;"id":"demo"&#125;&#125;,[_m(0),_v(" "),_c('p',</span></span><br><span class="line"><span class="comment">    [_v(_s(foo))]),_v(" "),_c('comp',&#123;attrs:&#123;"foo":"foo","bar":foo&#125;&#125;)],1)&#125;"</span></span><br><span class="line"><span class="comment">    new Function(str) 将上面的函数字符串放入函数，将字符串变成真正的函数。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>_c  返回vnode, createElement<br>_v  创建文本节点<br>_s  格式化函数<br>其他helpers: core/instance/render-helper/index</p>
+</blockquote>
+<h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><h3 id="compileToFunctions"><a href="#compileToFunctions" class="headerlink" title="compileToFunctions"></a>compileToFunctions</h3><p>若指定template或el选项,则会执行编译(platforms/web/entry-runtime-with-compiler.js)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; render, staticRenderFns &#125; = compileToFunctions(template, &#123;&#125;, <span class="keyword">this</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h3><p>src/compiler/index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> createCompiler = createCompilerCreator(<span class="function"><span class="keyword">function</span> <span class="title">baseCompile</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params"> template: string,</span></span></span><br><span class="line"><span class="function"><span class="params"> options: CompilerOptions</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">CompiledResult</span> </span>&#123;</span><br><span class="line"> <span class="comment">// 解析模板parse                                                 </span></span><br><span class="line"> <span class="keyword">const</span> ast = parse(template.trim(), options)</span><br><span class="line"> <span class="keyword">if</span> (options.optimize !== <span class="literal">false</span>) &#123;</span><br><span class="line">   optimize(ast, options) <span class="comment">// 优化optimize</span></span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">// 代码生成generate</span></span><br><span class="line"> <span class="keyword">const</span> code = generate(ast, options)</span><br><span class="line"> <span class="keyword">return</span> &#123;</span><br><span class="line">   ast,</span><br><span class="line">   render: code.render,</span><br><span class="line">   staticRenderFns: code.staticRenderFns</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="模板编译过程"><a href="#模板编译过程" class="headerlink" title="模板编译过程"></a>模板编译过程</h2><p>实现模板编译共有三个阶段: 解析, 优化, 生成</p>
+<h3 id="解析-parse"><a href="#解析-parse" class="headerlink" title="解析 - parse"></a>解析 - parse</h3><p>解析器将模板解析为抽象语法树AST,只有将模板解析成AST后,才能基于它做优化或者生成代码字符串.</p>
+<p>Template的parse过程，其实就是不断的截取字符串并解析它们的过程。如果截取到非闭合标签就push到stack中，如果截取道结束标签就把这个标签pop出来。</p>
+<p>查看得到的AST, /src/compiler/parse/index.js 结构如下:<br><img src="/static/img/template2.png"></p>
+<p>解析器内部分为HTML解析器,文本解析器和过滤解析器,最主要的是HTML解析器,核心算法说明:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//src/compiler/parser/index.js</span></span><br><span class="line">parseHTML(tempalte, &#123;</span><br><span class="line">   start(tag, attrs, unary)&#123;&#125;, <span class="comment">// 遇到开始标签的处理</span></span><br><span class="line">   end()&#123;&#125;,<span class="comment">// 遇到结束标签的处理</span></span><br><span class="line">   chars(text)&#123;&#125;,<span class="comment">// 遇到文本标签的处理</span></span><br><span class="line">   comment(text)&#123;&#125;<span class="comment">// 遇到注释标签的处理</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="截取字符串规则"><a href="#截取字符串规则" class="headerlink" title="截取字符串规则"></a>截取字符串规则</h4><p>判断模板中html.indexof(’&lt;’)的值,来确定我们是要截取标签还是文本。</p>
+<p>若等于0,则进行正则匹配看是否为开始标签、结束标签、注释、条件注释、doctype中的一种。<br>大于等于 0：这就说明是文本、表达式。<br>小于 0：表示 html 标签解析完了，可能会剩下一些文本、表达式。</p>
+<h4 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h4><p>维护了一个stack来标记DOM的深度，stack里的最后一项，永远是当前正在解析的元素的parentNode。</p>
+<h3 id="优化-optimize"><a href="#优化-optimize" class="headerlink" title="优化 - optimize"></a>优化 - optimize</h3><p>优化器的作用是在AST中找出静态子树并打上标记.静态子树是在AST中永远不变的节点,如纯文本节点.</p>
+<p>标记静态子树的好处:</p>
+<ol>
+<li>每次重新渲染,不需要为静态子树创建新节点.</li>
+<li>虚拟DOM中patch时,可以跳过静态子树.</li>
+</ol>
+<p>测试代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 要出现嵌套关系 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Vue<span class="tag">&lt;<span class="name">span</span>&gt;</span>模板编译<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>代码实现: src/compiler/optimizer.js - optimize<br>标记结束:<br><img src="/static/img/template3.png"></p>
+<h3 id="代码生成-generate"><a href="#代码生成-generate" class="headerlink" title="代码生成 - generate"></a>代码生成 - generate</h3><p>将AST转换成渲染函数中的内容,即代码字符串<br>generate方法生成渲染函数代码字符串 : src/compiler/codegen/index.js</p>
+<h2 id="v-if-v-for"><a href="#v-if-v-for" class="headerlink" title="v-if, v-for"></a>v-if, v-for</h2><p>着重观察几个结构性指令的解析过程</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">"foo"</span>&gt;</span>&#123;&#123;foo&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>解析v-if: parse/index.js<br>代码生成: codegen/index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"with(this)&#123;return </span></span><br><span class="line"><span class="string">_c(</span></span><br><span class="line"><span class="string">    'div',</span></span><br><span class="line"><span class="string">    &#123;attrs:&#123;"</span>id<span class="string">":"</span>demo<span class="string">"&#125;&#125;,</span></span><br><span class="line"><span class="string">    [</span></span><br><span class="line"><span class="string">        _m(0),_v("</span> <span class="string">"),</span></span><br><span class="line"><span class="string">        (foo)?_c('p',[_v(_s(foo))]):_e(),</span></span><br><span class="line"><span class="string">        _v("</span> <span class="string">"),</span></span><br><span class="line"><span class="string">        _c('comp',&#123;attrs:&#123;"</span>foo<span class="string">":"</span>foo<span class="string">","</span>bar<span class="string">":foo&#125;&#125;)</span></span><br><span class="line"><span class="string">    ],</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">)&#125;"</span></span><br></pre></td></tr></table></figure>
+
+<p>解析结果:<br><img src="/static/img/template4.png"></p>
+<p>v-if,v-for这些指令只能在编译器阶段处理,如果我们要在render函数处理条件或循环只能使用js的if和for</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'comp'</span>, &#123;</span><br><span class="line">props: [<span class="string">'foo'</span>],</span><br><span class="line">render(h) &#123; <span class="comment">// 渲染内容跟foo的值挂钩,只能用if语句</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.foo==<span class="string">'foo'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> h(<span class="string">'div'</span>, <span class="string">'foo'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> h(<span class="string">'div'</span>, <span class="string">'bar'</span>)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="v-model原理（ToDo）"><a href="#v-model原理（ToDo）" class="headerlink" title="v-model原理（ToDo）"></a>v-model原理（ToDo）</h2><h2 id="事件和自定义事件原理"><a href="#事件和自定义事件原理" class="headerlink" title="事件和自定义事件原理"></a>事件和自定义事件原理</h2><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><h3 id="组件声明-注册"><a href="#组件声明-注册" class="headerlink" title="组件声明,注册"></a>组件声明,注册</h3><p>initAssetRegister(Vue)<br>生成组件构造函数: VueComponent Vue.extend(opts)<br>注册组件: Vue.$options.components,然后可以全局使用</p>
+<h3 id="组件实例化及挂载"><a href="#组件实例化及挂载" class="headerlink" title="组件实例化及挂载"></a>组件实例化及挂载</h3><p>new Vue 根组件创建, 根组件的_render() =&gt; VNode<br>_createElement() 获取子组件构造函数并创建<br>createComponent() : 添加初始化钩子<br>vm._update() =&gt; patch() =&gt; createElm()<br>调用子组件初始化钩子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取子组件构造函数</span></span><br><span class="line">Ctor = resolveAsset(context.$options,<span class="string">'components'</span>,tag)</span><br><span class="line">vnode = createComponent(Ctor)</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译原理-template-gt-render"><a href="#编译原理-template-gt-render" class="headerlink" title="编译原理: template =&gt; render()"></a>编译原理: template =&gt; render()</h3><blockquote>
+<p>解析parse: 转换字符串模板为AST,解析DOM结构及其中表达式,指令等<br>优化optimize: 标记不发生变化的节点为静态节点和静态根节点,将来可以跳过他们的patch过程起到优化的作用<br>生成generate: 将AST转换为渲染函数的代码字符串</p>
+</blockquote>
+<h3 id="编译器获取整体流程"><a href="#编译器获取整体流程" class="headerlink" title="编译器获取整体流程"></a>编译器获取整体流程</h3><p>编译template为render</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compileToFunctions(template, &#123; &#125;, <span class="keyword">this</span>)</span><br></pre></td></tr></table></figure>
+
+<p>compileToFunctions是createCompiler(baseOptions)的返回结果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// createCompiler</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> createCompiler = createCompilerCreator(<span class="function"><span class="keyword">function</span></span></span><br><span class="line"><span class="function"><span class="title">baseCompile</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params"> template: string,</span></span></span><br><span class="line"><span class="function"><span class="params"> options: CompilerOptions</span></span></span><br><span class="line"><span class="function"><span class="params"></span>): <span class="title">CompiledResult</span> </span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/22/Vue源码分析三/" data-id="ckh44mzto000o4sv2k69ixngf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/13/Vue项目最佳实践/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vue项目最佳实践
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/11/Vue源码分析二/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue源码分析二</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

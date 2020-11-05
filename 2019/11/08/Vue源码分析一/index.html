@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Vue源码分析一 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="获取Vue源码Vue源码地址: https://github.com/vuejs/vue当前版本号: 2.6.10 获取源代码1$ git clone https://github.com/vuejs/vue.git  调试环境搭建安装依赖:1$ npm install  全局安装rollup:rollup是打包工具,专门用于打包js代码 1npm install -g rollup  修改pac">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue源码分析一">
+<meta property="og:url" content="http://yoursite.com/2019/11/08/Vue源码分析一/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="获取Vue源码Vue源码地址: https://github.com/vuejs/vue当前版本号: 2.6.10 获取源代码1$ git clone https://github.com/vuejs/vue.git  调试环境搭建安装依赖:1$ npm install  全局安装rollup:rollup是打包工具,专门用于打包js代码 1npm install -g rollup  修改pac">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue源码分析一">
+<meta name="twitter:description" content="获取Vue源码Vue源码地址: https://github.com/vuejs/vue当前版本号: 2.6.10 获取源代码1$ git clone https://github.com/vuejs/vue.git  调试环境搭建安装依赖:1$ npm install  全局安装rollup:rollup是打包工具,专门用于打包js代码 1npm install -g rollup  修改pac">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Vue源码分析一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/08/Vue源码分析一/" class="article-date">
+  <time datetime="2019-11-08T06:13:03.000Z" itemprop="datePublished">2019-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue源码分析一
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="获取Vue源码"><a href="#获取Vue源码" class="headerlink" title="获取Vue源码"></a>获取Vue源码</h1><p>Vue源码地址: <a href="https://github.com/vuejs/vue" target="_blank" rel="noopener">https://github.com/vuejs/vue</a><br>当前版本号: 2.6.10</p>
+<h2 id="获取源代码"><a href="#获取源代码" class="headerlink" title="获取源代码"></a>获取源代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/vuejs/vue.git</span><br></pre></td></tr></table></figure>
+
+<h1 id="调试环境搭建"><a href="#调试环境搭建" class="headerlink" title="调试环境搭建"></a>调试环境搭建</h1><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖:"></a>安装依赖:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<h2 id="全局安装rollup"><a href="#全局安装rollup" class="headerlink" title="全局安装rollup:"></a>全局安装rollup:</h2><p>rollup是打包工具,专门用于打包js代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g rollup</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改package-json的dev选项-添加-–sourcemap"><a href="#修改package-json的dev选项-添加-–sourcemap" class="headerlink" title="修改package.json的dev选项,添加 –sourcemap"></a>修改package.json的dev选项,添加 –sourcemap</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># dev 选项中 : -c scripts/config.js 指明 配置文件所在</span></span><br><span class="line"><span class="comment"># 参数TARGET:web-full-dev 指明 输出文件配置项((scripts/config.js,line:123))</span></span><br><span class="line"><span class="string">"dev"</span>: <span class="string">"rollup -w -c scripts/config.js --sourcemap --environment TARGET:web-</span></span><br><span class="line"><span class="string">full-dev"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="运行开发命令"><a href="#运行开发命令" class="headerlink" title="运行开发命令"></a>运行开发命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="新建html文件用于浏览器调试"><a href="#新建html文件用于浏览器调试" class="headerlink" title="新建html文件用于浏览器调试"></a>新建html文件用于浏览器调试</h2><p>/examples/test/test.html<br>引用 vue.js</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h1><p>vue 各版本: /dist<br>vue.runtime.common.js 用于webpack 1.x, browserify.<br>vue.runtime.esm.js 用于webpack 2.x.</p>
+<h2 id="查看-scripts-config-js-line-123"><a href="#查看-scripts-config-js-line-123" class="headerlink" title="查看 /scripts/config.js (line:123)"></a>查看 /scripts/config.js (line:123)</h2><p>入口文件在 /src/platforms/web/entry-runtime-with-compiler.js，源码分析从这个文件开始.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Runtime+compiler development build (Browser)</span></span><br><span class="line">    <span class="string">'web-full-dev'</span>: &#123;</span><br><span class="line">        entry: resolve(<span class="string">'web/entry-runtime-with-compiler.js'</span>), <span class="comment">// 入口</span></span><br><span class="line">        dest: resolve(<span class="string">'dist/vue.js'</span>),<span class="comment">// 目标文件</span></span><br><span class="line">        format: <span class="string">'umd'</span>, <span class="comment">// 输出规范</span></span><br><span class="line">        env: <span class="string">'development'</span>,</span><br><span class="line">        alias: &#123; <span class="attr">he</span>: <span class="string">'./entity-decoder'</span> &#125;,</span><br><span class="line">        banner</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="初始化流程"><a href="#初始化流程" class="headerlink" title="初始化流程"></a>初始化流程</h1><p>入口: /src/platforms/web/entry-runtime-with-compiler.js<br>扩展默认的$mount方法: 在不同的平台有不同的处理方式。在浏览器平台，在没有render选项时去处理template，没有template去处理el选项。但是最终都会将模板字符串变为render函数。</p>
+<h2 id="src-platforms-web-runtime-index-js"><a href="#src-platforms-web-runtime-index-js" class="headerlink" title="src/platforms/web/runtime/index.js"></a>src/platforms/web/runtime/index.js</h2><p>定义了$mount方法，执行挂载mountComponent(this, el, hydrating) : 挂载根组件到指定宿主元素<br>定义<strong>patch</strong>: 补丁函数，做diff操作，比较新旧VDOM，然后再决定如何更新DOM。</p>
+<h2 id="src-core-index-js"><a href="#src-core-index-js" class="headerlink" title="src/core/index.js"></a>src/core/index.js</h2><h3 id="初始化全局API"><a href="#初始化全局API" class="headerlink" title="初始化全局API"></a>初始化全局API</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化全局API</span></span><br><span class="line">initGlobalAPI(Vue)</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现全局API-具体如下"><a href="#实现全局API-具体如下" class="headerlink" title="实现全局API,具体如下:"></a>实现全局API,具体如下:</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/core/global-api/index.js</span></span><br><span class="line">Vue.set = <span class="keyword">set</span></span><br><span class="line">Vue.delete = del</span><br><span class="line">Vue.nextTick = nextTick</span><br><span class="line">initUse(Vue) // 实现Vue.use函数</span><br><span class="line">initMixin(Vue) // 实现Vue.mixin函数</span><br><span class="line">initExtend(Vue) // 实现Vue.extend函数</span><br><span class="line">initAssetRegisters(Vue) // 注册实现Vue.component/directive/filter</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-core-instance-index-js"><a href="#src-core-instance-index-js" class="headerlink" title="src/core/instance/index.js"></a>src/core/instance/index.js</h2><h3 id="Vue构造函数定义，实例api定义"><a href="#Vue构造函数定义，实例api定义" class="headerlink" title="Vue构造函数定义，实例api定义"></a>Vue构造函数定义，实例api定义</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vue</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 构造函数仅执行了_init</span></span><br><span class="line">    <span class="keyword">this</span>._init(options)</span><br><span class="line">&#125;</span><br><span class="line">initMixin(Vue)  <span class="comment">// 实现init函数</span></span><br><span class="line">stateMixin(Vue) <span class="comment">// 状态相关api $data,$props,$set,$delete,$watch</span></span><br><span class="line">eventsMixin(Vue)<span class="comment">// 事件相关api $on,$once,$off,$emit</span></span><br><span class="line">lifecycleMixin(Vue) <span class="comment">// 生命周期api _update,$forceUpdate,$destroy</span></span><br><span class="line">renderMixin(Vue)<span class="comment">// 渲染api _render,$nextTick</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="src-core-instance-init-js"><a href="#src-core-instance-init-js" class="headerlink" title="src/core/instance/init.js"></a>src/core/instance/init.js</h2><h3 id="创建组件实例-初始化其数据、属性、事件等"><a href="#创建组件实例-初始化其数据、属性、事件等" class="headerlink" title="创建组件实例,初始化其数据、属性、事件等"></a>创建组件实例,初始化其数据、属性、事件等</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">initLifecycle(vm)  <span class="comment">// 初始化$parent,$root,$children,$refs</span></span><br><span class="line">initEvents(vm)     <span class="comment">// 处理父组件传递给当前组件实例的监听器</span></span><br><span class="line">initRender(vm)     <span class="comment">// 渲染相关：$slots,$scopedSlots,_c,$createElement</span></span><br><span class="line">callHook(vm, <span class="string">'beforeCreate'</span>) <span class="comment">// 在beforeCreate 之中无法拿到 state</span></span><br><span class="line">initInjections(vm) <span class="comment">// resolve injections before data/props 获取注入的数据(父组件的)</span></span><br><span class="line">initState(vm)      <span class="comment">// 初始化组件中的props，methods，data，computed, watch。对这些数据做响应式。</span></span><br><span class="line">initProvide(vm)    <span class="comment">// resolve provide after data/props 提供数据注入 </span></span><br><span class="line">callHook(vm, <span class="string">'created'</span>) <span class="comment">// 要拿到state 最早要在created 钩子函数中</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="src-core-instance-lifecycle-js"><a href="#src-core-instance-lifecycle-js" class="headerlink" title="src/core/instance/lifecycle.js"></a>src/core/instance/lifecycle.js</h2><h3 id="lifecycleMixin-Vue"><a href="#lifecycleMixin-Vue" class="headerlink" title="lifecycleMixin(Vue)"></a>lifecycleMixin(Vue)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lifecycleMixin(Vue)</span></span><br><span class="line"><span class="comment">// 添加以下方法到Vue上</span></span><br><span class="line">Vue.prototype._update</span><br><span class="line">Vue.prototype.$forceUpdate</span><br><span class="line">Vue.prototype.$destroy</span><br></pre></td></tr></table></figure>
+
+<h3 id="mountComponent-方法-执行挂载"><a href="#mountComponent-方法-执行挂载" class="headerlink" title="mountComponent()方法 执行挂载"></a>mountComponent()方法 执行挂载</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">callHook(vm, <span class="string">'beforeMount'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义组件更新函数 updateComponent()</span></span><br><span class="line"><span class="comment">// vm._render()执行可以获得虚拟DOM,VNode</span></span><br><span class="line"><span class="comment">// vm._update()将虚拟DOM转换成真实DOM</span></span><br><span class="line">updateComponent = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    vm._update(vm._render(), hydrating)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 声明一个render watcher 用于update</span></span><br><span class="line"><span class="keyword">new</span> Watcher(vm, updateComponent, noop, &#123;</span><br><span class="line">    before () &#123;</span><br><span class="line">      <span class="keyword">if</span> (vm._isMounted &amp;&amp; !vm._isDestroyed) &#123;</span><br><span class="line">        callHook(vm, <span class="string">'beforeUpdate'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="literal">true</span> <span class="comment">/* isRenderWatcher */</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 手动挂载</span></span><br><span class="line">  <span class="keyword">if</span> (vm.$vnode == <span class="literal">null</span>) &#123;</span><br><span class="line">    vm._isMounted = <span class="literal">true</span></span><br><span class="line">    callHook(vm, <span class="string">'mounted'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> vm</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-core-instance-events-js"><a href="#src-core-instance-events-js" class="headerlink" title="src/core/instance/events.js"></a>src/core/instance/events.js</h2><h3 id="initEvents-vm"><a href="#initEvents-vm" class="headerlink" title="initEvents(vm)"></a>initEvents(vm)</h3><p>初始化 父组件的监听器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// initEvents(vm)</span></span><br><span class="line"><span class="keyword">const</span> listeners = vm.$options._parentListeners</span><br><span class="line"><span class="keyword">if</span> (listeners) &#123;</span><br><span class="line">    updateComponentListeners(vm, listeners)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="eventsMixin-Vue"><a href="#eventsMixin-Vue" class="headerlink" title="eventsMixin(Vue)"></a>eventsMixin(Vue)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册事件</span></span><br><span class="line">Vue.prototype.$on()</span><br><span class="line">Vue.prototype.$once()</span><br><span class="line">Vue.prototype.$off()</span><br><span class="line">Vue.prototype.$emit()</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-core-instance-render-js"><a href="#src-core-instance-render-js" class="headerlink" title="src/core/instance/render.js"></a>src/core/instance/render.js</h2><h3 id="初始化render-initRender"><a href="#初始化render-initRender" class="headerlink" title="初始化render initRender()"></a>初始化render initRender()</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注册createElement()方法</span></span><br><span class="line"><span class="comment">// args order: tag, data, children, normalizationType, alwaysNormalize</span></span><br><span class="line">vm._c = <span class="function">(<span class="params">a, b, c, d</span>) =&gt;</span> createElement(vm, a, b, c, d, <span class="literal">false</span>)</span><br><span class="line">vm.$createElement = <span class="function">(<span class="params">a, b, c, d</span>) =&gt;</span> createElement(vm, a, b, c, d, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="renderMixin"><a href="#renderMixin" class="headerlink" title="renderMixin()"></a>renderMixin()</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$nextTick()   <span class="comment">// 注册$nextTick()函数</span></span><br><span class="line">Vue.prototype._render()     <span class="comment">// 注册_render()函数,该函数返回VNODE</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="数据响应式"><a href="#数据响应式" class="headerlink" title="数据响应式"></a>数据响应式</h1><p>Vue一大特点是数据响应式,数据的变化会作用于UI而不用进行DOM操作。原理上来讲,是利用了JS语<br>言特性Object.defineProperty(),通过定义对象属性setter方法拦截对象属性变更,从而将数值的变化<br>转换为UI的变化，因此这种方式就叫数据劫持。<br>具体实现是在Vue初始化时,会调用initState,它会初始化data,props等,这里着重关注data初始化,</p>
+<h2 id="src-core-instance-state-js"><a href="#src-core-instance-state-js" class="headerlink" title="src/core/instance/state.js"></a>src/core/instance/state.js</h2><p>初始化数据</p>
+<h3 id="proxy-代理方法"><a href="#proxy-代理方法" class="headerlink" title="proxy()代理方法"></a>proxy()代理方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">proxy</span> (<span class="params">target: Object, sourceKey: string, key: string</span>) </span>&#123;</span><br><span class="line">  sharedPropertyDefinition.get = <span class="function"><span class="keyword">function</span> <span class="title">proxyGetter</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>[sourceKey][key]</span><br><span class="line">  &#125;</span><br><span class="line">  sharedPropertyDefinition.set = <span class="function"><span class="keyword">function</span> <span class="title">proxySetter</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>[sourceKey][key] = val</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 在对象上定义一个新属性.</span></span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(target, key, sharedPropertyDefinition)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="initState-vm"><a href="#initState-vm" class="headerlink" title="initState(vm)"></a>initState(vm)</h3><p>如果$options里面有 props methods data computed watch就要对他们进行初始化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">initProps(vm, opts.props)</span><br><span class="line">initMethods()</span><br><span class="line">initData()</span><br><span class="line">initComputed(vm, opts.computed)</span><br><span class="line">initWatch(vm, watch)</span><br></pre></td></tr></table></figure>
+
+<h3 id="initData"><a href="#initData" class="headerlink" title="initData()"></a>initData()</h3><p>核心代码就是将data数据响应化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initData</span> (<span class="params">vm: Component</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//获取data</span></span><br><span class="line">    <span class="keyword">let</span> data = vm.$options.data</span><br><span class="line">    data = vm._data = <span class="keyword">typeof</span> data === <span class="string">'function'</span></span><br><span class="line">    ? getData(data, vm)</span><br><span class="line">    : data || &#123;&#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="comment">// 代理data到实例上</span></span><br><span class="line">    <span class="comment">// observe data : 数据遍历 ,响应化处理</span></span><br><span class="line">    observe(data, <span class="literal">true</span> <span class="comment">/* asRootData */</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-core-observer-index-js"><a href="#src-core-observer-index-js" class="headerlink" title="src/core/observer/index.js"></a>src/core/observer/index.js</h2><p>Observer对象根据数据类型执行对应的响应化操作，对象和数组的响应化处理不一样。<br>defineReactive定义对象属性的getter/setter,getter负责添加依赖,setter负责通知更新</p>
+<h3 id="observe-方法返回一个Observer对象实例"><a href="#observe-方法返回一个Observer对象实例" class="headerlink" title="observe()方法返回一个Observer对象实例"></a>observe()方法返回一个Observer对象实例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ob = <span class="keyword">new</span> Observer(value)</span><br></pre></td></tr></table></figure>
+
+<h3 id="defineReactive-方法响应化处理"><a href="#defineReactive-方法响应化处理" class="headerlink" title="defineReactive()方法响应化处理"></a>defineReactive()方法响应化处理</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">defineReactive</span> (<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  obj: Object,</span></span></span><br><span class="line"><span class="function"><span class="params">  key: string,</span></span></span><br><span class="line"><span class="function"><span class="params">  val: any,</span></span></span><br><span class="line"><span class="function"><span class="params">  customSetter?: ?Function,</span></span></span><br><span class="line"><span class="function"><span class="params">  shallow?: boolean</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> dep = <span class="keyword">new</span> Dep()</span><br><span class="line">  <span class="comment">// 获取自有属性的属性描述符</span></span><br><span class="line">  <span class="keyword">const</span> property = <span class="built_in">Object</span>.getOwnPropertyDescriptor(obj, key)</span><br><span class="line">  <span class="keyword">if</span> (property &amp;&amp; property.configurable === <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// cater for pre-defined getter/setters</span></span><br><span class="line">  <span class="keyword">const</span> getter = property &amp;&amp; property.get</span><br><span class="line">  <span class="keyword">const</span> setter = property &amp;&amp; property.set</span><br><span class="line">  <span class="keyword">if</span> ((!getter || setter) &amp;&amp; <span class="built_in">arguments</span>.length === <span class="number">2</span>) &#123;</span><br><span class="line">    val = obj[key]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 如果内部是对象,递归处理</span></span><br><span class="line">  <span class="keyword">let</span> childOb = !shallow &amp;&amp; observe(val)</span><br><span class="line">  <span class="comment">// 数据拦截,给对象的属性增加get 和 set</span></span><br><span class="line">  <span class="comment">// 当获取属性值或属性发生改变时都会去执行get set 里面的函数</span></span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    <span class="keyword">get</span>: function reactiveGetter () &#123;</span><br><span class="line">      <span class="keyword">const</span> value = getter ? getter.call(obj) : val</span><br><span class="line">      <span class="comment">// 依赖收集</span></span><br><span class="line">      <span class="keyword">if</span> (Dep.target) &#123;</span><br><span class="line">        dep.depend() <span class="comment">//追加 依赖关系</span></span><br><span class="line">        <span class="comment">// 如果有子ob存在</span></span><br><span class="line">        <span class="keyword">if</span> (childOb) &#123;</span><br><span class="line">          childOb.dep.depend()</span><br><span class="line">          <span class="comment">// 如果是数组还要继续处理</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(value)) &#123;</span><br><span class="line">            dependArray(value)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> value</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>: function reactiveSetter (newVal) &#123;</span><br><span class="line">      <span class="keyword">const</span> value = getter ? getter.call(obj) : val</span><br><span class="line">      <span class="comment">/* eslint-disable no-self-compare */</span></span><br><span class="line">      <span class="keyword">if</span> (newVal === value || (newVal !== newVal &amp;&amp; value !== value)) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">/* eslint-enable no-self-compare */</span></span><br><span class="line">      <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp; customSetter) &#123;</span><br><span class="line">        customSetter()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// #7981: for accessor properties without setter</span></span><br><span class="line">      <span class="keyword">if</span> (getter &amp;&amp; !setter) <span class="keyword">return</span></span><br><span class="line">      <span class="keyword">if</span> (setter) &#123;</span><br><span class="line">        setter.call(obj, newVal)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        val = newVal <span class="comment">// 更新value</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 如果用户设置的值是对象, 还需要额外的响应化处理</span></span><br><span class="line">      childOb = !shallow &amp;&amp; observe(newVal)</span><br><span class="line">      <span class="comment">// 通知更新</span></span><br><span class="line">      dep.notify()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-core-observer-dep-js"><a href="#src-core-observer-dep-js" class="headerlink" title="src/core/observer/dep.js"></a>src/core/observer/dep.js</h2><p>Dep负责管理一组Watcher,包括watcher实例的增删及通知更新</p>
+<h3 id="depend"><a href="#depend" class="headerlink" title="depend()"></a>depend()</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// class Dep</span></span><br><span class="line">depend () &#123;</span><br><span class="line">    <span class="keyword">if</span> (Dep.target) &#123;</span><br><span class="line">      <span class="comment">// 建立 和 Watcher实例之间的关系, dep 和 watcher 可能是多对多的关系</span></span><br><span class="line">      Dep.target.addDep(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Watcher"><a href="#Watcher" class="headerlink" title="Watcher"></a>Watcher</h3><p>Watcher解析一个表达式并收集依赖,当数值变化时触发回调函数,常用于$watch API和指令中。<br>每个组件也会有对应的Watcher,数值变化会触发其update函数导致重新渲染</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// watcher 在vue2.x版本里面 是一个组件一个watcher.可能里面有一些watch选项.</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Watcher</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span> () &#123;&#125;</span><br><span class="line">    <span class="comment">//Evaluate the getter, and re-collect dependencies.</span></span><br><span class="line">    <span class="comment">// 触发依赖收集的地方</span></span><br><span class="line">    <span class="keyword">get</span> () &#123;&#125; </span><br><span class="line">    <span class="comment">// Add a dependency to this directive.</span></span><br><span class="line">    addDep (dep: Dep) &#123;&#125;</span><br><span class="line">    <span class="comment">// Clean up for dependency collection.</span></span><br><span class="line">    cleanuoDeps()</span><br><span class="line">    <span class="comment">// Subscriber interface. Will be called when a dependency changes.</span></span><br><span class="line">    update ()</span><br><span class="line">    <span class="comment">// Scheduler job interface.Will be called by the scheduler.</span></span><br><span class="line">    run()</span><br><span class="line">    <span class="comment">// Evaluate the value of the watcher.This only gets called for lazy watchers.</span></span><br><span class="line">    evaluate()</span><br><span class="line">    <span class="comment">// Depend on all deps collected by this watcher.</span></span><br><span class="line">    depend()</span><br><span class="line">    <span class="comment">// Remove self from all dependencies' subscriber list.</span></span><br><span class="line">    teardown()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="数组的响应化"><a href="#数组的响应化" class="headerlink" title="数组的响应化"></a>数组的响应化</h1><p>数组数据变化的侦测跟对象不同,以下数组方法(变异方法)对数组数据操作,让原数组被改变,但是页面此时没有办法得知数据变化。<br>所以vue中采取的策略是拦截这些方法并通知dep。<br>‘push’, ‘pop’, ‘shift’, ‘unshift’, ‘splice’, ‘sort’, ‘reverse’</p>
+<h2 id="src-core-observer-index-js-1"><a href="#src-core-observer-index-js-1" class="headerlink" title="src/core/observer/index.js"></a>src/core/observer/index.js</h2><p>Observer中覆盖数组原型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(value)) &#123;</span><br><span class="line">  <span class="comment">// 替换数组原型</span></span><br><span class="line">  protoAugment(value, arrayMethods) <span class="comment">// value.__proto__ = arrayMethods</span></span><br><span class="line">  <span class="keyword">this</span>.observeArray(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="src-core-observer-array-js"><a href="#src-core-observer-array-js" class="headerlink" title="src\core\observer\array.js"></a>src\core\observer\array.js</h2><p>为数组原型中的7个可以改变内容的方法定义拦截器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrayProto = <span class="built_in">Array</span>.prototype</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> arrayMethods = <span class="built_in">Object</span>.create(arrayProto)</span><br><span class="line"><span class="keyword">const</span> methodsToPatch = [</span><br><span class="line">  <span class="string">'push'</span>,</span><br><span class="line">  <span class="string">'pop'</span>,</span><br><span class="line">  <span class="string">'shift'</span>,</span><br><span class="line">  <span class="string">'unshift'</span>,</span><br><span class="line">  <span class="string">'splice'</span>,</span><br><span class="line">  <span class="string">'sort'</span>,</span><br><span class="line">  <span class="string">'reverse'</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Intercept mutating methods and emit events</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">methodsToPatch.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">method</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// cache original method</span></span><br><span class="line">  <span class="comment">// 数组的原型方法</span></span><br><span class="line">  <span class="keyword">const</span> original = arrayProto[method]</span><br><span class="line">  <span class="comment">// 拦截,添加额外行为</span></span><br><span class="line">  def(arrayMethods, method, <span class="function"><span class="keyword">function</span> <span class="title">mutator</span> (<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 执行原先的任务</span></span><br><span class="line">    <span class="keyword">const</span> result = original.apply(<span class="keyword">this</span>, args)</span><br><span class="line">    <span class="comment">// 额外任务: 通知更新</span></span><br><span class="line">    <span class="keyword">const</span> ob = <span class="keyword">this</span>.__ob__</span><br><span class="line">    <span class="comment">// 以下三个操作需要额外响应化处理</span></span><br><span class="line">    <span class="keyword">let</span> inserted</span><br><span class="line">    <span class="keyword">switch</span> (method) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'push'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'unshift'</span>:</span><br><span class="line">        inserted = args</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'splice'</span>:</span><br><span class="line">        inserted = args.slice(<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (inserted) ob.observeArray(inserted)</span><br><span class="line">    <span class="comment">// notify change</span></span><br><span class="line">    ob.dep.notify()</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>理解响应式原理的实现,注意以下事项:</p>
+<ol>
+<li><p>对象各属性初始化时进行一次响应化处理,以后再动态设置是无效的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// data: &#123;obj:&#123;foo: 'foo'&#125;&#125;</span></span><br><span class="line"><span class="comment">// 无效</span></span><br><span class="line"><span class="keyword">this</span>.obj.bar = <span class="string">'bar'</span></span><br><span class="line"><span class="comment">// 有效</span></span><br><span class="line"><span class="keyword">this</span>.$<span class="keyword">set</span>(this.obj, 'bar', 'bar')</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组是通过方法拦截实现响应化处理,不通过方法操作数组也是无效的<br>Vue内部对数组的7个变异方法做过封装,因此只有使用变异方法改变数组数据才能更新到页面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// data: &#123;items: ['foo','bar']&#125;</span></span><br><span class="line"><span class="comment">// 无效</span></span><br><span class="line"><span class="keyword">this</span>.items[<span class="number">0</span>] = <span class="string">'tua'</span></span><br><span class="line"><span class="keyword">this</span>.items.length = <span class="number">0</span></span><br><span class="line"><span class="comment">// 有效</span></span><br><span class="line"><span class="keyword">this</span>.$<span class="keyword">set</span>(this.items, 0, 'tua')</span><br><span class="line">this.items.splice(0, 2)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="初始化过程-init-–-gt-mount-–-gt-compile-–-gt-new-Watcher-–-gt-render-–-gt-update"><a href="#初始化过程-init-–-gt-mount-–-gt-compile-–-gt-new-Watcher-–-gt-render-–-gt-update" class="headerlink" title="初始化过程: init –&gt; $mount –&gt; compile –&gt; new Watcher –&gt; render –&gt; update"></a>初始化过程: init –&gt; $mount –&gt; compile –&gt; new Watcher –&gt; render –&gt; update</h2><ol>
+<li>runtime/index : 实现$mount</li>
+<li>core/index: 全局api</li>
+<li>core/instance/index: 声明vue构造函数</li>
+<li>entry-runtime-with-compiler: 覆盖$mount</li>
+<li>core/instance/lifecycle: mountComponent 执行渲染和更新,计算虚拟DOM,并转换成真实DOM,并挂载到$el上.<h2 id="响应化"><a href="#响应化" class="headerlink" title="响应化"></a>响应化</h2></li>
+<li>observe(): 返回Observer实例.</li>
+<li>Observer实例: 区分当前值的类型是对象还是数组，从而做相对应的响应化操作。</li>
+<li>defineReactive： 定义响应式，最重要的创建dep。</li>
+<li>Dep类: 依赖收集。</li>
+<li>Watcher类：数据改变，watcher通知视图更新。</li>
+</ol>
+<h2 id="Dep-和-Watcher-的关系"><a href="#Dep-和-Watcher-的关系" class="headerlink" title="Dep 和 Watcher 的关系"></a>Dep 和 Watcher 的关系</h2><p>依赖收集 : dep和watcher之间建立双向引用关系的过程就叫依赖收集。每个属性都会为之产生一个Dep实例。Dep实例和Watcher实例会相互保存。<br>一个组件只有一个Watcher，Watcher中会保存多个dep。<br>第一次依赖收集的过程：<br>每个组件实例创建时，就会创建一个Watcher实例。Watcher实例创建触发render函数生成，render函数生成虚拟DOM时，会使用data中的数据，然后就会触发get函数，就会去进行依赖收集。当data中的对象或者数组里的值发生变化的时候, 就要通知组件的Watcher 去通知(notify)更新。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/08/Vue源码分析一/" data-id="ckh44mzti000j4sv2eslyj7er" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/11/Vue源码分析二/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vue源码分析二
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/02/Create-my-vue/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Create my vue</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

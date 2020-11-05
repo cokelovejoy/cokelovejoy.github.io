@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>cookie session token | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="cookie 原理什么是cookie？cookie指的是浏览器里面能永久存储的一种数据，仅仅是浏览器实现的一种数据存储功能。 cookie 由服务器生成，发送给浏览器，浏览器把cookie以键值对形式保存在本地某个目录下的文本文件内。浏览器下一次请求同一网站时会把该cookie发送给服务器。由于cookie是存在客户端上的，所以浏览器加入了一些限制确保cookie不会被恶意使用，同时不会占用太多磁">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cookie session token">
+<meta property="og:url" content="http://yoursite.com/2020/03/10/cookie-session-token/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="cookie 原理什么是cookie？cookie指的是浏览器里面能永久存储的一种数据，仅仅是浏览器实现的一种数据存储功能。 cookie 由服务器生成，发送给浏览器，浏览器把cookie以键值对形式保存在本地某个目录下的文本文件内。浏览器下一次请求同一网站时会把该cookie发送给服务器。由于cookie是存在客户端上的，所以浏览器加入了一些限制确保cookie不会被恶意使用，同时不会占用太多磁">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/13949989-dcf024be2733e725.png?imageMogr2/auto-orient/strip|imageView2/2/w/400/format/webp">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cookie session token">
+<meta name="twitter:description" content="cookie 原理什么是cookie？cookie指的是浏览器里面能永久存储的一种数据，仅仅是浏览器实现的一种数据存储功能。 cookie 由服务器生成，发送给浏览器，浏览器把cookie以键值对形式保存在本地某个目录下的文本文件内。浏览器下一次请求同一网站时会把该cookie发送给服务器。由于cookie是存在客户端上的，所以浏览器加入了一些限制确保cookie不会被恶意使用，同时不会占用太多磁">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/13949989-dcf024be2733e725.png?imageMogr2/auto-orient/strip|imageView2/2/w/400/format/webp">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cookie-session-token" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/10/cookie-session-token/" class="article-date">
+  <time datetime="2020-03-10T05:28:08.000Z" itemprop="datePublished">2020-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cookie session token
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="cookie-原理"><a href="#cookie-原理" class="headerlink" title="cookie 原理"></a>cookie 原理</h1><h2 id="什么是cookie？"><a href="#什么是cookie？" class="headerlink" title="什么是cookie？"></a>什么是cookie？</h2><p>cookie指的是浏览器里面能永久存储的一种数据，仅仅是浏览器实现的一种数据存储功能。</p>
+<p>cookie 由服务器生成，发送给浏览器，浏览器把cookie以键值对形式保存在本地某个目录下的文本文件内。浏览器下一次请求同一网站时会把该cookie发送给服务器。由于cookie是存在客户端上的，所以浏览器加入了一些限制确保cookie不会被恶意使用，同时不会占用太多磁盘空间，所以每个域的cookie数量是有限的。</p>
+<h2 id="cookie-运作流程"><a href="#cookie-运作流程" class="headerlink" title="cookie 运作流程"></a>cookie 运作流程</h2><p>用户第一次访问并登陆到一个网站的时候，cookie的设置以及发送会经历一下4个步骤。</p>
+<ol>
+<li>客户端发送一个请求到服务器</li>
+<li>服务器发送一个HttpResponse响应到客户端，其中包含Set-Cookie的头部</li>
+<li>客户端保存cookie，之后再向服务器发送请求时，HttpRequest请求中会自动包含Cookie的头部信息</li>
+<li>服务器比对接收到的cookie和之前设置的cookie，根据比对的结果返回相应的响应信息<img src="https://upload-images.jianshu.io/upload_images/13949989-dcf024be2733e725.png?imageMogr2/auto-orient/strip|imageView2/2/w/400/format/webp">
+
+</li>
+</ol>
+<h2 id="cookie-特点"><a href="#cookie-特点" class="headerlink" title="cookie 特点"></a>cookie 特点</h2><ol>
+<li>域的限制: cookie是基于浏览器的，不同的浏览器，cookie不能共享，Cookie是不可以跨域名的，隐私安全机制禁止网站非法获取其他网站的Cookie。</li>
+<li>时间限制: cookie的默认生命周期是会话周期，即浏览器窗口关闭之前，一直存在。关闭浏览器，相当于结束默认的会话，cookie数据会自动消失，再次打开浏览器，相同页面读取数据，无法读到。cookie的有效期，是可以设置的，使用时间戳来表示，多少秒后对应的cookie数据消失，数据过期后，会被浏览器自动清除掉，HTTP请求中，仅携带有效期内的cookie数据，可以减少占用空间，减少HTTP传输的数据量。</li>
+<li>空间限制:cookie只能存储4kb</li>
+<li>数量限制:一个浏览器针对一个网站最多存20个cookie，浏览器一般只允许存放300个cookie。</li>
+<li>存储数据类型限制:cookie只能存储字符串</li>
+<li>移动端对cookie的支持不好，Session基于cookie实现，所以移动端常用token。</li>
+<li>使用httpOnly提高安全性</li>
+</ol>
+<h2 id="cookie-的操作"><a href="#cookie-的操作" class="headerlink" title="cookie 的操作"></a>cookie 的操作</h2><p>cookie本质为简单数据，基本操作仅为增删改查。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ul>
+<li>会话状态管理（如用户登录状态、购物车、游戏分数和其它需要记录的信息）</li>
+<li>个性化设置（如用户自定义设置、主题等）</li>
+<li>浏览器行为跟踪（如跟踪分析用户行为）</li>
+</ul>
+<h1 id="session-原理"><a href="#session-原理" class="headerlink" title="session 原理"></a>session 原理</h1><h2 id="什么是session？"><a href="#什么是session？" class="headerlink" title="什么是session？"></a>什么是session？</h2><p>session 是另一种记录服务器和客户端会话状态的机制。</p>
+<p>session字面意思是会话，当浏览器访问服务器时，服务器为了标识当前访问的客户端，就给当前的浏览器访问，设置了一个’身份标识’，这个身份标识，我们就称之为session，一个session就对应了一个浏览器窗口的访问，只允许当前这个session对应的浏览器访问，就算是在同一个机器上新启的浏览器也是无法访问的。而另外一个浏览器也需要记录session的话，就会再启一个属于自己的session。然后客户端每次向服务器发请求的时候，都会带上session，服务器就知道这个请求来自谁了。客户端保存这个’身份标识’,可以有很多种方式，对于浏览器客户端，都默认采用cookie的方式。</p>
+<p>服务器会开辟一块内存来存储session，把用户的信息临时保存在服务器上，用户离开网站后session会被销毁。</p>
+<h2 id="session运作流程"><a href="#session运作流程" class="headerlink" title="session运作流程"></a>session运作流程</h2><ol>
+<li>用户第一次请求服务器的时候，服务器根据用户提交的相关信息，创建对应的Session，然后保存Session在内存中（或者redis）然后给这个session生成一个唯一的标识字符串，然后在响应头中设置这个唯一标识字符串（SessionID）。</li>
+<li>请求返回时将此Session的唯一标识信息SessionID返回浏览器</li>
+<li>浏览器接收到服务器返回的SessionID信息后，会将此信息存入到cookie中，同时cookie记录此SessionID属于哪个域名。（这是cookie的特性，域名限制）</li>
+<li>当用户第二次访问服务器的时候， 请求会自动判断此域名下是否存在Cookie信息，如果存在自动将Cookie信息也发送给服务器，服务器会从Cookie中获取SessionID，在根据SessionID查找对应的Session信息，如果没有找到说明用户没有登录或者登录失败，如果找到Session证明用户已经登录可以执行后面的操作。</li>
+</ol>
+<p>因此SessionID是连接cookie和Session的一道桥梁，大部分系统也是根据此原理来验证用户登录状态。</p>
+<h2 id="session特点"><a href="#session特点" class="headerlink" title="session特点"></a>session特点</h2><p>session基于cookie实现的，session信息存储在服务器端，sessionID会被存储到客户端的cookie中，服务器端根据SessionID找session。</p>
+<p>关闭浏览器不会导致session被删除，迫使服务器为seesion设置了一个失效时间，当距离客户端上一次使用session的时间超过这个失效时间时，服务器就可以认为客户端已经停止了活动，才会把session删除以节省存储空间。</p>
+<p>服务器无法知道浏览器是否关闭，浏览器关闭只是cookie被清除了，导致找不到sessionID了，如果将cookie保存在硬盘，那么即使浏览器关闭后再新开一个浏览器窗口访问服务器，也能通过sessionID找到session，但是session也有过期时间，也可以在服务器端主动删除。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li>将session存储在服务器里面，当用户同时在线量比较多时，这些session会占据较多的内存，需要在服务端定期的去清理过期的session。(思考解决的方法）</li>
+<li>当网站采用集群部署的时候，会遇到多台web服务器之间如何做session共享的问题。因为session是由单个服务器创建的，但是处理用户请求的服务器不一定是那个创建session的服务器，那么该服务器就无法拿到之前已经放入到session中的登录凭证之类的信息了。</li>
+<li>当多个应用要共享session时，除了以上问题，还会遇到跨域问题，因为不同的应用可能部署的主机不一样，需要在各个应用做好cookie跨域的处理。</li>
+<li>sessionID被保存在cookie中，浏览器端禁止使用cookie，必须有其他机制以便在cookie被禁止时仍然能够把sessionID传递回服务器。经常被使用的一种技术叫做URL重写，就是把sessionID直接附加在URL路径的后面，附加方式也有两种：<br>一种是作为URL路径的附加信息<br>http://…../xxx;sessionid=ByOK3vjFD75aPnrF7C2HmdnV6QZcEbzWoWiBYEnLerjQ99zWpBng!-145788764<br>另一种是作为查询字符串附加在URL后面，表现形式为<br>http://…../xxx?jsessionid=ByOK3vjFD75aPnrF7C2HmdnV6QZcEbzWoWiBYEnLerjQ99zWpBng!-145788764</li>
+<li>移动端对cookie的支持不好，session基于cookie实现，所以移动端常用token。</li>
+</ol>
+<h2 id="比较Cookie和Session"><a href="#比较Cookie和Session" class="headerlink" title="比较Cookie和Session"></a>比较Cookie和Session</h2><ul>
+<li>安全性： Session比Cookie更安全，Session是存储在服务器端的，Cookie是存储在客户端的。</li>
+<li>存储值得类型不同： Cookie只能存储字符串数据，要设置其他类型的数据，需要将其转换成字符串，Session可以存储任意类型的数据，</li>
+<li>存储大小不同： 单个Cookie保存的数据不能超过4kb，Session可存储的数据远高于Cookie，但是当访问量过多，会占用过多的服务器资源。</li>
+</ul>
+<h1 id="token令牌"><a href="#token令牌" class="headerlink" title="token令牌"></a>token令牌</h1><h2 id="早期基于服务器的验证"><a href="#早期基于服务器的验证" class="headerlink" title="早期基于服务器的验证"></a>早期基于服务器的验证</h2><p>由于HTTP协议是无状态的，这意味着程序需要验证每一次请求，从而辨别客户端的身份。<br>早期程序都是通过在服务器存储登录信息来辨别请求的，这种方式一般都是通过存储Session来完成的。</p>
+<h2 id="基于服务器验证方式暴露的问题"><a href="#基于服务器验证方式暴露的问题" class="headerlink" title="基于服务器验证方式暴露的问题"></a>基于服务器验证方式暴露的问题</h2><ol>
+<li>Session： 每次认证用户发起请求时，服务器需要去创建一个记录来存储信息。当越来越多的用户发请求，内存的开销也会不断增加。</li>
+<li>可扩展性： 在服务端的内存中使用session存储登录信息，伴随而来的是可扩展性问题。</li>
+<li>CORS（跨域资源共享）： 当我们需要让数据跨多台移动设备上使用时，跨域资源的共享会是一个让人头疼的问题。在使用Ajax抓取另一个域的资源，就会出现禁止请求的情况。</li>
+<li>CSRF（跨站请求伪造）</li>
+</ol>
+<h2 id="基于Token的验证原理"><a href="#基于Token的验证原理" class="headerlink" title="基于Token的验证原理"></a>基于Token的验证原理</h2><p>token是访问资源接口（api）时，所需要的资源凭证。<br>基于Token的身份验证实现了服务器无状态化，不再需要将用户信息存在服务器，因为信息就存在token中，服务器端通过解析token就可以拿到用户信息。<br>简单的token组成： uid（用户唯一的身份标识），time（当前时间的时间戳）， sign（签名，token的前几位以hash算法压缩成一定长度的十六进制字符串）。</p>
+<h2 id="基于Token的身份验证过程"><a href="#基于Token的身份验证过程" class="headerlink" title="基于Token的身份验证过程"></a>基于Token的身份验证过程</h2><ol>
+<li>客户端使用用户名和密码请求登录。</li>
+<li>服务端收到请求，去验证用户名和密码（查询数据库）。</li>
+<li>验证成功后，服务端会签发一个token并把token发送给客户端。</li>
+<li>客户端收到token以后，会把它存储起来，比如放在cookie或者localstorage里。</li>
+<li>客户端每次向服务端请求资源的时候需要带着服务器签发的token。</li>
+<li>服务器收到请求，然后去验证客户端请求里面带着的token，如果验证成功，就向客户端返回请求的数据。</li>
+</ol>
+<p>注意点:</p>
+<ul>
+<li>每一次请求都需要携带token，需要把token放到HTTP请求的Header里。</li>
+<li>基于token的用户认证是一种服务端无状态的认证方式，服务端不用存放token数据。用解析token的计算时间换取session的存取空间，从而减轻服务器的压力，减少频繁的查询数据库。</li>
+<li>设置服务器属性Access-Control-Allow-Origin：*，让服务器能接受到来自所有域的请求。</li>
+<li>如果用数据库来存储token会导致查询时间太长，可以选择放在内存中。比如redis很适合token的查询。</li>
+</ul>
+<h2 id="refresh-token"><a href="#refresh-token" class="headerlink" title="refresh token"></a>refresh token</h2><p>refresh token 是专门用于刷新Access token的token，如果没有refresh token，也可以刷新access token，但每次刷新都要用户输入登录用户名和密码，很麻烦。有了refresh token，客户端可以以直接用refresh token去更新accesstoken，无需用户进行额外的操作。</p>
+<ul>
+<li>Access token的有效期比较短，当Access token 由于过期而时效时，使用refresh token就可以获取新的 access token，只有当refresh token也失效了，用户就只能重新登录了。</li>
+<li>refresh token 及过期时间是存储在服务器的数据库中，只有在申请新的Access token时才会验证，不会对业务接口响应时间造成影响，也不需要向session一样一直保持在内存中。</li>
+</ul>
+<h2 id="token的特点"><a href="#token的特点" class="headerlink" title="token的特点"></a>token的特点</h2><ul>
+<li>无状态<br>在客户端存储的token是无状态的，不需要存储session信息，负载均衡器能将用户信息从一个服务传到其他服务器上。<br>如果是将已经验证的用户信息存储到session中，则每次请求都需要用户向已验证的服务器发送验证信息，用户量大时，会造成拥堵。</li>
+<li>安全性<br>请求中发送token而不是cookie能够防止CSRF跨站请求伪造。即使在客户端使用cookie存储token，cookie也只是一个存储机制，而不是用于认证。也不讲用户信息存储在session中，少了对session的操作。<br>token是由时效性的，一段时间之后用户需要重新验证。也可以手动使特定的token或一组相同认证的token无效。</li>
+<li>可扩展性<br>token可以创建与其他程序共享权限的程序。<br>使用token时，可以提供可选的权限给第三方应用。当用户想让另一应用程序访问他们的数据，我们可以通过建立API，得出特殊权限的token。</li>
+<li>多平台跨域<br>支持移动端设备，只要用户有一个通过验证的token，数据和资源就能在任何域上被请求到。</li>
+</ul>
+<h2 id="Token和Session的比较"><a href="#Token和Session的比较" class="headerlink" title="Token和Session的比较"></a>Token和Session的比较</h2><ul>
+<li>session是一种记录服务器和客户端会话状态的机制，使服务端状态化，可以记录会话信息。而Token是令牌，访问资源接口API时所需要的资源凭证，Token使服务端无状态化，不存储会话信息。在大规模系统中，对每个请求都检索会话信息可能是一个复杂和耗时的过程，但另一方面服务端要通过token来解析用户身份也需要定义好相应的协议（比如JWT）。</li>
+<li>session一般通过cookie交互，而token方式更加灵活，可以是cookie，也可以是header，也可以放在请求的内容中。不使用cookie可以带来跨域上的便利性。</li>
+<li>token 的生成方式更加多样化，可以由第三方模块来提供。</li>
+<li>token如果被盗用，服务端无法感知。cookie信息存储在用户自己电脑中，被盗用风险略小。</li>
+<li>session和token并不矛盾，作为身份认证token安全性更高，同时还可以使用session来在服务端保存一些状态。</li>
+<li>如果用户数据需要和第三方共享，或者允许第三方调用API接口，用token，如果永远只是自己的网站，自己的app，都可以。</li>
+</ul>
+<h1 id="JWT（JSON-WEB-TOKEN）"><a href="#JWT（JSON-WEB-TOKEN）" class="headerlink" title="JWT（JSON WEB TOKEN）"></a>JWT（JSON WEB TOKEN）</h1><p>JSON Web Token （简称JWT）是目前最流行的跨域认证解决方案。JWT是一种认证授权机制。</p>
+<h2 id="跨域认证问题"><a href="#跨域认证问题" class="headerlink" title="跨域认证问题"></a>跨域认证问题</h2><p>互联网用户认证的一般流程如下：</p>
+<ol>
+<li>用户想服务器发送用户名和密码。</li>
+<li>服务器验证通过后，在当前对话（session）里面保存相关数据。比如用户角色，登录时间等。</li>
+<li>服务器向用户返回一个sessionID，写入用户的Cookie中。</li>
+<li>用户随后的每一次请求，都会通过Cookie，将sessionID传回服务器。</li>
+<li>服务器收到SessionID，找到前期保存的数据，由此得知用户的身份。</li>
+</ol>
+<p>这种模式的产生的问题：扩展性不好，如果是服务器集群或者是跨域的服务器导向架构，就要求session数据共享，每台服务器都能够读取到session。例如，要求用户在一个网站登录，在访问另一个网站就会自动登录，如何实现？（实现单点登录sso）</p>
+<p>一种解决方案是session数据持久化，写入数据库或别的持久层。各种服务收到请求后，都想持久层请求数据。这种方案的优点是架构清晰，缺点是工程量大，另外持久层挂了，就会单点登录失败。</p>
+<p>另一种方案就是服务器不保存session数据，所有数据（就是token）都保存在客户端，每次请求都发回服务器。JWT就是这种方案的一个代表。</p>
+<h2 id="JWT原理"><a href="#JWT原理" class="headerlink" title="JWT原理"></a>JWT原理</h2><p>JWT的原理是，服务器认证以后，生成一个JSON对象，发回给用户。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;coke&quot;,</span><br><span class="line">    &quot;role&quot;: &quot;admin&quot;,</span><br><span class="line">    &quot;expireTime&quot;: &quot;2020.02.02&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以后，用户与服务器端通信的时候，都要发回这个JSON对象。服务器完全只靠这个对象认证用户身份。为了防止用户篡改数据，服务器在生成这个JSON对象的时候，会进行签名操作。</p>
+<p>服务器就不保存session数据了，也就是说，服务器变成无状态的了，从而比较容易实现扩展。</p>
+<h2 id="JWT的数据结构"><a href="#JWT的数据结构" class="headerlink" title="JWT的数据结构"></a>JWT的数据结构</h2><p>实际的JWT就像是下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiYWJjIiwicGFzc3dvcmQiOiIxMTExMTEifSwiZXhwIjoxNTU3MTU1NzMwLCJpYXQiOjE1NTcxNTIxMzB9.</span><br><span class="line">pjGaxzX2srG_MEZizzmFEy7JM3t8tjkiu3yULgzFwUk</span><br></pre></td></tr></table></figure>
+
+<p>它是一个很长的字符串，中间用点（.）分隔成三个部分。注意，JWT内部是没有换行的，此处方便展示，将它写成几行。<br>JWT的三个部分依次是：</p>
+<ol>
+<li>Header(头部)</li>
+<li>Playload（负载）</li>
+<li>Signature（签名）</li>
+</ol>
+<h3 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h3><p>Header部分是一个JSON对象，描述了JWT的元数据，通常如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;alg&quot;: &quot;HS256&quot;,</span><br><span class="line">    &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中alg属性表示签名的算法（algorithm），默认是HMAC SHA256（写成 HS256）,typ属性表示这个令牌（token）的类型，JWT令牌统一写成JWT。</p>
+<p>最后，将上面的JSON对象使用Base64URL算法转成字符串。</p>
+<h3 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h3><p>Payload部分也是一个JSON对象，用来存放实际需要传递的数据.JWT规定了7个官方字段，供选用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">iss(issuer): 签发人</span><br><span class="line">exp(expiration time): 过期时间</span><br><span class="line">sub(subject): 主题</span><br><span class="line">aud(audience): 受众</span><br><span class="line">nbf(Not Before): 生效时间</span><br><span class="line">iat(Issued At): 签发时间</span><br><span class="line">jti(JWT ID): 编号</span><br></pre></td></tr></table></figure>
+
+<p>还可以自定义私有字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;name&quot;: &quot;coke&quot;,</span><br><span class="line">    &quot;admin&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，JWT默认是不加密的，任何人都可以读到，所以不要把秘密信息放在这个部分。<br>这个JSON对象也要使用Base64URL算法转成字符串。</p>
+<h3 id="Signature"><a href="#Signature" class="headerlink" title="Signature"></a>Signature</h3><p>Signature部分是对前两部分的签名，防止数据篡改。<br>首先，需要制定一个密钥（secret）。这个密钥只有服务器才知道，不能泄露给用户。然后使用Header里面指定的签名算法（默认是HMAC SHA256），按照下面的公式产生签名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">    base64UrlEncode(header) + &quot;.&quot; +</span><br><span class="line">    baseUrlEncode(payload),</span><br><span class="line">    secret</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>算出签名以后，把Header，Payload，Signature三个部分拼成一个字符串，每个部分之间用”点”(.)分隔，就可以返回给用户。</p>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>默认使用HS256算法对JWT中的Header和Payload数据签名,然后将产生的结果和JWT中的Signature数据比对.</p>
+<h3 id="Base64URL"><a href="#Base64URL" class="headerlink" title="Base64URL"></a>Base64URL</h3><p>Base64 内容传送编码被设计用来把任意序列的8位字节描述为一种不易被人识别的形式.<br>Header和Payload串行化的算法是Base64URL。这个算法跟Base64算法基本类似，但是有一些小的不同。</p>
+<p>JWT作为一个令牌（token），有些使用场景可能会放到URL中（如api/example/?token=xxx）.Base64算法中有三个字符+,/,=在URL中有特殊含义，因此要被替换掉，=被省略，+号替换成-，/替换成_,这就是Base64URL算法。</p>
+<h3 id="HMAC-SHA156"><a href="#HMAC-SHA156" class="headerlink" title="HMAC SHA156"></a>HMAC SHA156</h3><p>HMAC（Hash Message Authentication Code），散列消息鉴别码，实现鉴别的原理，用公开函数和密钥产生一个固定长度的值作为认证表示，用这个标识鉴别消息的完整性。使用一个密钥生成一个固定大小的小数据块，即MAC，并将其加入到消息中，然后传输。接收方利用与发送方共享的密钥进行鉴别认证。</p>
+<h3 id="Beare"><a href="#Beare" class="headerlink" title="Beare"></a>Beare</h3><p>Beare作为一种认证类型(基于OAuth 2.0),使用”Bearer”关键词进行定义.<br>当用户希望访问一个受保护的路由或者资源的时候,需要请求头的Authorization字段中使用Bearer模式添加JWT,如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxxxxxx.yyyyyyyyyyyyyyyyy.zzzzzzzzzzzzzzzzzzzzzzzzz</span><br></pre></td></tr></table></figure>
+
+<h2 id="JWT的认证流程"><a href="#JWT的认证流程" class="headerlink" title="JWT的认证流程"></a>JWT的认证流程</h2><ol>
+<li>用户输入用户名、密码的登录，服务器认证成功后，会返回给客户端一个JWT。</li>
+<li>客户端收到服务器返回的JWT，可以存储在Cookie中，也可以存储在localStorage。</li>
+<li>当用户希望访问一个受保护的路由或者资源的时候，需要请求头的Authorization字段中使用Bearer模式添加JWT。</li>
+<li>服务端的保护路由将会检查请求头Authorization中的JWT信息，如果合法，则允许用户的行为。</li>
+<li>因为JWT是包含了一些会话信息的，因此减少了需要查询数据库的需要。</li>
+<li>JWT并不使用Cookie，因此可以使用任何域名提供API服务，而不需要担心跨域资源共享的问题。</li>
+</ol>
+<p>此后，客户端每次与服务器通信，都要带上这个JWT。可以把它放在Cookie里面自动发送，但是这样不能跨域，所以更好的做法是放在HTTP请求头Authorization字段里面。</p>
+<p>另一种做法就是JWT就放在POST请求的数据体里面。</p>
+<h2 id="JWT的特点"><a href="#JWT的特点" class="headerlink" title="JWT的特点"></a>JWT的特点</h2><ol>
+<li>JWT默认是不加密的，但是也可以再加密。生成原始的token以后，可以用密钥在加密一次。</li>
+<li>JWT不加密的情况下，不要将私密数据写入JWT。</li>
+<li>JWT不仅可以用于认证，也可以用于交换信息。有效使用JWT，可以降低服务器查询数据库的次数。</li>
+<li>JWT的最大缺点就是，由于服务器不保存session状态，因此无法在使用的过程中废止某个token，或者更改token的权限。也就是说，一旦JWT签发了，在到期之前就会始终有效，除非服务器手动终止。</li>
+<li>JWT本身包含了认证信息，一旦泄露，任何人都可以获得该令牌的所有权限。为了减少盗用，JWT的有效期应该设置得比较短。对于一些比较重要的权限，使用时应该再次对用户进行认证。</li>
+<li>为了减少盗用，JWT不应该使用HTTP协议明码传输，要使用HTTPS协议传输。</li>
+</ol>
+<h2 id="JWT和token的比较"><a href="#JWT和token的比较" class="headerlink" title="JWT和token的比较"></a>JWT和token的比较</h2><p>相同：</p>
+<ul>
+<li>都是访问资源的令牌</li>
+<li>都可以记录用户信息</li>
+<li>都是使服务端无状态化</li>
+<li>都是只有验证成功后，客户端才能访问服务端上受保护的资源。</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li>token： 服务端验证客户端发送过来的token时，还需要查询数据库获取用户信息，然后验证token是否有效。</li>
+<li>JWT： 将token和Payload加密后存储在客户端，服务端只需要使用相同的加密算法加密header和payload，然后比对Signature，进行校验。不需要查询或者减少查询数据库，因为JWT自包含了用户信息和加密的数据。</li>
+</ul>
+<h1 id="hash-算法"><a href="#hash-算法" class="headerlink" title="hash 算法"></a>hash 算法</h1><p>哈希算法（Hash Algorithm）又称散列算法，哈希函数，哈希算法将数据重新打乱混合，重新创建一个新的哈希值。<br>哈希算法主要用于保障数据真实性（完整性），即发信人将原始消息和哈希值一起发送，收信人通过相同的hash算法来校验原始数据是否真实。<br>哈希算法的特点： 不定长数据转换成定长数据，雪崩效应， 防篡改。</p>
+<h1 id="常用的鉴权的几种方式"><a href="#常用的鉴权的几种方式" class="headerlink" title="常用的鉴权的几种方式"></a>常用的鉴权的几种方式</h1><h2 id="Cookie-Session方式"><a href="#Cookie-Session方式" class="headerlink" title="Cookie/Session方式"></a>Cookie/Session方式</h2><h3 id="设置Cookie"><a href="#设置Cookie" class="headerlink" title="设置Cookie"></a>设置Cookie</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>)</span><br><span class="line">http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (req.url === <span class="string">'/favicon.ico'</span>) &#123;</span><br><span class="line">        res.end(<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 观察cookie 存在， 如果有cookie，发送请求时，浏览器会自动带上cookie</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'cookie:'</span>, req.headers.cookie)</span><br><span class="line">    <span class="comment">// Header Set-Cookie用于设置cookie</span></span><br><span class="line">    res.setHeader(<span class="string">'Set-Cookie'</span>, <span class="string">'cookie1=abc'</span>)</span><br><span class="line">    res.end(<span class="string">'hello cookie!!'</span>)</span><br><span class="line">&#125;).listen(<span class="number">3000</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'listen on port 3000'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置session"><a href="#设置session" class="headerlink" title="设置session"></a>设置session</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>)</span><br><span class="line"><span class="keyword">const</span> session = &#123;&#125;</span><br><span class="line">http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (req.url === <span class="string">'/favicon.ico'</span>) &#123;</span><br><span class="line">        res.end(<span class="string">''</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">     <span class="comment">// 观察cookie存在</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'cookie'</span>, req.headers.cookie)</span><br><span class="line">    <span class="keyword">const</span> sessionKey = <span class="string">'SessionID'</span></span><br><span class="line">    <span class="keyword">const</span> cookie = req.headers.cookie</span><br><span class="line">    <span class="comment">// cookie中存在sessionID</span></span><br><span class="line">    <span class="keyword">if</span> (cookie &amp;&amp; cookie.indexOf(sessionKey) != <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">// 简略处理</span></span><br><span class="line">        res.end(<span class="string">'have log in'</span>)</span><br><span class="line">        <span class="keyword">const</span> pattern = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">`<span class="subst">$&#123;sessionKey&#125;</span>=([^;]+);?\s*`</span>)</span><br><span class="line">        <span class="keyword">const</span> sid = pattern.exec(cookie)[<span class="number">1</span>]</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'session:'</span>, sid, session, session[sid])</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 生成随机sessionID</span></span><br><span class="line">        <span class="keyword">const</span> sid = (<span class="built_in">Math</span>.random() * <span class="number">99999999</span>).toFixed()</span><br><span class="line">        <span class="comment">// 将sessionID保存到cookie中</span></span><br><span class="line">        res.setHeader(<span class="string">'Set-Cookie'</span>, <span class="string">`<span class="subst">$&#123;sessionKey&#125;</span>=<span class="subst">$&#123;sid&#125;</span>;`</span>)</span><br><span class="line">        <span class="comment">// 设置session保存用户信息</span></span><br><span class="line">        session[sid] = &#123; <span class="attr">name</span>: <span class="string">'coke'</span>, <span class="attr">age</span>: <span class="number">22</span>&#125;</span><br><span class="line">        res.end(<span class="string">`Hello <span class="subst">$&#123;sid&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).listen(<span class="number">3000</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'listen on port 3000'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="在Koa中使用session：-npm-i-koa-session-S"><a href="#在Koa中使用session：-npm-i-koa-session-S" class="headerlink" title="在Koa中使用session： npm i koa-session -S"></a>在Koa中使用session： npm i koa-session -S</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"><span class="keyword">const</span> session = <span class="built_in">require</span>(<span class="string">'koa-session'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 签名keys作用： 用来对cookie进行签名</span></span><br><span class="line">app.keys = [<span class="string">'some secret'</span>]</span><br><span class="line"><span class="comment">// 配置项</span></span><br><span class="line"><span class="keyword">const</span> SESS_CONFIG = &#123;</span><br><span class="line">    key: <span class="string">'sessionID'</span>,</span><br><span class="line">    maxAge: <span class="number">86400000</span>, <span class="comment">// 设置有效时间，默认一天</span></span><br><span class="line">    httpOnly: <span class="literal">true</span>, <span class="comment">// 仅限服务器修改</span></span><br><span class="line">    signed: <span class="literal">true</span> <span class="comment">// 签名cookie,防止前端篡改数据</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 注册session中间件</span></span><br><span class="line">app.use(session(SESS_CONFIG, app))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line">app.use(<span class="function"><span class="params">ctx</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (ctx.path === <span class="string">'/favicon.ico'</span>) <span class="keyword">return</span></span><br><span class="line">    <span class="comment">// 获取</span></span><br><span class="line">    <span class="keyword">let</span> count = ctx.session.count || <span class="number">0</span></span><br><span class="line">    <span class="comment">// 设置 session</span></span><br><span class="line">    ctx.session.count = ++count</span><br><span class="line">    ctx.body = <span class="string">'第'</span>+ count + <span class="string">'次访问'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'listen on port 3000'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>index.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/axios/dist/axios.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"username"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"login"</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"logout"</span>&gt;</span>Logout<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"getUserInfo"</span>&gt;</span>GetUserInformation<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"document.getElementById('log').innerHTML = ''"</span>&gt;</span>Clear Log<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h6</span> <span class="attr">id</span>=<span class="string">"log"</span>&gt;</span><span class="tag">&lt;/<span class="name">h6</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        axios.default.withCredentials =<span class="literal">true</span></span></span><br><span class="line">        axios.interceptors.response.use(</span><br><span class="line">            response =&gt; &#123;</span><br><span class="line"><span class="javascript">                <span class="built_in">document</span>.getElementById(<span class="string">'log'</span>).append(<span class="built_in">JSON</span>.stringify(response.data))</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> response</span></span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="javascript">                username: <span class="string">'test'</span>,</span></span><br><span class="line"><span class="javascript">                password: <span class="string">'test'</span></span></span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">async</span> login() &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">await</span> axios.post(<span class="string">'/users/login'</span>, &#123;</span></span><br><span class="line"><span class="javascript">                        username: <span class="keyword">this</span>.username,</span></span><br><span class="line"><span class="javascript">                        password: <span class="keyword">this</span>.password</span></span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;,</span><br><span class="line"><span class="javascript">                <span class="keyword">async</span> logout() &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">await</span> axios.post(<span class="string">'/users/logout'</span>)</span></span><br><span class="line">                &#125;,</span><br><span class="line"><span class="javascript">                <span class="keyword">async</span> getUserInfo() &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">await</span> axios.get(<span class="string">'/users/getUser'</span>)</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>)</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)()</span><br><span class="line"><span class="keyword">const</span> session = <span class="built_in">require</span>(<span class="string">'koa-session'</span>)</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">'koa2-cors'</span>)</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-bodyparser'</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'koa-static'</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置session的中间件</span></span><br><span class="line">app.use(cors(&#123;</span><br><span class="line">    credentials: <span class="literal">true</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只有服务器端知道的密钥，用于签名</span></span><br><span class="line">app.keys = [<span class="string">'some secret'</span>]</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">static</span>(__dirname + <span class="string">'/'</span>))</span><br><span class="line"><span class="comment">// 注册中间件 bodyParser</span></span><br><span class="line"><span class="comment">// 用于将 post请求中的数据变成对象保存在ctx.request.body</span></span><br><span class="line">app.use(bodyParser())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注册session中间件</span></span><br><span class="line">app.use(session(app))</span><br><span class="line"></span><br><span class="line">app.use(<span class="function">(<span class="params">ctx, next</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 除了login路由不用检查session，其余路由需要检查session</span></span><br><span class="line">    <span class="keyword">if</span> (ctx.url.indexOf(<span class="string">'login'</span>) != <span class="number">-1</span>) &#123;</span><br><span class="line">        next()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'session'</span>, ctx.session.userinfo)</span><br><span class="line">        <span class="keyword">if</span> (!ctx.session.userinfo) &#123;</span><br><span class="line">            ctx.body = &#123;</span><br><span class="line">                message: <span class="string">"登录失败"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            next()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.post(<span class="string">'/users/login'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; body &#125; = ctx.request</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'body'</span>, body)</span><br><span class="line">    <span class="comment">// 登录时，设置session的信息</span></span><br><span class="line">    ctx.session.userinfo = body.username</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">        message: <span class="string">"登录成功"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.post(<span class="string">'/users/logout'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</span><br><span class="line">    <span class="comment">// 设置session</span></span><br><span class="line">    <span class="keyword">delete</span> ctx.session.userinfo</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">        message: <span class="string">"登出系统"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/users/getUser'</span>, <span class="keyword">async</span> (ctx) =&gt; &#123;</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">        message: <span class="string">"获取数据成功"</span>,</span><br><span class="line">        userinfo: ctx.session.userinfo</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(router.routes())</span><br><span class="line">app.use(router.allowedMethods())</span><br><span class="line">app.listen(<span class="number">3000</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用redis存储session"><a href="#使用redis存储session" class="headerlink" title="使用redis存储session"></a>使用redis存储session</h3><h4 id="redis介绍"><a href="#redis介绍" class="headerlink" title="redis介绍"></a>redis介绍</h4><p>redis是一个高性能的 key-value数据库。<br>Redis is an in-memory database that persists on disk. The data model is key-value, but many different kind of values are supported: Strings, Lists, Sets, Sorted Sets, Hashes.</p>
+<h3 id="Redis-与其他的缓存产品有以下三个特点"><a href="#Redis-与其他的缓存产品有以下三个特点" class="headerlink" title="Redis 与其他的缓存产品有以下三个特点"></a>Redis 与其他的缓存产品有以下三个特点</h3><ul>
+<li>Redis支持数据的持久化，可以将内存中的数据保存在磁盘，重启的时候可以再次加载进行使用。</li>
+<li>Redis 不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</li>
+<li>Redis支持数据的备份，即master-slave模式的数据备份。</li>
+</ul>
+<h3 id="Redis优势"><a href="#Redis优势" class="headerlink" title="Redis优势"></a>Redis优势</h3><ul>
+<li>性能极高-Redis能读的速度是 110000次/s, 写的速度是81000次/s。</li>
+<li>丰富的数据类型- Redis支持二进制案例的Strings, Lists, Hashes, Sets及Ordered Sets数据类型操作。</li>
+<li>原子 - Redis的所有操作都是原子性的，意思就是要么成功执行，要么失败完全不执行。单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI 和EXEC指令包起来。</li>
+<li>丰富的特性 - Redis还支持publish/subscribe, 通知key过期等特性。</li>
+</ul>
+<h3 id="使用redis"><a href="#使用redis" class="headerlink" title="使用redis"></a>使用redis</h3><h4 id="windows安装redis"><a href="#windows安装redis" class="headerlink" title="windows安装redis"></a>windows安装redis</h4><p>下载地址： <a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">https://github.com/MSOpenTech/redis/releases</a></p>
+<h4 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h4><p>打开cmd窗口使用cd命令切换到redis安装目录运行如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server.exe</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用redis模块操作redis"><a href="#使用redis模块操作redis" class="headerlink" title="使用redis模块操作redis"></a>使用redis模块操作redis</h4><p>安装redis模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i redis -S</span><br></pre></td></tr></table></figure>
+
+<p>使用redis</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> redis = <span class="built_in">require</span>(<span class="string">'redis'</span>)</span><br><span class="line"><span class="keyword">const</span> client = redis.createClient(<span class="number">6379</span>, <span class="string">'localhost'</span>)</span><br><span class="line"></span><br><span class="line">client.set(<span class="string">'hello'</span>, <span class="string">'this is a value'</span>)</span><br><span class="line"></span><br><span class="line">client.get(<span class="string">'hello'</span>,  (err, value) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"redis get"</span>, value)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用koa-redis"><a href="#使用koa-redis" class="headerlink" title="使用koa-redis"></a>使用koa-redis</h3><p>安装：npm i -S koa-redis<br>配置使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> session = <span class="built_in">require</span>(<span class="string">'koa-session'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> redisStore = <span class="built_in">require</span>(<span class="string">'koa-redis'</span>)</span><br><span class="line"><span class="keyword">const</span> redis = <span class="built_in">require</span>(<span class="string">'redis'</span>)</span><br><span class="line"><span class="keyword">const</span> redisClient = redis.createClient(<span class="number">6379</span>, <span class="string">"localhost"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wrapper = <span class="built_in">require</span>(<span class="string">'co-redis'</span>)</span><br><span class="line"><span class="keyword">const</span> client = wrapper(redisClient)</span><br><span class="line"></span><br><span class="line">app.keys = [<span class="string">'some secret'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> SESS_CONFIG = &#123;</span><br><span class="line">    key: <span class="string">'richard:session'</span>,</span><br><span class="line">    store: redisStore(&#123; client &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.use(session(SESS_CONFIG, app))</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="params">ctx</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 查看redis</span></span><br><span class="line">    redisClient.keys(<span class="string">"*"</span>, (err, keys) =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'keys: '</span>, keys)</span><br><span class="line">        keys.forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">            redisClient.get(key, (err, val) =&gt; &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(val)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">if</span> (ctx.path === <span class="string">'/favicon.ico'</span>) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">let</span> n = ctx.session.count || <span class="number">0</span></span><br><span class="line">    ctx.session.count = ++n</span><br><span class="line">    ctx.body = <span class="string">'第'</span> + n + <span class="string">'次访问'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Token认证"><a href="#Token认证" class="headerlink" title="Token认证"></a>Token认证</h2><ul>
+<li><p>登录页index.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/axios/dist/axios.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"username"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"login"</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"logout"</span>&gt;</span>Logout<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"getUser"</span>&gt;</span>GetUser<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"logs=[]"</span>&gt;</span>Clear Log<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- log --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(log, index) in logs"</span> <span class="attr">:key</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">                &#123;&#123; log &#125;&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 请求拦截器</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 判断是否存在token，如果存在token，每个http请求的Header都加上token</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// Bearer 是JWT认证的头部信息</span></span></span><br><span class="line">        axios.interceptors.request.use(</span><br><span class="line">            config =&gt; &#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">const</span> token = <span class="built_in">window</span>.localStorage.getItem(<span class="string">"token"</span>)</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (token) &#123;</span></span><br><span class="line"><span class="javascript">                    config.headers.common[<span class="string">"Authorization"</span>] = <span class="string">"Bearer "</span> + token</span></span><br><span class="line">                &#125;</span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> config</span></span><br><span class="line">            &#125;,</span><br><span class="line">            err =&gt; &#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err)</span></span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line">        axios.interceptors.response.use(</span><br><span class="line">            response =&gt; &#123;</span><br><span class="line"><span class="javascript">                app.logs.push(<span class="built_in">JSON</span>.stringify(response.data));</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> response;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            err =&gt; &#123;</span><br><span class="line"><span class="javascript">                app.logs.push(<span class="built_in">JSON</span>.stringify(response.data));</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</span></span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">"#app"</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="javascript">                username: <span class="string">"test"</span>,</span></span><br><span class="line"><span class="javascript">                password: <span class="string">"test"</span>,</span></span><br><span class="line">                logs: []</span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line"><span class="javascript">                login: <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">const</span> res = <span class="keyword">await</span> axios.post(<span class="string">"/users/login-token"</span>, &#123;</span></span><br><span class="line"><span class="javascript">                        username: <span class="keyword">this</span>.username,</span></span><br><span class="line"><span class="javascript">                        password: <span class="keyword">this</span>.password</span></span><br><span class="line">                    &#125;)</span><br><span class="line"><span class="javascript">                    localStorage.setItem(<span class="string">"token"</span>, res.data.token)</span></span><br><span class="line">                &#125;,</span><br><span class="line"><span class="javascript">                logout: <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    localStorage.removeItem(<span class="string">"token"</span>)</span></span><br><span class="line">                &#125;,</span><br><span class="line"><span class="javascript">                getUser: <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">await</span> axios.get(<span class="string">"/users/getUser-token"</span>)</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>登录接口(服务端)</p>
+</li>
+<li><p>安装依赖： npm i jsonwebtoken koa-jwt -S</p>
+</li>
+<li><p>接口编写 index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>)</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)()</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>((<span class="string">'koa-static'</span>))</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'koa-bodyparser'</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"><span class="keyword">const</span> jwt = <span class="built_in">require</span>(<span class="string">'jsonwebtoken'</span>)</span><br><span class="line"><span class="keyword">const</span> jwtAuth = <span class="built_in">require</span>(<span class="string">'koa-jwt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> secret = <span class="string">"it's a secret"</span></span><br><span class="line"></span><br><span class="line">app.use(bodyParser())</span><br><span class="line">app.use(<span class="keyword">static</span>(__dirname + <span class="string">'/'</span>))</span><br><span class="line"></span><br><span class="line">router.post(<span class="string">"/users/login-token"</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; body &#125; = ctx.request</span><br><span class="line">    <span class="comment">// 登录逻辑, 验证账户和密码，假设验证成功</span></span><br><span class="line">    <span class="comment">// 设置session</span></span><br><span class="line">    <span class="keyword">const</span> userinfo = body.username</span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">        message: <span class="string">"登录成功"</span>,</span><br><span class="line">        user: userinfo,</span><br><span class="line">        <span class="comment">// 服务器端生成的token 返回给客户端</span></span><br><span class="line">        token: jwt.sign(&#123;</span><br><span class="line">            data: userinfo,</span><br><span class="line">            <span class="comment">// 设置token过期时间，一小时后，秒为单位</span></span><br><span class="line">            exp: <span class="built_in">Math</span>.floor(<span class="built_in">Date</span>.now() / <span class="number">1000</span>) + <span class="number">10</span> * <span class="number">60</span></span><br><span class="line">        &#125;, secret)</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">router.get(<span class="string">"/users/getUser-token"</span>, jwtAuth(&#123;secret&#125;), <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="comment">// 验证通过， state.user</span></span><br><span class="line">    <span class="built_in">console</span>.log(ctx.state.user)</span><br><span class="line">    <span class="comment">// 获取session</span></span><br><span class="line">    ctx.body = &#123;</span><br><span class="line">        message: <span class="string">"获取数据成功"</span>,</span><br><span class="line">        userinfo: ctx.state.user.data</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">app.use(router.routes())</span><br><span class="line">app.use(router.allowedMethods())</span><br><span class="line">app.listen(<span class="number">3000</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Oauth第三方授权登录"><a href="#Oauth第三方授权登录" class="headerlink" title="Oauth第三方授权登录"></a>Oauth第三方授权登录</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>第三方登录主要是基于OAuth 2.0。OAuth协议为用户资源的授权提供了一个安全的，开放而又简易的标准。与以往的授权方式不同之处是OAuth的授权不会使第三方触及到用户的账号信息（如用户名和密码），即第三方无需使用用户的用户名与密码就可以申请获得该用户资源的授权，因此OAuth是安全的。</p>
+<h3 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h3><p>使用github提供的第三方登入接口。</p>
+<h3 id="配置github，申请一个-OAuth-App"><a href="#配置github，申请一个-OAuth-App" class="headerlink" title="配置github，申请一个 OAuth App"></a>配置github，申请一个 OAuth App</h3><ol>
+<li>先注册登录github</li>
+<li>点击头像下的Settings —&gt; 点击Developer settings —&gt; 点击右侧 New OAuth App</li>
+<li>填写申请app的配置:Application name,Homepage URL,Application description,Authorization callback URL</li>
+<li>最重要的两项就是Homepage URL和 Authorization callback URL,<br>Homepage URL 这个是后续使用授权的URL，也就是项目目录根地址。</li>
+<li>Authorization callback URL 授权成功后的回调地址，github会重定向到这个URL并携带code，获取 code后 我们才能继续获取access_token,在进一步获取用户信息。</li>
+</ol>
+<h3 id="授权登录步骤"><a href="#授权登录步骤" class="headerlink" title="授权登录步骤"></a>授权登录步骤</h3><ol>
+<li>服务器端重定向 <a href="https://github.com/login/oauth/authorize" target="_blank" rel="noopener">https://github.com/login/oauth/authorize</a></li>
+<li>github端重定向到服务端，并携带了code，保存code</li>
+<li>根据code请求github接口<a href="https://github.com/login/oauth/access_token" target="_blank" rel="noopener">https://github.com/login/oauth/access_token</a>, 获取access_token</li>
+<li>根据access_token请求github接口<a href="https://api.github.com/user?access_token=xxxxxxxxxxxx" target="_blank" rel="noopener">https://api.github.com/user?access_token=xxxxxxxxxxxx</a> ,获取用户信息</li>
+</ol>
+<h3 id="登录页面-index-html"><a href="#登录页面-index-html" class="headerlink" title="登录页面 index.html"></a>登录页面 index.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/axios/dist/axios.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/github/login"</span>&gt;</span>login with github<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="登录接口-服务器-index-js"><a href="#登录接口-服务器-index-js" class="headerlink" title="登录接口(服务器)index.js"></a>登录接口(服务器)index.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>)</span><br><span class="line"><span class="keyword">const</span> router = <span class="built_in">require</span>(<span class="string">'koa-router'</span>)()</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">static</span> = <span class="built_in">require</span>(<span class="string">'koa-static'</span>)</span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</span><br><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">'axios'</span>)</span><br><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>)</span><br><span class="line"></span><br><span class="line">app.use(<span class="keyword">static</span>(__dirname, <span class="string">'/'</span>))</span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    client_id: <span class="string">'0beb87ba1a33ceeb41ff'</span>,</span><br><span class="line">    client_secret: <span class="string">'5b38b93be974d56220dd497dbec1c5d80f4f183b'</span></span><br><span class="line">&#125;</span><br><span class="line">router.get(<span class="string">'/github/login'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="comment">// 重定向到认证接口，并配置参数</span></span><br><span class="line">    <span class="keyword">var</span> path = <span class="string">"https://github.com/login/oauth/authorize"</span></span><br><span class="line">    path += <span class="string">'?client_id='</span> + config.client_id</span><br><span class="line">    <span class="comment">// 转发到授权服务器</span></span><br><span class="line">    ctx.redirect(path)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/github/callback'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'callback..'</span>)</span><br><span class="line">    <span class="comment">// github 那边重定向到当前url下，并返回了code</span></span><br><span class="line">    <span class="keyword">const</span> code = ctx.query.code</span><br><span class="line">    <span class="keyword">const</span> params = &#123;</span><br><span class="line">        client_id: config.client_id,</span><br><span class="line">        client_secret: config.client_secret,</span><br><span class="line">        code: code</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 向github的接口发送请求，获取access_token</span></span><br><span class="line">    <span class="keyword">let</span> res = <span class="keyword">await</span> axios.post(<span class="string">'https://github.com/login/oauth/access_token'</span>, params)</span><br><span class="line">    <span class="keyword">const</span> access_token = querystring.parse(res.data).access_token</span><br><span class="line">    <span class="comment">// 再拿access_token去请求用户信息。</span></span><br><span class="line">    res = <span class="keyword">await</span> axios.get(<span class="string">'https://api.github.com/user?access_token='</span> + access_token)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'userAccess: '</span>, res.data)</span><br><span class="line">    ctx.body = <span class="string">`</span></span><br><span class="line"><span class="string">        &lt;h1&gt;Hello <span class="subst">$&#123;res.data.login&#125;</span>&lt;/h1&gt;</span></span><br><span class="line"><span class="string">        &lt;img src="<span class="subst">$&#123;res.data.avatar_url&#125;</span>" alt=""&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.use(router.routes())</span><br><span class="line">app.use(router.allowedMethods())</span><br><span class="line">app.listen(<span class="number">3000</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/10/cookie-session-token/" data-id="ckh44mztz00114sv2wfn8dj1y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/18/nginx/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          nginx
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/06/单点登陆/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">单点登陆SSO</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

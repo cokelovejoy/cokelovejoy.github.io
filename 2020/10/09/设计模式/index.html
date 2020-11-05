@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>设计模式 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开篇程序员应该提升的能力。  能用健壮的代码去解决具体的问题。 能用抽象的思维去应对复杂的系统。 能用工程化的思想去规划更大规模的业务。  设计模式设计模式就是软件设计过程中一系列问题经典的解决办法的总结，形象的说法就是数学的解题模板。 设计原则SOLID设计原则是设计模式的指导理论，它可以帮助我们规避不良的软件设计。SOLID分别指:   单一功能原则 开放封闭原则 里氏替换原则 接口隔离原则">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://yoursite.com/2020/10/09/设计模式/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="开篇程序员应该提升的能力。  能用健壮的代码去解决具体的问题。 能用抽象的思维去应对复杂的系统。 能用工程化的思想去规划更大规模的业务。  设计模式设计模式就是软件设计过程中一系列问题经典的解决办法的总结，形象的说法就是数学的解题模板。 设计原则SOLID设计原则是设计模式的指导理论，它可以帮助我们规避不良的软件设计。SOLID分别指:   单一功能原则 开放封闭原则 里氏替换原则 接口隔离原则">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-05T00:44:46.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="开篇程序员应该提升的能力。  能用健壮的代码去解决具体的问题。 能用抽象的思维去应对复杂的系统。 能用工程化的思想去规划更大规模的业务。  设计模式设计模式就是软件设计过程中一系列问题经典的解决办法的总结，形象的说法就是数学的解题模板。 设计原则SOLID设计原则是设计模式的指导理论，它可以帮助我们规避不良的软件设计。SOLID分别指:   单一功能原则 开放封闭原则 里氏替换原则 接口隔离原则">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/09/设计模式/" class="article-date">
+  <time datetime="2020-10-09T10:15:25.000Z" itemprop="datePublished">2020-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      设计模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="开篇"><a href="#开篇" class="headerlink" title="开篇"></a>开篇</h1><p>程序员应该提升的能力。</p>
+<ol>
+<li>能用健壮的代码去解决具体的问题。</li>
+<li>能用抽象的思维去应对复杂的系统。</li>
+<li>能用工程化的思想去规划更大规模的业务。</li>
+</ol>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p>设计模式就是软件设计过程中一系列问题经典的解决办法的总结，形象的说法就是数学的解题模板。</p>
+<h1 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h1><p>SOLID设计原则是设计模式的指导理论，它可以帮助我们规避不良的软件设计。SOLID分别指: </p>
+<ol>
+<li>单一功能原则</li>
+<li>开放封闭原则</li>
+<li>里氏替换原则</li>
+<li>接口隔离原则</li>
+<li>依赖反转原则</li>
+</ol>
+<h1 id="设计模式的核心思想-封装变化"><a href="#设计模式的核心思想-封装变化" class="headerlink" title="设计模式的核心思想-封装变化"></a>设计模式的核心思想-封装变化</h1><p>需求变化，业务功能变化都是导致软件设计复杂的原因，设计模式的出现就是为了解决变化，将变与不变分离，保证变化的部分灵活，不变的部分稳定。这个过程就叫封装变化，这样写出来的代码才是健壮的代码。</p>
+<h1 id="经典的23种设计模式"><a href="#经典的23种设计模式" class="headerlink" title="经典的23种设计模式"></a>经典的23种设计模式</h1><p>经典的23种设计模式按照”创建型”，”行为型”， “结构型”划分。<br>无论是创建型，行为型，结构性都是用自己的方式去封装不同类型的变化。<br>创建型模式封装了创建对象过程中的变化。<br>结构性模式封装的是对象之间组合方式的变化，目的是在于灵活的表达对象间的配合与依赖关系。<br>行为型模式是将对象的行为进行抽离，确保更安全，更方便地对行为进行更改。</p>
+<p>封装变化，封装的是软件中的不稳定的因素，提前抽离变化，方便后续扩展。</p>
+<h2 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h2><ol>
+<li>单例模式</li>
+<li>原型模式</li>
+<li>构造器模式</li>
+<li>工厂模式</li>
+<li>抽象工厂模式</li>
+</ol>
+<h2 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h2><ol>
+<li>桥接模式</li>
+<li>外观模式</li>
+<li>组合模式</li>
+<li>装饰器模式</li>
+<li>适配器模式</li>
+<li>代理模式</li>
+<li>享元模式</li>
+</ol>
+<h2 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h2><ol>
+<li>迭代器模式</li>
+<li>解释器模式</li>
+<li>观察者模式</li>
+<li>中介者模式</li>
+<li>访问者模式</li>
+<li>状态模式</li>
+<li>备忘录模式</li>
+<li>策略模式</li>
+<li>模板方法模式</li>
+<li>职责链模式</li>
+<li>命令模式</li>
+</ol>
+<h1 id="JavaScript中的设计模式的原理与应用"><a href="#JavaScript中的设计模式的原理与应用" class="headerlink" title="JavaScript中的设计模式的原理与应用"></a>JavaScript中的设计模式的原理与应用</h1><h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><p>在 JavaScript 中，使用构造函数去初始化对象，就是应用了构造器模式。本质上是去抽象了每个对象实例的变与不变。构造器模式解决多个实例的问题。</p>
+<p>如下 User 就是一个构造器，由 User 构造器初始化新创建的对象的过程就是构造器模式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age =age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user1 = <span class="keyword">new</span> User(<span class="string">'coke'</span>, <span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂模式就是将创建对象的过程单独封装。在写了大量构造函数、调用了大量的 new时，就需要使用工厂模式来简化代码。<br>工厂模式解决多个类的问题。工厂模式的目的，就是为了实现无脑传参。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name, age, career, work</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.career = career;</span><br><span class="line">    <span class="keyword">this</span>.work = work;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Factory</span>(<span class="params">name, age, career</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> work</span><br><span class="line">    <span class="keyword">switch</span>(career) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'coder'</span>:</span><br><span class="line">            work = [<span class="string">'写代码'</span>， <span class="string">'修bug'</span>];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'test'</span>:</span><br><span class="line">            work = [<span class="string">'找开发'</span>];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'product manager'</span>:</span><br><span class="line">            work = [<span class="string">'写文档'</span>];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'boss'</span>:</span><br><span class="line">            work = [<span class="string">'喝喝茶'</span>];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> User(name, age, career, work);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>抽象工厂模式针对多个工厂时，要遵循开放封闭原则，即可以扩展，不可以修改。<br>抽象工厂模式的定义，是围绕一个超级工厂创建其他工厂。其中有四个关键的角色:抽象工厂(抽象类，不能用于生成具体实例)，具体工厂(用于还说呢工程产品族里的一个具体的产品)，抽象产品(抽象类，不能用于生成具体实例)，具体产品(用于生成产品族里的一个具体的产品所依赖的更细粒度的的产品)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 抽象工厂不干活</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MobilePhoneFactory</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 提供操作系统的接口</span></span><br><span class="line">    ceateOs() &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"抽象工厂方法不允许直接调用， 需要将我重写！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 提供硬件的接口</span></span><br><span class="line">    createHardWare() &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"抽象工厂方法不允许直接调用， 许哟啊将我重写！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 具体工厂干活</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FakeStarFactory</span> <span class="keyword">extends</span> <span class="title">MobilePhoneFactory</span> </span>&#123;</span><br><span class="line">    createOS() &#123;</span><br><span class="line">        <span class="comment">// 提供安卓系统实例</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> AndroidOS();</span><br><span class="line">    &#125;</span><br><span class="line">    createHardWare() &#123;</span><br><span class="line">        <span class="comment">// 提供高通硬件实例</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> QualcommHardWare();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  抽象产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OS</span> </span>&#123;</span><br><span class="line">    controlHardWare() &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"抽象产品方法不允许直接调用，需要重写！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 具体产品类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AndroidOS</span> <span class="keyword">extends</span> <span class="title">OS</span> </span>&#123;</span><br><span class="line">    controlHardWare() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"使用安卓的方式操作硬件"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AppleOS</span> <span class="title">extend</span> <span class="title">OS</span> </span>&#123;</span><br><span class="line">    controlHardWare() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"使用苹果的方式操作硬件"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 手机</span></span><br><span class="line"><span class="keyword">const</span> myPhone = <span class="keyword">new</span> FakeStarFactory();</span><br><span class="line"><span class="comment">// 操作系统</span></span><br><span class="line"><span class="keyword">const</span> myOS = myPhone.createOS();</span><br></pre></td></tr></table></figure>
+
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>单例模式的特点，必须保证一个类只有一个实例，并提供一个可访问它的接口，这样的模式就是单例模式。</p>
+<h3 id="单例模式实现原理"><a href="#单例模式实现原理" class="headerlink" title="单例模式实现原理"></a>单例模式实现原理</h3><p>单例模式实现的关键是一个类只有一个实例。不管我们尝试去创建多少次，它都只给你返回第一次所创建的那唯一的一个实例。因此就需要构造函数能自己判断是否已经创建一个实例了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleDog</span> </span>&#123;</span><br><span class="line">    show() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"我是一个单例对象"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> getInstance() &#123;</span><br><span class="line">        <span class="comment">// 判断是否已经new过1个实例</span></span><br><span class="line">        <span class="keyword">if</span> (!SingleDog.instance) &#123;</span><br><span class="line">            <span class="comment">// 如果这个唯一的实例不存在，那么先创建它</span></span><br><span class="line">            SingleDog.instance = <span class="keyword">new</span> SingleDog();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 唯一的实例已经存在</span></span><br><span class="line">        <span class="keyword">return</span> SingleDog.instance</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> s1 = SingleDog.getInstance();</span><br><span class="line"><span class="keyword">const</span> s2 = SingleDog.getInstance();</span><br><span class="line"><span class="built_in">console</span>.log(s1 === s2);</span><br><span class="line"><span class="comment">// 闭包实现，利用闭包保存了私有变量的特性</span></span><br><span class="line"><span class="comment">// instance 作为私有变量一直存在内存中，用于记录唯一的实例。</span></span><br><span class="line">SingleDog.getInstance = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 定义自由变量instance，模拟私有变量。</span></span><br><span class="line">    <span class="keyword">let</span> instance = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// instance是否为null;</span></span><br><span class="line">        <span class="keyword">if</span> (!instance) &#123;</span><br><span class="line">            <span class="comment">// 为空，新创建一个实例</span></span><br><span class="line">            instance = <span class="keyword">new</span> SingleDog();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 不为空，直接返回</span></span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="keyword">const</span> s1 = SingleDog.getInstance();</span><br><span class="line"><span class="keyword">const</span> s2 = SingleDog.getInstance();</span><br><span class="line"><span class="built_in">console</span>.log(s1 === s2);</span><br></pre></td></tr></table></figure>
+
+<h3 id="单例模式的应用实践-Vuex"><a href="#单例模式的应用实践-Vuex" class="headerlink" title="单例模式的应用实践-Vuex"></a>单例模式的应用实践-Vuex</h3><p>Vuex中所有的状态信息都保存在了一个唯一的数据源store对象中。<br>Vuex以插件的形式注入Vue中,Vuex内部实现了判断实例唯一性的install方法，如果不判断唯一性，每次注入Vuex，都会生成新的实例，也就无法实现记录状态信息的功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装vuex插件</span></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="comment">// 将store注入到Vue实例中</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    store</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Vuex 内部实现install方法，install方法在引入Vuex时会被执行</span></span><br><span class="line"><span class="keyword">let</span> Vue <span class="comment">// 这个Vue的作用和楼上的instance作用一样</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">install</span> (<span class="params">_Vue</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 判断传入的Vue实例对象是否已经被install过Vuex插件（是否有了唯一的state）</span></span><br><span class="line">  <span class="keyword">if</span> (Vue &amp;&amp; _Vue === Vue) &#123;</span><br><span class="line">    <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(</span><br><span class="line">        <span class="string">'[vuex] already installed. Vue.use(Vuex) should be called only once.'</span></span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 若没有，则为这个Vue实例对象install一个唯一的Vuex</span></span><br><span class="line">  Vue = _Vue</span><br><span class="line">  <span class="comment">// 将Vuex的初始化逻辑写进Vue的钩子函数里</span></span><br><span class="line">  applyMixin(Vue)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用单例模式实现一个Storage"><a href="#使用单例模式实现一个Storage" class="headerlink" title="使用单例模式实现一个Storage"></a>使用单例模式实现一个Storage</h3><p>实现Storage，使得该对象为单例，基于 localStorage 进行封装。实现方法 setItem(key,value) 和 getItem(key)。</p>
+<h3 id="使用单例模式实现一个状态弹框"><a href="#使用单例模式实现一个状态弹框" class="headerlink" title="使用单例模式实现一个状态弹框"></a>使用单例模式实现一个状态弹框</h3><h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/10/09/设计模式/" data-id="ckh44mzuy001n4sv21hsc7njj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/10/09/canvas基础/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          canvas
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/09/重识CSS/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">重识CSS</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

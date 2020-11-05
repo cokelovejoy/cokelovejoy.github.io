@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Docker | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Docker是什么?一次封装,到处执行(不用配置环境,任何环境下都能运行应用,极大简化部署)基于lunux的高效,敏捷,轻量级的容器(轻量虚拟)的方案  虚拟化技术完全虚拟化: VMware Workstation, VirtualBox硬件辅助虚拟化: InterVT, AMD-V超虚拟化技术: Xen操作系统级: Docker LXC容器  部署一个典型的前后端分离的系统前端工程化- Webp">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="http://yoursite.com/2020/02/25/Docker/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="Docker是什么?一次封装,到处执行(不用配置环境,任何环境下都能运行应用,极大简化部署)基于lunux的高效,敏捷,轻量级的容器(轻量虚拟)的方案  虚拟化技术完全虚拟化: VMware Workstation, VirtualBox硬件辅助虚拟化: InterVT, AMD-V超虚拟化技术: Xen操作系统级: Docker LXC容器  部署一个典型的前后端分离的系统前端工程化- Webp">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker">
+<meta name="twitter:description" content="Docker是什么?一次封装,到处执行(不用配置环境,任何环境下都能运行应用,极大简化部署)基于lunux的高效,敏捷,轻量级的容器(轻量虚拟)的方案  虚拟化技术完全虚拟化: VMware Workstation, VirtualBox硬件辅助虚拟化: InterVT, AMD-V超虚拟化技术: Xen操作系统级: Docker LXC容器  部署一个典型的前后端分离的系统前端工程化- Webp">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Docker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/25/Docker/" class="article-date">
+  <time datetime="2020-02-25T03:31:48.000Z" itemprop="datePublished">2020-02-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Docker是什么"><a href="#Docker是什么" class="headerlink" title="Docker是什么?"></a>Docker是什么?</h1><p>一次封装,到处执行(不用配置环境,任何环境下都能运行应用,极大简化部署)<br>基于lunux的高效,敏捷,轻量级的容器(轻量虚拟)的方案</p>
+<ul>
+<li><p>虚拟化技术<br>完全虚拟化: VMware Workstation, VirtualBox<br>硬件辅助虚拟化: InterVT, AMD-V<br>超虚拟化技术: Xen<br>操作系统级: Docker LXC容器</p>
+</li>
+<li><p>部署一个典型的前后端分离的系统<br>前端工程化- Webpack(Taro)<br>后端- Nodejs<br>数据库- MongoDB<br>Nginx- 静态服务, 反向代理</p>
+</li>
+<li><p>特点</p>
+</li>
+</ul>
+<ol>
+<li>高效的利用系统资源</li>
+<li>快速的启动时间</li>
+<li>一致的运行环境</li>
+<li>持续交付和部署</li>
+<li>更轻松的迁移</li>
+</ol>
+<h1 id="Docker-中的三个重要概念"><a href="#Docker-中的三个重要概念" class="headerlink" title="Docker 中的三个重要概念"></a>Docker 中的三个重要概念</h1><ol>
+<li>镜像Image<br>面向Docker的只读模板(类比 类的概念)</li>
+<li>容器Container<br>镜像的运行实例(类比 实例的概念)</li>
+<li>仓库(Registry)<br>存储镜像的服务器(类比 github代码仓库)</li>
+</ol>
+<h1 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h1><ol>
+<li>申请云服务器</li>
+<li>安装过程(将docker安装在云服务器上)</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># apt升级</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="comment"># 添加相关软件包</span></span><br><span class="line">sudo apt-get install \</span><br><span class="line">  apt-transport-https \</span><br><span class="line">  ca-certificates \</span><br><span class="line">  curl \</span><br><span class="line">  software-properties-common</span><br><span class="line"><span class="comment"># 下载软件包的合法性,需要添加软件源的 GPG 密钥</span></span><br><span class="line">curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"><span class="comment"># source.list 中添加 Docker 软件源</span></span><br><span class="line">sudo add-apt-repository \</span><br><span class="line">   <span class="string">"deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu \</span></span><br><span class="line"><span class="string">   <span class="variable">$(lsb_release -cs)</span> \</span></span><br><span class="line"><span class="string">   stable"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Docker CE</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce</span><br><span class="line"><span class="comment"># 启动 Docker CE</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br><span class="line">sudo systemctl start docker</span><br><span class="line"><span class="comment"># 建立 docker 用户组(附加)</span></span><br><span class="line">sudo groupadd docker  <span class="comment"># 添加docker用户组</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span> <span class="comment"># 将登陆用户加入到docker用户组中</span></span><br><span class="line">newgrp docker     <span class="comment"># 更新用户组</span></span><br><span class="line">docker ps    <span class="comment"># 测试docker命令是否可以正常使用</span></span><br><span class="line"><span class="comment"># Helloworld测试</span></span><br><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+
+<p>关于权限的问题:<br>docker进程使用Unix Socket而不是TCP端口。而默认情况下，Unix socket属于root用户，需要root权限才能访问。<br>docker守护进程启动的时候，会默认赋予名字为docker的用户组读写Unix socket的权限，因此只要创建docker用户组，并将当前用户加入到docker用户组中，那么当前用户就有权限访问Unix socket了，进而也就可以执行docker相关命令.<br>3. 镜像加速</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+
+<p>写入如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;registry-mirrors&quot;: [</span><br><span class="line">        &quot;https://dockerhub.azk8s.cn&quot;,</span><br><span class="line">        &quot;https://reg-mirror.qiniu.com&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重启docker:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h1 id="Docker常用命令"><a href="#Docker常用命令" class="headerlink" title="Docker常用命令"></a>Docker常用命令</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载镜像：docker pull &lt;镜像名:tag&gt;    如：下载centos镜像</span></span><br><span class="line">docker pull centos</span><br><span class="line">docker pull sameersbn/redmine:latest</span><br><span class="line"><span class="comment"># 查看已下载镜像</span></span><br><span class="line">docker images</span><br><span class="line"><span class="comment"># 删除容器</span></span><br><span class="line">docker rm &lt;容器名 or ID&gt;</span><br><span class="line"><span class="comment"># 查看容器日志</span></span><br><span class="line">docker logs -f &lt;容器名 or ID&gt;</span><br><span class="line"><span class="comment"># 查看正在运行的容器</span></span><br><span class="line">docker ps</span><br><span class="line"><span class="comment"># 查看所有的容器，包括已经停止的。</span></span><br><span class="line">docker ps -a </span><br><span class="line"><span class="comment"># 删除所有容器</span></span><br><span class="line">docker rm $(docker ps -a -q)</span><br><span class="line"><span class="comment"># 停止、启动、杀死指定容器</span></span><br><span class="line">docker start &lt;容器名 or ID&gt; <span class="comment"># 启动容器</span></span><br><span class="line">docker stop &lt;容器名 or ID&gt; <span class="comment"># 启动容器</span></span><br><span class="line">docker <span class="built_in">kill</span> &lt;容器名 or ID&gt; <span class="comment"># 杀死容器</span></span><br><span class="line"><span class="comment"># 后台运行 docker run -d &lt;Other Parameters&gt;</span></span><br><span class="line">docker run -d -p 127.0.0.1:33301:22 centos6-ssh</span><br><span class="line"><span class="comment"># 暴露端口： 一共有三种形式进行端口映射</span></span><br><span class="line">docker -p ip:hostPort:containerPort <span class="comment"># 映射指定地址的主机端口到容器端口</span></span><br><span class="line"><span class="comment"># 例如：docker -p 127.0.0.1:3306:3306 映射本机3306端口到容器的3306端口</span></span><br><span class="line">docker -p ip::containerPort <span class="comment"># 映射指定地址的任意可用端口到容器端口</span></span><br><span class="line"><span class="comment"># 例如：docker -p 127.0.0.1::3306 映射本机的随机可用端口到容器3306端口</span></span><br><span class="line">docer -p hostPort:containerPort <span class="comment"># 映射本机的指定端口到容器的指定端口</span></span><br><span class="line"><span class="comment"># 例如：docker -p 3306:3306 # 映射本机的3306端口到容器的3306端口</span></span><br><span class="line"><span class="comment"># 映射数据卷</span></span><br><span class="line">docker -v /home/data:/opt/data <span class="comment"># 这里/home/data 指的是宿主机的目录地址，后者则是容器的目录地址</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="SSH-远程操作服务器"><a href="#SSH-远程操作服务器" class="headerlink" title="SSH 远程操作服务器"></a>SSH 远程操作服务器</h1><p>SSH(Secure Shell Protocol),OpenSSH是SSH协议的免费开源实现.<br>OpenSSH包含服务端程序和客户端工具,用来加密远程控件和文件传输过程中的数据.因而该工具可以帮助我们在互联网上安全地访问远程服务器,因为SSH的所有连接都是加密的.OpenSSH提供了安全隧道功能和多种身份验证方法,支持SSH协议的所有版本.</p>
+<ol>
+<li><p>SSH连接配置<br>Linux下SSH分为客户端openssh-client和服务器openssh-server.客户端的SSH程序是用SSH来连接别的电脑的.服务器的SSH程序是让别的电脑通过SSH连接本机的.(客户端openssh-client通常Ubuntu会默认安装)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-client <span class="comment"># 本地主机运行此条，实际上通常是默认安装client端程序的</span></span><br><span class="line">sudo apt install openssh-server <span class="comment"># 在被连接的服务器运行此条命令安装</span></span><br><span class="line">sudo service ssh start <span class="comment"># 在被连接的服务器启动ssh</span></span><br><span class="line">systemctl restart sshd.service <span class="comment">#重启ssh 服务</span></span><br><span class="line">sudo ps -e |grep ssh <span class="comment"># 查看是否启动ssh</span></span><br><span class="line">ifconfig <span class="comment"># 查看主机ip</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地主机连接服务器<br>本机上运行以下命令来连接远程服务器.使用默认的端口:22</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ssh username@111.229.83.147</span><br><span class="line"><span class="comment"># 如果远程服务器的SSH服务不是使用22端口,那么SSH链接时则需要用-p指定端口（如258端口）</span></span><br><span class="line">ssh -p 258 username@111.229.83.147</span><br><span class="line"><span class="comment"># 远程服务其配置了密钥 使用密钥登陆("home/richard/ssh_key"为密钥的绝对路径)</span></span><br><span class="line">ssh -i <span class="string">"/home/richard/ssh_key"</span> ubuntu@192.168.11.123</span><br><span class="line"><span class="comment"># 退出远程服务器</span></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地主机与远程服务器主机互传文件</p>
+</li>
+</ol>
+<ul>
+<li><p>下载到本地</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">scp coke@192.168.1.100:~/Desktop/a.txt ./Desktop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载整个目录</span></span><br><span class="line">scp -r username@serverip:/sever_path  /local_path</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上传文件到远程服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定端口用大写P</span></span><br><span class="line">scp -P 258 test.txt john@192.168.1.100:~/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上传整个目录</span></span><br><span class="line">scp -r /local_dir username@serverip:/server_dir</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="4">
+<li>使用密钥<br>所谓”公钥登录”，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。</li>
+</ol>
+<ul>
+<li>生成密钥对<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span> </span><br><span class="line"><span class="comment"># -t 表示选择的类型,类型为rsa一种非对称的加密算法(产生公钥和私钥).</span></span><br><span class="line"><span class="comment"># 如果ssh_public_key要绑定github,那么邮箱为注册github的邮箱</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>执行以后会在$HOME目录下生成一个.ssh文件夹,其中包含私钥文件id_rsa和公钥文件id_rsa.pub.</p>
+<ul>
+<li><p>复制公钥到服务器<br>在进行以下配置以后，再进行连接时,就可以免去口令(密码)的输入了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录远程服务器</span></span><br><span class="line">ssh yucicheung@10.170.11.147 </span><br><span class="line"><span class="comment"># 在服务器上创建.ssh文件夹,如果已经存在就跳过此步</span></span><br><span class="line">mkdir .ssh </span><br><span class="line"><span class="comment"># 为了保证.ssh文件夹的安全，应取消其他用户对文件夹的所有权限</span></span><br><span class="line">chmod 700 .ssh</span><br><span class="line"><span class="comment"># 退出登录</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"><span class="comment"># 本地主机的公钥复制到远程服务器,作为已认证密钥</span></span><br><span class="line">scp /home/richard/.ssh/id_rsa.pub ubuntu@192.168.0.1:/home/ubuntu/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改本地/etc/ssh/sshd_config文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"> </span><br><span class="line">RSAAuthentication yes      <span class="comment">#开启私钥验证</span></span><br><span class="line">PubkeyAuthentication yes   <span class="comment">#开启公钥验证</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Note: 在使用云服务器的时候(如腾讯云,可以在它的控制台自己启用ssh密钥),生成密钥之后,我们将它下载到本地,在之后通过ssh访问云服务器的时候使用如下命令.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 远程服务自己配置了密钥 本地下载密钥并保存,使用密钥登陆("home/richard/ssh_key"为本地密钥保存的绝对路径)</span></span><br><span class="line">ssh -i <span class="string">"/home/richard/ssh_key"</span> ubuntu@192.168.11.123</span><br></pre></td></tr></table></figure>
+
+<h1 id="简单的Nginx服务"><a href="#简单的Nginx服务" class="headerlink" title="简单的Nginx服务"></a>简单的Nginx服务</h1><ol>
+<li><p>拉取官方镜像 - 面向docker的只读模板</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>由指定镜像创建容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># www目录里面放一个index.html</span></span><br><span class="line">mkdir www</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'hello docker'</span> &gt;&gt; www/index.html</span><br><span class="line"><span class="comment"># 创建并启动容器 (由nginx 镜像 创建容器)</span></span><br><span class="line"><span class="comment"># -p 指定容器暴露80端口映射到真实主机的8000端口</span></span><br><span class="line"><span class="comment"># -v volume指定当前主机文件夹下文件挂载到容器的某目录下</span></span><br><span class="line">docker run -p 8000:80 -v <span class="variable">$PWD</span>/www:/usr/share/nginx/html nginx</span><br><span class="line"><span class="comment"># 后台启动 (-d detach 后台运行,会在终端输出这个容器的uuid)</span></span><br><span class="line">docker run -p 80:80 -v <span class="variable">$PWD</span>/www:/usr/share/nginx/html -d nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>容器操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ff6 是容器ID的前三个字母</span></span><br><span class="line"><span class="comment"># 启动容器</span></span><br><span class="line">docker start ff6</span><br><span class="line"><span class="comment"># 停止容器</span></span><br><span class="line">docker stop ff6 </span><br><span class="line"><span class="comment"># 重启容器</span></span><br><span class="line">docker restart ff6</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br><span class="line"><span class="comment"># 查看全部</span></span><br><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>伪终端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># exec 用于在运行中的容器中执行命令</span></span><br><span class="line"><span class="comment"># 选项</span></span><br><span class="line"><span class="comment"># -d 分离模式即在后台运行</span></span><br><span class="line"><span class="comment"># -i 即使没有附加也保持STDIN标准输入打开</span></span><br><span class="line"><span class="comment"># -t 分配一个伪终端 /bin/bash  shell 命令终端</span></span><br><span class="line">docker <span class="built_in">exec</span> -it ff6 /bin/bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除容器</span></span><br><span class="line">docker rm ff6</span><br><span class="line"><span class="comment"># 删除镜像</span></span><br><span class="line">docker rmi nginx</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="Dockerfile-定制镜像"><a href="#Dockerfile-定制镜像" class="headerlink" title="Dockerfile 定制镜像"></a>Dockerfile 定制镜像</h1><p>镜像的定制实际上就是定制每一层所添加的配置,文件.如果我们可以把每一层修改,安装,构建,操作的命令都写入一个脚本.用这个脚本来构建,定制镜像,那么之前提及的无法重复的问题,镜像构建透明性的问题,体积问题就都会解决.这个脚本就是Dockerfile.</p>
+<p>总结: 脚本创建镜像</p>
+<h2 id="Dockerfile-脚本常用指令"><a href="#Dockerfile-脚本常用指令" class="headerlink" title="Dockerfile 脚本常用指令"></a>Dockerfile 脚本常用指令</h2><ol>
+<li><p>FROM<br>指明 构建的新镜像来自于哪个基础镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FROM nginx:latest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RUN<br>构建镜像时运行的Shell命令,这个shell命令是在docker进程内执行的,不是宿主机上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RUN <span class="built_in">echo</span> <span class="string">'&lt;h1&gt;Hello world&lt;/h1&gt;'</span> &gt; /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CMD<br>启动容器时,在容器内执行的Shell命令,不是宿主机上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CMD [<span class="string">"node"</span>, <span class="string">"app.js"</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ADD<br>拷贝当前宿主机下的文件或目录到镜像中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拷贝当前文件夹下的目录到 镜像的 /app目录下</span></span><br><span class="line">ADD . /app</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>WORKDIR<br>进入app目录下面,类似cd</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WORKDIR /data</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>EXPOSE<br>声明容器对外暴露的端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE 3000</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="定制自己的web服务器镜像"><a href="#定制自己的web服务器镜像" class="headerlink" title="定制自己的web服务器镜像"></a>定制自己的web服务器镜像</h2><h3 id="修改Dockerfile"><a href="#修改Dockerfile" class="headerlink" title="修改Dockerfile"></a>修改Dockerfile</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi Dockerfile</span></span><br><span class="line">FROM nginx:latest</span><br><span class="line">RUN <span class="built_in">echo</span> <span class="string">'&lt;h1&gt;Hello world&lt;/h1&gt;'</span> &gt; /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
+
+<h3 id="定制镜像"><a href="#定制镜像" class="headerlink" title="定制镜像"></a>定制镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建命名为nginx标签为richard 的nginx镜像 在当前文件夹下(这个.表示在当前文件下查找Dockerfile)</span></span><br><span class="line">docker build -t nginx:richard .</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>启动并生成一个docker容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 8000:80 nginx:richard</span><br></pre></td></tr></table></figure>
+
+<h2 id="定制Nodejs镜像"><a href="#定制Nodejs镜像" class="headerlink" title="定制Nodejs镜像"></a>定制Nodejs镜像</h2><h3 id="新建node项目"><a href="#新建node项目" class="headerlink" title="新建node项目"></a>新建node项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br><span class="line">npm i koa -s</span><br></pre></td></tr></table></figure>
+
+<p>app.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const Koa = require(&apos;koa&apos;)</span><br><span class="line">const app = new Koa()</span><br><span class="line">app.use(ctx =&gt; &#123;</span><br><span class="line">   ctx.body = &apos;Hello Docker&apos;</span><br><span class="line">&#125;)</span><br><span class="line">app.listen(3000, () =&gt; &#123;</span><br><span class="line">   console.log(&apos;app started at http://localhost:3000/&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="定制Dockerfile"><a href="#定制Dockerfile" class="headerlink" title="定制Dockerfile"></a>定制Dockerfile</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 制定 node镜像的版本</span></span><br><span class="line">FROM node:10-alpine</span><br><span class="line"><span class="comment"># 拷贝当前目录下面的文件到app目录下</span></span><br><span class="line">ADD . /app/</span><br><span class="line"><span class="comment"># 进入到app目录下面,类似cd</span></span><br><span class="line">WORKDIR /app</span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">RUN npm install</span><br><span class="line"><span class="comment"># 对外暴露的端口</span></span><br><span class="line">EXPOSE 3000</span><br><span class="line"><span class="comment"># 程序启动脚本</span></span><br><span class="line">CMD [<span class="string">"node"</span>, <span class="string">"app.js"</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="定制镜像-1"><a href="#定制镜像-1" class="headerlink" title="定制镜像"></a>定制镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建镜像</span></span><br><span class="line">docker build -t mynode . </span><br><span class="line"><span class="comment"># 根据镜像mynode创建并启动容器</span></span><br><span class="line">docker run -p 3000:3000 -d mynode</span><br></pre></td></tr></table></figure>
+
+<h2 id="定制PM2镜像"><a href="#定制PM2镜像" class="headerlink" title="定制PM2镜像"></a>定制PM2镜像</h2><p>pm2是node进程管理工具,可以用它来管理node进程,并查看node进程的状态,支持性能监控,进程守护,负载均衡等功能.</p>
+<h3 id="pm2-使用简介"><a href="#pm2-使用简介" class="headerlink" title="pm2 使用简介"></a>pm2 使用简介</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局安装</span></span><br><span class="line">npm install -g pm2</span><br><span class="line"><span class="comment"># 启动进程/应用 </span></span><br><span class="line">pm2 start bin/www 或 pm2 start app.js</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名进程/应用 </span></span><br><span class="line">pm2 start app.js --name wb123</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加进程/应用 watch </span></span><br><span class="line">pm2 start bin/www --watch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 结束进程/应用 </span></span><br><span class="line">pm2 stop www</span><br><span class="line"></span><br><span class="line"><span class="comment"># 结束所有进程/应用</span></span><br><span class="line">pm2 stop all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除进程/应用 </span></span><br><span class="line">pm2 delete www</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有进程/应用 </span></span><br><span class="line">pm2 delete all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有进程/应用 </span></span><br><span class="line">pm2 list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看某个进程/应用具体情况</span></span><br><span class="line">pm2 describe www</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看进程/应用的资源消耗情况 </span></span><br><span class="line">pm2 monit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看pm2的日志 </span></span><br><span class="line">pm2 logs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看某个进程/应用的日志</span></span><br><span class="line">pm2 logs www</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新启动进程/应用 </span></span><br><span class="line">pm2 restart www</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新启动所有进程/应用 </span></span><br><span class="line">pm2 restart all</span><br></pre></td></tr></table></figure>
+
+<h3 id="新建-dockerignore"><a href="#新建-dockerignore" class="headerlink" title="新建.dockerignore"></a>新建.dockerignore</h3><p>新建.dockerignore文件,增加如下代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker 会忽略 node_modules文件夹</span></span><br><span class="line">node_modules</span><br></pre></td></tr></table></figure>
+
+<h3 id="pm2-运行脚本"><a href="#pm2-运行脚本" class="headerlink" title="pm2 运行脚本"></a>pm2 运行脚本</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// process.yml</span></span><br><span class="line">apps:</span><br><span class="line"> - script : app.js</span><br><span class="line">   instances: <span class="number">2</span></span><br><span class="line">   watch : <span class="literal">true</span></span><br><span class="line">   env   :</span><br><span class="line">     NODE_ENV: production</span><br></pre></td></tr></table></figure>
+
+<h3 id="新建Dockerfile"><a href="#新建Dockerfile" class="headerlink" title="新建Dockerfile"></a>新建Dockerfile</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Dockerfile</span></span><br><span class="line">FROM keymetrics/pm2:latest-alpine</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">ADD . /usr/src/app</span><br><span class="line">RUN npm install</span><br><span class="line">EXPOSE 3000</span><br><span class="line"><span class="comment">#pm2在docker中使用命令为pm2-docker</span></span><br><span class="line">CMD [<span class="string">"pm2-runtime"</span>, <span class="string">"start"</span>, <span class="string">"process.yml"</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="定制镜像-2"><a href="#定制镜像-2" class="headerlink" title="定制镜像"></a>定制镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t mypm2 .</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建并启动容器"><a href="#创建并启动容器" class="headerlink" title="创建并启动容器"></a>创建并启动容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 3000:3000 -d mypm2</span><br></pre></td></tr></table></figure>
+
+<h1 id="Docker-compose"><a href="#Docker-compose" class="headerlink" title="Docker-compose"></a>Docker-compose</h1><p>Docker-compose 是Docker官方开源的项目,负责实现对Docker容器集群的快速编排(一次启动多个容器).</p>
+<h2 id="安装稳定版"><a href="#安装稳定版" class="headerlink" title="安装稳定版"></a>安装稳定版</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">$ sudo curl -L <span class="string">"https://github.com/docker/compose/releases/download/1.26.2/docker-compose-<span class="variable">$(uname -s)</span>-<span class="variable">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"><span class="comment"># 可执行</span></span><br><span class="line">$ sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"><span class="comment"># 软链接</span></span><br><span class="line">$ sudo ln -s /usr/<span class="built_in">local</span>/bin/docker-compose /usr/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<h2 id="新建docker-compose-yml文件"><a href="#新建docker-compose-yml文件" class="headerlink" title="新建docker-compose.yml文件"></a>新建docker-compose.yml文件</h2><p>docker-compose.yml文件描述了docker-compose按顺序启动的容器的相关配置.<br>例子如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">'3.1'</span></span><br><span class="line">services:</span><br><span class="line">    mongo: <span class="comment"># 服务名</span></span><br><span class="line">        image: mongo <span class="comment"># 镜像名 </span></span><br><span class="line">        restart: always</span><br><span class="line">        ports:</span><br><span class="line">            - 27017:27017</span><br><span class="line">    mongo-express:</span><br><span class="line">        image: mongo-express</span><br><span class="line">        restart: always</span><br><span class="line">        ports:</span><br><span class="line">        - 8000:8081</span><br></pre></td></tr></table></figure>
+
+<h2 id="docker-compose命令"><a href="#docker-compose命令" class="headerlink" title="docker-compose命令"></a>docker-compose命令</h2><p>必须在docker-compose.yml所在的文件夹下启动如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启</span></span><br><span class="line">docker-compose up</span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">docker-compse down</span><br></pre></td></tr></table></figure>
+
+<h1 id="构建前后端分离的项目"><a href="#构建前后端分离的项目" class="headerlink" title="构建前后端分离的项目"></a>构建前后端分离的项目</h1><p>项目基本目录结构: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-   backend  <span class="comment"># 后端代码</span></span><br><span class="line">        -models <span class="comment"># 数据库</span></span><br><span class="line">-   frontend <span class="comment"># 前端代码</span></span><br><span class="line">-   nginx/conf.d <span class="comment"># nginx 静态服务配置</span></span><br><span class="line">        -   docker.conf</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>nginx静态服务配置<br>/nginx/conf.d/default.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nginx 静态服务</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /var/www/html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.(gif|jpg|png)$ &#123;</span><br><span class="line">        root /static;</span><br><span class="line">        index index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 反向代理</span></span><br><span class="line">    <span class="comment"># http://app-pm2 是docker内部的一个子网域名 对应Docker-compose.yml里面的service 下面的每个 service name</span></span><br><span class="line">    location /api &#123;</span><br><span class="line">            proxy_pass  http://app-pm2:3000;</span><br><span class="line">            proxy_redirect     off;</span><br><span class="line">            proxy_set_header   Host             <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header   X-Real-IP        <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>docker-compose.yml<br>新建 /docker-compose.yml<br>之后使用docker-compose up 命令执行该脚本,完成创建镜像,启动容器的一系列工作.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">'3.1'</span></span><br><span class="line">services:</span><br><span class="line">  app-pm2:</span><br><span class="line">      container_name: app-pm2</span><br><span class="line">      <span class="comment">#构建容器</span></span><br><span class="line">      build: ./backend</span><br><span class="line">      ports:</span><br><span class="line">        - <span class="string">"3000:3000"</span></span><br><span class="line">  mongo:</span><br><span class="line">    image: mongo</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - 27017:27017</span><br><span class="line">  mongo-express:</span><br><span class="line">    image: mongo-express</span><br><span class="line">    restart: always </span><br><span class="line">    ports:</span><br><span class="line">      - 8081:8081</span><br><span class="line">  nginx:</span><br><span class="line">    restart: always</span><br><span class="line">    image: nginx</span><br><span class="line">    ports:</span><br><span class="line">      - 8091:80</span><br><span class="line">    volumes:</span><br><span class="line">      <span class="comment"># 将主机nginx的配置文件 挂载到 nginx镜像的目录下</span></span><br><span class="line">      - ./nginx/conf.d/:/etc/nginx/conf.d </span><br><span class="line">      <span class="comment"># 将主机前端代码 挂载 到 nginx镜像目录下</span></span><br><span class="line">      - ./frontend/dist:/var/www/html/</span><br><span class="line">      <span class="comment"># 将主机静态文件目录 挂载到nginx镜像的目录下</span></span><br><span class="line">      - ./static/:/static/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>process.yml<br>新建/backend/process.yml,<br>pm2启动之后要执行的脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">apps:</span><br><span class="line"> - script : server.js</span><br><span class="line">  instances: 2</span><br><span class="line">  watch : <span class="literal">true</span></span><br><span class="line">  env   :</span><br><span class="line">    NODE_ENV: production</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Dockerfile<br>新建/backend/Dockerfile用于定制PM2镜像,并执行一些命令.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">FROM keymetrics/pm2:latest-alpine</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">ADD . /usr/src/app</span><br><span class="line">RUN npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org/ &amp;&amp; \  </span><br><span class="line">   npm i</span><br><span class="line">EXPOSE 3000</span><br><span class="line"><span class="comment">#pm2在docker中使用命令为pm2-docker</span></span><br><span class="line">CMD [<span class="string">"pm2-runtime"</span>, <span class="string">"start"</span>,  <span class="string">"process.yml"</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.dockerignore<br>新建/backend/.dockerignore文件<br>用于添加文件到镜像时,忽略node_module文件夹.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_module</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据库配置<br>用于配置后端数据库<br>/backend/models/conf.js</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    url: <span class="string">"mongodb://mongo:27017"</span>, <span class="comment"># docker 内部的mongo域名, 对应docker-compose.yml中声明的名字</span></span><br><span class="line">    dbName: <span class="string">'taro'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="CI持续集成"><a href="#CI持续集成" class="headerlink" title="CI持续集成"></a>CI持续集成</h1><p>代码提交到代码库(production分支), 服务器就自动拉取代码更新.<br>使用到了github的webhooks,来获取github代码库的更新的相关信息,在执行服务器代码拉取最新代码,完成服务器代码部署.</p>
+<h2 id="webhooks"><a href="#webhooks" class="headerlink" title="webhooks"></a>webhooks</h2><ol>
+<li>在github的代码库里新建一个webhooks</li>
+<li>新建本地代码webhooks.js获取push操作.</li>
+<li>新建deploy-dev.sh 用于webhooks执行后,检查到代码库的更新,然后就会去执行deploy-dev.sh脚本,这个脚本会去执行部署到服务器的一些操作(拉取代码, 重新编译docker容器)</li>
+</ol>
+<h3 id="Add-webhook"><a href="#Add-webhook" class="headerlink" title="Add webhook"></a>Add webhook</h3><p>在github代码库里面添加webhooks<br>settings&gt;add webhooks</p>
+<ol>
+<li>Payload URL<br>接收webhook POST请求的服务器地址, 我们自己的web应用的url</li>
+<li>Content type<br>指定我们从github接收的数据类型.</li>
+<li>Secret<br>为保证安全设置的密码,在我们的web应用请求webhooks,也需要设置相同的secret.</li>
+<li>Events<br>Events是webhook的核心。只要对存储库执行某项操作，就会触发这些webhook，服务器的有效负载URL会拦截并执行操作。</li>
+</ol>
+<h3 id="服务端接受webhooks-回调信息-并做出操作"><a href="#服务端接受webhooks-回调信息-并做出操作" class="headerlink" title="服务端接受webhooks 回调信息,并做出操作"></a>服务端接受webhooks 回调信息,并做出操作</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> createHandler = <span class="built_in">require</span>(<span class="string">'github-webhook-handler'</span>)</span><br><span class="line"><span class="keyword">var</span> handler = createHandler(&#123; <span class="attr">path</span>: <span class="string">'/webhooks'</span>, <span class="attr">secret</span>: <span class="string">'myHashSecret'</span> &#125;)</span><br><span class="line"><span class="comment">// 上面的 secret 保持和 GitHub 后台设置的一致</span></span><br><span class="line"><span class="comment">// spawn 用于执行命令</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run_cmd</span>(<span class="params">cmd, args, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn;</span><br><span class="line">    <span class="keyword">var</span> child = spawn(cmd, args);</span><br><span class="line">    <span class="keyword">var</span> resp = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">    child.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">buffer</span>) </span>&#123; resp += buffer.toString(); &#125;);</span><br><span class="line">    child.stdout.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; callback(resp) &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// debug用</span></span><br><span class="line"><span class="comment">// run_cmd('sh', ['./deploy-dev.sh'], function(text)&#123; console.log(text) &#125;);</span></span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    handler(req, res, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">        res.statusCode = <span class="number">404</span></span><br><span class="line">        res.end(<span class="string">'no such location'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;).listen(<span class="number">7777</span>,() =&gt;&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'WebHooks Listern at 7777'</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">handler.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(<span class="string">'Error:'</span>, err.message)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">handler.on(<span class="string">'*'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Received *'</span>, event.payload.action);</span><br><span class="line">    <span class="comment">//   run_cmd('sh', ['./deploy-dev.sh'], function(text)&#123; console.log(text) &#125;);</span></span><br><span class="line">&#125;)</span><br><span class="line"> </span><br><span class="line">handler.on(<span class="string">'push'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Received a push event for %s to %s'</span>,</span><br><span class="line">        event.payload.repository.name,</span><br><span class="line">        event.payload.ref);</span><br><span class="line">        <span class="comment">// 分支判断</span></span><br><span class="line">        <span class="keyword">if</span>(event.payload.ref === <span class="string">'refs/heads/master'</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'deploy master..'</span>)</span><br><span class="line">            run_cmd(<span class="string">'sh'</span>, [<span class="string">'./deploy-dev.sh'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123; <span class="built_in">console</span>.log(text) &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">handler.on(<span class="string">'issues'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Received an issue event for % action=%s: #%d %s'</span>,</span><br><span class="line">        event.payload.repository.name,</span><br><span class="line">        event.payload.action,</span><br><span class="line">        event.payload.issue.number,</span><br><span class="line">        event.payload.issue.title)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/25/Docker/" data-id="ckh44mzsr00054sv21t2ktlqu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/06/单点登陆/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          单点登陆SSO
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/22/数据持久化之Mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据持久化之Mysql</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

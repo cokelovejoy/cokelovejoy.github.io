@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>数据持久化之Mysql | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Node.js中实现数据持久化的多种方法 文件系统fs 数据库   关系型数据库–mysql 文档型数据库–mongodb 键值对数据库–redis  文件系统原理: 将数据保存在json文件中,通过读取文件,修改文件的方式,完成数据持久化. 123456789101112131415161718192021222324252627282930313233343536373839404142434">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据持久化之Mysql">
+<meta property="og:url" content="http://yoursite.com/2020/01/22/数据持久化之Mysql/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="Node.js中实现数据持久化的多种方法 文件系统fs 数据库   关系型数据库–mysql 文档型数据库–mongodb 键值对数据库–redis  文件系统原理: 将数据保存在json文件中,通过读取文件,修改文件的方式,完成数据持久化. 123456789101112131415161718192021222324252627282930313233343536373839404142434">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.603Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据持久化之Mysql">
+<meta name="twitter:description" content="Node.js中实现数据持久化的多种方法 文件系统fs 数据库   关系型数据库–mysql 文档型数据库–mongodb 键值对数据库–redis  文件系统原理: 将数据保存在json文件中,通过读取文件,修改文件的方式,完成数据持久化. 123456789101112131415161718192021222324252627282930313233343536373839404142434">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数据持久化之Mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/22/数据持久化之Mysql/" class="article-date">
+  <time datetime="2020-01-22T06:36:07.000Z" itemprop="datePublished">2020-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据持久化之Mysql
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Node-js中实现数据持久化的多种方法"><a href="#Node-js中实现数据持久化的多种方法" class="headerlink" title="Node.js中实现数据持久化的多种方法"></a>Node.js中实现数据持久化的多种方法</h1><ul>
+<li>文件系统fs</li>
+<li>数据库</li>
+</ul>
+<ol>
+<li>关系型数据库–mysql</li>
+<li>文档型数据库–mongodb</li>
+<li>键值对数据库–redis</li>
+</ol>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><p>原理: 将数据保存在json文件中,通过读取文件,修改文件的方式,完成数据持久化.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现一个文件系统读写数据库</span></span><br><span class="line"><span class="comment">// readline 模块属于node核心模块,可以读取命令行的字符串</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>)</span><br><span class="line"><span class="keyword">const</span> readline = <span class="built_in">require</span>(<span class="string">"readline"</span>)</span><br><span class="line"><span class="keyword">const</span> rl = readline.createInterface(&#123;</span><br><span class="line">    input: process.stdin,</span><br><span class="line">    output: process.stdout</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">"./db.json"</span>, (err, data) =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> json =<span class="built_in">JSON</span>.parse(data)</span><br><span class="line">        <span class="built_in">console</span>.log(json[key])</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">set</span>(<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">'./db.json'</span>, (err, data) =&gt; &#123;</span><br><span class="line">        <span class="comment">// 空文件,设置为空对象</span></span><br><span class="line">        <span class="keyword">const</span> json = data ? <span class="built_in">JSON</span>.parse(data) : &#123;&#125;</span><br><span class="line">        json[key] = value</span><br><span class="line">        <span class="comment">// 重新写入文件</span></span><br><span class="line">        fs.writeFile(<span class="string">"./db.json"</span>, <span class="built_in">JSON</span>.stringify(json), err =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(err)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"写入成功!"</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line">rl.on(<span class="string">"line"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">input</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [op, key, value] = input.split(<span class="string">" "</span>)</span><br><span class="line">    <span class="keyword">if</span> (op == <span class="string">"get"</span>) &#123;</span><br><span class="line">        <span class="keyword">get</span>(key)</span><br><span class="line">    &#125; else if (op == "<span class="keyword">set</span>") &#123;</span><br><span class="line">        <span class="keyword">set</span>(key,value)</span><br><span class="line">    &#125; else if (op == 'quit') &#123;</span><br><span class="line">        rl.close()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"没有该操作"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">rl.on(<span class="string">"close"</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"程序结束"</span>)</span><br><span class="line">    process.exit(<span class="number">0</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><h3 id="nodeJS操作mysql"><a href="#nodeJS操作mysql" class="headerlink" title="nodeJS操作mysql"></a>nodeJS操作mysql</h3><h4 id="安装mysql模块"><a href="#安装mysql模块" class="headerlink" title="安装mysql模块"></a>安装mysql模块</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i mysql --save</span><br></pre></td></tr></table></figure>
+
+<h4 id="mysql模块基本使用"><a href="#mysql模块基本使用" class="headerlink" title="mysql模块基本使用"></a>mysql模块基本使用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    host: <span class="string">"localhost"</span>,</span><br><span class="line">    user: <span class="string">"zhyq"</span>,</span><br><span class="line">    password: <span class="string">"123456"</span>,</span><br><span class="line">    database: <span class="string">"test"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> connect = mysql.createConnection(config)</span><br><span class="line"></span><br><span class="line">connect.connect(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="keyword">throw</span> err</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"连接成功!"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CREATE_SQL = <span class="string">`CREATE TABLE IF NOT EXISTS test (</span></span><br><span class="line"><span class="string">    id INT NOT NULL AUTO_INCREMENT,</span></span><br><span class="line"><span class="string">    message VARCHAR(45) NULL,</span></span><br><span class="line"><span class="string">    PRIMARY KEY (id))`</span>;</span><br><span class="line"><span class="keyword">const</span> INSERT_SQL = <span class="string">`INSERT INTO test(message) VALUES(?)`</span>;</span><br><span class="line"><span class="keyword">const</span> SELECT_SQL = <span class="string">`SELECT * FROM test`</span>;</span><br><span class="line">connect.query(CREATE_SQL, err =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="keyword">throw</span> err;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 插入数据</span></span><br><span class="line">    connect.query(INSERT_SQL, <span class="string">"hello,world"</span>, (err, result) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="keyword">throw</span> err;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(result);</span><br><span class="line">        connect.query(SELECT_SQL, (err, results) =&gt; &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(results));</span><br><span class="line">            connect.end(); <span class="comment">// 若query语句有嵌套，则end需在此执行</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>ES6写法:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql2/promise'</span>)</span><br><span class="line">    <span class="comment">// 连接配置</span></span><br><span class="line">    <span class="keyword">const</span> cfg = &#123;</span><br><span class="line">        host: <span class="string">"localhost"</span>,</span><br><span class="line">        user: <span class="string">"zhyq"</span>,</span><br><span class="line">        password: <span class="string">"123456"</span>, <span class="comment">// 修改为你的密码</span></span><br><span class="line">        database: <span class="string">"test"</span> <span class="comment">// 请确保数据库存在</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> connection = <span class="keyword">await</span> mysql.createConnection(cfg)</span><br><span class="line">    <span class="keyword">let</span> ret = <span class="keyword">await</span> connection.execute(<span class="string">`</span></span><br><span class="line"><span class="string">        CREATE TABLE IF NOT EXISTS test (</span></span><br><span class="line"><span class="string">            id INT NOT NULL AUTO_INCREMENT,</span></span><br><span class="line"><span class="string">            message VARCHAR(45) NULL,</span></span><br><span class="line"><span class="string">        PRIMARY KEY (id))</span></span><br><span class="line"><span class="string">    `</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'create'</span>, ret)</span><br><span class="line">    ret = <span class="keyword">await</span> connection.execute(<span class="string">`</span></span><br><span class="line"><span class="string">            INSERT INTO test(message)</span></span><br><span class="line"><span class="string">            VALUES(?)</span></span><br><span class="line"><span class="string">    `</span>, [<span class="string">'ABC'</span>])</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'insert:'</span>, ret)</span><br><span class="line">    ret = <span class="keyword">await</span> connection.execute(<span class="string">`</span></span><br><span class="line"><span class="string">            SELECT * FROM test</span></span><br><span class="line"><span class="string">    `</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(ret[<span class="number">0</span>]))</span><br><span class="line">    <span class="comment">// console.log(ret[1])</span></span><br><span class="line">    connection.end()</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mysql详细教程"><a href="#Mysql详细教程" class="headerlink" title="Mysql详细教程"></a>Mysql详细教程</h3><p><a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/mysql/mysql-tutorial.html</a></p>
+<h3 id="Mysql命令行操作"><a href="#Mysql命令行操作" class="headerlink" title="Mysql命令行操作"></a>Mysql命令行操作</h3><h4 id="启动数据库服务（windows）"><a href="#启动数据库服务（windows）" class="headerlink" title="启动数据库服务（windows）"></a>启动数据库服务（windows）</h4><ol>
+<li><p>先进入mysql安装目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\mysql-8.0.11\bin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize --console</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行完成后会输出root用户的初始默认密码<br>APWCY5ws&amp;hjQ 就是初始密码，后续登录时需要用到，也可以在登录后修改密码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2018-04-20T02:35:05.464644Z 5 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: APWCY5ws&amp;hjQ</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动mysql 服务命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="登录Mysql"><a href="#登录Mysql" class="headerlink" title="登录Mysql"></a>登录Mysql</h4><p>当 MySQL 服务已经运行时，可以通过 MySQL 自带的客户端工具登录到 MySQL 数据库中, 首先打开命令提示符, 输入以下命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h localhost -u root -p</span><br></pre></td></tr></table></figure>
+
+<p>-h: 主机名<br>-u：用户名<br>-p：告诉服务器将会使用一个密码来登录, 如果所要登录的用户名密码为空, 可以忽略此选项。</p>
+<p>登录本机的Mysql数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+<p>若密码存在, 输入密码登录, 不存在则直接按回车登录。登录成功后你将会看到 Welcome to the MySQL monitor… 的提示语。</p>
+<p>然后命令提示符会一直以 mysq&gt; 加一个闪烁的光标等待命令的输入, 输入 exit 或 quit 退出登录。</p>
+<h4 id="管理Mysql的命令"><a href="#管理Mysql的命令" class="headerlink" title="管理Mysql的命令"></a>管理Mysql的命令</h4><ol>
+<li><p>列出 MySQL 数据库管理系统的数据库列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示全部：</span></span><br><span class="line">show databases;</span><br><span class="line"><span class="comment"># 显示部分：</span></span><br><span class="line">show databases like ‘匹配模式’;</span><br><span class="line"><span class="comment"># _:匹配当前位置单个字符</span></span><br><span class="line"><span class="comment"># %:匹配指定位置多个字符</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示数据库创建语句</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show create database 数据库名字;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>选择要操作的Mysql数据库，使用该命令后所有Mysql命令都只针对该数据库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use databaseName;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示指定数据库的数据表，使用该命令前需要使用 use 命令来选择要操作的数据库。<br>类似于数据库，每创建一个表会在对应的数据库下创建一些文件（与存储引擎有关）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示所有的表</span></span><br><span class="line">show tables;</span><br><span class="line"><span class="comment"># 匹配显示表</span></span><br><span class="line">show tables like ‘匹配模式’</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示数据表的属性，属性类型，主键信息 ，是否为 NULL，默认值等其他信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show columns from dataTableName;(表名)</span><br><span class="line"><span class="comment"># 效果等同于以下命令</span></span><br><span class="line">desc tableName;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示数据表的详细索引信息，包括PRIMARY KEY（主键）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show index from dataTableName;(表名)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="操作Mysql-库和表的命令"><a href="#操作Mysql-库和表的命令" class="headerlink" title="操作Mysql 库和表的命令"></a>操作Mysql 库和表的命令</h4><ol>
+<li>创建数据库<br>create database  数据库名字[库选项]<br>库选项：数据库的相关属性<br>字符集：charset  代表着当前数据库下的所有表存储的数据默认指定的字符集(如果不指定，那么采用DBMS默认的)<br>校对集：collate </li>
+</ol>
+<p>通过SQL指令创建的数据库-&gt;data-&gt;opt</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database 数据库名;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>删除数据库<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database 数据库名;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>删除之后对应的文件夹也会删除（opt也被删除）</p>
+<ol start="3">
+<li>修改数据库<br>修改的数据库字符集（库选项）：字符集和校对集<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter database 数据库名字 charset=字符集</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>修改成功后对应的opt会体现<br>4. 创建数据表<br>create table 表名(字段名 字段类型 [字段属性],…)[表选项]<br>    表必须放到对应的数据库下：有两种方式<br>        1  用‘.’连接：数据库.数据表<br>        2  在创建表之前先进入到具体的数据库：use 数据库名字<br>    表选项（表属性）：与数据库类似<br>    Engine：存储引擎（存储数据的方式，默认是innodb）<br>    Charset：字符集 只对当前自己表有效<br>    Collate：校对集</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table table_name (column_name column_type);</span><br></pre></td></tr></table></figure>
+
+<p>例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE IF NOT EXISTS `book`(</span><br><span class="line">   `id` INT UNSIGNED AUTO_INCREMENT,</span><br><span class="line">   `title` VARCHAR(100) NOT NULL,</span><br><span class="line">   `author` VARCHAR(40) NOT NULL,</span><br><span class="line">   `date` DATE,</span><br><span class="line">   PRIMARY KEY ( `id` )</span><br><span class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>复制已有表结构<br>从已有的表中复制一份（只复制结构，不复制数据）<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 新表名 like 表名</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>只要使用数据库.表名，就可以在任何数据库下访问其他数据库的表</p>
+<ol start="6">
+<li>常用的表操作</li>
+</ol>
+<ul>
+<li><p>显示表结构<br>本质：显示表中所包含的字段信息（名字，类型，属性等）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    Describe 表名</span><br><span class="line">	Desc 表名</span><br><span class="line">	show columns from 表名</span><br><span class="line">```	</span><br><span class="line">* 显示表创建语句</span><br><span class="line">```bash</span><br><span class="line">	show create table 表名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改表结构</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改表名：</span></span><br><span class="line">rename table 旧表名 to 新表名</span><br><span class="line"><span class="comment"># 设置表属性</span></span><br><span class="line"><span class="comment"># 若数据库已确定,不要轻易修改表选项(字符集影响不大)</span></span><br><span class="line">alert table 表名 表选项 [=] 值</span><br><span class="line"><span class="comment"># 新增字段</span></span><br><span class="line"><span class="comment"># 字段位置：字段想要存放的位置</span></span><br><span class="line"><span class="comment"># first：在xx之前（最前面），第一个字段</span></span><br><span class="line"><span class="comment"># after字段名：放在某个具体的字段之后（默认的）</span></span><br><span class="line">alter table 表名 add[column]新字段名 列类型 [列属性] [位置first/after字段名]</span><br><span class="line"><span class="comment"># 修改字段名：</span></span><br><span class="line">alter table 表名 change 旧字段名 新字段名 字段类型[列属性][新位置]</span><br><span class="line"><span class="comment"># 修改字段类型（属性）</span></span><br><span class="line">alter table 表名 modify 字段名 [新属性][新位置]</span><br><span class="line"><span class="comment"># 删除字段</span></span><br><span class="line">alter table 表名 drop 字段名</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="6">
+<li>删除数据表<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">drop table tableName;</span><br><span class="line"><span class="comment"># 可同时删除多个表</span></span><br><span class="line">drop table 表名[表名2...]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="操作数据的命令"><a href="#操作数据的命令" class="headerlink" title="操作数据的命令"></a>操作数据的命令</h4><p>本质是sql语句</p>
+<ol>
+<li>插入数据<br>数据是字符型，必须使用单引号或者双引号，如：”value”。<br>向表中指定字段插入数据<br>insert into 表名[(字段列表)] values (对应字段列表)</li>
+</ol>
+<p>向表中所有字段插入数据<br>inset into 表名 values(对应表结构)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_name ( field1, field2,...fieldN )</span><br><span class="line">                VALUES ( value1, value2,...valueN );</span><br></pre></td></tr></table></figure>
+
+<p>例子<br>NOW() 是一个 MySQL 函数，该函数返回日期和时间.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO book (runoob_title, runoob_author, submission_date)</span><br><span class="line">            VALUES (<span class="string">"mysql"</span>, <span class="string">"richard"</span>, NOW());</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>查询数据<br>查询表中全部数据:<br>select * from 表名  * 表示匹配所有字段<br>查询表中部分字段: (mysql中没有==符号）<br>select 字段列表/* from 表名 where 字段名 = 值<br>例子:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT column_name,column_name</span><br><span class="line">FROM table_name</span><br><span class="line">[WHERE Clause]</span><br><span class="line">[LIMIT N][ OFFSET M];</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>查询语句中使用一个或者多个表，表之间使用逗号(,)分割，并使用WHERE语句来设定查询条件。<br>SELECT 命令可以读取一条或者多条记录。<br>使用星号（*）来代替其他字段，SELECT语句会返回表的所有字段数据<br>使用 WHERE 语句来包含任何条件。<br>使用 LIMIT 属性来设定返回的记录数。<br>通过OFFSET指定SELECT语句开始查询的数据偏移量。默认情况下偏移量为0。</p>
+<p>例子<br>返回数据表 books 的所有记录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from books;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>更新数据<br>将数据进行修改(通常是修改部分字段数据)<br>updata 表名 set 字段名=新值[where条件]<br>如果没有where条件，那么所有的表中对应的那个字段都会被修改成统一值<br>例子:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPDATE table_name SET field1=new-value1, field2=new-value2</span><br><span class="line">[WHERE Clause];</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>同时更新一个或多个字段, WHERE 子句中指定任何条件。</p>
+<p>例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE books SET title=<span class="string">'学习 C++'</span> WHERE id=3;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>删除数据<br>delete from 表名 [where条件]<br>如果没有where条件，意味着系统会自动删除该表所有数据<br>例子:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM table_name [WHERE Clause];</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM books WHERE id=3;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>主键(primary key)</li>
+</ol>
+<ul>
+<li><p>创建主键<br>随表主键:<br>1：在需要当做主键的字段后面增加primary key<br>2：在所有字段之后增加primary key选项<br>表后增加:<br>alter table 表名 add primary key(字段)</p>
+</li>
+<li><p>查看主键<br>1：查看表结构<br>2：查看表的创建语句</p>
+</li>
+<li><p>删除主键<br>alter table 表名 drop primary key</p>
+</li>
+<li><p>复合主键<br>主键约束:<br>主键一旦确定，那么对对应的字段有数据要求<br>1：当前字段对应的数据不能为空<br>2：当前字段对应的数据不能有任何重复</p>
+</li>
+<li><p>主键分类<br>采用的是主键所对应的字段的业务意义分类<br>业务主键：主键所在的字段具有业务意义<br>逻辑主键：自然增长的整型</p>
+</li>
+<li><p>自动增长(auto_increment)<br>使用自动增长:<br>在字段之后增加一个属性 auto_increment<br>插入数据：触发自动增长，不能给定具体值</p>
+</li>
+</ul>
+<h4 id="高级数据操作"><a href="#高级数据操作" class="headerlink" title="高级数据操作"></a>高级数据操作</h4><ol>
+<li>新增数据</li>
+</ol>
+<ul>
+<li>多数据插入<br>  insert into表名 [(字段列表)] vlues(值列表),(值列表)…</li>
+<li>主键冲突解决方案<br>1：主键冲突更新<br>insert into 表名[(字段列表)]values(值列表)on duplicate key update 字段=新值<br>2：主键冲突替换<br>干掉原来的数据，重新插入进去<br>replace into[(字段列表)]values(值列表)</li>
+<li>蠕虫复制<br>insert into 表名 [(字段列表)]select*/字段列表 from 表</li>
+</ul>
+<ol start="2">
+<li>更新数据<br>1：通常一定是跟随条件更新<br>update 表名 set 字段名=新值 where 判断条件<br>2：如果没有条件，是全表更新数据，但可以用limit来限制更新数量<br>update 表名 set字段名=新值[where 判断条件]limit 数量</li>
+<li>删除数据<br>1：尽量不要全部删除，应该使用where进行判定<br>2：可以使用limit来限制要删除的具体数量</li>
+</ol>
+<p>delete删除数据的时候无法重置auto_increment<br>重置自增长的语法：<br>truncate 表名;  ==》drop===》create<br>4. 查询数据<br>select select选项 字段列表 from数据源 where条件 group by 分组 having 条件 order by 排序 limit限制</p>
+<ul>
+<li>select选项：系统该如何对待查询得到的结果<br>all：默认的 表示保存所有的记录<br>distinct：去重 只留一条</li>
+<li>字段列表：需要将同名的改为不同的<br>语法：字段名[as]别名</li>
+<li>from数据源<br>单表数据: from 表名<br>多表数据: from 表1,表2…….<br>动态数据: from (select 字段列表 from表)as 别名</li>
+<li>where子句</li>
+<li>group by子句<br>分组统计: group by 字段名<br>多分组:   group by字段1,字段2;<br>分组排序 (默认是升序):     group by[asc|desc],字段[dsc|desc]<br>回溯统计: group by 字段[asc|desc]with rollup;</li>
+<li>having子句  (本质和where一样)<br>强调：having在group by之后  group by 在where之后</li>
+<li>order by子句<br>order by 字段[asc|desc] //asc升序  默认的<br>order by 字段1 规则, 字段2 规则</li>
+<li>limit子句  (限制获取的数量，从第一条到指定的数量)<br>limit 数量</li>
+<li>分页<br>limit offset,length; //offset 偏移量：从哪开始 ,length具体获取多少条记录<h3 id="ORM-Object-Relation-Mapping-Sequlize"><a href="#ORM-Object-Relation-Mapping-Sequlize" class="headerlink" title="ORM(Object Relation Mapping) - Sequlize"></a>ORM(Object Relation Mapping) - Sequlize</h3></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/22/数据持久化之Mysql/" data-id="ckh44mzub001d4sv2py5ryrvz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/25/Docker/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Docker
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/06/网络编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">网络编程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

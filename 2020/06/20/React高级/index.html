@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>React高级 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HookHook是一个特殊函数，它可以钩入React特性，useState允许在React函数组件中添加state的Hook。 使用Effect Hook 和 state HookuseSate可以添加state，useEffect可以在函数组件中执行副作用操作。数据获取，设置订阅以及手动更改React组件中的DOM都属于副作用。  默认情况下，useEffect会在每轮组件渲染完成后执行。一旦">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React高级">
+<meta property="og:url" content="http://yoursite.com/2020/06/20/React高级/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="HookHook是一个特殊函数，它可以钩入React特性，useState允许在React函数组件中添加state的Hook。 使用Effect Hook 和 state HookuseSate可以添加state，useEffect可以在函数组件中执行副作用操作。数据获取，设置订阅以及手动更改React组件中的DOM都属于副作用。  默认情况下，useEffect会在每轮组件渲染完成后执行。一旦">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React高级">
+<meta name="twitter:description" content="HookHook是一个特殊函数，它可以钩入React特性，useState允许在React函数组件中添加state的Hook。 使用Effect Hook 和 state HookuseSate可以添加state，useEffect可以在函数组件中执行副作用操作。数据获取，设置订阅以及手动更改React组件中的DOM都属于副作用。  默认情况下，useEffect会在每轮组件渲染完成后执行。一旦">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-React高级" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/20/React高级/" class="article-date">
+  <time datetime="2020-06-20T08:00:39.000Z" itemprop="datePublished">2020-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React高级
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Hook"><a href="#Hook" class="headerlink" title="Hook"></a>Hook</h1><p>Hook是一个特殊函数，它可以钩入React特性，useState允许在React函数组件中添加state的Hook。</p>
+<h2 id="使用Effect-Hook-和-state-Hook"><a href="#使用Effect-Hook-和-state-Hook" class="headerlink" title="使用Effect Hook 和 state Hook"></a>使用Effect Hook 和 state Hook</h2><p>useSate可以添加state，useEffect可以在函数组件中执行副作用操作。<br>数据获取，设置订阅以及手动更改React组件中的DOM都属于副作用。 </p>
+<p>默认情况下，useEffect会在每轮组件渲染完成后执行。一旦 eﬀect 的依赖发⽣生变化，它就会被重新创建。<br>useEffect 的第二个参数就表示依赖于这个变量的值，它改变了才会重新执行这个副作用函数里面的代码。<br>如果这个参数是空数组[]，则useEffect只会执行一次。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState, useEffect &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">HookPage</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 使用useState 创建state：count，初始化值为0，改变count的方法</span></span><br><span class="line">    <span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">const</span> [date, setDate] = useState(<span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 与componentDidMount 和componentDidUpdate相似</span></span><br><span class="line">   </span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">document</span>.title = <span class="string">`You click <span class="subst">$&#123;count&#125;</span> times`</span></span><br><span class="line">    &#125;, [count])</span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> timer = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            setDate(<span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">        <span class="comment">// 组件卸载时需要清楚effect创建的订阅或计时器ID等资源，需要返回一个清除函数，清除函数会在组件卸载前执行。</span></span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            clearInterval(timer)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, [])</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h3&gt;Hook page&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">            &lt;p&gt;&#123;count&#125;&lt;/</span>p&gt;</span><br><span class="line">            &lt;button onClick=&#123;() =&gt; setCount(count+<span class="number">1</span>)&#125;&gt;add&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">            &lt;p&gt;&#123;date.toLocaleTimeString()&#125;&lt;/</span>p&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义Hook"><a href="#自定义Hook" class="headerlink" title="自定义Hook"></a>自定义Hook</h2><p>使用自定义Hook，在组件之间重用一些状态逻辑。<br>自定义Hook是一个函数，其名称必须以’use’开头，函数内部可以调用其他的Hook。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useClock</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [date, setDate] = useState(<span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"date effect"</span>)</span><br><span class="line">        <span class="keyword">const</span> timer = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            setDate(<span class="keyword">new</span> <span class="built_in">Date</span>())</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> clearInterval(timer)</span><br><span class="line">    &#125;, [])</span><br><span class="line">    <span class="keyword">return</span> date</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hook使用规则"><a href="#Hook使用规则" class="headerlink" title="Hook使用规则"></a>Hook使用规则</h2><p>Hook就是JavaScript函数，但是使用它们会有两个额外的规则：</p>
+<ol>
+<li>只能在函数最外层调用Hook，不能在循环，条件或者子函数中使用。</li>
+<li>只能在React的函数组件中和自定义的Hook中可以调用Hook，不要在其它的JavaScript函数中调用。</li>
+</ol>
+<h2 id="useMemo-和-useCallback"><a href="#useMemo-和-useCallback" class="headerlink" title="useMemo 和 useCallback"></a>useMemo 和 useCallback</h2><p>类比Vue中的计算属性，只有在依赖项的数据变化时，才执行函数，具有缓存的作用。<br>useCallback是useMemo的变体：useCallback(fn, deps) 相当于 useMemo(() =&gt; fn, deps)。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// useMemo</span></span><br><span class="line"><span class="keyword">const</span> memoizedValue = useMemo(<span class="function"><span class="params">()</span> =&gt;</span> computeExpensiveValue(a, b), [a, b]);</span><br><span class="line"><span class="comment">// useCallback</span></span><br><span class="line"><span class="keyword">const</span> memoizedCallback = useCallback(</span><br><span class="line">  () =&gt; &#123;</span><br><span class="line">    doSomething(a, b);</span><br><span class="line">  &#125;,</span><br><span class="line">  [a, b],</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h1 id="React-VS-CODE-插件"><a href="#React-VS-CODE-插件" class="headerlink" title="React VS CODE 插件"></a>React VS CODE 插件</h1><h2 id="处理HTML标签"><a href="#处理HTML标签" class="headerlink" title="处理HTML标签"></a>处理HTML标签</h2><p>Auto Close Tag<br>Auto Complete Tag<br>Auto Raname Tag<br>Auto Import<br>HTML Format</p>
+<h2 id="处理CSS"><a href="#处理CSS" class="headerlink" title="处理CSS"></a>处理CSS</h2><p>Beautify css/sass/scss/less</p>
+<h2 id="处理注释"><a href="#处理注释" class="headerlink" title="处理注释"></a>处理注释</h2><p>Better Comments</p>
+<h2 id="代码检查"><a href="#代码检查" class="headerlink" title="代码检查"></a>代码检查</h2><p>ESLint</p>
+<h2 id="浏览器打开"><a href="#浏览器打开" class="headerlink" title="浏览器打开"></a>浏览器打开</h2><p>open in browser</p>
+<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><p>Prettier-Code formatter</p>
+<h2 id="React-代码快捷方式"><a href="#React-代码快捷方式" class="headerlink" title="React 代码快捷方式"></a>React 代码快捷方式</h2><p>React-Native/React/Redux snippets for es6/es7</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/20/React高级/" data-id="ckh44mzte000g4sv23k945l46" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/22/HTTP缓存/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HTTP缓存
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/16/React基础/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React基础</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

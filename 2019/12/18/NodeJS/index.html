@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>NodeJS | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="NodeJs理解NodeJS是什么官方的话:Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行时。自己的话: Node.js 就是javaScript的运行环境,不同于ECMAScript,node.js里面提供了许多能进行系统编程,网络编程的库(如:fs, os, net, http,等等)这样子就能操作我们的主机了. 可以类比C语言,JAVA语言,他们都能对系统">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJS">
+<meta property="og:url" content="http://yoursite.com/2019/12/18/NodeJS/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="NodeJs理解NodeJS是什么官方的话:Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行时。自己的话: Node.js 就是javaScript的运行环境,不同于ECMAScript,node.js里面提供了许多能进行系统编程,网络编程的库(如:fs, os, net, http,等等)这样子就能操作我们的主机了. 可以类比C语言,JAVA语言,他们都能对系统">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJS">
+<meta name="twitter:description" content="NodeJs理解NodeJS是什么官方的话:Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行时。自己的话: Node.js 就是javaScript的运行环境,不同于ECMAScript,node.js里面提供了许多能进行系统编程,网络编程的库(如:fs, os, net, http,等等)这样子就能操作我们的主机了. 可以类比C语言,JAVA语言,他们都能对系统">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-NodeJS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/18/NodeJS/" class="article-date">
+  <time datetime="2019-12-18T09:48:24.000Z" itemprop="datePublished">2019-12-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NodeJS
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NodeJs"><a href="#NodeJs" class="headerlink" title="NodeJs"></a>NodeJs</h1><h2 id="理解NodeJS是什么"><a href="#理解NodeJS是什么" class="headerlink" title="理解NodeJS是什么"></a>理解NodeJS是什么</h2><p>官方的话:Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行时。<br>自己的话: Node.js 就是javaScript的运行环境,不同于ECMAScript,node.js里面提供了许多能进行系统编程,网络编程的库(如:fs, os, net, http,等等)这样子就能操作我们的主机了. 可以类比C语言,JAVA语言,他们都能对系统进行操作,而NodeJs出现就是为了让javaScript有能力操作我们的系统.</p>
+<p>类比理解运行时的概念: </p>
+<ul>
+<li>JRE java运行时环境</li>
+<li>C Runtime</li>
+<li>.Net Common Language Runtime</li>
+</ul>
+<p>运行时： runtime 就是 程序运行的时候.<br>运行时库： 就是程序运行的时候所需要依赖的库.</p>
+<p>运行的时候指的是指令加载到内存并由CPU执行的时候.<br>C代码编译成可执行文件的时候, 指令没有被CPU执行, 这个时候是编译时,就是编译的时候.</p>
+<h2 id="Nodejs"><a href="#Nodejs" class="headerlink" title="Nodejs"></a>Nodejs</h2><p>Nodejs操作对象：os(操作系统)，process(进程)，fs(文件系统)，net(网络通讯)<br>JavaScript操作对象：BOM/DOM，XMLHttpRequest/fetch(网络通讯)</p>
+<h2 id="NodeJS特性-本质就是JavaScript的特性"><a href="#NodeJS特性-本质就是JavaScript的特性" class="headerlink" title="NodeJS特性 (本质就是JavaScript的特性)"></a>NodeJS特性 (本质就是JavaScript的特性)</h2><ul>
+<li>非阻塞I/O</li>
+<li>事件驱动</li>
+</ul>
+<h2 id="NodeJS程序"><a href="#NodeJS程序" class="headerlink" title="NodeJS程序"></a>NodeJS程序</h2><p>运行js代码命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node xxxx.js</span><br></pre></td></tr></table></figure>
+
+<p>每次修改js文件需要重新执行才能生效,安装nodemon可以监视文件改动,自动重启:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g nodemon</span><br></pre></td></tr></table></figure>
+
+<p>然后用nodemon 运行js代码:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nodemon xxx.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="module-模块"><a href="#module-模块" class="headerlink" title="module(模块)"></a>module(模块)</h3><p>模块分为核心模块,内置模块,第三方模块<br>模块操作: require(), module.exports = {}, exports.xxxFunc = () =&gt; {}</p>
+<h4 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h4><p>核心模块不需要引用,可以通过关键字直接使用</p>
+<ul>
+<li><p>Buffer<br>Buffer - 用于在 TCP 流、文件系统操作、以及其他上下文中与八位字节流进行交互。 八位字<br>节组成的数组,可以有效的在JS中存储二进制数据<br>方法: alloc(), from(), write(), concat(), toString()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个长度为10 字节 以0填充的内存空间, Buffer 的大小在创建时确定，且无法更改.</span></span><br><span class="line"><span class="keyword">const</span> buf1 = Buffer.alloc(<span class="number">10</span>) </span><br><span class="line"><span class="built_in">console</span>.log(buf1)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个Buffer包含ascii字符</span></span><br><span class="line"><span class="keyword">const</span> buf2 = Buffer.from(<span class="string">'a'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(buf2, buf2.toString())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建Buffer包含UTF-8字节</span></span><br><span class="line"><span class="comment">// UFT-8:一种变长的编码方案,使用 1~6 个字节来存储;</span></span><br><span class="line"><span class="comment">// UFT-32:一种固定长度的编码方案,不管字符编号大小,始终使用 4 个字节来存储;</span></span><br><span class="line"><span class="comment">// UTF-16:介于 UTF-8 和 UTF-32 之间,使用 2 个或者 4 个字节来存储,长度既固定又可变</span></span><br><span class="line"><span class="keyword">const</span> buf3 = Buffer.from(<span class="string">'中文'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(buf3, buf3.toString())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入Buffer数据</span></span><br><span class="line">buf1.write(<span class="string">'hello'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(buf1)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取Buffer数据</span></span><br><span class="line"><span class="built_in">console</span>.log(buf1.toString())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 合并Buffer</span></span><br><span class="line"><span class="keyword">const</span> buf4 = Buffer.concat([buf1, buf3]);</span><br><span class="line"><span class="built_in">console</span>.log(buf4.toString())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>process</p>
+</li>
+</ul>
+<h4 id="内置模块"><a href="#内置模块" class="headerlink" title="内置模块"></a>内置模块</h4><p>内置模块不需要使用npm install 安装,但是需要使用require引入</p>
+<ul>
+<li><p>os</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> os = <span class="built_in">require</span>(<span class="string">'os'</span>)</span><br><span class="line"><span class="keyword">const</span> mem = os.freemem() / os.totalmem() * <span class="number">100</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`内存占用率<span class="subst">$&#123;mem.toFixed(<span class="number">2</span>)&#125;</span>%`</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fs<br>fs是文件系统,提供了一系列操作文件的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="comment">// 同步调用 readFileSync()方法</span></span><br><span class="line"><span class="keyword">const</span> data = fs.readFileSync(<span class="string">'./download.js'</span>) <span class="comment">// 返回的是Buffer</span></span><br><span class="line"><span class="built_in">console</span>.log(data.toString())    </span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步调用 readFile()方法</span></span><br><span class="line">fs.readFile(<span class="string">'./download.js'</span>, (err, data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err</span><br><span class="line">    <span class="built_in">console</span>.log(data.toString())</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// fs常常搭配path 使用</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line">fs.readFile(path.resolve(path.resolve(__dirname, <span class="string">'./download.js'</span>)), (err, data) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">    <span class="built_in">console</span>.log(data.toString());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// promisify</span></span><br><span class="line"><span class="keyword">const</span> &#123; promisify &#125; = <span class="built_in">require</span>(<span class="string">'util'</span>)</span><br><span class="line"><span class="keyword">const</span> readFile = promisify(fs.readFile)</span><br><span class="line">readFile(<span class="string">'./download.js'</span>).then(<span class="function"><span class="params">data</span> =&gt;</span> <span class="built_in">console</span>.log(data.toString()))</span><br><span class="line"></span><br><span class="line"><span class="comment">// fs Promises API node v10</span></span><br><span class="line"><span class="keyword">const</span> fsp = <span class="built_in">require</span>(<span class="string">"fs"</span>).promises;</span><br><span class="line">fsp.readFile(<span class="string">"./download.js"</span>)</span><br><span class="line">    .then(<span class="function"><span class="params">data</span> =&gt;</span> <span class="built_in">console</span>.log(data.toString()))</span><br><span class="line">    .catch(<span class="function"><span class="params">err</span> =&gt;</span> <span class="built_in">console</span>.log(err));</span><br><span class="line"></span><br><span class="line"><span class="comment">// async await</span></span><br><span class="line">(<span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line">    <span class="keyword">const</span> &#123; promisify &#125; = <span class="built_in">require</span>(<span class="string">'util'</span>)</span><br><span class="line">    <span class="keyword">const</span> readFile = promisify(fs.readFile)</span><br><span class="line">    <span class="keyword">const</span> data = <span class="keyword">await</span> readFile(<span class="string">'./download.js'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'data'</span>, data.toString())</span><br><span class="line"> &#125;)()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>path</p>
+</li>
+<li><p>http<br>http: 用于创建web服务器的模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个http服务器</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'there is a request come in'</span>)</span><br><span class="line">    response.end(<span class="string">'a response from server'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">server.listen(<span class="number">3000</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>有路由控制的简单web服务器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// request 和 response 都是stream流</span></span><br><span class="line">    <span class="keyword">const</span> &#123;url, method&#125; = request</span><br><span class="line">    <span class="keyword">if</span> (url === <span class="string">'/'</span> &amp;&amp; method === <span class="string">'GET'</span>) &#123;</span><br><span class="line">        fs.readFile(<span class="string">'index.html'</span>, (err, data) =&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                response.writeHead(<span class="number">500</span>, &#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain;charset=utf8'</span>&#125;)</span><br><span class="line">                response.end(<span class="string">'500 服务器错误'</span>)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            response.statusCode = <span class="number">200</span></span><br><span class="line">            response.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/html'</span>)</span><br><span class="line">            response.end(data)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        response.statusCode = <span class="number">404</span></span><br><span class="line">        response.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/plain;charset=utf8'</span>)</span><br><span class="line">        response.end(<span class="string">' 404 not found'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">server.listen(<span class="number">8080</span>)</span><br></pre></td></tr></table></figure>
+
+<p>编写一个请求接口</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (url === <span class="string">'/users'</span> &amp;&amp; method == <span class="string">'GET'</span>) &#123;</span><br><span class="line">    response.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>&#125;)</span><br><span class="line">    response.end(<span class="built_in">JSON</span>.stringify([</span><br><span class="line">        &#123;</span><br><span class="line">            name: <span class="string">'tom'</span>,</span><br><span class="line">            age: <span class="number">20</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>event</li>
+<li>stream<br>流（stream）是 Node.js 中处理流式数据的抽象接口。 stream 模块用于构建实现了流接口的对象。<br>流可以是可读的、可写的、或者可读可写的。 所有的流都是 EventEmitter 的实例。<br>Node.js 创建的流都是运作在字符串和 Buffer（或 Uint8Array）上。 当然，流的实现也可以使用其它类型的 JavaScript 值（除了 null）。 这些流会以“对象模式”进行操作。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> stream = <span class="built_in">require</span>(<span class="string">'stream'</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  创建输入输出流</span></span><br><span class="line"><span class="keyword">const</span> rs = fs.createReadStream(<span class="string">'./config.js'</span>)</span><br><span class="line"><span class="keyword">const</span> ws = fs.createWriteStream(<span class="string">'./config.js'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图片操作</span></span><br><span class="line"><span class="keyword">const</span> rs2 = fs.createReadStream(<span class="string">'./01.png'</span>)</span><br><span class="line"><span class="keyword">const</span> ws2 = fs.createReadStream(<span class="string">'./new.png'</span>)</span><br><span class="line">rs2.pipe(ws2) <span class="comment">// 将可读流 对接 可写流, (实现复制01.png为new.png)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应图片请求</span></span><br><span class="line"><span class="keyword">const</span> &#123; url, method, headers &#125; = request</span><br><span class="line"><span class="keyword">if</span> (method === <span class="string">'GET'</span> &amp;&amp; headers.accept.indexOf(<span class="string">'image/*'</span>) !== <span class="number">-1</span>) &#123;</span><br><span class="line">    fs.createReadStream(<span class="string">'.'</span> + url).pipe(response)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Accept代表发送端(客户端)希望接受的数据类型。 比如:Accept:text/xml; 代表客户端希望</span></span><br><span class="line"><span class="comment">接受的数据类型是xml类型。</span></span><br><span class="line"><span class="comment">Content-Type代表发送端(客户端|服务器)发送的实体数据的数据类型。 比如:Content-</span></span><br><span class="line"><span class="comment">Type:text/html; 代表发送端发送的数据格式是html。</span></span><br><span class="line"><span class="comment">二者合起来, Accept:text/xml; Content-Type:text/html ,即代表希望接受的数据类型是xml格</span></span><br><span class="line"><span class="comment">式,本次请求发送的数据的数据格式是html。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>使用流实现了一个 HTTP 服务器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// req 是一个 http.IncomingMessage 实例，它是可读流。</span></span><br><span class="line">    <span class="comment">// res 是一个 http.ServerResponse 实例，它是可写流。</span></span><br><span class="line">    <span class="keyword">let</span> body = <span class="string">''</span>;</span><br><span class="line">    <span class="comment">// 接收数据为 utf8 字符串，</span></span><br><span class="line">    <span class="comment">// 如果没有设置字符编码，则会接收到 Buffer 对象。</span></span><br><span class="line">    req.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line">    <span class="comment">// 如果添加了监听器，则可读流会触发 'data' 事件。</span></span><br><span class="line">    <span class="comment">// 把数据流分成一块一块来传输,这其中一块就用chunk表示</span></span><br><span class="line">    req.on(<span class="string">'data'</span>, (chunk) =&gt; &#123;</span><br><span class="line">        body += chunk;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 'end' 事件表明整个请求体已被接收。 </span></span><br><span class="line">    req.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> data = <span class="built_in">JSON</span>.parse(body);</span><br><span class="line">            <span class="comment">// 响应信息给用户。</span></span><br><span class="line">            res.write(<span class="keyword">typeof</span> data);</span><br><span class="line">            res.end();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (er) &#123;</span><br><span class="line">            <span class="comment">// json 解析失败。</span></span><br><span class="line">            res.statusCode = <span class="number">400</span>;</span><br><span class="line">            <span class="keyword">return</span> res.end(<span class="string">`错误: <span class="subst">$&#123;er.message&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">server.listen(<span class="number">1337</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="第三方模块"><a href="#第三方模块" class="headerlink" title="第三方模块"></a>第三方模块</h4><p>第三方模块需要npm install, 然后require</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// download-git-repo 用于下载git代码库</span></span><br><span class="line"><span class="comment">// ora 命令行出现图形化loading</span></span><br><span class="line"><span class="keyword">const</span> download = <span class="built_in">require</span>(<span class="string">'download-git-repo'</span>)</span><br><span class="line"><span class="keyword">const</span> ora = <span class="built_in">require</span>(<span class="string">'ora'</span>)</span><br><span class="line"><span class="keyword">const</span> process = ora(<span class="string">`下载.....项目`</span>)</span><br><span class="line">process.start()</span><br><span class="line">download(<span class="string">'github:su37josephxia/vue-template'</span>, <span class="string">'test'</span>, err =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        process.fail()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        process.succeed()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="自定义模块"><a href="#自定义模块" class="headerlink" title="自定义模块"></a>自定义模块</h4><p>自定义模块导出: module.exports = {}<br>自定义模块导入: require()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义模块导出</span></span><br><span class="line"><span class="comment">// promisify 用于返回promise对象</span></span><br><span class="line"><span class="comment">// 让异步任务串行化, await async</span></span><br><span class="line"><span class="built_in">module</span>.exports.clone = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">repo, desc</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; promisify &#125; = <span class="built_in">require</span>(<span class="string">'util'</span>)</span><br><span class="line">    <span class="comment">// 使用promisify包裹 返回 promise对象.</span></span><br><span class="line">    <span class="keyword">const</span> download = promisify(<span class="built_in">require</span>(<span class="string">'download-git-repo'</span>))</span><br><span class="line">    <span class="keyword">const</span> ora = <span class="built_in">require</span>(<span class="string">'ora'</span>)</span><br><span class="line">    <span class="keyword">const</span> process = ora(<span class="string">'下载项目...开始'</span>)</span><br><span class="line">    process.start()</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">await</span> download(repo, desc)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        process.fail()</span><br><span class="line">    &#125;</span><br><span class="line">    process.succeed()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义模块导入</span></span><br><span class="line"><span class="keyword">const</span> &#123; clone &#125; = <span class="built_in">require</span>(<span class="string">'./download'</span>)</span><br><span class="line">clone()</span><br></pre></td></tr></table></figure>
+
+<h1 id="自己实现一个vue-auto-router-cli"><a href="#自己实现一个vue-auto-router-cli" class="headerlink" title="自己实现一个vue-auto-router-cli"></a>自己实现一个vue-auto-router-cli</h1><p>vue-auto-router-cli: 根据路由目录结构生成路由配置文件.</p>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li><p>mkdir vue-auto-router-cli</p>
+</li>
+<li><p>cd vue-auto-router-cli</p>
+</li>
+<li><p>npm init -y 生成package.json</p>
+</li>
+<li><p>安装要使用的第三方模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 命令行操作工具</span></span><br><span class="line">npm install commander -S </span><br><span class="line"><span class="comment"># 下载git库工具</span></span><br><span class="line">npm install download-git-repo -S </span><br><span class="line"><span class="comment"># 命令行进度条图形化显示工具</span></span><br><span class="line">npm install ora -S</span><br><span class="line"><span class="comment"># 模板引擎,用于生成代码</span></span><br><span class="line">npm install handlerbars -S</span><br><span class="line"><span class="comment"># 命令行文字颜色设置</span></span><br><span class="line">npm install chalk -S</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ol>
+<li>新建文件夹bin,存放shell命令脚本文件kkb, kkb-init, kkb-refresh(不需要后缀名)<br>bin/kkb<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>)</span><br><span class="line">program.version(<span class="built_in">require</span>(<span class="string">'../package'</span>).version)</span><br><span class="line">    .command(<span class="string">'init &lt;name&gt;'</span>, <span class="string">'init project'</span>)</span><br><span class="line">    .command(<span class="string">'refresh'</span>, <span class="string">'refresh routes...'</span>)</span><br><span class="line">program.parse(process.argv)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>bin/kkb-init</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>)</span><br><span class="line"><span class="keyword">const</span> &#123;clone &#125; = <span class="built_in">require</span>(<span class="string">'../lib/download.js'</span>)</span><br><span class="line"><span class="keyword">const</span> repo = <span class="string">'github:su37josephxia/vue-template'</span></span><br><span class="line"><span class="keyword">const</span> des = <span class="string">'test'</span></span><br><span class="line"></span><br><span class="line">program.action(<span class="keyword">async</span> name =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'创建项目: '</span> + name)</span><br><span class="line">    <span class="keyword">await</span> clone(repo, des)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">program.parse(process.argv)</span><br></pre></td></tr></table></figure>
+
+<p>bin/kkb-refresh</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>)</span><br><span class="line"><span class="keyword">const</span> symbols = <span class="built_in">require</span>(<span class="string">'log-symbols'</span>)</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>)</span><br><span class="line"></span><br><span class="line">program.action(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'refresh...'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">program.parse(process.argv)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取文件夹中有多少文件</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> handlebars = <span class="built_in">require</span>(<span class="string">'handlebars'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> list = fs.readdirSync(<span class="string">'./src/views'</span>)</span><br><span class="line">    .filter(<span class="function"><span class="params">v</span> =&gt;</span> v != <span class="string">'Home.vue'</span>)</span><br><span class="line">    .map(<span class="function"><span class="params">v</span> =&gt;</span> (&#123;</span><br><span class="line">        name : v.replace(<span class="string">'.vue'</span>, <span class="string">''</span>).toLowerCase(),</span><br><span class="line">        file : v</span><br><span class="line">    &#125;))</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compile</span>(<span class="params">meta, filePath, templatePath</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (fs.existsSync(templatePath)) &#123;</span><br><span class="line">        <span class="keyword">const</span> content = fs.readFileSync(templatePath).toString()</span><br><span class="line">        <span class="keyword">const</span> result = handlebars.compile(content)(meta)</span><br><span class="line">        fs.writeFileSync(filePath, result)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(symbols.success, chalk.green(<span class="string">`<span class="subst">$&#123;filePath&#125;</span>创建成功`</span>))</span><br><span class="line">&#125;</span><br><span class="line">compile(&#123;list&#125;, <span class="string">'./src/router.js'</span>, <span class="string">'./template/router.js.hbs'</span>)</span><br><span class="line">compile(&#123;list&#125;, <span class="string">'./src/App.vue'</span>, <span class="string">'./template/App.vue.hbs'</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>新建文件夹lib,新建文件download.js用于下载git库<br>lib/download.js</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> download = <span class="built_in">require</span>(<span class="string">'download-git-repo'</span>)</span><br><span class="line"><span class="keyword">const</span> &#123; promisify &#125; = <span class="built_in">require</span>(<span class="string">'util'</span>)</span><br><span class="line"><span class="keyword">const</span> ora = <span class="built_in">require</span>(<span class="string">'ora'</span>)</span><br><span class="line"><span class="comment">// const repo = 'github:su37josephxia/vue-template'</span></span><br><span class="line"><span class="comment">// const des = 'test'</span></span><br><span class="line"><span class="keyword">const</span> downPromise = promisify(download)</span><br><span class="line"><span class="built_in">module</span>.exports.clone = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">repo, des</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> process = ora(<span class="string">`正在下载...<span class="subst">$&#123;repo&#125;</span>`</span>)</span><br><span class="line">    process.start()</span><br><span class="line">    <span class="keyword">await</span> downPromise(repo, des)</span><br><span class="line">    process.succeed()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>运行命令 npm link<br>执行 npm link 命令,内部做了如下操作.</li>
+</ol>
+<ul>
+<li>可以将执行命令当前目录下作为npm包写入到/home/richard/npm-global/lib/node_modules/下<br>(/home/richard/npm-global/lib/node_modules/vue-auto-router-cli -&gt; /home/richard/Desktop/VueLearn/vue-auto-router-cli)</li>
+<li>建立了软链接从/usr/local/bin/kkb —&gt; /home/richard/npm-global/bin/kkb,从而可以全局使用命令执行脚本.</li>
+</ul>
+<ol start="4">
+<li><p>运行命令 chmod +x bin/*</p>
+</li>
+<li><p>使用kkb init 和 kkb refresh<br>然后可以通过运行命令kkb init testProject,下载vue-template项目从github.每次在testProject/src/views 下新增vue文件后, 然后执行命令kkb refresh命令可以根据views下的文件自动配置router.js</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/18/NodeJS/" data-id="ckh44mztc000f4sv2jgw4xn6e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/23/Node-Koa2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Node Koa2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/18/Vue项目测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue项目测试</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

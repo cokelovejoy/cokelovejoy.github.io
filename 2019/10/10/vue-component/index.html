@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>vue-component | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Vue 组件化实践 组件化组件化是vue 的核心思想，提高开发效率，方便重复使用，简化调试，提升整个项目的可维护性，便于多人协同开发。 组件通信父组件将数据传入(获取)子组件内的方法 props 属性 1234# 在父组件中使用子组件，通过自定义属性的方式，将指定的数据传入子组件。&amp;lt;childcomponent msg=&quot;welcome to vue&quot;&amp;gt;&amp;lt;/childcompon">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-component">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/vue-component/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="Vue 组件化实践 组件化组件化是vue 的核心思想，提高开发效率，方便重复使用，简化调试，提升整个项目的可维护性，便于多人协同开发。 组件通信父组件将数据传入(获取)子组件内的方法 props 属性 1234# 在父组件中使用子组件，通过自定义属性的方式，将指定的数据传入子组件。&amp;lt;childcomponent msg=&quot;welcome to vue&quot;&amp;gt;&amp;lt;/childcompon">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue-component">
+<meta name="twitter:description" content="Vue 组件化实践 组件化组件化是vue 的核心思想，提高开发效率，方便重复使用，简化调试，提升整个项目的可维护性，便于多人协同开发。 组件通信父组件将数据传入(获取)子组件内的方法 props 属性 1234# 在父组件中使用子组件，通过自定义属性的方式，将指定的数据传入子组件。&amp;lt;childcomponent msg=&quot;welcome to vue&quot;&amp;gt;&amp;lt;/childcompon">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vue-component" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/10/vue-component/" class="article-date">
+  <time datetime="2019-10-10T03:40:16.000Z" itemprop="datePublished">2019-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue-component
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Vue 组件化实践</p>
+<h1 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h1><p>组件化是vue 的核心思想，提高开发效率，方便重复使用，简化调试，提升整个项目的可维护性，便于多人协同开发。</p>
+<h2 id="组件通信"><a href="#组件通信" class="headerlink" title="组件通信"></a>组件通信</h2><h3 id="父组件将数据传入-获取-子组件内的方法"><a href="#父组件将数据传入-获取-子组件内的方法" class="headerlink" title="父组件将数据传入(获取)子组件内的方法"></a>父组件将数据传入(获取)子组件内的方法</h3><ul>
+<li><p>props 属性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在父组件中使用子组件，通过自定义属性的方式，将指定的数据传入子组件。</span></span><br><span class="line">&lt;childcomponent msg=<span class="string">"welcome to vue"</span>&gt;&lt;/childcomponent&gt;</span><br><span class="line"><span class="comment"># 在子组件内部，要使用父组件传入的数据，可以先使用props属性指定传入的属性，然后就可以通过this.msg的方式访问</span></span><br><span class="line">props: &#123; msg: string&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实例属性 $attrs<br>$attrs对象会包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。<br>当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=”$attrs” 传入内部组件,内部组件的$attrs就包含了外层组件的$attrs对象中的内容——在创建高级别的组件时非常有用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前提 是没有在子组件中使用props声明。</span></span><br><span class="line"><span class="comment"># 父组件中</span></span><br><span class="line">&lt;childcomponent msg=<span class="string">"welcome to vue"</span>&gt;&lt;/childcomponent&gt;</span><br><span class="line"><span class="comment"># 将父组件的所有绑定的属性传给子组件(除了class和style)</span></span><br><span class="line">&lt;childcomponent v-bind=<span class="string">"<span class="variable">$attrs</span>"</span>&gt;&lt;/childcomponent&gt;</span><br><span class="line"><span class="comment"># 子组件中 并未在props中声明msg，可以在子组件中使用$attrs</span></span><br><span class="line">&lt;p&gt;&#123;&#123; <span class="variable">$attrs</span>.msg &#125;&#125;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用ref和$refs ，可以引用子组件内部的数据和方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 父组件</span></span><br><span class="line">&lt;childcomponent ref=<span class="string">"child"</span>&gt;&lt;/childcomponent&gt;</span><br><span class="line"><span class="comment"># 在父组件中就可以使用子组件中的数据 和 方法</span></span><br><span class="line"><span class="function"><span class="title">mounted</span></span>() &#123;</span><br><span class="line">    this.<span class="variable">$refs</span>.child.foo = <span class="string">'xxxx'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实例属性$children<br>当前实例的直接子组件。需要注意 $children 并不保证顺序，也不是响应式的。如果你发现自己正在尝试使用 $children 来进行数据绑定，考虑使用一个数组配合 v-for 来生成子组件，并且使用 Array 作为真正的来源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 父组件</span></span><br><span class="line">this.<span class="variable">$children</span>[0].foo = <span class="string">'xxx'</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="子组件使用父组件内的数据的方法"><a href="#子组件使用父组件内的数据的方法" class="headerlink" title="子组件使用父组件内的数据的方法"></a>子组件使用父组件内的数据的方法</h3><ul>
+<li>使用 $parent 来访问父组件的数据<br>$parent : 当前组件的父实例<br>$root : 当前组件树的根Vue实例。如果当前实例没有父实例，此实例将会是其自己。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.$parent.xxx</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="给子组件绑定事件的方式-和-emit"><a href="#给子组件绑定事件的方式-和-emit" class="headerlink" title="给子组件绑定事件的方式 和 $emit"></a>给子组件绑定事件的方式 和 $emit</h3><ul>
+<li>通过子组件调用时，传递参数的方式，将子组件的数据传递到父组件，给父组件使用。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 父组件内 在子组件上自定义事件，并绑定这个事件触发时，要执行的函数。</span></span><br><span class="line"><span class="comment"># $event : 通过$event 可以访问原始的 DOM 事件。</span></span><br><span class="line">&lt;childcom @addevent=<span class="string">"func(<span class="variable">$event</span>, argu)"</span>&gt;&lt;/childcom&gt;</span><br><span class="line"></span><br><span class="line">func(event,argu) &#123;</span><br><span class="line">    ...code block</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 子组件内 触发这个自定义事件, 并传递参数,这个参数可以让父组件的变量接收,从而达到改变父组件的数据的作用.</span></span><br><span class="line">this.<span class="variable">$emit</span>(<span class="string">'addevent'</span>, <span class="string">'argument'</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="兄弟组件之间传值的方法"><a href="#兄弟组件之间传值的方法" class="headerlink" title="兄弟组件之间传值的方法"></a>兄弟组件之间传值的方法</h3><ul>
+<li><p>方法1<br>思想 ： 父组件做桥梁,先通过父组件给 子组件1 传递一个 事件，子组件触发这个事件的时候，会改变父组件的data，并且将这个data通过自定义属性的方式传递给 子组件2,子组件2 内使用props声明，就能使用 这个data。从而达到 兄弟组件之间传值的目的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># parent component</span></span><br><span class="line">&lt;component1 @showMsg=<span class="string">"func"</span>&gt;&lt;/component1&gt;</span><br><span class="line">&lt;component2 :msg=<span class="string">"msg"</span>&gt;&lt;/component2&gt;</span><br><span class="line"></span><br><span class="line">data: msg:<span class="string">''</span></span><br><span class="line"></span><br><span class="line">methods:</span><br><span class="line">func(msg) &#123;</span><br><span class="line">    this.msg =msg</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># component1</span></span><br><span class="line">this.<span class="variable">$emit</span>(<span class="string">'showMsg'</span>, <span class="string">'news'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># component2</span></span><br><span class="line">props: &#123;</span><br><span class="line">    msg: string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法2<br>$on: 监听一个自定义事件,回调函数就是事件触发时要执行的操作,$emit触发事件,回调函数会接受参数并处理.<br>$emit: 触发当前实例上的事件。附加参数都会传给监听器的回调函数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># component1 send data </span></span><br><span class="line">this.<span class="variable">$parent</span>.<span class="variable">$emit</span>(<span class="string">'showMsgevent'</span>， <span class="string">'message'</span>)</span><br><span class="line"><span class="comment"># component2 receive data </span></span><br><span class="line">this.<span class="variable">$parent</span>.<span class="variable">$on</span>(<span class="string">'showMsgevent'</span>, (msg) =&gt; &#123;</span><br><span class="line">    this.msg = msg</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="祖先和后代之间传值"><a href="#祖先和后代之间传值" class="headerlink" title="祖先和后代之间传值"></a>祖先和后代之间传值</h3><p>嵌套层数过多时， 传递props不切实际，vue 提供了 provide/inject API 实现。<br>这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。</p>
+<ul>
+<li>provide/inject选项<br>provide 选项应该是一个对象或返回一个对象的函数。<br>提示：provide 和 inject 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 父级组件</span></span><br><span class="line">provide: &#123;</span><br><span class="line">    foo: <span class="string">'foo'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 函数写法</span></span><br><span class="line"><span class="function"><span class="title">provide</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      author: <span class="string">'richard'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 子组件注入</span></span><br><span class="line">inject: [<span class="string">'foo'</span>]</span><br><span class="line"><span class="comment"># 子组件注入</span></span><br><span class="line">inject: &#123;</span><br><span class="line">    foo: &#123;</span><br><span class="line">        from: <span class="string">'bar'</span>,</span><br><span class="line">        default: <span class="string">'foo'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 在子组件中使用</span></span><br><span class="line">this.foo</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="任意两个组件之间传值：-事件总线-或者-vuex"><a href="#任意两个组件之间传值：-事件总线-或者-vuex" class="headerlink" title="任意两个组件之间传值： 事件总线 或者 vuex"></a>任意两个组件之间传值： 事件总线 或者 vuex</h3><ul>
+<li><p>事件总线</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建Bus.js: 事件派发、监听和回调管理</span></span><br><span class="line">class Bus&#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span></span>()&#123;</span><br><span class="line">        this.callbacks = &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$on</span>(name, fn)&#123;</span><br><span class="line">        this.callbacks[name] = this.callbacks[name] || []</span><br><span class="line">        this.callbacks[name].push(fn)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$emit</span>(name, args)&#123;</span><br><span class="line">        <span class="keyword">if</span>(this.callbacks[name])&#123;</span><br><span class="line">            this.callbacks[name].forEach(cb =&gt; cb(args))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># main.js</span></span><br><span class="line">Vue.prototype.<span class="variable">$bus</span> = new Bus()</span><br><span class="line"><span class="comment"># child1</span></span><br><span class="line">this.<span class="variable">$bus</span>.<span class="variable">$on</span>(<span class="string">'foo'</span>, handle)</span><br><span class="line"><span class="comment"># child2</span></span><br><span class="line">this.<span class="variable">$bus</span>.<span class="variable">$emit</span>(<span class="string">'foo'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实践中可以使用Vue代替Bus类， 因为Vue已经实现了相应的功能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一个Bus.js文件 写如下内容即可</span></span><br><span class="line">import Vue from <span class="string">'vue'</span></span><br><span class="line"><span class="built_in">export</span> default new Vue</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在组件中要导入Bus.js</span></span><br><span class="line"><span class="comment"># component1 </span></span><br><span class="line">import Bus from <span class="string">'Bus.js'</span></span><br><span class="line">Bus.<span class="variable">$on</span>(<span class="string">'foo'</span>, handle)</span><br><span class="line"></span><br><span class="line"><span class="comment"># component2</span></span><br><span class="line">import Bus from <span class="string">'Bus.js'</span></span><br><span class="line">Bus.<span class="variable">$emit</span>(<span class="string">'foo'</span>, <span class="string">'text'</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h3><p>插槽语法是Vue 实现的内容分发 API,用于复合组件开发。该技术在通用组件库开发中有大量应用。</p>
+<ul>
+<li><p>匿名插槽</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># component</span></span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="comment"># parent</span></span><br><span class="line"><span class="comment"># hello world 会插入slot元素所在的位置</span></span><br><span class="line">&lt;component&gt; hello world&lt;/component&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>具名插槽<br>将内容分发到子组件的指定位置 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># component</span></span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">    &lt;slot name=<span class="string">"message"</span>&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># parent</span></span><br><span class="line">&lt;component&gt;</span><br><span class="line">    &lt;!-- 默认插槽使用 default 做参数 --&gt;</span><br><span class="line">    &lt;template v-slot:default&gt;具名插槽&lt;/template&gt;</span><br><span class="line">    &lt;template v-slot:message&gt;信息&lt;/template&gt;</span><br><span class="line">&lt;/component&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作用域插槽<br>为了让插槽内容能够访问子组件中才有的数据时,就要使用作用域插槽.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  绑定在 &lt;slot&gt; 元素上的特性被称为插槽 prop。</span></span><br><span class="line"><span class="comment">#  现在在父级作用域中，我们可以给 v-slot 带一个值来定义我们提供的插槽 prop 的名字(slotProps),也可以自定义为其他的名字.</span></span><br><span class="line"><span class="comment"># child component</span></span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;!-- 此处的foo 是 子组件中的数据, 通过绑定特性的方式传入 要分发的内容(component)中 --&gt;</span><br><span class="line">    &lt;slot :foo=<span class="string">"foo"</span>&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="comment"># parent </span></span><br><span class="line">&lt;childcom&gt;</span><br><span class="line">    &lt;!-- 把 v-slot的值指定为 作用域上下文对象 --&gt;</span><br><span class="line">    &lt;template v-slot:default=<span class="string">"slotProps"</span>&gt;</span><br><span class="line">        使用来自子组件数据: &#123;&#123; slotProps.foo &#125;&#125;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">&lt;/childcom&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/10/vue-component/" data-id="ckh44mzu400174sv2nuoew70f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/11/vue组件化实战/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue组件化实战
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/09/build-with-hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">build-with-hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

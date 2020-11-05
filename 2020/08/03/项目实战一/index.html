@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>项目实战一 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="技术选型 Vue + nuxt or react + nuxt 小程序， APP, H5, Node(express, koa, egg) 埋点(原理+第三方), 发布(gitlab, CI/CD), 性能 报错sentry, 报警(钉钉 / 微信 / 短信) 其他基建(搭建, docker, 看板, 文档, 权限, 组件)代码规范eslinthuskycommitizengit 提交规范  安装">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目实战一">
+<meta property="og:url" content="http://yoursite.com/2020/08/03/项目实战一/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="技术选型 Vue + nuxt or react + nuxt 小程序， APP, H5, Node(express, koa, egg) 埋点(原理+第三方), 发布(gitlab, CI/CD), 性能 报错sentry, 报警(钉钉 / 微信 / 短信) 其他基建(搭建, docker, 看板, 文档, 权限, 组件)代码规范eslinthuskycommitizengit 提交规范  安装">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.603Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="项目实战一">
+<meta name="twitter:description" content="技术选型 Vue + nuxt or react + nuxt 小程序， APP, H5, Node(express, koa, egg) 埋点(原理+第三方), 发布(gitlab, CI/CD), 性能 报错sentry, 报警(钉钉 / 微信 / 短信) 其他基建(搭建, docker, 看板, 文档, 权限, 组件)代码规范eslinthuskycommitizengit 提交规范  安装">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-项目实战一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/08/03/项目实战一/" class="article-date">
+  <time datetime="2020-08-02T23:29:43.000Z" itemprop="datePublished">2020-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      项目实战一
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h1><ol>
+<li>Vue + nuxt or react + nuxt</li>
+<li>小程序， APP, H5, Node(express, koa, egg)</li>
+<li>埋点(原理+第三方), 发布(gitlab, CI/CD), 性能</li>
+<li>报错sentry, 报警(钉钉 / 微信 / 短信)</li>
+<li>其他基建(搭建, docker, 看板, 文档, 权限, 组件)<h1 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h1><h2 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h2><h2 id="husky"><a href="#husky" class="headerlink" title="husky"></a>husky</h2><h2 id="commitizen"><a href="#commitizen" class="headerlink" title="commitizen"></a>commitizen</h2>git 提交规范</li>
+</ol>
+<p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g commitizen</span><br><span class="line">commitizen init cz-conventional-changelog --save-dev --save-exact</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add xxx</span><br><span class="line">git cz</span><br></pre></td></tr></table></figure>
+
+<h1 id="文件上传知识点"><a href="#文件上传知识点" class="headerlink" title="文件上传知识点"></a>文件上传知识点</h1><h2 id="拖拽效果和进度条显示"><a href="#拖拽效果和进度条显示" class="headerlink" title="拖拽效果和进度条显示"></a>拖拽效果和进度条显示</h2><h2 id="网格进度条显示切片上传的进度"><a href="#网格进度条显示切片上传的进度" class="headerlink" title="网格进度条显示切片上传的进度"></a>网格进度条显示切片上传的进度</h2><h2 id="文件类型的校验"><a href="#文件类型的校验" class="headerlink" title="文件类型的校验"></a>文件类型的校验</h2><p>任何文件都是用二进制码表示的，通过vscode 插件hexdump查看图片文件的16进制表示，可以通过查看图片文件头信息来辨别文件类型。<br>常见的文件类型有png, jpg, gif。</p>
+<p>JPG图片头信息: FFD8FF<br>PNG图片头信息: 89 50 4E 47 0D 0A 1A 0A<br>GIF图片头信息: 47494638<br>BMP图片头信息: 424D</p>
+<h2 id="文件指纹"><a href="#文件指纹" class="headerlink" title="文件指纹"></a>文件指纹</h2><p>场景：校验文件是否存在，对于上传的图片都必须是唯一的，需要设置唯一标识。<br>不能简单通过文件名检验，对文件内容使用md5加密得到唯一的字符串。</p>
+<p>问题：对于大文件计算md5值需要很多的时间，如何解决这个问题？</p>
+<h3 id="web-worker-结合-spark-md5"><a href="#web-worker-结合-spark-md5" class="headerlink" title="web-worker 结合 spark-md5"></a>web-worker 结合 spark-md5</h3><p>web-worker开启多个子线程计算md5，每个切片计算md5值然后追加。</p>
+<h3 id="window-requestIdleCallback"><a href="#window-requestIdleCallback" class="headerlink" title="window.requestIdleCallback()"></a>window.requestIdleCallback()</h3><p>window.requestIdleCallback()方法将在浏览器的空闲时段内计算文件md5。</p>
+<h3 id="hashMap抽样计算md5"><a href="#hashMap抽样计算md5" class="headerlink" title="hashMap抽样计算md5"></a>hashMap抽样计算md5</h3><p>hashMap，对文件切片，取首中尾三个切片的全部数据，然后合并再计算md5。</p>
+<h2 id="文件切片"><a href="#文件切片" class="headerlink" title="文件切片"></a>文件切片</h2><p>前端将文件切成一些指定大小的块上传到后端，后端将切片合并。</p>
+<h2 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h2><p>场景：由于网络通信故障，导致只上传了一部分，之后再上传只需要上传剩下的。<br>主要操作： 前端切片，分块上传，后端合并切片。</p>
+<h2 id="秒传"><a href="#秒传" class="headerlink" title="秒传"></a>秒传</h2><p>场景：文件已经存在，则不需要再上传，前端直接显示秒传成功。</p>
+<h2 id="异步任务并发数控制"><a href="#异步任务并发数控制" class="headerlink" title="异步任务并发数控制"></a>异步任务并发数控制</h2><p>场景：前端切片很多，会有大量的请求，会造成浏览器请求卡顿。</p>
+<h2 id="错误重试"><a href="#错误重试" class="headerlink" title="错误重试"></a>错误重试</h2><p>场景：上传切片时，有些切片上传失败，会自动重新尝试有限次数。</p>
+<h2 id="慢启动"><a href="#慢启动" class="headerlink" title="慢启动"></a>慢启动</h2><p>场景：文件的切片大小不是固定的，而是根据网络响应速度自动切换切片大小。借鉴了TCP策略。</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ol>
+<li>碎片清理</li>
+<li>文件碎片存储在多个机器上</li>
+<li>文件碎片备份</li>
+<li>兼容性更好的requestIdleCallback</li>
+<li>并发+慢启动</li>
+<li>抽样hash+全量hash双重判断</li>
+<li>websocket推送</li>
+<li>cdn<h1 id="登陆验证"><a href="#登陆验证" class="headerlink" title="登陆验证"></a>登陆验证</h1>前端页面注册，登录功能，调用service api，service端查询数据库。<h2 id="注册功能"><a href="#注册功能" class="headerlink" title="注册功能"></a>注册功能</h2><h2 id="登陆功能"><a href="#登陆功能" class="headerlink" title="登陆功能"></a>登陆功能</h2>用户名密码验证： </li>
+<li>简单的验证码。</li>
+<li>token的管理，登陆以后的请求，都会自动带上token。<br>用户信息：</li>
+<li>信息的增删改查。</li>
+<li>头像文件上传。<h2 id="用户验证"><a href="#用户验证" class="headerlink" title="用户验证"></a>用户验证</h2><h2 id="保存用户状态"><a href="#保存用户状态" class="headerlink" title="保存用户状态"></a>保存用户状态</h2></li>
+<li>session</li>
+<li>jwt(json web token)<h2 id="登录验证码"><a href="#登录验证码" class="headerlink" title="登录验证码"></a>登录验证码</h2>安装svg-captcha<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -S svg-captcha</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="markdown和代码高亮扩展"><a href="#markdown和代码高亮扩展" class="headerlink" title="markdown和代码高亮扩展"></a>markdown和代码高亮扩展</h1><h1 id="副文本编辑器"><a href="#副文本编辑器" class="headerlink" title="副文本编辑器"></a>副文本编辑器</h1><ol>
+<li>第三方的库，tiny，wangEditor</li>
+<li>开源的定制slate.js</li>
+<li>专门开发团队定制在线word<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原理</span></span><br><span class="line">&lt;div contenteditable=<span class="string">"true"</span>&gt;</span><br><span class="line">        haha</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 使用document.execCommand('xxx') 自定义命令</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="点赞和关注"><a href="#点赞和关注" class="headerlink" title="点赞和关注"></a>点赞和关注</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/08/03/项目实战一/" data-id="ckh44mzv1001q4sv2owy2cy8v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/04/webpack2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          webpack2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/30/常见web攻击/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">常见web攻击</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

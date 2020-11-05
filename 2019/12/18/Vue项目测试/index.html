@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Vue项目测试 | RICHARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="项目测试测试分类常见的开发流程里,都有测试人员,他们不管内部实现机制,只看最外层的输入输出,这种我们称为黑盒测试。比如你写一个加法的页面,会设计N个用例,测试加法的正确性,这种测试我们称之为E2E测试。还有一种测试叫做白盒测试,我们针对一些内部核心实现逻辑编写测试代码,称之为单元测试。更负责一些的我们称之为集成测试,就是集合多个测试过的单元一起测试。 编写测试代码的好处 提供描述组件行为的文档 节">
+<meta name="keywords" content="Python, JS, Vue, NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue项目测试">
+<meta property="og:url" content="http://yoursite.com/2019/12/18/Vue项目测试/index.html">
+<meta property="og:site_name" content="RICHARD">
+<meta property="og:description" content="项目测试测试分类常见的开发流程里,都有测试人员,他们不管内部实现机制,只看最外层的输入输出,这种我们称为黑盒测试。比如你写一个加法的页面,会设计N个用例,测试加法的正确性,这种测试我们称之为E2E测试。还有一种测试叫做白盒测试,我们针对一些内部核心实现逻辑编写测试代码,称之为单元测试。更负责一些的我们称之为集成测试,就是集合多个测试过的单元一起测试。 编写测试代码的好处 提供描述组件行为的文档 节">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/static/img/test1.png">
+<meta property="og:image" content="http://yoursite.com/static/img/test2.png">
+<meta property="og:image" content="http://yoursite.com/static/img/test3.png">
+<meta property="og:updated_time" content="2020-08-31T13:01:21.588Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue项目测试">
+<meta name="twitter:description" content="项目测试测试分类常见的开发流程里,都有测试人员,他们不管内部实现机制,只看最外层的输入输出,这种我们称为黑盒测试。比如你写一个加法的页面,会设计N个用例,测试加法的正确性,这种测试我们称之为E2E测试。还有一种测试叫做白盒测试,我们针对一些内部核心实现逻辑编写测试代码,称之为单元测试。更负责一些的我们称之为集成测试,就是集合多个测试过的单元一起测试。 编写测试代码的好处 提供描述组件行为的文档 节">
+<meta name="twitter:image" content="http://yoursite.com/static/img/test1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="RICHARD" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">RICHARD</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">RICHARD BLOG</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Vue项目测试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/18/Vue项目测试/" class="article-date">
+  <time datetime="2019-12-18T06:49:02.000Z" itemprop="datePublished">2019-12-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue项目测试
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="项目测试"><a href="#项目测试" class="headerlink" title="项目测试"></a>项目测试</h1><h2 id="测试分类"><a href="#测试分类" class="headerlink" title="测试分类"></a>测试分类</h2><p>常见的开发流程里,都有测试人员,他们不管内部实现机制,只看最外层的输入输出,这种我们称为黑<br>盒测试。比如你写一个加法的页面,会设计N个用例,测试加法的正确性,这种测试我们称之为E2E测<br>试。<br>还有一种测试叫做白盒测试,我们针对一些内部核心实现逻辑编写测试代码,称之为单元测试。<br>更负责一些的我们称之为集成测试,就是集合多个测试过的单元一起测试。</p>
+<h2 id="编写测试代码的好处"><a href="#编写测试代码的好处" class="headerlink" title="编写测试代码的好处"></a>编写测试代码的好处</h2><ul>
+<li>提供描述组件行为的文档</li>
+<li>节省手动测试的时间</li>
+<li>减少研发新特性时产生的bug</li>
+<li>改进设计</li>
+<li>促进重构<br>自动化测试使得团队中的开发者可以维护复杂的基础代码.</li>
+</ul>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在Vue中,推荐使用Mocha + Chai或者(Jest).要完成测试任务,需要测试框架(跑测试), 断言库(编写测试) 和变成框架特有的测试套件.Mocha是测试框架, Chai是断言库,Jest同时包含两者.</p>
+<p>vue中的组件等测试代码的编写需要vue-test-utils套件支持。</p>
+<h3 id="新建vue项目时"><a href="#新建vue项目时" class="headerlink" title="新建vue项目时"></a>新建vue项目时</h3><ul>
+<li>选择特性 Unit Testing 和E2E Testing<img src="/static/img/test1.png"></li>
+<li>单元测试解决方案选择: Jest<img src="/static/img/test2.png"></li>
+<li>端到端测试解决方案选择:Cypress<img src="/static/img/test3.png">
+### 在已存在的项目中集成
+运行命令:
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue add @vue/unit-jest 和 vue add @vue/e2e-cypress</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="编写单元测试"><a href="#编写单元测试" class="headerlink" title="编写单元测试"></a>编写单元测试</h2><p>单元测试(unit testing), 是指对软件中的最小可测试单元进行检查和验证.</p>
+<ul>
+<li>新建 test/unit/xxx.spec.js (.spec.js后缀名是命名规范)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num1 + num2</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试套件 test suite</span></span><br><span class="line">describe(<span class="string">'Kaikeba'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// 测试用例 test case</span></span><br><span class="line">    it(<span class="string">'测试add函数'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">// 断言 assert</span></span><br><span class="line">        expect(add(<span class="number">1</span>, <span class="number">3</span>)).toBe(<span class="number">3</span>)</span><br><span class="line">        expect(add(<span class="number">1</span>, <span class="number">3</span>)).toBe(<span class="number">4</span>)</span><br><span class="line">        expect(add(<span class="number">-2</span>, <span class="number">3</span>)).toBe(<span class="number">1</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="执行单元测试"><a href="#执行单元测试" class="headerlink" title="执行单元测试"></a>执行单元测试</h2><p>执行命令: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run <span class="built_in">test</span>:unit</span><br></pre></td></tr></table></figure>
+
+<h2 id="断言API简介"><a href="#断言API简介" class="headerlink" title="断言API简介"></a>断言API简介</h2><ul>
+<li>describe: 定义一个测试套件</li>
+<li>it: 定义一个测试用例</li>
+<li>expect: 断言的判断条件(Doc: <a href="https://jestjs.io/docs/zh-Hans/expect" target="_blank" rel="noopener">https://jestjs.io/docs/zh-Hans/expect</a>)</li>
+</ul>
+<h2 id="测试Vue组件"><a href="#测试Vue组件" class="headerlink" title="测试Vue组件"></a>测试Vue组件</h2><p>vue官方提供了用于单元测试的使用工具库 @vue/test-utils (Doc: <a href="https://vue-test-utils.vuejs.org/zh/guides/" target="_blank" rel="noopener">https://vue-test-utils.vuejs.org/zh/guides/</a>)</p>
+<p>创建一个vue组件components/click.vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"changeMsg"</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">        data() &#123;</span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">                message: <span class="string">'vue-text'</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        created() &#123;</span><br><span class="line"><span class="javascript">            <span class="keyword">this</span>.message = <span class="string">'hello'</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">            changeMsg() &#123;</span><br><span class="line"><span class="javascript">                <span class="keyword">this</span>.message = <span class="string">'按钮点击'</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试该组件, test/unit/click.spec.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> click <span class="keyword">from</span> <span class="string">'@/components/click.vue'</span></span><br><span class="line">describe(<span class="string">'click.vue'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="comment">// 检查组件选项</span></span><br><span class="line">    it(<span class="string">'要求设置created生命周期'</span>, () =&gt; &#123;</span><br><span class="line">        expect(<span class="keyword">typeof</span> click.created).toBe(<span class="string">'function'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    it(<span class="string">'message初始值是vue-test'</span>, () =&gt; &#123;</span><br><span class="line">        <span class="comment">// 检查data函数存在性</span></span><br><span class="line">        expect(<span class="keyword">typeof</span> click.data).toBe(<span class="string">'function'</span>)</span><br><span class="line">        <span class="comment">// 检查data返回的默认值</span></span><br><span class="line">        <span class="keyword">const</span> defaultData = click.data()</span><br><span class="line">        expect(defaultData.message).toBe(<span class="string">'vue-test'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="检查mounted之后预期结果"><a href="#检查mounted之后预期结果" class="headerlink" title="检查mounted之后预期结果"></a>检查mounted之后预期结果</h3><p>使用@vue/test-utils挂载组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mount &#125; <span class="keyword">from</span> <span class="string">'@vue/test-utils'</span></span><br><span class="line"><span class="keyword">import</span> clickComp <span class="keyword">from</span> <span class="string">'@/components/click.vue'</span></span><br><span class="line"></span><br><span class="line">it(<span class="string">'mount之后测data是hello'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(clickComp).$mount()</span><br><span class="line">    expect(vm.message).toBe(<span class="string">'hello'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">it(<span class="string">"按钮点击后"</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> wrapper = mount(clickComp);</span><br><span class="line">    wrapper.find(<span class="string">"button"</span>).trigger(<span class="string">"click"</span>);</span><br><span class="line">    <span class="comment">// 测试数据变化</span></span><br><span class="line">    expect(wrapper.vm.message).toBe(<span class="string">"按钮点击"</span>);</span><br><span class="line">    <span class="comment">// 测试html渲染结果</span></span><br><span class="line">    expect(wrapper.find(<span class="string">"span"</span>).html()).toBe(<span class="string">"&lt;span&gt;按钮点击&lt;/span&gt;"</span>);</span><br><span class="line">    <span class="comment">// 等效的方式</span></span><br><span class="line">    expect(wrapper.find(<span class="string">"span"</span>).text()).toBe(<span class="string">"按钮点击"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试覆盖率"><a href="#测试覆盖率" class="headerlink" title="测试覆盖率"></a>测试覆盖率</h3><p>jest自带覆盖率,如果用的mocha,需要使用istanbul来统计覆盖率<br>package.json里修改jest配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"jest"</span>: &#123;</span><br><span class="line">        <span class="string">"collectCoverage"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">"collectCoverageFrom"</span>: [<span class="string">"src/**/*.&#123;js,vue&#125;"</span>],</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若采用独立配置, 则修改jest.config.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="string">"collectCoverage"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"collectCoverageFrom"</span>: [<span class="string">"src/**/*.&#123;js,vue&#125;"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再执行 npm run test:unit</p>
+<ul>
+<li>%stmts是语句覆盖率(statement coverage):是不是每个语句都执行了?</li>
+<li>%Branch分支覆盖率(branch coverage):是不是每个if代码块都执行了?</li>
+<li>%Funcs函数覆盖率(function coverage):是不是每个函数都调用了?</li>
+<li>%Lines行覆盖率(line coverage):是不是每一行都执行了?</li>
+</ul>
+<p>Vue组件单元测试cookbook(Doc: <a href="https://cn.vuejs.org/v2/cookbook/unit-testing-vue-components.html" target="_blank" rel="noopener">https://cn.vuejs.org/v2/cookbook/unit-testing-vue-components.html</a>)<br>VueTestUtils使用指南(Doc: <a href="https://vue-test-utils.vuejs.org/zh/" target="_blank" rel="noopener">https://vue-test-utils.vuejs.org/zh/</a>)</p>
+<h2 id="E2E测试"><a href="#E2E测试" class="headerlink" title="E2E测试"></a>E2E测试</h2><p>借用浏览器的能力,站在用户测试人员的角度,输入框,点击按钮等,完全模拟用户, 这个和具体的框架关系不大,完全模拟浏览器行为.</p>
+<h3 id="运行E2E测试"><a href="#运行E2E测试" class="headerlink" title="运行E2E测试"></a>运行E2E测试</h3><p>cypress Doc : <a href="https://docs.cypress.io/api/introduction/api.html" target="_blank" rel="noopener">https://docs.cypress.io/api/introduction/api.html</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run <span class="built_in">test</span>:e2e</span><br></pre></td></tr></table></figure>
+
+<p>修改e2e/spec/test.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'端到端测试'</span>, () =&gt; &#123;</span><br><span class="line">    it(<span class="string">'访问'</span>, () =&gt; &#123;</span><br><span class="line">        cy.visit(<span class="string">'/'</span>)</span><br><span class="line">        cy.contains(<span class="string">'h1'</span>, <span class="string">'Welcome to Your Vue.js App'</span>)</span><br><span class="line">        cy.get(<span class="string">'button'</span>).click()</span><br><span class="line">        cy.contains(<span class="string">'span'</span>, <span class="string">'按钮点击'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/18/Vue项目测试/" data-id="ckh44mzts000s4sv2rc1rpi1l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/18/NodeJS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          NodeJS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/13/Vue项目最佳实践/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue项目最佳实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/09/DOM/">DOM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/canvas基础/">canvas</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/设计模式/">设计模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/09/重识CSS/">重识CSS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Richard.Zhao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
