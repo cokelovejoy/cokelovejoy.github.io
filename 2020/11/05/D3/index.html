@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="RICHARD">
 <meta property="og:description" content="D3简介D3 (或D3.js)简单来说就是一个数据驱动图形(DOM元素)的js库。内部可以使用svg和canvas来创造图形，通过绑定数据，来达到我们自己期望的效果，同时，D3还能满足我们的各种交互需求。 D3特性选择器D3可以像JQuery一样去获取元素，它拥有丰富 的选择器。 12345678// select 选中第一个匹配的元素const element = d3.select(&quot;div&quot;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-06T01:28:48.930Z">
+<meta property="og:updated_time" content="2020-11-06T01:34:16.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3">
 <meta name="twitter:description" content="D3简介D3 (或D3.js)简单来说就是一个数据驱动图形(DOM元素)的js库。内部可以使用svg和canvas来创造图形，通过绑定数据，来达到我们自己期望的效果，同时，D3还能满足我们的各种交互需求。 D3特性选择器D3可以像JQuery一样去获取元素，它拥有丰富 的选择器。 12345678// select 选中第一个匹配的元素const element = d3.select(&quot;div&quot;">
@@ -111,8 +111,8 @@
 <h4 id="exit模式-删除元素"><a href="#exit模式-删除元素" class="headerlink" title="exit模式 - 删除元素"></a>exit模式 - 删除元素</h4><p>当data数组中数据的个数小于 选择器获取的元素的个数时，需要执行删除DOM元素的操作，以保证元素个数和数据个数一致，此时就进入了exit模式。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div.exit().remove();</span><br></pre></td></tr></table></figure>
 
-<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>join是 前面提到的三种模式的快捷写法。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = [a,b,c,d,e,f,g];</span><br><span class="line"><span class="comment">// 方式1</span></span><br><span class="line">svg.selectAll(<span class="string">"text"</span>)</span><br><span class="line">  .data(data)</span><br><span class="line">  .join(<span class="string">"text"</span>)</span><br><span class="line">  .attr(<span class="string">"x"</span>, (d, i) =&gt; i * <span class="number">16</span>)</span><br><span class="line">  .text(<span class="function"><span class="params">d</span> =&gt;</span> d);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式2</span></span><br><span class="line">svg.selectAll(<span class="string">"circle"</span>)</span><br><span class="line">  .data(data)</span><br><span class="line">  .join(</span><br><span class="line">    enter =&gt; enter.append(<span class="string">"circle"</span>),</span><br><span class="line">    update =&gt; update,</span><br><span class="line">    exit =&gt; exit.remove()</span><br><span class="line">  )</span><br><span class="line">  .attr(<span class="string">"fill"</span>, <span class="string">"none"</span>)</span><br><span class="line">  .attr(<span class="string">"stroke"</span>, <span class="string">"black"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>join是 前面提到的三种模式的快捷写法。默认enter和update的执行形式相同,默认exit是删除（remove）节点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> circle = svg.selectAll(<span class="string">"circle"</span>)</span><br><span class="line">  .data(data);</span><br><span class="line"></span><br><span class="line">circle.exit().remove();</span><br><span class="line"></span><br><span class="line">circle.enter().append(<span class="string">"circle"</span>)</span><br><span class="line">    .attr(<span class="string">"r"</span>, <span class="number">2.5</span>)</span><br><span class="line">  .merge(circle)</span><br><span class="line">    .attr(<span class="string">"cx"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123; <span class="keyword">return</span> d.x; &#125;)</span><br><span class="line">    .attr(<span class="string">"cy"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123; <span class="keyword">return</span> d.y; &#125;);</span><br><span class="line"><span class="keyword">const</span> data = [a,b,c,d,e,f,g];</span><br><span class="line"></span><br><span class="line"><span class="comment">// join 默认形式</span></span><br><span class="line">svg.selectAll(<span class="string">"text"</span>)</span><br><span class="line">  .data(data)</span><br><span class="line">  .join(<span class="string">"text"</span>)</span><br><span class="line">  .attr(<span class="string">"x"</span>, (d, i) =&gt; i * <span class="number">16</span>)</span><br><span class="line">  .text(<span class="function"><span class="params">d</span> =&gt;</span> d);</span><br><span class="line"></span><br><span class="line"><span class="comment">// join 定制</span></span><br><span class="line">svg.selectAll(<span class="string">"circle"</span>)</span><br><span class="line">  .data(data)</span><br><span class="line">  .join(</span><br><span class="line">    enter =&gt; enter.append(<span class="string">"circle"</span>),</span><br><span class="line">    update =&gt; update,</span><br><span class="line">    exit =&gt; exit.remove()</span><br><span class="line">  )</span><br><span class="line">  .attr(<span class="string">"fill"</span>, <span class="string">"none"</span>)</span><br><span class="line">  .attr(<span class="string">"stroke"</span>, <span class="string">"black"</span>);</span><br></pre></td></tr></table></figure>
 
 <h2 id="绑定事件"><a href="#绑定事件" class="headerlink" title="绑定事件"></a>绑定事件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 给p标签绑定点击事件， 回调函数中的this，就代表当前选中的元素</span></span><br><span class="line">d3.selectAll(<span class="string">"p"</span>).on(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">  d3.select(<span class="keyword">this</span>).style(<span class="string">"color"</span>, <span class="string">"red"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
@@ -127,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/11/05/D3/" data-id="ckh5kzavl0001tgv2vyq73tde" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/11/05/D3/" data-id="ckh5zzyoe0000q4v29s78laqc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DS-js-数据驱动/">DS.js 数据驱动</a></li></ul>
@@ -139,9 +139,9 @@
 <nav id="article-nav">
   
   
-    <a href="/2020/10/09/DOM/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/10/09/CSS总结/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">DOM</div>
+      <div class="article-nav-title">CSS总结</div>
     </a>
   
 </nav>
@@ -196,11 +196,11 @@
           </li>
         
           <li>
-            <a href="/2020/10/09/DOM/">DOM</a>
+            <a href="/2020/10/09/CSS总结/">CSS总结</a>
           </li>
         
           <li>
-            <a href="/2020/10/09/CSS总结/">CSS总结</a>
+            <a href="/2020/10/09/DOM/">DOM</a>
           </li>
         
           <li>
