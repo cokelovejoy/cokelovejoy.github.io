@@ -70,6 +70,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-服务端渲染SSR" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/20/服务端渲染SSR/" class="article-date">
+  <time datetime="2020-07-20T03:55:01.000Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/20/服务端渲染SSR/">服务端渲染SSR</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="传统的web开发"><a href="#传统的web开发" class="headerlink" title="传统的web开发"></a>传统的web开发</h1><p>传统的web开发就是客户端请求服务器，服务器返回html，客户端渲染html。</p>
+<h1 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h1><p>在Vue,React时代，单页面应用优秀的用户体验，逐渐成为了主流，页面整体是JS渲染出来的，称之为客户端渲染CSR。<br>客户端渲染的两个问题就是首屏渲染慢和不便于seo（search engine optimize）。</p>
+<h1 id="SSR"><a href="#SSR" class="headerlink" title="SSR"></a>SSR</h1><p>为了解决上述两个问题，出现了SSR的解决方案，后端渲染出完整的首屏的DOM结构返回，前端拿到的内容包括首屏以及完整的spa结构，应用激活后依然按照spa方式运行，这种页面渲染的方式被称为服务端渲染（server side render）。</p>
+<h1 id="Vue-SSR-实战"><a href="#Vue-SSR-实战" class="headerlink" title="Vue SSR 实战"></a>Vue SSR 实战</h1><h2 id="新建工程"><a href="#新建工程" class="headerlink" title="新建工程"></a>新建工程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create ssr</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-server-renderer express -D</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><p>创建一个express服务器，将vue ssr集成进来</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ./server/index.js</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">const</span> Vue = <span class="built_in">require</span>(<span class="string">'vue'</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/20/服务端渲染SSR/" data-id="ckh5kzaxa001otgv2rrvt9nd6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-React-Native-Flutter" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/10/React-Native-Flutter/" class="article-date">
@@ -96,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/React-Native-Flutter/" data-id="ckh44mztb000e4sv28lea1ub2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/10/React-Native-Flutter/" data-id="ckh5kzaw5000htgv2aid7m9yb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -144,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/23/NodeJS高级/" data-id="ckh44mzt5000c4sv2y17tdsk3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/23/NodeJS高级/" data-id="ckh5kzaw0000dtgv2h4ele6cp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -211,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/23/javaScript异步编程/" data-id="ckh44mzty000z4sv2ovgp12xn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/23/javaScript异步编程/" data-id="ckh5kzawr0013tgv20yrmdyvt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -276,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/22/HTTP缓存/" data-id="ckh44mzsk00034sv2enqt85oc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/22/HTTP缓存/" data-id="ckh5kzavv0008tgv2zljix2l0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -335,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/20/React高级/" data-id="ckh44mzte000g4sv23k945l46" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/20/React高级/" data-id="ckh5kzaw7000ktgv2iiz6o9fk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -530,7 +574,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/16/React基础/" data-id="ckh44mztj000k4sv2qeycsjx6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/16/React基础/" data-id="ckh5kzaw8000ltgv2luvnmklz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -582,7 +626,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/14/算法/" data-id="ckh44mzui001m4sv2sz5qgnlq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/14/算法/" data-id="ckh5kzaxc001rtgv2n80kiwfc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -810,7 +854,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/08/数据结构与算法/" data-id="ckh44mzuf001i4sv2pu032l49" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/08/数据结构与算法/" data-id="ckh5kzax6001jtgv278ntp6y8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1256,82 +1300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/05/面试学习/" data-id="ckh44mzv2001r4sv225t9ws29" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Vue源码学习思考" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/06/04/Vue源码学习思考/" class="article-date">
-  <time datetime="2020-06-04T05:57:42.000Z" itemprop="datePublished">2020-06-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/04/Vue源码学习思考/">Vue源码学习思考</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Vue-source-code"><a href="#Vue-source-code" class="headerlink" title="Vue source code"></a>Vue source code</h1><p>本章所有内容都是基于Vue 2.6.11版本</p>
-<p>在学习Vue 源码之前，我们可以先思考Vue作为前端web框架，给我们提供了什么东西，我们以何种方式去使用Vue，在使用Vue的过程中有哪些值得注意的点（坑）。然后我们可以从这些点思考Vue如何实现这些功能(API)，探究Vue内部的具体实现原理。从整体的层面来考虑Vue，我们应该先思考Vue 做了一些什么事情，或者说是作为一个web框架应该实现的东西。当我们使用一个web框架去实现一个web应用程序的时候，不管使用这个框架时所使用的编程语法多么的复杂或是简单，其内部都应该不可避免的会去实现一些东西，比如编译器，将程序员写的代码(模板)编译成HTML代码，因为浏览器只会将html处理并渲染，并不理解程序员自定义的标签，因此我们可以学习，Vue是如何实现编译器的，如何实现将自定义的标签，属性，指令编译成html代码。然后我们可以思考一下Vue框架的特性，数据响应化，即Vue能够监听对用户定义的状态所做的更改，并对DOM进行响应式的更新。然后学习Vue中各种API具体是如何实现的，通过这一步，可以知道使用Vue的过程中出现一些错误的原因，比如为什么data必须是一个返回对象的函数，为什么获取数据的最早时机只能是在created生命周期函数钩子中。同时我们通过学习源码，能知道Vue内部一些代码的执行时机。综上所述，我们在学习完源码之后，应该可以知道如何以最佳方式去使用Vue，避免在使用Vue的时候出现一些迷惑性的操作，以及对出现的问题，能够很好的追根溯源。</p>
-<p>总结 我们应该学习以下要点：</p>
-<ol>
-<li>Vue 构造函数 实现的完整流程。</li>
-<li>Vue 数据响应化处理包括(object, array)，这里有监听器(Watcher class),依赖收集(Dep class).还涉及到了发布订阅模式的使用。</li>
-<li>Vue 如何实现模板编译(compile), 这里有虚拟DOM(Vnode class)，抽象语法树(AST)。</li>
-<li>Vue 具体如何实现这些API，$nextTick(), forceUpdate(), setData()。</li>
-<li>Vue 中使用到的设计模式，比如发布订阅模式，混入模式等。</li>
-<li>Vue 中可以实现的对于数据类型的判断的(object, null, undefined)，以及数据转换的实现(toString, toNumber)</li>
-</ol>
-<h2 id="How-to-start"><a href="#How-to-start" class="headerlink" title="How to start"></a>How to start</h2><p>首先我们需要获取Vue源码<br>Vue源码地址： https:/github.com/vuejs/vue<br>当前版本： 2.6.10</p>
-<ol>
-<li><p>获取源码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https:/github.com/vuejs/vue</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置调试环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入vue源文件，下载依赖</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装rollup(专门用于js代码的打包工具)</span></span><br><span class="line">npm install -g rollup</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改package.json<br>在scripts &gt; dev 下添加 –sourcemap<br>指明配置文件所在目录： -c scripts/config.js </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dev"</span>: <span class="string">"rollup -w -c scripts/config.js --sourcemap --environment TARGET:web-full-dev"</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动命令<br>当运行命令后会生成对应打包后的vue.js文件，在/dist目录下。<br>vue各版本： vue.runtime.common.js 用于webpack 1.x， browserify。vue.runtime.esm.js用于webpack 2.x。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建html文件用于浏览器调试<br>新建 /examples/test/test.html</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入vue.js 创建Vue实例</span></span><br><span class="line">&lt;script src=<span class="string">"/dist/vue.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">        el: <span class="string">'#app'</span>,</span><br><span class="line">        data: &#123;</span><br><span class="line">            msg1:<span class="string">'hello vue'</span>,</span><br><span class="line">            msg2: <span class="string">'coke'</span></span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>源码入口文件<br>我们学习的是打包后生成的带编译器的vue.js文件。<br>所以源码学习从入口文件从 /src/platforms/web/entry-runtime-with-compiler.js开始。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Runtime+compiler development build (Browser)</span></span><br><span class="line">    <span class="string">'web-full-dev'</span>: &#123;</span><br><span class="line">        entry: resolve(<span class="string">'web/entry-runtime-with-compiler.js'</span>), <span class="comment">// webpack打包的入口文件</span></span><br><span class="line">        dest: resolve(<span class="string">'dist/vue.js'</span>), <span class="comment">// webpack打包生成的目标文件的位置</span></span><br><span class="line">        format: <span class="string">'umd'</span>, <span class="comment">// 输出规范</span></span><br><span class="line">        env: <span class="string">'development'</span>,</span><br><span class="line">        alias: &#123; <span class="attr">he</span>: <span class="string">'./entity-decoder'</span> &#125;,</span><br><span class="line">        banner</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="Vue-Constructor-Function"><a href="#Vue-Constructor-Function" class="headerlink" title="Vue Constructor Function"></a>Vue Constructor Function</h2><p>经过以上步骤，我们已经知道了从哪一个文件开始分析vue源码，但是我这里不从最外层一层一层开始分析，因为我已经整理过，下图是我自己总结的Vue构造函数的简单的整体结构是什么样子的，所以我直接从Vue源码最底层开始讲起，分析Vue是如何从最初的构造函数一步步壮大的。更详细的Vue源码分析的思维导图，请查看地址：<a href="https://www.processon.com/view/link/5ed8b1df5653bb445ce4a8ba。" target="_blank" rel="noopener">https://www.processon.com/view/link/5ed8b1df5653bb445ce4a8ba。</a></p>
-<img src="/static/img/VueCorFunc.png">
-首先会有一个简单的Vue构造函数，我称之为Basic Vue，在这里这仅仅是一个简单的构造函数，其内部只有一个_init()方法的调用，也就是当我们写new Vue({xxx})的时候，会去执行到_init这个方法。看到这里你可能会问_init是在哪里定义的，继续往下看，我们会看到initMixin(Vue)这个方法的调用，也就是在这个方法中，我们可以看到给Vue的实例绑定了一个_init()方法。
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vue</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>._init(options)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">initMixin(Vue)</span><br><span class="line">stateMixin(Vue)</span><br><span class="line">eventsMixin(Vue)</span><br><span class="line">lifecycleMixin(Vue)</span><br><span class="line">renderMixin(Vue)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/04/Vue源码学习思考/" data-id="ckh44mztq000q4sv2da1onx1i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/05/面试学习/" data-id="ckh5kzaxd001ttgv2kblgf70t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1359,7 +1328,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DS-js-数据驱动/">DS.js 数据驱动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/How-to-use-hexo-create-a-blog/">How to use hexo create a blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas-基础/">canvas 基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -1369,7 +1338,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
+      <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/DOM/" style="font-size: 10px;">DOM</a> <a href="/tags/DS-js-数据驱动/" style="font-size: 10px;">DS.js 数据驱动</a> <a href="/tags/How-to-use-hexo-create-a-blog/" style="font-size: 10px;">How to use hexo create a blog</a> <a href="/tags/canvas-基础/" style="font-size: 10px;">canvas 基础</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a>
     </div>
   </div>
 
@@ -1378,7 +1347,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">十一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">八月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li></ul>
     </div>
   </div>
 
@@ -1389,6 +1358,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/11/05/D3/">D3</a>
+          </li>
         
           <li>
             <a href="/2020/10/09/DOM/">DOM</a>
@@ -1404,10 +1377,6 @@
         
           <li>
             <a href="/2020/10/09/设计模式/">设计模式</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/09/重识CSS/">重识CSS</a>
           </li>
         
       </ul>
