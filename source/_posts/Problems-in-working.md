@@ -307,9 +307,11 @@ $refs在template和computed属性中使用无效,它不是响应式的。
 .native事件修饰符只能修饰组件，不能使用到div原生标签上。
 
 # vue中父组件通过props向子组件传异步值为空的问题
-因为父组件的值是通过axios请求获得，当父组件拿到处理后的值时，子组件钩子函数生命周期已经走完。因此通过props传递给子组件，在子组件的生命周期中无法访问到异步获取的值。但是在页面上是能渲染父组件传递的异步数据。
+因为父组件的值是通过axios请求获得，当父组件拿到处理后的值时，子组件钩子函数生命周期已经走完。因此通过props传递给子组件，在子组件的mounted之前的生命周期都中无法访问到异步获取的值，mounted可以获取到。在子组件页面上能渲染父组件传递的异步数据，是因为在挂载时，已经可以拿到异步数据了。
 
-解决方案：通过v-if 判断值，当值有的时候再渲染子组件。
+可以通过computed，来间接使用props中的异步数据的值，因为computed是能监听值的变化的。
+
+解决方案：通过v-if 判断值，当值有的时候再渲染子组件，这样在子组件的生命周期中就能访问props的异步数据了。
 还可以通过Vuex。
 
 # 关于dialog 弹窗的几点思考
@@ -318,4 +320,23 @@ $refs在template和computed属性中使用无效,它不是响应式的。
 3. v-if 的切换组件，会销毁组件内的数据，再打开组件时，组件的生命周期会重新走一次。
 
 # localStorage
-localStorage只能保存字符串，对于对象要用JSON.stringify和JSON.parse
+localStorage只能保存字符串，对于对象要用JSON.stringify和JSON.parse处理
+
+# 关于vue 父子组件的生命周期
+vue中 父组件初始化数据之后，在执行created和beforeMounted之后才会进入到子组件里，去执行子组件的生命周期函数。子组件moounted之后，才会再执行父组件的 mounted。
+
+# vuex store
+vuex store 在页面刷新后，保存在里面的数据会被重置。
+
+# vuex store 是否是响应式的
+vue store 也是响应式的
+# vue watch 可以监听哪些数据
+data,route,props,computed, store.state
+
+# chrome 浏览器 最小字体限制
+chrome最小字体大小限制为12px，可以通过transform来间接更改。
+```css
+span {
+  transform: scale(0.5);
+}
+```
