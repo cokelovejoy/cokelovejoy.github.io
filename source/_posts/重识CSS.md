@@ -324,3 +324,118 @@ rem基于根元素的font-size，一般为16px。
 
 ### js实现子元素滚动到底，不影响父元素的滚动。
 event.preventDefault()
+
+# 阻止冒泡行为
+js冒泡和捕获是事件的两种行为，使用event.stopPropagation()起到阻止捕获和冒泡阶段中当前事件的进一步传播。
+```js
+function stopBubble(e) { 
+//如果提供了事件对象，则这是一个非IE浏览器 
+if ( e && e.stopPropagation ) 
+    //因此它支持W3C的stopPropagation()方法 
+    e.stopPropagation(); 
+else 
+    //否则，我们需要使用IE的方式来取消事件冒泡 
+    window.event.cancelBubble = true; 
+}
+```
+# 阻止默认行为
+preventDefault它是事件对象(Event)的一个方法，作用是取消一个目标元素的默认行为。
+```js
+//阻止浏览器的默认行为 
+function stopDefault( e ) { 
+    //阻止默认浏览器动作(W3C) 
+    if ( e && e.preventDefault ) 
+        e.preventDefault(); 
+    //IE中阻止函数器默认动作的方式 
+    else 
+        window.event.returnValue = false; 
+    return false; 
+}
+```
+# setTimeout 和 setInterval总结
+setInterval 本身不会引起内存泄漏，而在于怎么使用。
+如果setInterval中存在无法回收的内容，那么这一部分内存就永远无法释放，这样就导致内存泄漏。
+## 合理使用变量
+变量的提升（函数内使用var声明的变量，在函数外部还能访问）并且没有清除函数外部变量引用的情况下会导致内存无法释放。
+```js
+// 函数运行完之后，内部的内存会自动释放，无需重置，然而全局变量却一直存在。
+let array=[]
+function createArray(){
+    for(let j=0;j<100000;j++){
+        array.push(j*3*5)
+    }
+}
+setInterval(createArray, 1000);
+// 函数运行完，内部的变量会被释放。不会因定时器导致内存增加 
+function createArray(){
+    let array=[]
+    for(let j=0;j<100000;j++){
+        array.push(j*3*5)
+    }
+}
+setInterval(createArray, 1000);
+```
+
+## 游离的DOM
+游离状的dom无法被回收。
+```js
+// 虽然root元素在dom中被删除了，但是引用还在，这个时候root的子元素就会以游离状态的dom存在，而且无法被回收。解决方案就是root=null，清空引用，消除游离状态的dom。
+let root = document.getElementById("root")
+for(let i=0;i<2000;i++){
+    let div=document.createElement("div")
+    root.appendChild(div)
+}
+document.body.removeChild(root)
+```
+
+# requestIdleCallback 和 requestAnimationFrame
+ requestAnimationFrame 每一帧必定会执行，requestIdleCallback 是在浏览器空闲时间来执行任务。
+
+# vue watch 执行两次
+不要忽略 初始值 和 获取的异步数据不相同的时候，也会触发一次watch。
+设置 watch 的immediate属性位true 可以让，watch的handler函数先执行， 而不用在生命周期函数created里面去执行。
+
+# vue watch 导致死循环
+在watch里面监听data的数据，然后又在handler函数里修改监听的数据的属性，可能会导致死循环。
+
+# 大数据渲染问题
+## 一次渲染完所有的数据
+一次渲染完所有的数据，会导致浏览器卡顿。
+## 使用定时器setTimeout分批渲染
+出现闪屏的问题，原因如下
+1. setTimeout的执行时间并不是确定的。在JS中，setTimeout任务被放进事件队列中，只有主线程执行完才会去检查事件队列中的任务是否需要执行，因此setTimeout的实际执行时间可能会比其设定的时间晚一些，setTimeout函数的第二个参数不是等多长时间之后执行，而是等多长时间后将其放入执行队列。
+2. 刷新频率受屏幕分辨率和屏幕尺寸的影响，因此不同设备的刷新频率可能会不同，而setTimeout只能设置一个固定时间间隔，这个时间不一定和屏幕的刷新时间相同。
+
+以上两种情况都会导致setTimeout的执行步调和屏幕的刷新步调不一致。在setTimeout中对dom进行操作，必须要等到屏幕下次绘制时才能更新到屏幕上，如果两者步调不一致，就可能导致中间某一帧的操作被跨越过去，而直接更新下一帧的元素，从而导致丢帧现象。
+3.  使用requestAnimationFrame分批渲染
+requestAnimationFrame最大的优势是由系统来决定回调函数的执行时机。requestAnimationFrame的步伐跟着系统的刷新步伐走。它能保证回调函数在屏幕每一次的刷新间隔中只被执行一次，这样就不会引起丢帧现象。
+4. 使用DocumentFragment
+DocumentFragment不是真实DOM树的一部分，它的变化不会触发DOM树的(重新渲染) ，且不会导致性能等问题。可以使用document.createDocumentFragment方法或者构造函数来创建一个空的DocumentFragment。
+
+DocumentFragments是DOM节点，但并不是DOM树的一部分，可以认为是存在内存中的，所以将子元素插入到文档片段时不会引起页面回流。
+
+当append元素到document中时，被append进去的元素的样式表的计算是同步发生的，此时调用 getComputedStyle 可以得到样式的计算值。
+
+而append元素到documentFragment 中时，是不会计算元素的样式表，所以documentFragment 性能更优。当然现在浏览器的优化已经做的很好了，当append元素到document中后，没有访问 getComputedStyle 之类的方法时，现代浏览器也可以把样式表的计算推迟到脚本执行之后。
+
+documentFragment是一个保存多个element的容器对象（保存在内存）当更新其中的一个或者多个element时，页面不会更新。只有当documentFragment容器中保存的所有element更新后再将其插入到页面中才能更新页面。
+
+
+# 全屏显示 api
+全屏显示js库 screenfull
+```js
+// 全屏显示的函数
+fullScreen() {
+  if (!document.fullscreenElement) {
+    document.getElementById('container').requestFullscreen();
+  } 
+}
+// Esc 键按下 退出全屏
+document.addEventListener("keydown", function(e) {
+  if (e.keyCode === 27) {
+    if (document.exitFullscreen) {
+      document.exitFullscreen(); 
+    }
+  }
+})
+```
