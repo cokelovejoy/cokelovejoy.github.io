@@ -589,7 +589,8 @@ p {
 对于复杂的表单数据，常维护两个数据结构，一个 formData 用来界面显示，并且与用户交互；一个 submitData 用于提交，这个数据基于 formData 拷贝，在提交之前还要进行一些修改，但是我们不希望数据的更改会反应在 formData 上时，就通过拷贝 formData 数据，再在新的数据上操作，得到 submitData 用于发送请求。
 
 # Vuex storage 的问题
-computed中可以使用vuex storage中的数据，但是注意 数据是否存在的问题，组件加载先还是数据先获取到。
+
+computed 中可以使用 vuex storage 中的数据，但是注意 数据是否存在的问题，组件加载先还是数据先获取到。
 对于父组件发送请求 将请求到的数据保存到 Vuex storage 中， 此时子组件挂载时使用了通过 computed 间接使用了 storage 中的 state 去获取某个数据对象的属性，由于子组件挂载的速度比请求数据的速度快，导致子组件获取 state 的数据对象的属性此时还并没有该属性，而导致 undefined 的错误。
 
 ```js
@@ -611,11 +612,145 @@ getCurrentBridgeColor() {
 },
 ```
 
-总结 ： 由于异步数据导致 组件加载完成了，数据才有的情况，我们可以有两种方式去处理，1.通过computed 数据没有的时候给一个默认值。 2.通过v-if="renderData"控制,当数据有了之后再去加载组件。
-
+总结 ： 由于异步数据导致 组件加载完成了，数据才有的情况，我们可以有两种方式去处理，1.通过 computed 数据没有的时候给一个默认值。 2.通过 v-if="renderData"控制,当数据有了之后再去加载组件。
 
 # 关于 事件监听模式 event on event emit
-通过事件监听 可以进行组件之间的值传递， B组件向A组件传值，A 注册监听事件和监听事件触发的回调函数；B组件触发事件，将数据作为参数传递过去。
 
-# vue中处理数据绑定到页面中的问题
-无论是在 computed 和 methods中获取异步数据，再通过方法处理绑定到页面数据上时，可能存在数据还没有拿到的情况，在取其中的属性做判断是，需要先验证属性是否存在，没有则给一个默认值，以防止出现死循环和属性不存在等问题。
+通过事件监听 可以进行组件之间的值传递， B 组件向 A 组件传值，A 注册监听事件和监听事件触发的回调函数；B 组件触发事件，将数据作为参数传递过去。
+
+# vue 中处理数据绑定到页面中的问题
+
+无论是在 computed 和 methods 中获取异步数据，再通过方法处理绑定到页面数据上时，可能存在数据还没有拿到的情况，在取其中的属性做判断是，需要先验证属性是否存在，没有则给一个默认值，以防止出现死循环和属性不存在等问题。
+
+# JS 实现框选功能
+
+实现框选功能主要和 mousedown,mousemove,mouseUp 这三个事件有关系。
+
+```js
+// 阻止事件冒泡和默认行为
+clearEventBubble(e) {
+  // 阻止事件冒泡
+  if (e.stopPropagation) {
+    e.stopPropagation();
+  } else {
+    e.cancelBubble = true; // 兼容IE浏览器
+  }
+  // 阻止默认行为
+  if (e.preventDefault) {
+    e.preventDefault();
+  } else {
+    e.returnValue = false; // 兼容IE浏览器
+  }
+},
+// 鼠标左键按下事件处理函数
+mouseDown(e) {
+  // 阻止事件冒泡
+  this.clearEventBubble(e);
+  // 判断是否为鼠标左键按下
+  if (e.buttons !== 1) {
+    return;
+  }
+  this.mouseOn = true;
+  // 获取容器元素
+  const selectContainer = this.$refs.selectContainer;
+  const { top, left } = selectContainer.getBoundingClientRect();
+  this.coverStartX = e.clientX - left;
+  this.coverStartY = e.clientY - top;
+},
+// 鼠标移动事件处理函数
+mouseMove(e) {
+  // 阻止事件冒泡
+  this.clearEventBubble(e);
+  // 不是框选退出
+  if (this.mouseOn === false) {
+    return;
+  }
+  // 获取容器元素
+  const selectContainer = this.$refs.selectContainer;
+  const { left, top } = selectContainer.getBoundingClientRect();
+  const _x = e.clientX - left;
+  const _y = e.clientY - top;
+  const _H = selectContainer.clientHeight;
+  // 限定鼠标操作的范围，超出容器做相应处理
+  // 向下拖拽
+  if (_y >= _H && selectContainer.scrollTop <= _H) {
+    selectContainer.scrollTop += _y - _H;
+  }
+  // 向上拖拽
+  if (e.clientY <= top && selectContainer.scrollTop > 0) {
+    selectContainer.scrollTop = Math.abs(e.clientY - top);
+  }
+  // 根据坐标给选框修改样式
+  const selectElement = this.$refs.selectElement;
+  selectElement.style.display = 'block';
+  selectElement.style.left = Math.min(_x, this.coverStartX) + 'px';
+  selectElement.style.top = Math.min(_y, this.coverStartY) + 'px';
+  selectElement.style.width = Math.abs(_x - this.coverStartX) + 'px';
+  selectElement.style.height = Math.abs(_y - this.coverStartY) + 'px';
+},
+// 鼠标松开事件处理函数
+mouseUp(e) {
+  // 阻止事件冒泡
+  this.clearEventBubble(e);
+  if (this.mouseOn === false) {
+    return;
+  }
+  // 处理鼠标点击松开 统计被选中元素
+  const selectElement = this.$refs.selectElement;
+  const drawBlockElements = document.getElementsByClassName('draw-block');
+
+  const left = selectElement.offsetLeft;
+  const top = selectElement.offsetTop;
+  const width = selectElement.offsetWidth;
+  const height = selectElement.offsetHeight;
+  const currentSelectedElements = [];
+  // 判断元素是否选中
+  for (let i = 0; i < drawBlockElements.length; i++) {
+    const currentElementLeft =
+      drawBlockElements[i].offsetWidth + drawBlockElements[i].offsetLeft;
+    const currentElementTop =
+      drawBlockElements[i].offsetHeight + drawBlockElements[i].offsetTop;
+    // 满足条件则选中
+    if (
+      currentElementLeft > left &&
+      currentElementTop > top &&
+      drawBlockElements[i].offsetLeft < left + width &&
+      drawBlockElements[i].offsetTop < top + height
+    ) {
+      currentSelectedElements.push(drawBlockElements[i]);
+    }
+  }
+  // 处理当前选中的元素，改变数据的属性值
+  this.handleSelectedElement(currentSelectedElements);
+  // 隐藏选框元素
+  this.resetSelectedCover();
+  // 选框事件结束
+  this.mouseOn = false;
+},
+```
+
+# JS 中 find 方法
+
+find 方法 获取数组的对象，会取得数组中对象的引用。
+
+# JS 中 concat 方法
+
+concat 不会改变原数组，会返回一个新的数组
+
+# JS 中 sort 方法
+
+sort 方法会改变原数组
+
+# JS 中 forEach 方法
+
+forEach 方法没有返回值，因此不要进行以下的链式调用，以防出错
+
+```js
+// b ---> undefined
+let a = [{ key: "1" }, { key: "2" }];
+let b = a.slice().forEach((item) => (item.key = 2));
+```
+
+# JS 中对象数组的赋值
+
+注意 JS 中对象和数组的赋值，是传递的引用，变量改变会间接影响原始数据。
