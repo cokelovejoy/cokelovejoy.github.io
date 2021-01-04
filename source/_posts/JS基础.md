@@ -36,7 +36,7 @@ JavaScript属于静态作⽤域，即声明的作⽤域是根据程序正⽂在�
 引用类型： Object。
 ### null与undefined区别
 null表示空，代表此处没有值。typeof null 为 object。
-undefined表示不存在，代表值为空值或者根本不存在。因为存不存在只在运行期才直到，这就是undefined的意义所在。
+undefined表示不存在，代表值为空值或者根本不存在。因为存不存在只在运行期才知道，这就是undefined的意义所在。
 ## 0.1+0.2 为什么不等于0.3
 JS number类型 使用IEEE 754标准，使用的是64位固定长度来表示。
 1. 在0.1转换为二进制表示
