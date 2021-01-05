@@ -750,7 +750,18 @@ forEach 方法没有返回值，因此不要进行以下的链式调用，以防
 let a = [{ key: "1" }, { key: "2" }];
 let b = a.slice().forEach((item) => (item.key = 2));
 ```
-
+# js 中 slice 方法
+slice方法可以对基本类型的数组进行复制，但是对于引用类型的数组进行复制时，还是会出现复制后的数组项数据改变会影响原数组的数据的情况。
+```js
+let a = [{a:1, b:2}];
+let b = a.slice();
+b[0].a =2;
+console.log(a); // [{a:2, b：2}]
+console.log(b); // [{a:2, b：2}]
+// 以下方法同样可以，实现数组复制，但同样有以上改变原数组的问题。
+let c = Array.from(a);
+let d = Array.of(...a);
+```
 # JS 中对象数组的赋值
 
 注意 JS 中对象和数组的赋值，是传递的引用，变量改变会间接影响原始数据。
