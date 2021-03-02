@@ -71,8 +71,12 @@ ReactDOM.render(
 );
 ```
 # JSX语法
+<<<<<<< HEAD
 JSX 就是 javaScript 的扩展，允许 HTML 和 javaScript 混写。
 JSX 基本语法规则：遇到HTML标签，就是用HTML规则解析，遇到代码块（{}包裹）就是用JavaScript规则解析。
+=======
+JSX是一种JavaScript的语法扩展，其格式像模板语言，但实际上完全是在JavaScript内部实现。JSX可以很好地描述UI，能够有效提高开发效率。
+>>>>>>> afdd0d48d7f88661d75235fb4050638e81c448ca
 ## 基本使用
 {}用来包裹表达式，其内部的表达式会被计算出来。
 ### 变量
@@ -231,7 +235,7 @@ this.setState({ comment: 'hello' })
 ### State的更新可能是异步的
 出于性能考虑，React可能会把多个setState() 合并成一个调用。
 因为this.porps 和 this.state可能会异步更新，所以不要以它们的值来更新下一个状态。
-setState只有在合成事件和生命周期函数中是异步的，在原生事件和setTimeout中都是同步的，这⾥里里的异步其实是批量更新。
+setState只有在合成事件和生命周期函数中是异步的，在原生事件和setTimeout中都是同步的，这⾥的异步其实是批量更新。
 
 ```js
 // wrong 可能无法更新
@@ -246,11 +250,26 @@ this.setState((state, props) => ({
 ### State的更新会被合并
 当调用setState()的时候，React会把提供的对象合并到当前的state，浅合并。
 
+```js
+// 链式更新state
+changeValue = v => {
+ this.setState(state => ({ counter: state.counter + v }));
+};
+setCounter = () => {
+ this.changeValue(1);
+ this.changeValue(2);
+};
+```
 ### 数据是向下流动的
+<<<<<<< HEAD
 不管是父组件或子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是class组件。
 其他组件无法访问state。
 组件可以把它的state作为props向下传递到它的子组件中
 ```js
+=======
+不管是父组件或子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是class组件。其他组件无法访问state。组件可以把它的state作为props向下传递到它的子组件中
+```
+>>>>>>> afdd0d48d7f88661d75235fb4050638e81c448ca
 <FormattedDate date={this.state.date} />
 ```
 FormattedDate 组件会在其 props 中接收参数 date，但是组件本身无法知道它是来自于 Clock 的 state，或是 Clock 的 props，还是手动输入的.
@@ -324,7 +343,7 @@ export default class Lifecyclepage extends Component {
      * 如果构造React.Component的子组件，则必须使用super(props)
      * 在构造函数中，只做两件事:
      *      1. state初始化
-     *      2. 给事件处理函数帮定当前实例：this.handleClick = this.handleClick.bind(this);
+     *      2. 给事件处理函数绑定当前实例：this.handleClick = this.handleClick.bind(this);
      * 如果不做上述的事情，constructor函数是不需要声明的，super默认会去执行。
      */
     constructor(props) {
