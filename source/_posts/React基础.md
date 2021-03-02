@@ -53,24 +53,26 @@ const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 ```
 ## React 和 ReactDom
-React 负责逻辑控制，将数据转化成VDOM
-ReactDom 负责渲染，将VDOM渲染成真是DOM
+React 负责逻辑控制，将数据转化成VDOM。
+ReactDom 负责渲染，将VDOM渲染成真实DOM。
 React中使用JSX来描述UI。babel-loader把JSX编译成JS对象，React.crreteElement()再把这个JS对象构造成React的VDOM。
+
 ```js
 // src/index.js
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 const JSX = <h1>Hello React</h1>
-
+// ReactDOM.render() 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点。
+// 下列代码 将h1元素插入root节点。
 ReactDOM.render(
   JSX,
   document.getElementById('root')
 );
 ```
 # JSX语法
-JSX是一种JavaScript的语法扩展，其格式像模板语言，但实际上完全实在JavaScript内部实现。JSX可以很好地描述UI，能够有效提高开发效率。
+JSX 就是 javaScript 的扩展，允许 HTML 和 javaScript 混写。
+JSX 基本语法规则：遇到HTML标签，就是用HTML规则解析，遇到代码块（{}包裹）就是用JavaScript规则解析。
 ## 基本使用
 {}用来包裹表达式，其内部的表达式会被计算出来。
 ### 变量
@@ -109,7 +111,7 @@ const jsx = (
 ```
 
 ### 数组
-数组会被作为一组子元素对待，数组中存放一组jsx可用于现实列表数据。
+数组会被作为一组子元素对待，JSX 会把它的所有成员，添加到模板。
 ```js
 // 在diff的时候先比较标签type，然后是key，所以同级元素的key必须是唯一的
 const a = [1, 2, 3]
@@ -123,7 +125,7 @@ const jsx = (
 ```
 
 ### 属性上使用{}
-属性：静态值使用双引号，动态值使用花括号，双花括号里面的花括号用来表示对象的。
+属性：静态值使用双引号，动态值使用花括号，双花括号里面的花括号用来表示对象的，外部的花括号是用来包裹代码块的。
 ```js
 import logo from './logo.svg'
 
@@ -141,9 +143,12 @@ import style from './index.module.css'
 <img className={style.logo}>
 ```
 # 组件
-组件，类似于JavaScript函数。它接受任意的参数(props),并返回描述页面展示内容的React元素。
+React组件，类似于JavaScript函数。它接受任意的参数(props),并返回描述页面展示内容的React元素。
+
 组件有两种形式：class组件和function组件。
-props: 自定义组件的属性和其子组件会转换为一个对象，这个对象就称为props。
+
+props: 当 React 元素为用户自定义组件时，它会将 JSX 所接收的属性（attributes）以及子组件（children）转换为单个对象传递给组件，这个对象被称之为 “props”。
+可以通过this.props访问自定义组件接收的属性和子组件（通过children属性获取子组件）。
 组件名称必须以大写字母开头，小写字母开头的组件将会被视为原生DOM标签。
 ## Class组件
 class组件拥有状态和生命周期，继承于React.Component，必须定义render方法。
@@ -208,7 +213,7 @@ export default function FunctionComponent(props) {
 ```
 ## setState
 ### 正确使用setState
-```
+```js
 this.setState(partialState, callback)
 ```
 1. partialState: Object | function
@@ -217,7 +222,7 @@ this.setState(partialState, callback)
 state更新完成之后要执行的回调函数。
 ### 不要直接修改State
 构造函数是唯一可以给 this.state 赋值的地方。
-```
+```js
 // Wrong
 this.state.commet = 'hello'
 // correct
@@ -228,7 +233,7 @@ this.setState({ comment: 'hello' })
 因为this.porps 和 this.state可能会异步更新，所以不要以它们的值来更新下一个状态。
 setState只有在合成事件和生命周期函数中是异步的，在原生事件和setTimeout中都是同步的，这⾥里里的异步其实是批量更新。
 
-```
+```js
 // wrong 可能无法更新
 this.setState({
     counter: this.state.counter + this.props.increment
@@ -245,11 +250,11 @@ this.setState((state, props) => ({
 不管是父组件或子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是class组件。
 其他组件无法访问state。
 组件可以把它的state作为props向下传递到它的子组件中
-```
+```js
 <FormattedDate date={this.state.date} />
 ```
 FormattedDate 组件会在其 props 中接收参数 date，但是组件本身无法知道它是来自于 Clock 的 state，或是 Clock 的 props，还是手动输入的.
-```
+```js
 function FormattedDate(props) {
   return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
 }
