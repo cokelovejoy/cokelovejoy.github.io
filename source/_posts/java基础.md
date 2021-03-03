@@ -94,3 +94,187 @@ class Dog extends Animal {
 // 创建类的实例
 Dog jake = new Dog();
 ```
+## 基本语法
+
+### 数据类型
+java 数据类型分为基本数据类型和引用数据类型。
+基本数据类型分为数值类型和布尔类型。
+数值类型分为整数类型，浮点数类型，字符类型。
+整数类型分别有：byte， short，int， long(分别占1，2，4，8字节)
+浮点数类型分别有：float，double(分别占4，8字节)
+字符类型有：char(占2字节)
+
+字符串是引用数据类型。字符串使用双引号，字符类型数据使用单引号。
+null是引用类型的一个特殊值。
+
+### 二进制概念
+计算机中保存数据都是以二进制的形式保存。任意字符都是通过二进制编码来表示。
+数字在计算机底层也都是以二进制形式存在。并且计算机以补码的形式保存所有的整数。
+1. 原码
+原码是直接将一个数字转换成二进制数。正数在最高位用0表示，负数在最高位用1表示。
+2. 反码
+反码是除符号位，全部按位取反。
+3. 补码
+正数的补码和原码相同，负数的补码为原码的反码加1.由负数的补码求原码，也是取反加1.
+
+### 浮点型数据
+java浮点数遵循IEEE 754标准，采用二进制数据的科学计数法表示浮点数。
+对于float类型，占4字节，32位，第一位是符号位，接下来8位为指数，后23位表示尾数。
+对于double类型，占8字节，64位，第一位是符号位，接下来11位为指数，后52位表示尾数。
+
+```java
+double a = 5.12e2D; // double类型浮点数
+float b = 5.12e2F; // float类型浮点数
+```
+
+### 自动类型转换
+把某种基本类型的值直接赋值给另一个基本类型的变量，称之为自动类型转换。
+规则：表数范围小的可以向表数范围大的转换。
+byte->short->int->long->float->double
+char->int->long->float-double
+
+### 强制类型转换
+手动将某类型的值转换成另一种类型。
+注意：强制转换是将大范围的数转手动换为小范围的数，有可能溢出。
+```java
+int value = 233;
+byte bValue = (byte) value; // 将int型转换成byte型，发生溢出，结果为-23。
+```
+字符串转换成基本类型，需要使用基本类型对应的包装类。可以实现把字符串转换成基本类型。
+java为8中基本类型提供了对应的包装类:
+都提供了parseXxx(String str) 静态方法用于将字符串转换成基本类型。
+1. boolean 对应 Boolean
+2. byte 对应 Byte
+3. short 对应 Short
+4. int 对应 Integer
+5. long 对应 Long
+6. char 对应 Character
+7. float 对应 Float
+8. double 对应 Double
+```java
+String a = '45';
+int value = Integer.parseInt(a);
+```
+### 表达式类型的自动提升
+一个算术表达式内包含多个基本类型的值，整个算术表达式的数据类型将发生自动提升。
+规则：
+1. byte，short，char将被提升为int类型。
+2. 整个算术表达式的数据类型自动提升到表达式中最高等级操作数的类型。
+
+### 数组类型
+java 语言的数组要求所有的数组元素的数据类型相同。即一个数组中只能存储一种数据类型的数据。
+
+```java
+// 定义数组方式
+// 声明数组
+int[] intArr;
+// 静态初始化，只指定数组元素的初始值，不指定数组的长度。
+intArr = new int[] {5,6,8,10};
+// 定义一个Object数组类型的变量
+// String类型是Object的子类。
+Object[] objArr;
+objArr = new Object[] {"JAVA", "coke"};
+// 静态初始化的简化写法
+int intArr = {1,2,3,4};
+
+// 动态初始化,指定数组大小,系统自动为数组元素分配初始值。
+int[] price = new int[5];
+// 初始化数组时元素类型是定义数组时元素类型的子类
+Object[] books = new String[4];
+```
+foreach循环遍历数组
+
+```java
+String[] books = {"Java", "C++"};
+for (String book: books) {
+    System.out.print(book);
+}
+```
+### 类和对象
+类的修饰符：public, final, abstract
+类定义包含：构造器，成员变量，方法。
+
+构造器是类创建对象的根本途径。java中如果一个类没有写构造器函数，会默认生成一个构造器函数。通过new关键字调用构造器，返回该类的实例。
+
+成员变量的修饰符：public, protected, private, static, final.
+public,protected,private只能出现其中之一，可与static，final组合修饰成员变量。
+
+方法的修饰符：public, protected, private, static, final.
+public,protected,private只能出现其中之一，abstract和final只可以出现其中之一，可与static组合修饰成员方法。
+
+
+
+static修饰的成员表明它属于这个类本身，因为通常把static修饰的成员变量和方法也称为类变量、类方法。
+
+不使用static修饰的普通方法、成员变量则属于该类的单个实例，而不属于该类。
+
+有时也把static修饰的成员变量和方法称为静态变量和静态方法，把不使用static修饰的成员变
+量和方法称为非静态变量和非静态方法。静态成员不能直接访问非静态成员。即static修饰的成员不能访问没有static修饰的成员。
+
+类不能访问实例的属性和方法。但是实例可以访问类定义的属性和方法。
+
+this关键字总是指向调用该方法的实例对象。static修饰的方法中不能使用this引用，这个关键字无法指向合适的对象。
+```java
+// 声明Person类
+public class Person {
+    // 定义构造器函数,名字必须和类名相同，构造器不需要返回值，实际隐式返回了类的实例对象。
+    public Person() {
+        this.age = 18; // 所有实例对象的age变量都是18
+    }
+    // 定义实例属性和方法
+    public String name;
+    public int age;
+    public void say(String content) {
+        Syetem.out.print('content')
+    }
+    // 程序执行的入口
+    public static void main(String[] args) {
+        System.out.print('')
+    }
+}
+
+// 定义Person类的实例对象
+Person jake = new Person();
+```
+### 方法
+#### 参数传递机制
+按值传递
+#### 实现重载
+
+### 访问控制符
+java提供了3个访问控制符：private，protected，public，分别代表不同级别的访问控制级别。还有一个没有访问控制符的级别default。一共4个级别。当不使用任何访问控制符来修饰类或类成员的时候，系统默认使用该访问控制级别。
+四个访问控制级别：
+* private：只允许在当前类的内部被访问，用于修饰成员变量最合适（当前类访问权限）。
+* default：不使用任何访问控制符修饰时的访问级别（包访问权限）。
+* protected：可以被同一个包中的其他类访问，也可以被不同包中的子类访问。使用protected修饰方法，通常是希望其子类重写这个方法。（子类访问权限）。
+* public：可以被所有类访问。（公共访问权限）。
+### 包（package）
+java 引入包机制，提供了类的多层命名空间，用于解决类的命名冲突，类文件管理等问题。
+
+java允许将一组功能相关的类放在同一个package下，组成逻辑上的类库单元。
+
+package语句必须作为源文件的第一条非注释性语句，一个源文件只能指定一个包，即只能包含一条package语句，该源文件中可以定义多个类，则这些类将全部位于该包下。
+
+同时位于包中的类，在文件系统中也必须有与包名层次相同的目录结构。
+
+java包机制需要两个方面保证：
+1. 源文件里使用package语句指定包名
+2. class文件必须放在对应的路径下。
+```java
+package lee;
+public class Hello {
+
+}
+// 创建其他包下类的实例，在调用构造器时，需要使用包前缀
+var a = new lee.Hello();
+
+// 使用import关键字导入指定类, 之后可以省略包名
+import lee.Hello;
+// 使用import关键字导入全部类
+import lee.*;
+// 使用import static 静态导入（静态成员变量，方法）,之后可以省略类名
+import static packageName.ClassName;
+// 使用import static 静态导入 全部静态成员变量，方法
+import static packageName.ClassName.*
+```
+#### 常用的包
