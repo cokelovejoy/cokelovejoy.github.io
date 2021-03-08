@@ -240,7 +240,31 @@ Person jake = new Person();
 ### 方法
 #### 参数传递机制
 按值传递
+#### 递归
+函数自己调用自己就称之为递归
+```java
+public static int fn(int n) {
+    if (n == 20) {
+        return 1;
+    } else if (n == 21) {
+        return 4;
+    } else {
+        return fn(n+2) - 2 * fn(n+1);
+    }
+}
+```
 #### 实现重载
+同一个类中的多个同名的方法，根据不同的参数列表，执行不同的代码块
+```java
+public class Overload {
+    public void test() {
+        System.out.println("无参数");
+    }
+    public void test(String msg) {
+        System.out.println('重载的test' + msg);
+    }
+}
+```
 
 ### 访问控制符
 java提供了3个访问控制符：private，protected，public，分别代表不同级别的访问控制级别。还有一个没有访问控制符的级别default。一共4个级别。当不使用任何访问控制符来修饰类或类成员的时候，系统默认使用该访问控制级别。
