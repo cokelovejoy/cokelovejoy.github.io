@@ -71,12 +71,8 @@ ReactDOM.render(
 );
 ```
 # JSX语法
-<<<<<<< HEAD
 JSX 就是 javaScript 的扩展，允许 HTML 和 javaScript 混写。
 JSX 基本语法规则：遇到HTML标签，就是用HTML规则解析，遇到代码块（{}包裹）就是用JavaScript规则解析。
-=======
-JSX是一种JavaScript的语法扩展，其格式像模板语言，但实际上完全是在JavaScript内部实现。JSX可以很好地描述UI，能够有效提高开发效率。
->>>>>>> afdd0d48d7f88661d75235fb4050638e81c448ca
 ## 基本使用
 {}用来包裹表达式，其内部的表达式会被计算出来。
 ### 变量
@@ -261,15 +257,10 @@ setCounter = () => {
 };
 ```
 ### 数据是向下流动的
-<<<<<<< HEAD
 不管是父组件或子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是class组件。
 其他组件无法访问state。
 组件可以把它的state作为props向下传递到它的子组件中
 ```js
-=======
-不管是父组件或子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是class组件。其他组件无法访问state。组件可以把它的state作为props向下传递到它的子组件中
-```
->>>>>>> afdd0d48d7f88661d75235fb4050638e81c448ca
 <FormattedDate date={this.state.date} />
 ```
 FormattedDate 组件会在其 props 中接收参数 date，但是组件本身无法知道它是来自于 Clock 的 state，或是 Clock 的 props，还是手动输入的.
