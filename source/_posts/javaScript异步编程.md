@@ -157,3 +157,7 @@ event.emit('end')
 ## 异步操作并行处理
 ### Promise.all
 ### Promise.race
+
+## forEach 和async/await一起使用的问题
+forEach内部使用的while 的实现，所以和async/await一起使用，没有作用。
+解决办法：使用while或者for 直接和async/await一起使用，不要使用forEach。
