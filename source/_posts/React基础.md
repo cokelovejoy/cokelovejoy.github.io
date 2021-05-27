@@ -10,7 +10,7 @@ React是一个用于构建用户界面的JavaScript库。
 使用Create React App创建React应用。
 npx 是npm5.2+附带的package运行工具
 
-1. 创建项目：npx create-react-app my-app
+1. 创建项目：npx create-react-app my-app (安装npm install -g create-react-app)
 2. 进入项目：cd my-app
 3. 启动项目： npm start
 4. 暴露配置项： npm run eject (执行这行命令之后，就会暴露出config文件夹，其中包括webpack.config.js)
@@ -63,7 +63,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const JSX = <h1>Hello React</h1>
-// ReactDOM.render() 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点。
+// ReactDOM.render() 是 React 的最基本方法，用于将jsx转换为 HTML ，并插入指定的 DOM 节点。
 // 下列代码 将h1元素插入root节点。
 ReactDOM.render(
   JSX,
@@ -74,7 +74,7 @@ ReactDOM.render(
 JSX 就是 javaScript 的扩展，允许 HTML 和 javaScript 混写。
 JSX 基本语法规则：遇到HTML标签，就是用HTML规则解析，遇到代码块（{}包裹）就是用JavaScript规则解析。
 ## 基本使用
-{}用来包裹表达式，其内部的表达式会被计算出来。
+{}用来包裹表达式，其内部的表达式会被计算出来。只有字符串才需要使用引号''包裹，其余情况都不需要在jsx内部使用引号。
 ### 变量
 ```js
 const name = 'react'
@@ -111,7 +111,7 @@ const jsx = (
 ```
 
 ### 数组
-数组会被作为一组子元素对待，JSX 会把它的所有成员，添加到模板。
+数组会被作为一组子元素对待，jsx会隐式地拼接数组地所有元素，然后将其添加到模板。
 ```js
 // 在diff的时候先比较标签type，然后是key，所以同级元素的key必须是唯一的
 const a = [1, 2, 3]
@@ -125,7 +125,7 @@ const jsx = (
 ```
 
 ### 属性上使用{}
-属性：静态值使用双引号，动态值使用花括号，双花括号里面的花括号用来表示对象的，外部的花括号是用来包裹代码块的。
+属性：字符串使用双引号，js表达式使用花括号，双花括号里面的花括号用来表示对象的，外部的花括号是用来包裹代码块的。
 ```js
 import logo from './logo.svg'
 
@@ -135,13 +135,156 @@ const jsx = (
     </div>
 )
 ```
+### props
+react组件通过props获取传递进来的参数
+```js
+class HelloMessage extends React.Component {
+  render() {
+    return <div>
+      <h1>Hello {this.props.name}</h1>
+      <p>some text</p>
+    </div>;
+  }
+}
 
+ReactDOM.render(
+  <HelloMessage name="coke" />,
+  document.getElementById('example')
+);
+
+```
+this.props.children获取传递进来的子组件，如果没有子组件该属性值为undefined，如果是1个子组件为对象，多个子组件为数组。
+React.Children.map来处理this.props.children 就不用考虑它的数据结构，内部做了处理。
+```js
+class NotesList extends React.Component {
+  render() {
+    return (
+      <ol>
+      {
+        React.Children.map(this.props.children, function (child) {
+          return <li>{child}</li>;
+        })
+      }
+      </ol>
+    );
+  }
+}
+
+ReactDOM.render(
+  <NotesList>
+    <span>hello</span>
+    <span>world</span>
+  </NotesList>,
+  document.getElementById('example')
+);
+```
+设置默认的props，并且限制props属性的数据类型
+```js
+import PropTypes from 'prop-types';
+class MyTitle extends React.Component {
+    static defaultProps  = {
+        title: 'Hello World',
+    }
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+    }
+    render() {
+        return <h1> {this.props.title} </h1>;
+    }
+}
+```
+### ref获取元素结点
+创建一个引用对象，通过属性current保存绑定的元素。
+```js
+export default class MyComponent extends React.Component{
+  constructor(props) {
+    super(props);
+    this.myTextInput = React.createRef();
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.myTextInput.current.focus();
+  }
+  render() {
+    return (<div>
+      <input type="text" ref={this.myTextInput} />
+      <input type="button" value="Focus the text input" onClick={this.handleClick} />
+    </div>)
+  }
+}
+```
+### 设置状态和更新状态
+组件内的数据通过state声明，数据完全是组件私有的，必须使用this.setState()更新组件内的数据，然后内部会调用render()方法重新渲染组件，更新DOM。
+
+特性：单向数据流，数据向下流动。
+```js
+export default class MyStateComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      liked: false,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(event) {
+    // 更新数据
+    this.setState({ liked: !this.state.liked });
+  }
+  render() {
+    const text = this.state.liked ? "like" : "dislike";
+    return <p onClick={this.handleClick}>You {text} this. clike to toggle.</p>;
+  }
+}
+```
+注意：
+- 不要直接修改state, 这样不会重新渲染组件。
+- state的更新可能是异步的，这取决于是否依赖了props或state中的其他值，因为这些值，会异步更新，React会把多个setState调用合并成一个调用。
+- 由React控制的事件处理程序，以及生命周期函数调用setState异步更新state。大部分开发中用到的都是React封装的事件，比如onChange、onClick、onTouchMove等，这些事件处理程序中的setState都是异步处理的。
+- React控制之外的事件中调用setState是同步更新的。比如原生js绑定的事件，setTimeout/setInterval等。
+```js
+// 错误
+this.setState({
+  counter: this.state.counter + this.props.increment,
+});
+// 正确 写成函数，为了获取最近一次的数据
+// 让 setState() 接收一个函数而不是一个对象。这个函数用上一个 state 作为第一个参数，将此次更新被应用时的 props 做为第二个参数：
+this.setState((state, props) => ({
+    counter: state.counter + props.increment
+}))
+```
+### 数据响应式
+处理表单数据，实现响应式
+```js
+export default class MyDataResponse extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "hello",
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+  render() {
+    let value = this.state.value;
+    return (
+      <div>
+        <input type="text" value={value} onChange={this.handleChange} />
+        <p>{value}</p>
+      </div>
+    );
+  }
+}
+```
 ### css模块化
 ```js
 // CSS模块化规则：http://www.ruanyifeng.com/blog/2016/06/css_modules.html
 import style from './index.module.css'
 <img className={style.logo}>
 ```
+
+
 # 组件
 React组件，类似于JavaScript函数。它接受任意的参数(props),并返回描述页面展示内容的React元素。
 
@@ -151,7 +294,7 @@ props: 当 React 元素为用户自定义组件时，它会将 JSX 所接收的�
 可以通过this.props访问自定义组件接收的属性和子组件（通过children属性获取子组件）。
 组件名称必须以大写字母开头，小写字母开头的组件将会被视为原生DOM标签。
 ## Class组件
-class组件拥有状态和生命周期，继承于React.Component，必须定义render方法。
+class组件拥有状态和生命周期，继承于React.Component，必须定义render方法，render方法返回该class组件地实例。组件内的子元素必须被一个顶级的标签元素包裹。
 ```js
 import React, { Component } from 'react'
 export default class ClassComponent extends React.Component {
@@ -211,66 +354,8 @@ export default function FunctionComponent(props) {
 }
 
 ```
-## setState
-### 正确使用setState
-```js
-this.setState(partialState, callback)
-```
-1. partialState: Object | function
-要合并到当前State的对象。
-2. callback: function
-state更新完成之后要执行的回调函数。
-### 不要直接修改State
-构造函数是唯一可以给 this.state 赋值的地方。
-```js
-// Wrong
-this.state.commet = 'hello'
-// correct
-this.setState({ comment: 'hello' })
-```
-### State的更新可能是异步的
-出于性能考虑，React可能会把多个setState() 合并成一个调用。
-因为this.porps 和 this.state可能会异步更新，所以不要以它们的值来更新下一个状态。
-setState只有在合成事件和生命周期函数中是异步的，在原生事件和setTimeout中都是同步的，这⾥的异步其实是批量更新。
-
-```js
-// wrong 可能无法更新
-this.setState({
-    counter: this.state.counter + this.props.increment
-})
-// correct 使用函数返回要合并的对象
-this.setState((state, props) => ({
-    counter: state.counter + props.increment
-}))
-```
-### State的更新会被合并
-当调用setState()的时候，React会把提供的对象合并到当前的state，浅合并。
-
-```js
-// 链式更新state
-changeValue = v => {
- this.setState(state => ({ counter: state.counter + v }));
-};
-setCounter = () => {
- this.changeValue(1);
- this.changeValue(2);
-};
-```
-### 数据是向下流动的
-不管是父组件或子组件都无法知道某个组件是有状态的还是无状态的，并且它们也并不关心它是函数组件还是class组件。
-其他组件无法访问state。
-组件可以把它的state作为props向下传递到它的子组件中
-```js
-<FormattedDate date={this.state.date} />
-```
-FormattedDate 组件会在其 props 中接收参数 date，但是组件本身无法知道它是来自于 Clock 的 state，或是 Clock 的 props，还是手动输入的.
-```js
-function FormattedDate(props) {
-  return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
-}
-```
-
 ## 生命周期
+React 生命周期主要分为三个阶段：挂载阶段（Mount）,更新阶段（Update），卸载阶段（Unmount）
 ### 组件的生命周期
 每个组件都包含"生命周期方法"，重写生命周期方法，会在组件运行的特别阶段执行这些方法。
 React 16.3之前的生命周期函数图
