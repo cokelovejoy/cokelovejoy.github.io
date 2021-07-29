@@ -40,7 +40,8 @@ React中最多同时存在两棵Fiber树，当前屏幕上显示内容对应的F
 - scripts   各种工具链脚本，git，jest，eslint
 
 主要关注packages目录
-### packages目录
+### packages目录.
+核心文件夹：react，scheduler， shared
 #### react文件夹
 React的核心，包含所有全局 React API，如：
 - React.createElement
@@ -48,6 +49,8 @@ React的核心，包含所有全局 React API，如：
 - React.Children
 
 这些api是平台通用的，不包含ReactDOM,ReactNatived等特定平台的代码。
+#### react-dom文件夹
+ReactDom.render()函数，将虚拟dom转换成真实dom
 #### scheduler文件夹
 Scheduler调度器的实现。
 #### shared文件夹
