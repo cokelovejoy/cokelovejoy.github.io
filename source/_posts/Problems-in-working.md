@@ -110,7 +110,7 @@ git branch --set-upstream-to=origin/远程分支名 本地分支名 (git 将本�
 git checkout dev （切换到已经存在的分支）
 git checkout -b dev （在本地创建新分支，并切换到该分支）
 git checkout -b dev origin/dev (基于远程origin/dev分支新建本地dev分支)
-
+git branch -d xxx(删除本地分支)
 ## 拉取,提交操作
 git pull (将远程分支上的代码拉到本地)
 git add -A
